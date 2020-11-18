@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Ubuntu上设计Hexo主题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/15/Ubuntu%E4%B8%8A%E8%AE%BE%E8%AE%A1Hexo%E4%B8%BB%E9%A2%98/" class="article-date">
+  <time datetime="2019-10-15T07:19:56.000Z" itemprop="datePublished">2019-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/15/Ubuntu%E4%B8%8A%E8%AE%BE%E8%AE%A1Hexo%E4%B8%BB%E9%A2%98/">Ubuntu上设计Hexo主题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-Hexo-Theme"><a href="#0-Hexo-Theme" class="headerlink" title="0 Hexo Theme"></a>0 Hexo Theme</h1><p>用多了hexo的默认主题，打算自己写一个Hexo主题，感觉很方便。<br>主要在theme文件夹中。<br>hexo文档格式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml       // 总体的配置文件</span><br><span class="line">├── node_modules      // NodeJs 所依赖的包，后期也可以自己添加插件</span><br><span class="line">├── package-lock.json // 支持 hexo 运行的 NodeJs 包</span><br><span class="line">├── package.json      // 自定义的 NodeJs 包</span><br><span class="line">├── scaffolds         // Hexo Markdown 加载时的关键字，如data,title等,它会在启动的时候默认加载</span><br><span class="line">├── <span class="built_in">source</span>            // md 源文件目录</span><br><span class="line">└── themes            // 主题文件夹</span><br><span class="line">    └── landscape     // 默认主题       </span><br></pre></td></tr></table></figure>
+<p>我们编写 md 文档放在 『source』文件夹中，在运行『hexo generate』的时候，会根据『source』目录中的 md 文件自动生成一组 『html』格式的静态文件组，会在wiki目录下新建一个 『public』目录，存放在其中。</p>
+<p>在『_config.yml』中，可以看到配置的默认主题『theme: landscape』,所对应的是 themes 目录下的 landscape 目录。</p>
+<p>将theme:后面的内容修改为自己写的主题：lym.</p>
+<p>在『themes』目录下，新建一个自己的主题『lym』，并且新建一些可以支持运行的文件与目录，按照如下目录格式创建，里面可以不写东西，下面写有注释的，就是我新建的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml                 </span><br><span class="line">├── node_modules                </span><br><span class="line">├── package-lock.json        </span><br><span class="line">├── package.json                </span><br><span class="line">├── scaffolds                        </span><br><span class="line">├── <span class="built_in">source</span>                            </span><br><span class="line">└── themes                            </span><br><span class="line">    ├── landscape</span><br><span class="line">    └── lym                // 自建的主题目录</span><br><span class="line">        ├── _config.yml     // 主题配置文件</span><br><span class="line">        ├── layout          // 主要构造 html 的模板</span><br><span class="line">        │   ├── index.ejs   // 主页模板</span><br><span class="line">        │   ├── layout.ejs  // 布局模板</span><br><span class="line">        │   └── post.ejs    // md 编译成 html 后的文件模板</span><br><span class="line">        └── <span class="built_in">source</span>          // 静态资源文件目录</span><br><span class="line">            ├── css         // css 样式目录</span><br><span class="line">            └── js          // JavaScript 脚本目录</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-EJS标签"><a href="#1-EJS标签" class="headerlink" title="1.EJS标签"></a>1.EJS标签</h1><p>EJS(Effective JavaScript)是一套简单的模板语言，帮你利用普通的 JavaScript 代码生成 HTML 页面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="string">&#x27;脚本&#x27;</span> 标签，用于流程控制，无输出。</span><br><span class="line">&lt;%_ 删除其前面的空格符</span><br><span class="line">&lt;%= 输出数据到模板（输出是转义 HTML 标签）</span><br><span class="line">&lt;%- 输出非转义的数据到模板</span><br><span class="line">&lt;%<span class="comment"># 注释标签，不执行、不输出内容</span></span><br><span class="line">&lt;%% 输出字符串 <span class="string">&#x27;&lt;%&#x27;</span></span><br><span class="line">%&gt; 一般结束标签</span><br><span class="line">-%&gt; 删除紧随其后的换行符</span><br><span class="line">_%&gt; 将结束标签后面的空格符删除</span><br><span class="line">&lt;%- include(<span class="string">&quot;index.ejs&quot;</span>) %&gt;	引入其他模板</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% </span><br><span class="line">    var <span class="built_in">test</span> = <span class="string">&quot;基本上，就用这两组标签，其他的也用不上。&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%- <span class="built_in">test</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-Hexo变量"><a href="#2-Hexo变量" class="headerlink" title="2.Hexo变量"></a>2.Hexo变量</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">site								总体变量，几乎都是从这里开始的</span><br><span class="line">site.posts					所有文章</span><br><span class="line">site.posts[0].path	文章路径，带日期的</span><br><span class="line">site.posts[0].slug	文章路径，根据项目文件夹的路径来的</span><br><span class="line">site.posts[0]._id		文章的唯一 id，后面会用于 active 对比</span><br><span class="line">site.posts[0].title	文章的标题</span><br><span class="line">site.posts[0].date	文章的时间</span><br><span class="line">page.date						在直接访问文章路径下，文章的时间</span><br><span class="line">page.title					在直接访问文章路径下，文章的标题</span><br><span class="line">page._id						在直接访问文章路径下，文章的的唯一 id，后面会用于 active 对比</span><br><span class="line">page.content				引入对应文章的正文</span><br><span class="line">config.xxx					总体配置文件的引用 _config.yml</span><br><span class="line">theme.xxx						主题配置文件 theme._config.yml</span><br><span class="line">&lt;%- body %&gt;					同时引入 post.ejs 和 index.ejs</span><br><span class="line">&lt;%- css(path,...)%&gt;	引入 css 文件</span><br><span class="line">&lt;%- js(path,...) %&gt;	引入 js 文件</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/15/Ubuntu%E4%B8%8A%E8%AE%BE%E8%AE%A1Hexo%E4%B8%BB%E9%A2%98/" data-id="ckhnlm63r002ynng74u493sjw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上Git使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/14/Ubuntu%E4%B8%8AGit%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2019-10-14T03:47:03.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/14/Ubuntu%E4%B8%8AGit%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">Ubuntu上Git使用教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-获取Git仓库"><a href="#1-获取Git仓库" class="headerlink" title="1 获取Git仓库"></a>1 获取Git仓库</h1><h2 id="1-1-从工作目录中初始化新仓库"><a href="#1-1-从工作目录中初始化新仓库" class="headerlink" title="1.1 从工作目录中初始化新仓库"></a>1.1 从工作目录中初始化新仓库</h2><h3 id="1-1-1-初始化"><a href="#1-1-1-初始化" class="headerlink" title="1.1.1 初始化"></a>1.1.1 初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>初始化后会出现一个.git目录，所有git所需要的数据和资源都在这个目录中。</p>
+<h3 id="1-1-2-进行版本控制"><a href="#1-1-2-进行版本控制" class="headerlink" title="1.1.2 进行版本控制"></a>1.1.2 进行版本控制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *.c</span><br><span class="line">git add README</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>add命令开始跟踪，<br>commit命令开始提交</p>
+<h2 id="1-2-从现有的仓库中克隆"><a href="#1-2-从现有的仓库中克隆" class="headerlink" title="1.2 从现有的仓库中克隆"></a>1.2 从现有的仓库中克隆</h2><p>将项目的git仓库复制出来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://xxx [file-name]</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-文件管理"><a href="#2-文件管理" class="headerlink" title="2 文件管理"></a>2 文件管理</h1><h2 id="2-1-文件状态："><a href="#2-1-文件状态：" class="headerlink" title="2.1 文件状态："></a>2.1 文件状态：</h2><p>未跟踪：<br>没有上次更新时的快照，也不早当前的暂存区域。<br>当文件未被跟踪，git不会自动将其纳入跟踪范围，所以不用担心将临时文件归入版本管理。</p>
+<p>已跟踪：<br>代表文件本来就被纳入了版本控制管理的文件，在上次快照中有记录。<br>已跟踪文件的状态有：未修改，已修改和已放入暂存区。</p>
+<p>状态转化：<br>刚克隆某个仓库，所有文件都是已跟踪文件，状态为未修改。<br>编辑文件后，文件状态变为已修改。<br>将已修改的文件放到暂存区。<br>最后一次性提交暂存区的文件。</p>
+<p>状态转化图：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">untracked(未跟踪) |						tracked(已跟踪)</span><br><span class="line">untracked		  | unmodified(未修改) | modified(已修改)	| staged(暂存区)</span><br><span class="line">		       	--------------------add file--------------------&gt;     	    	</span><br><span class="line">                                                    --add file-&gt;</span><br><span class="line">                                 --edit file-&gt;	    --stage file-&gt;</span><br><span class="line">		       	&lt;-remove file--				&lt;-----------commit------------</span><br></pre></td></tr></table></figure>
+<p>检查当前文件状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-1跟踪新的文件："><a href="#2-1-1跟踪新的文件：" class="headerlink" title="2.1.1跟踪新的文件："></a>2.1.1跟踪新的文件：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add README</span><br></pre></td></tr></table></figure>
+<p>当add未跟踪的文件，文件会变为已经被跟踪，而且进入了暂存状态。</p>
+<h3 id="2-1-2暂存已修改的文件"><a href="#2-1-2暂存已修改的文件" class="headerlink" title="2.1.2暂存已修改的文件"></a>2.1.2暂存已修改的文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx</span><br></pre></td></tr></table></figure>
+<p>当文件已经跟踪，但是没有暂存，会将文件进入暂存状态。</p>
+<h3 id="2-1-3-忽略某些文件"><a href="#2-1-3-忽略某些文件" class="headerlink" title="2.1.3 忽略某些文件"></a>2.1.3 忽略某些文件</h3><p>一些文件不需要纳入文件管理，也不希望总是出现在未跟踪文件列表中。可以创建一个.gitignore文件，列出需要忽略的文件模式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># commitments</span></span><br><span class="line">*.a</span><br><span class="line">!lib.a<span class="comment">#除了xxx</span></span><br><span class="line">/TODO <span class="comment">#忽略TODO文件</span></span><br><span class="line">build/ <span class="comment">#忽略build目录下的所有文件</span></span><br></pre></td></tr></table></figure>
+
+<p>格式规范：<br>1。空行或者#都会被忽略<br>2。glob模式匹配<br>3。匹配模式最后/说明忽略目录<br>4。忽略指定模式以外的文件或者目录，可以加！</p>
+<p>glob模式：shell使用的简化的正则表达式</p>
+<ol>
+<li><ul>
+<li>匹配零个或多个任意字符</li>
+</ul>
+</li>
+<li>[abc] 匹配任何一个列在方括号中的字符<br>如果方括号中使用短划线分隔两个字符，例如[0-9]</li>
+<li>(?) 只匹配一个任意字符 </li>
+</ol>
+<h3 id="2-1-4-查看已暂存和未暂存的更新"><a href="#2-1-4-查看已暂存和未暂存的更新" class="headerlink" title="2.1.4 查看已暂存和未暂存的更新"></a>2.1.4 查看已暂存和未暂存的更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git diff</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-5-提交更新"><a href="#2-1-5-提交更新" class="headerlink" title="2.1.5 提交更新"></a>2.1.5 提交更新</h3><p>在提交之前，查看文件的状态，是否已经暂存，然后提交。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-6-跳过暂存区域提交"><a href="#2-1-6-跳过暂存区域提交" class="headerlink" title="2.1.6 跳过暂存区域提交"></a>2.1.6 跳过暂存区域提交</h3><p>通过暂存区域可以准备提交的细节，可以跳过暂存区域。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
+<p>git自动把所有已经跟踪过的文件暂存起来一起提交，跳过了add步骤。</p>
+<h3 id="2-1-7-移除文件"><a href="#2-1-7-移除文件" class="headerlink" title="2.1.7 移除文件"></a>2.1.7 移除文件</h3><p>从git中移除某个文件，需要将其从已跟踪清单中移除，也就是从暂存区移除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm</span><br></pre></td></tr></table></figure>
+<p>从跟踪区域中移除，顺便会在工作目录中删除指定的文件。<br>如果删除之前已经修改过而且已经放到暂存区，必须使用-f。</p>
+<p>如果，希望从git仓库即暂存区中移除，但是仍然希望保留在当前的工作目录中，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-8-移动文件"><a href="#2-1-8-移动文件" class="headerlink" title="2.1.8 移动文件"></a>2.1.8 移动文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv file_from file_to</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-查看提交历史"><a href="#2-2-查看提交历史" class="headerlink" title="2.2 查看提交历史"></a>2.2 查看提交历史</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line">-p -2</span><br><span class="line">//展开显示每次提交的内容差异。-2表示仅显示最近的两次更新</span><br><span class="line"></span><br><span class="line">-<span class="built_in">stat</span></span><br><span class="line">//显示简要的更改行数统计</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-撤销操作"><a href="#2-3-撤销操作" class="headerlink" title="2.3 撤销操作"></a>2.3 撤销操作</h2><h3 id="2-3-1-修改最后一次提交"><a href="#2-3-1-修改最后一次提交" class="headerlink" title="2.3.1 修改最后一次提交"></a>2.3.1 修改最后一次提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend </span><br><span class="line">//撤销刚才的提交操作</span><br><span class="line">//使用当前的暂存区提交快照</span><br><span class="line">//如果刚才的提交完没有任何改动，直接运行此命令，可以重新编辑提交说明。</span><br><span class="line">//如果忘记暂存修改，补上暂存操作，然后再修改提交</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-2-取消已经暂存的文件"><a href="#2-3-2-取消已经暂存的文件" class="headerlink" title="2.3.2 取消已经暂存的文件"></a>2.3.2 取消已经暂存的文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>将修改过后提交到暂存区的文件，撤销暂存，返回已修改但未暂存的状态</p>
+<h3 id="2-3-3-取消对文件的修改"><a href="#2-3-3-取消对文件的修改" class="headerlink" title="2.3.3 取消对文件的修改"></a>2.3.3 取消对文件的修改</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file-name&gt;</span><br></pre></td></tr></table></figure>
+<p>取消修改，回到修改之前的版本</p>
+<p>任何已经提交到git的都可以被恢复，</p>
+<h1 id="3-远程仓库"><a href="#3-远程仓库" class="headerlink" title="3 远程仓库"></a>3 远程仓库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote [-v]</span><br><span class="line">//-v verbose显示对应的克隆地址</span><br></pre></td></tr></table></figure>
+<p>列出每个远程库的简短名字。克隆完某个项目后，至少可以看到一个名为origin的远程库，git默认使用这个明治来标识你所克隆的原始仓库。</p>
+<h2 id="3-1-添加远程仓库"><a href="#3-1-添加远程仓库" class="headerlink" title="3.1 添加远程仓库"></a>3.1 添加远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add [short-name] [url]</span><br><span class="line">//添加一个新的远程仓库，可以指定一个简单的名字，以便将来引用</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-从远程库抓取数据"><a href="#3-2-从远程库抓取数据" class="headerlink" title="3.2 从远程库抓取数据"></a>3.2 从远程库抓取数据</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch [short-name]</span><br></pre></td></tr></table></figure>
+<p>fetch只是将远端的数据拉取到本地仓库。并不会自动合并到当前的工作分支。</p>
+<p>还可以用git pull自动抓取数据，<br>然后将远端分支自动合并到本地仓库的当前分支。</p>
+<h2 id="3-3-推送数据到远程仓库"><a href="#3-3-推送数据到远程仓库" class="headerlink" title="3.3 推送数据到远程仓库"></a>3.3 推送数据到远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [remote-name] [branch-name]</span><br></pre></td></tr></table></figure>
+<p>只有在所克隆的服务器上有写权限，或者同一时刻没有其他人推数据，这条命令才可以完成。<br>如果在推送数据之前，别人推送了，必须先将更新抓取到本地，合并到自己的项目中，才能够再次推送。</p>
+<h2 id="3-4-查看远程仓库的信息"><a href="#3-4-查看远程仓库的信息" class="headerlink" title="3.4 查看远程仓库的信息"></a>3.4 查看远程仓库的信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show [remote-name]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-打标签"><a href="#4-打标签" class="headerlink" title="4 打标签"></a>4 打标签</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br><span class="line">//列出已有标签</span><br><span class="line">git tag -l <span class="string">&#x27;v1.4.2.*&#x27;</span></span><br><span class="line">//特定搜索模式搜索标签</span><br><span class="line">git tag -a v1.4 -m <span class="string">&quot;my sersion 1.4&quot;</span></span><br><span class="line">//添加标签annotated</span><br></pre></td></tr></table></figure>
+
+<p>如果拥有私钥可以通过GPG来签署标签<br>这个有什么用处呢？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -s v1.5 -m <span class="string">&quot;my signed 1.5 tag&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过git show可以显示GPG签名</p>
+<p>后期加标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=online</span><br><span class="line">//显示之前的操作</span><br><span class="line"></span><br><span class="line">git tag -a v1.2 9fceb02</span><br><span class="line">//在打标签的时候跟上校验</span><br></pre></td></tr></table></figure>
+
+<p>分享标签，默认不会将标签传送到远端服务器，必须通过显式命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push origin [tagname]</span><br><span class="line"></span><br><span class="line">git push origin --tags</span><br><span class="line">//将所有本地标签添加上去</span><br></pre></td></tr></table></figure>
+
+<p>git 快捷操作命名别名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.ci commit</span><br><span class="line">//输入git commit只需要git ci，用于提高效率</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-分支"><a href="#5-分支" class="headerlink" title="5 分支"></a>5 分支</h1><p>任何版本控制系统都支持分支。<br>意味着从开发的主线上分离开，在不影响主线的同时继续工作。<br>在其他版本控制中，需要创建一个源代码目录的完整副本。</p>
+<p>git可以快速切换分支与合并。</p>
+<p>修补仓库中的程序的步骤：<br>1.返回到原先的分支<br>2.新建一个新的分支，修复问题<br>3.回到原先的分支进行合并，然后推送</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git checkout -b new-branch</span><br><span class="line">//新建并切换到new-branch分支</span><br><span class="line">//以上的命令等效于</span><br><span class="line">git branch new-branch</span><br><span class="line">git checkout new-branch</span><br><span class="line"></span><br><span class="line">//修改文件之后,提交文件到暂存区</span><br><span class="line">giit commit -a -m<span class="string">&#x27;commit new-brach&#x27;</span></span><br><span class="line"></span><br><span class="line">//需要修补主分支的问题</span><br><span class="line">//切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">//创建新的修补分支</span><br><span class="line">git checkout -b fix-branch</span><br><span class="line"></span><br><span class="line">//修改文件,之后提交</span><br><span class="line">git commit -a -m <span class="string">&#x27;fix branch&#x27;</span></span><br><span class="line"></span><br><span class="line">//修补完成后，回到主分支并且合并，然后发布</span><br><span class="line">git checkout master</span><br><span class="line">git merge fix-branch</span><br><span class="line"></span><br><span class="line">//fix-branch合并后可以删掉</span><br><span class="line">git branch -d fix-branch</span><br><span class="line"></span><br><span class="line">//返回到new-branch分支，继续进行原有工作，然后提交</span><br><span class="line">git checkout new-branch</span><br><span class="line">//修改文件</span><br><span class="line">git commit -a -m <span class="string">&#x27;finish the new-branch&#x27;</span></span><br><span class="line"></span><br><span class="line">//将新分支和修改分支合并</span><br><span class="line">git checkout master</span><br><span class="line">git merge new-branch</span><br><span class="line"></span><br><span class="line">//删除new-branch分支</span><br><span class="line">git branch -d new-branch</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在实际情况下，会遇到冲突的分支合并<br>如果在不同的分支中都修改了同一个文件的同一个部分，git就无法将两者合并到一起。这时候就会产生冲突。<br>通过git status显示。可以选择不同分支的一个或者亲自整合到一起。<br>整合完成之后，运行git add可以标记为解决状态。<br>运行git mergetool可以调用一个可视化的合并工具解决冲突。<br>git commit提交文件。</p>
+<p>分支的管理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">//显示所有分支</span><br><span class="line">git branch --merged</span><br><span class="line">//显示未合并分支</span><br><span class="line">git branch -d [branch-name]</span><br><span class="line">//删除已合并分支</span><br><span class="line">git branch -D [branch-name]</span><br><span class="line">//删除未合并分支</span><br></pre></td></tr></table></figure>
+
+<p>远程分支：<br>远程分支是对远程仓库的分支的索引。是无法移动的本地分支，只有在git进行网络交互的时候才会更新。<br>远程分支的表示方式：<br>远程仓库名/分支名<br>例如：origin/master<br>origin仓库的master分支</p>
+<p>//同步远程服务器上的数据到本地<br>git fetch origin</p>
+<p>submodule:<br>在某个仓库中有引用submodule时，clone不会下载submodule，我们需要进入工程然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git submodule init</span><br><span class="line">git submodule update</span><br><span class="line">//这样就可以下载submodule了</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/14/Ubuntu%E4%B8%8AGit%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" data-id="ckhnlm62y001mnng78h9da7ad" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言解决数独" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/13/C%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E6%95%B0%E7%8B%AC/" class="article-date">
+  <time datetime="2019-10-13T15:34:07.000Z" itemprop="datePublished">2019-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/13/C%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E6%95%B0%E7%8B%AC/">C语言解决数独</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">input:</span><br><span class="line">0 2 0 0 9 0 8 0 6 </span><br><span class="line">0 0 1 0 0 0 2 0 0 </span><br><span class="line">5 0 0 0 1 0 0 3 0 </span><br><span class="line">0 0 3 0 0 1 0 2 0 </span><br><span class="line">2 5 0 0 6 0 9 0 0 </span><br><span class="line">0 0 7 0 0 8 0 5 0 </span><br><span class="line">6 0 0 0 5 0 0 9 0 </span><br><span class="line">0 0 5 0 0 0 3 0 0 </span><br><span class="line">0 3 0 0 7 0 5 0 4 </span><br><span class="line"></span><br><span class="line">ans:</span><br><span class="line">3 2 4 7 9 5 8 1 6 </span><br><span class="line">8 9 1 6 3 4 2 7 5 </span><br><span class="line">5 7 6 8 1 2 4 3 9 </span><br><span class="line">9 6 3 5 4 1 7 2 8 </span><br><span class="line">2 5 8 3 6 7 9 4 1 </span><br><span class="line">4 1 7 9 2 8 6 5 3 </span><br><span class="line">6 8 2 4 5 3 1 9 7 </span><br><span class="line">7 4 5 1 8 9 3 6 2 </span><br><span class="line">1 3 9 2 7 6 5 8 4 </span><br><span class="line">repeat <span class="built_in">times</span>: 6</span><br><span class="line">Hello world!</span><br></pre></td></tr></table></figure>
+<p>源程序：<a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/MyProjectSudoku">https://github.com/Emir-Liu/MyProjectSudoku</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/13/C%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E6%95%B0%E7%8B%AC/" data-id="ckhnlm62c0009nng725reeeiv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上的C语言socket客户端教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/12/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2019-10-12T13:35:29.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/12/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/">Ubuntu上的C语言socket客户端教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>socket时网络中2个主机之间进行任何类型的网络通信的虚拟口，任何网络通信都是通过套接字来进行。<br>按照功能分为：<br>socket客户端：连接到远程系统来获取数据的应用程序<br>socket服务器：使用socket接受传入连接，并提供数据的应用程序。</p>
+<h1 id="1-建立socket客户端"><a href="#1-建立socket客户端" class="headerlink" title="1 建立socket客户端"></a>1 建立socket客户端</h1><p>其中包含以下的内容：<br>1.创建一个socket<br>2.连接到远程服务器<br>3.发送数据<br>4.接受数据<br>5.关闭socket<br>在本部分中，我们编写socket客户端，<a target="_blank" rel="noopener" href="http://www.baidu.com作为socket服务器./">www.baidu.com作为socket服务器。</a><br>更具体的说：<br><a target="_blank" rel="noopener" href="http://www.baidu.com是http服务器,网络浏览器是http客户端./">www.baidu.com是http服务器,网络浏览器是http客户端。</a></p>
+<h1 id="1-1-创建一个socket"><a href="#1-1-创建一个socket" class="headerlink" title="1.1 创建一个socket"></a>1.1 创建一个socket</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	socket_desc = socket(AF_INET,SOCK_STREAM,0);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>socket函数创建了一个socket，并且返回了一个socket描述符，可以在其他的函数中别使用，socket函数具体有以下的属性：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int socket(int domain,int <span class="built_in">type</span>,int protocol)</span><br><span class="line">int domain: AF_UNIX（本机通信），AF_INET（TCP/IP-IPv4）,AF_INET6（TCP/IP-IPv6）</span><br><span class="line">int <span class="built_in">type</span>: SOCK_STREAM(TCP),SOCK_DGRAM(UDP),SOCK_RAW</span><br><span class="line">int protocol =0确定套接字需要的协议簇和类型</span><br><span class="line">返回值：成功返回套接字，失败返回-1，错误代码写入“errno”</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-2将socket连接到服务器"><a href="#1-2将socket连接到服务器" class="headerlink" title="1.2将socket连接到服务器"></a>1.2将socket连接到服务器</h1><p>通过socket连接到远程服务器,需要ip地址和端口号进行连接</p>
+<h2 id="1-2-1-创建sockaddr-in结构"><a href="#1-2-1-创建sockaddr-in结构" class="headerlink" title="1.2.1 创建sockaddr_in结构"></a>1.2.1 创建sockaddr_in结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr_in server;</span><br></pre></td></tr></table></figure>
+<p>sockaddr_in 结构如下面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// IPv4 AF_INET sockets:</span><br><span class="line">struct sockaddr_in &#123;</span><br><span class="line">    short            sin_family;   // e.g. AF_INET, AF_INET6</span><br><span class="line">    unsigned short   sin_port;     // e.g. htons(3490)</span><br><span class="line">    struct in_addr   sin_addr;     // see struct in_addr, below</span><br><span class="line">    char             sin_zero[8];  // zero this <span class="keyword">if</span> you want to</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct in_addr &#123;</span><br><span class="line">    unsigned long s_addr;          // load with inet_pton()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sockaddr &#123; </span><br><span class="line">    unsigned short sa_family; //地址族，AF_xxx </span><br><span class="line">    char sa_data [14]; // 14个字节的协议地址</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>函数inet_addr是将ip地址转换为长格式的函数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>这里时baidu的ip地址。下面有如何找出给定域名的ip地址。</p>
+<h2 id="1-2-2-连接"><a href="#1-2-2-连接" class="headerlink" title="1.2.2 连接"></a>1.2.2 连接</h2><p>“连接”的概念适用于SOCK_STREAM / TCP类型的套接字。连接是指可靠的数据“流”，以便可以有多个这样的流，每个流具有自己的通信。可以将其视为不受其他数据干扰的管道。</p>
+<p>其他套接字，例如UDP，ICMP，ARP都没有“连接”的概念。这些是基于非连接的通信。这意味着您一直在发送或接收来自任何人和每个人的数据包。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;arpa/inet.h&gt;	//inet_addr</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	struct sockaddr_in server;</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_port = htons( 80 );</span><br><span class="line"></span><br><span class="line">	//Connect to remote server</span><br><span class="line">	<span class="keyword">if</span> (connect(socket_desc , (struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connected&quot;</span>);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-3-通过socket发送数据"><a href="#1-3-通过socket发送数据" class="headerlink" title="1.3 通过socket发送数据"></a>1.3 通过socket发送数据</h1><p>通过send函数发送数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;	//strlen</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;arpa/inet.h&gt;	//inet_addr</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	struct sockaddr_in server;</span><br><span class="line">	char *message;</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_port = htons( 80 );</span><br><span class="line"></span><br><span class="line">	//Connect to remote server</span><br><span class="line">	<span class="keyword">if</span> (connect(socket_desc , (struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connected\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Send some data</span><br><span class="line">	message = <span class="string">&quot;GET / HTTP/1.1\r\n\r\n&quot;</span>;</span><br><span class="line">	<span class="keyword">if</span>( send(socket_desc , message , strlen(message) , 0) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;Send failed&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;Data Send\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>备注：也可以通过write来将数据发送到socket</p>
+<h1 id="1-4-通过socket接受数据"><a href="#1-4-通过socket接受数据" class="headerlink" title="1.4 通过socket接受数据"></a>1.4 通过socket接受数据</h1><p>函数recv用于在socket上接受数据,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;	//strlen</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;arpa/inet.h&gt;	//inet_addr</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	struct sockaddr_in server;</span><br><span class="line">	char *message , server_reply[2000];</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_port = htons( 80 );</span><br><span class="line"></span><br><span class="line">	//Connect to remote server</span><br><span class="line">	<span class="keyword">if</span> (connect(socket_desc , (struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connected\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Send some data</span><br><span class="line">	message = <span class="string">&quot;GET / HTTP/1.1\r\n\r\n&quot;</span>;</span><br><span class="line">	<span class="keyword">if</span>( send(socket_desc , message , strlen(message) , 0) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;Send failed&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;Data Send\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Receive a reply from the server</span><br><span class="line">	<span class="keyword">if</span>( recv(socket_desc, server_reply , 2000 , 0) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;recv failed&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;Reply received\n&quot;</span>);</span><br><span class="line">	puts(server_reply);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>baidu返回了html。</p>
+<p>备注：我们也可以通过read读取socket的数据。</p>
+<h1 id="1-5-关闭socket"><a href="#1-5-关闭socket" class="headerlink" title="1.5 关闭socket"></a>1.5 关闭socket</h1><p>用close函数,需要unistd.h头文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(socket_desc);</span><br></pre></td></tr></table></figure>
+
+<p>以上，socket客户端已经基本完成。</p>
+<h1 id="1-6-补充：获取主机的IP地址"><a href="#1-6-补充：获取主机的IP地址" class="headerlink" title="1.6 补充：获取主机的IP地址"></a>1.6 补充：获取主机的IP地址</h1><p>连接到到远程主机，需要IP地址。用gethostbyname函数，域名作为参数，返回hostent类型的结构。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* 单个主机的数据库描述*/</span><br><span class="line">struct hostent</span><br><span class="line">&#123;</span><br><span class="line">  char *h_name;			/* 主机的正式名称*/</span><br><span class="line">  char **h_aliases;		/* 别名列表*/</span><br><span class="line">  int h_addrtype;		/* 主机地址类型*/</span><br><span class="line">  int h_length;			/* 地址的长度*/</span><br><span class="line">  char **h_addr_list;		/* 服务器的地址列表*/</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在 h_addr_list中有IP地址。通过以下的代码来使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt; //printf</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt; //strcpy</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;netdb.h&gt; //hostent</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  char *hostname = <span class="string">&quot;www.baidu.com&quot;</span>;</span><br><span class="line">  char ip[100];</span><br><span class="line">  struct hostent *he;</span><br><span class="line">  struct in_addr **addr_list;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( (he = gethostbyname( hostname ) ) == NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    //gethostbyname failed</span><br><span class="line">    herror(<span class="string">&quot;gethostbyname&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 1;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  //Cast the h_addr_list to in_addr , since h_addr_list also has the ip address <span class="keyword">in</span> long format only</span><br><span class="line">  addr_list = (struct in_addr **) he-&gt;h_addr_list;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(i = 0; addr_list[i] != NULL; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    //Return the first one;</span><br><span class="line">    strcpy(ip , inet_ntoa(*addr_list[i]) );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s resolved to : %s\n&quot;</span>, hostname , ip);</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/12/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/" data-id="ckhnlm63o002rnng77e8f1bjf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/" rel="tag">socket</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上gtk-使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/12/Ubuntu%E4%B8%8Agtk-%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2019-10-12T13:04:59.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/12/Ubuntu%E4%B8%8Agtk-%E4%BD%BF%E7%94%A8/">Ubuntu上gtk+使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0简介"><a href="#0简介" class="headerlink" title="0简介"></a>0简介</h1><p>GTK(GIMP Toolkit)是一套跨多种平台的图形工具包,按LGPL许可协议发布的。虽然最初是为GIMP写的，但早已发展为一个功能强大、设计灵活的通用图形库。特别是被GNOME选中使得GTK+广为流传，成为Linux下开发图形界面的应用程序的主流开发工具之一，当然GTK+并不要求必须在Linux上，事实上，目前GTK+已经有了成功的windows版本。 [1]<br>GTK+虽然是用C语言写的，但是您可以使用你熟悉的语言来使用GTK+，因为GTK+已经被绑定到几乎所有流行的语言上，如：C++, Guile, Perl, Python, TOM, Ada95, Objective C, Free Pascal, Eiffel等。</p>
+<h1 id="1-gtk-的安装"><a href="#1-gtk-的安装" class="headerlink" title="1.gtk+的安装"></a>1.gtk+的安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgtk2.0-dev</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/12/Ubuntu%E4%B8%8Agtk-%E4%BD%BF%E7%94%A8/" data-id="ckhnlm63d002dnng7b4xs1d6a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-伊斯兰教" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/03/%E4%BC%8A%E6%96%AF%E5%85%B0%E6%95%99/" class="article-date">
+  <time datetime="2019-10-03T13:31:45.000Z" itemprop="datePublished">2019-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/03/%E4%BC%8A%E6%96%AF%E5%85%B0%E6%95%99/">伊斯兰教</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近对伊斯兰教有兴致。<br>伊斯兰（al-Islam)系阿拉伯语音译，公元七世纪由麦加人穆罕默德在阿拉伯半岛上首先兴起，原意为“顺从”、“和平”，又译作伊斯俩目，指顺从和信仰创造宇宙的独一无二的主宰安拉及其意志，以求得两世的和平与安宁。信奉伊斯兰教的人统称为“穆斯林”(Muslim，意为“顺从者”与伊斯兰“Islam”是同一个词根)。7世纪初兴起于阿拉伯半岛，由麦加的古莱什部族人穆罕默德(约570～632，阿拉伯文儆）所复兴。公元七世纪至十七世纪，在伊斯兰的名义下，曾经建立了倭马亚、阿拔斯、法蒂玛、印度德里苏丹国家、土耳其奥斯曼帝国等一系列大大小小的封建王朝。经过一千多年的历史沧桑，这些盛极一时的封建王朝都已成了历史陈迹。但是作为世界性宗教的“伊斯兰”却始终没有陨落。起初，伊斯兰作为一个民族的宗教，接着作为一个封建帝国的精神源泉，然后又作为一种宗教、文化和政治的力量，一种人们生活的方式，在世界范围内不断地发展着，乃至成为21世纪世界的三大宗教之一。</p>
+<p>Emir 埃米尔(对某些穆斯林统治者的尊称)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/03/%E4%BC%8A%E6%96%AF%E5%85%B0%E6%95%99/" data-id="ckhnlm64b004hnng7gt8hgs5n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-影视中最深情的情侣是" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/03/%E5%BD%B1%E8%A7%86%E4%B8%AD%E6%9C%80%E6%B7%B1%E6%83%85%E7%9A%84%E6%83%85%E4%BE%A3%E6%98%AF/" class="article-date">
+  <time datetime="2019-10-03T13:26:26.000Z" itemprop="datePublished">2019-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/03/%E5%BD%B1%E8%A7%86%E4%B8%AD%E6%9C%80%E6%B7%B1%E6%83%85%E7%9A%84%E6%83%85%E4%BE%A3%E6%98%AF/">影视中最深情的情侣是</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Detective CONAN :<br>    455，456：阿笠博士，芙莎绘·坎贝尔·木之下（初恋哦哦～～～）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/03/%E5%BD%B1%E8%A7%86%E4%B8%AD%E6%9C%80%E6%B7%B1%E6%83%85%E7%9A%84%E6%83%85%E4%BE%A3%E6%98%AF/" data-id="ckhnlm64g004rnng7al64ez45" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言编写解释器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/03/C%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E8%A7%A3%E9%87%8A%E5%99%A8/" class="article-date">
+  <time datetime="2019-10-03T13:08:07.000Z" itemprop="datePublished">2019-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/03/C%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E8%A7%A3%E9%87%8A%E5%99%A8/">C语言编写解释器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>相关资料：<br>基于栈的指令集和基于寄存器的指令集的对比：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wade-luffy/p/6058089.html">https://www.cnblogs.com/wade-luffy/p/6058089.html</a></p>
+<p>用C写了一个解释器，发现Java等高级语言通过虚拟机解释运行程序的过程和汇编语言编译为机器语言有异曲同工之妙。</p>
+<p>将代码解释为的字节码，和汇编语言很类似。</p>
+<h1 id="C语言编译原理"><a href="#C语言编译原理" class="headerlink" title="C语言编译原理"></a>C语言编译原理</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc [options] [filenames]</span><br></pre></td></tr></table></figure>
+<p>其中options就是编译器所需要的参数，filenames给出相关的文件名称。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-E</span><br><span class="line">//只激活预处理，生成.i文件</span><br><span class="line">//预处理：将头文件插入代码中，生成.i文件</span><br><span class="line">-S</span><br><span class="line">//只激活预处理和编译，生成汇编文件.s</span><br><span class="line">//编译：将预处理后的文件转换为为汇编语言，检查代码规范性，是否有语法错误等。检查完毕后，将代码翻译为汇编语言，生成.s文件。</span><br><span class="line">//gcc -S -O3 -fno-asynchronous-unwind-tables main.c这一句里面的参数不明白</span><br><span class="line">-c</span><br><span class="line">//只激活预处理,编译,和汇编,生成.o文件</span><br><span class="line">//汇编：将汇编语言转换为为机器语言，并将指令打包为可重定位目标程序的二进制格式，生成.o文件</span><br><span class="line">无参数</span><br><span class="line">//激活预处理，编译，汇编和连接，生成执行文件</span><br><span class="line">//链接：将调用的函数的目标文件与主程序整合到一起，将文件合并后生成一个可执行的目标文件</span><br><span class="line"></span><br><span class="line">gcc -E main.c -o main.i</span><br><span class="line">gcc -S main.i -o main.s</span><br><span class="line">gcc -c main.s -o hello.o</span><br><span class="line">gcc main.o -o main.out</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/03/C%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E8%A7%A3%E9%87%8A%E5%99%A8/" data-id="ckhnlm62b0008nng7hn8130jv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-FAQ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/03/FAQ/" class="article-date">
+  <time datetime="2019-10-03T10:53:49.000Z" itemprop="datePublished">2019-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/03/FAQ/">FAQ</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>codeBlocks编译undefined reference to错误<br>是没有把c文件编译进去的原因。</p>
+<p>右键项目，选择属性，弹出窗体</p>
+<p>然后选择build targets</p>
+<p>在最下面有个build target files：中把c文件勾选。点击ok重新编译即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/03/FAQ/" data-id="ckhnlm62e000dnng709ee7gma" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-精选网站" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/02/%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/" class="article-date">
+  <time datetime="2019-10-02T11:19:49.000Z" itemprop="datePublished">2019-10-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/02/%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/">精选网站</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>cdecl:<br>    将C语言翻译为英语。</p>
+<p>stackoverflow:<br>    关于软件问题的提问网站。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/02/%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/" data-id="ckhnlm64u005anng7dp91he6d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

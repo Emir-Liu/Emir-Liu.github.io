@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Ubuntu上STM32开发之链接文件分析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0 简介接着上面的启动文件的分析之后，这一篇就是关于链接文件的介绍，链接文件也就是：stm32_flash.ld。连接器需要通过链接文件来形成最后的目标文件。链接程序脚本是提供给链接程序的脚本，用于指定内存布局并在执行固件时初始化固件所使用的各个内存段。这些脚本至关重要，因为它们指定了闪存和RAM的起始地址以及它们的大小。 1234567891011121314151617181920212223">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu上STM32开发之链接文件分析">
+<meta property="og:url" content="http://example.com/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="0 简介接着上面的启动文件的分析之后，这一篇就是关于链接文件的介绍，链接文件也就是：stm32_flash.ld。连接器需要通过链接文件来形成最后的目标文件。链接程序脚本是提供给链接程序的脚本，用于指定内存布局并在执行固件时初始化固件所使用的各个内存段。这些脚本至关重要，因为它们指定了闪存和RAM的起始地址以及它们的大小。 1234567891011121314151617181920212223">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T10:58:26.000Z">
+<meta property="article:modified_time" content="2020-11-18T13:25:41.996Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="stm32">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ubuntu上STM32开发之链接文件分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2020-01-03T10:58:26.000Z" itemprop="datePublished">2020-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu上STM32开发之链接文件分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>接着上面的启动文件的分析之后，这一篇就是关于链接文件的介绍，链接文件也就是：stm32_flash.ld。连接器需要通过链接文件来形成最后的目标文件。<br>链接程序脚本是提供给链接程序的脚本，用于指定内存布局并在执行固件时初始化固件所使用的各个内存段。这些脚本至关重要，因为它们指定了闪存和RAM的起始地址以及它们的大小。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">/* Entry Point */</span><br><span class="line"> ENTRY(Reset_Handler)</span><br><span class="line">/*</span><br><span class="line">指定程序的入口点，即程序中要执行的第一条指令。</span><br><span class="line">*/</span><br><span class="line"> /* Highest address of the user mode stack */</span><br><span class="line"> _estack = 0x20005000;    /* end of 20K RAM */</span><br><span class="line">/*</span><br><span class="line">声明一个变量_estack，该值表示堆栈的开始。</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">HEAP 和 STACK 在前面的启动文件中有解释</span><br><span class="line">*/</span><br><span class="line"> _Min_Heap_Size = 0;      /* required amount of heap  */</span><br><span class="line"> _Min_Stack_Size = 0x100; /* required amount of stack */</span><br><span class="line"> </span><br><span class="line">/*</span><br><span class="line">这一部分需要根据你选择的芯片来确定。</span><br><span class="line">在我之前的关于STM32下载的博客中，通过stm32flash可以看到</span><br><span class="line">Interface serial_posix: 57600 8E1</span><br><span class="line">Version      : 0x22</span><br><span class="line">Option 1     : 0x00</span><br><span class="line">Option 2     : 0x00</span><br><span class="line">Device ID    : 0x0410 (STM32F10xxx Medium-density)</span><br><span class="line">- RAM        : 20KiB  (512b reserved by bootloader)</span><br><span class="line">- Flash      : 128KiB (size first sector: 4x1024)</span><br><span class="line">- Option RAM : 16b</span><br><span class="line">- System RAM : 2KiB</span><br><span class="line">在下载程序的时候可以看到是下载到flash里面，下载地址从0x08000000开始。</span><br><span class="line">ORIGIN 起始地址</span><br><span class="line">LENGTH 大小</span><br><span class="line">*/</span><br><span class="line"> /* Specify the memory areas */</span><br><span class="line"> MEMORY</span><br><span class="line"> &#123;</span><br><span class="line">   FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 128K</span><br><span class="line">   RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 20K</span><br><span class="line">   MEMORY_B1 (rx)  : ORIGIN = 0x60000000, LENGTH = 0K</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">/* Define output sections */</span><br><span class="line"> SECTIONS</span><br><span class="line"> &#123;</span><br><span class="line">   /* The startup code goes first into FLASH */</span><br><span class="line">   .isr_vector :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     KEEP(*(.isr_vector)) /* Startup code */</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"> </span><br><span class="line">   /* The program code and other data goes into FLASH */</span><br><span class="line">   .text :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     *(.text)           /* .text sections (code) */</span><br><span class="line">     *(.text*)          /* .text* sections (code) */</span><br><span class="line">     *(.rodata)         /* .rodata sections (constants, strings, etc.  ) */</span><br><span class="line">     *(.rodata*)        /* .rodata* sections (constants, strings, etc. ) */</span><br><span class="line">     *(.glue_7)         /* glue arm to thumb code */</span><br><span class="line">     *(.glue_7t)        /* glue thumb to arm code */</span><br><span class="line"> </span><br><span class="line">     KEEP (*(.init))</span><br><span class="line">     KEEP (*(.fini))</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _etext = .;        /* define a global symbols at end of code */</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"></span><br><span class="line">    .ARM.extab   : &#123; *(.ARM.extab* .gnu.linkonce.armextab.*) &#125; &gt;FLASH</span><br><span class="line">     .ARM : &#123;</span><br><span class="line">     __exidx_start = .;</span><br><span class="line">       *(.ARM.exidx*)</span><br><span class="line">       __exidx_end = .;</span><br><span class="line">     &#125; &gt;FLASH</span><br><span class="line"> </span><br><span class="line">   .ARM.attributes : &#123; *(.ARM.attributes) &#125; &gt; FLASH</span><br><span class="line"> </span><br><span class="line">   .preinit_array     :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__preinit_array_start = .);</span><br><span class="line">     KEEP (*(.preinit_array*))</span><br><span class="line">     PROVIDE_HIDDEN (__preinit_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line">   .init_array :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__init_array_start = .);</span><br><span class="line">     KEEP (*(SORT(.init_array.*)))</span><br><span class="line">     KEEP (*(.init_array*))</span><br><span class="line">     PROVIDE_HIDDEN (__init_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line">   .fini_array :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__fini_array_start = .);</span><br><span class="line">     KEEP (*(.fini_array*))</span><br><span class="line">     KEEP (*(SORT(.fini_array.*)))</span><br><span class="line">     PROVIDE_HIDDEN (__fini_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"></span><br><span class="line">   /* used by the startup to initialize data */</span><br><span class="line">   _sidata = .;</span><br><span class="line"> </span><br><span class="line">   /* Initialized data sections goes into RAM, load LMA copy after     code */</span><br><span class="line">   .data : AT ( _sidata )</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _sdata = .;        /* create a global symbol at data start */</span><br><span class="line">     *(.data)           /* .data sections */</span><br><span class="line">     *(.data*)          /* .data* sections */</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _edata = .;        /* define a global symbol at data end */</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"> </span><br><span class="line">   /* Uninitialized data section */</span><br><span class="line">   . = ALIGN(4);</span><br><span class="line">   .bss :</span><br><span class="line">   &#123;</span><br><span class="line">     /* This is used by the startup <span class="keyword">in</span> order to initialize the .bss    secion */</span><br><span class="line">     _sbss = .;         /* define a global symbol at bss start */</span><br><span class="line">     __bss_start__ = _sbss;</span><br><span class="line">     *(.bss)</span><br><span class="line">     *(.bss*)</span><br><span class="line">     *(COMMON)</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _ebss = .;         /* define a global symbol at bss end */</span><br><span class="line">     __bss_end__ = _ebss;</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"></span><br><span class="line">   PROVIDE ( end = _ebss );</span><br><span class="line">   PROVIDE ( _end = _ebss );</span><br><span class="line"> </span><br><span class="line">   /* User_heap_stack section, used to check that there is enough RAM  left */</span><br><span class="line">   ._user_heap_stack :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     . = . + _Min_Heap_Size;</span><br><span class="line">     . = . + _Min_Stack_Size;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"> </span><br><span class="line">   /* MEMORY_bank1 section, code must be located here                  explicitly            */</span><br><span class="line">   /* Example: extern int foo(void) __attribute__ ((section (<span class="string">&quot;.        mb1text&quot;</span>))); */</span><br><span class="line">   .memory_b1_text :</span><br><span class="line">   &#123;</span><br><span class="line">     *(.mb1text)        /* .mb1text sections (code) */</span><br><span class="line">     *(.mb1text*)       /* .mb1text* sections (code)  */</span><br><span class="line">     *(.mb1rodata)      /* read-only data (constants) */</span><br><span class="line">     *(.mb1rodata*)</span><br><span class="line">   &#125; &gt;MEMORY_B1</span><br><span class="line"> </span><br><span class="line">   /* Remove information from the standard libraries */</span><br><span class="line">   /DISCARD/ :</span><br><span class="line">   &#123;</span><br><span class="line">     libc.a ( * )</span><br><span class="line">     libm.a ( * )</span><br><span class="line">     libgcc.a ( * )</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在看完上面的链接文件，以及之前博客关于启动文件的分析，可以了解到。</p>
+<p>在文件的一开始，便将程序的入口地址设定为了Reset中断。</p>
+<p>进入Reset中断之后，首先将从0x80000（这里有几个0我数不清了，随便打的）开始的flash地址中的data数据复制到RAM中，其中flash中的数据就是我们下载的工程的程序，然后将bss段清零初始化。</p>
+<p>重新回顾一下text.data数据段和bss数据段：<br>TEXT:<br>通常是指用来存放程序执行带没的一块内存，这部分区域的内容在程序运行之前就已经确定了，通常属于只读，但是某些架构也会允许读写，也就是修改程序。里面可能包含一些常数变量。有的地方写为CODE。</p>
+<p>DATA(data segment):<br>通常是指用来存放程序中已经初始化的全局变量的一块内存，属于静态分配。</p>
+<p>BSS(bss segment):Block Started by Symbol  通常指用来存放程序中没有初始化的全局变量的一块内存，属于静态内存分配。</p>
+<p>但是，为什么需要进行复制呢？考虑一下flash和RAM的关系。<br>都是随机存储器，断电数据消失，但Flash有点不一样，它在消失数据之前，添加了一个“性质”，这个性质能上电后再识别，且把这个信号返回到ram中，这样近似的把flash当成了eeprom来使用，就是这样，RAM芯片断电后数据会丢失，Flash芯片断电后数据不会丢失，但是RAM的读取数据速度远远快于Flash芯片。</p>
+<p>所以，将flash中的data数据复制到ram中大概可以提高运行速度之类的。我猜的。有必要看一下哪些数据被分配到了data数据段。</p>
+<p>接着进行跳转，先是系统初始化，也就是调用系统时钟初始化函数。<br>然后调用静态构造函数，对静态数据进行初始化的函数，从名字上来看。<br>接着调用自己编写的工程，从main函数开始。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" data-id="ckhnlm6390028nng7gk6vce0d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          比特币分析1之比特币的由来及原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ubuntu上STM32开发之文件分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Python中GUI编程tkinker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/16/Python%E4%B8%ADGUI%E7%BC%96%E7%A8%8Btkinker/" class="article-date">
+  <time datetime="2020-06-16T13:41:50.000Z" itemprop="datePublished">2020-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/16/Python%E4%B8%ADGUI%E7%BC%96%E7%A8%8Btkinker/">Python中GUI编程tkinker</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python的GUI编程 tkinter</p>
+<p>环境：<br>Python3</p>
+<p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/python/python_gui_programming.htm">https://www.tutorialspoint.com/python/python_gui_programming.htm</a><br>Python提供了多个图形开发界面的库，其中最主要的是：</p>
+<p>tkinter<br>Python内嵌的一个GUI，可以在大多数Unix平台上使用，也可以在Windows和Mac系统中运行</p>
+<p>wxPython<br>开源软件</p>
+<p>Jython<br>可以和Java无缝集成，除了一些标准模块，Jython 使用 Java 的模块。Jython 几乎拥有标准的Python 中不依赖于 C 语言的全部模块。</p>
+<p>通过tkinter来创造界面程序非常方便，只要下面的步骤：<br>1.导入tkinter模块<br>2.创造图形界面主窗口<br>3.增加一个或者多个小部件<br>4.进入主要事件循环，对用户引起的事件采取反馈</p>
+<p>tkinter部件包含：<br>1.按钮<br>2.画布<br>3.复选按钮<br>4.输入<br>5.框架<br>6.标签(finished)<br>7.列表框<br>8.菜单按钮<br>9.菜单<br>10.信息<br>11.单选按钮<br>12.比例<br>13.滚动条<br>14.文本<br>15.顶层<br>16.旋转框<br>17.窗格视窗<br>18.标签框<br>19.tk消息框</p>
+<p>标准属性<br>1.外形尺寸<br>2.颜色<br>3.字体<br>4.锚点<br>5.浮雕样式<br>6.位图<br>7.光标</p>
+<p>几何管理器<br>1.pack()方法 这个几何管理器在将小部件放在父部件之前先将它们按块的方式组织起来(finished)<br>2.grid()方法  这个几何管理器在父部件中按照表状结构组织小部件<br>3.place()方法  这个几何管理器将小部件放置在父部件的特定位置中</p>
+<p>下面的内容将会涉及上面的内容，但是，我们不会一个一个看下来，学习就先做一些有趣的东西吧。</p>
+<p>GUI计算器，这是入门的项目来熟悉tkinter，项目很简单，但是可以有很多写法：</p>
+<p>首先，来一个窗口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test0.py</span></span><br><span class="line">from tkinter import *</span><br><span class="line"></span><br><span class="line">window = Tk()</span><br><span class="line">window.title(<span class="string">&quot;helloGUI&quot;</span>)</span><br><span class="line">window.geometry(<span class="string">&#x27;1068x681+10+10&#x27;</span>)</span><br><span class="line">window.mainloop()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面就是简单的导入模块，然后建立窗口，设置标题，窗口尺寸，进入事件循环。</p>
+<p>开始第一步，按钮和标签。<br>通过标签来显示内容和反馈，按钮作为输入。<br>标签：<br>这个部件可以使用一个框来显示文字或者图片。上面的标签可以在任何时候修改。<br>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = Label(master,option=value,...)</span><br></pre></td></tr></table></figure>
+<p>变量：<br>master：表示父窗口<br>options:下面是这个部件常用的选项列表。这些选项可以用逗号分隔的键值来表示。</p>
+<p>1.anchor 如果窗口小部件的空间超过了文本所需的空间，则此选项控制文本的位置。默认值为anchor = CENTER，它将文本在可用空间中居中。<br>2.bg  正常背景色显示在标签和指示器后面。<br>3.bitmap  将此选项设置为等于bitmap或图像对象，标签将显示该图形。<br>4.bd  指标周围边框的大小。默认值为2像素。<br>5.cursor  如果将此选项设置为光标名称（arrow，dot等），则当光标位于复选按钮上方时，鼠标光标将变为该样式。<br>6.font  如果要在此标签中显示文本（使用text或textvariable选项，则font选项指定将以哪种字体显示文本。)<br>7.fg  如果要在此标签中显示文本或位图，则此选项指定文本的颜色。如果要显示位图，则此颜色将显示在位图中1的位置。<br>8.height  新框架的垂直尺寸。<br>9.image  要在标签窗口小部件中显示静态图像，请将此选项设置为图像对象。<br>10.justify  指定多行文本彼此之间如何对齐：LEFT表示向左对齐，CENTER表示居中（默认），RIGHT表示右对齐。<br>11.padx  小部件内的文本左右添加了额外的空间。默认值为1。<br>12.pady  在小部件中的文本上方和下方添加了额外的空间。默认值为1。<br>13.relief  指定标签周围装饰性边框的外观。默认值为FLAT；其他值。<br>14.text  要在标签窗口小部件中显示一行或多行文本，请将此选项设置为包含文本的字符串。内部换行符（“ \ n”）将强制换行。<br>15.textvariable  要将标签窗口小部件中显示的文本从属于StringVar类的控制变量，请将此选项设置为该变量。<br>16.underline  通过将此选项设置为n，可以在文本的第n个字母下方显示下划线（_），从0开始计数。默认值为underline = -1，表示没有下划线。<br>17.width  标签的宽度，以字符为单位（不是像素！）。如果未设置此选项，则标签将调整大小以适合其内容。<br>18.wraplength  通过将此选项设置为所需的数字，可以限制每行中的字符数。默认值为0，表示仅在换行符处才断开行。</p>
+<p>但是，有一个小小的问题，你在尝试上面的函数之后，标签并没有显示。我们还需要一个函数widget.pack()。</p>
+<p>这是几何管理器的一种方法，将小部件放置在父部件上，如果没有这个函数，小部件也就不会显示了。</p>
+<p>这里有一个需要注意的地方，那么就是textvariable中提到的StringVar变量。<br>在之前了解到，string字符串是不可变量，但是这里的StringVar是变量。<br>这里就要提到Varible类了，有些控件，例如Entry、Radiobutton等，可以通过传入特定的参数和程序变量绑定，这些参数包括：<br>variable、textvariable、onvalue、offvalue、value。</p>
+<p>这种绑定时双向的，如果该变量发生改变，那么与该变量绑定的空间也会随之更新。但是一般的Python变量不能够传递给这些参数中。</p>
+<p>定义：<br>x = StringVar()<br>x = IntVar()<br>x = DoubleVar()<br>x = BooleanVar()</p>
+<p>获取，使用get()方法<br>设置，使用set()方法</p>
+<p>我们来讨论一下几何管理器的pack()函数。<br>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">widget.pack(pack_options)</span><br></pre></td></tr></table></figure>
+<p>下面是一些可选项：<br>1.expand 当设置为true，小部件将会扩展，从而填充小部件父部件中没有使用的任何空间。<br>2.fill 决定小部件是否填充打包文件分配给它的任何额外空间，还是保持自己的最小尺寸：NONE(默认)、Y(垂直填充)、BOTH(水平和垂直填充)<br>3.side 确定小部件在父部件的那一侧包装：TOP(默认)、BOTTOM、LEFT、RIGHT。</p>
+<p>输出和基础的几何管理完成了，那么我们来到输出环节，开始学习按钮这一部分：</p>
+<p>按钮是在Python应用程序中添加按钮，这些按钮可以显示文字或者图片来传达这些按钮的目的。你可以将一个函数或者方法附在按钮上，当你点击按钮的时候，调用。</p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">w = Button(master,option=value,...)</span><br></pre></td></tr></table></figure>
+<p>和之前的标签一样：<br>master 代表父窗口<br>option 可选的部件选项，常用的如下,我感觉这些选项其实和前面的有些类似，随便看看：<br>1.activebackground  按钮位于光标下方时的背景色。<br>2.activeforeground  按钮位于光标下方时的前景色。<br>3.bd  边框宽度（以像素为单位）。默认值为2。<br>4.bg  正常背景色。<br>5.command  单击按钮时要调用的函数或方法。<br>6.fg  普通前景（文本）颜色。<br>7.font  用于按钮标签的文本字体。<br>8.height  按钮的高度，以文本行（用于文本按钮）或像素（用于图像）表示。<br>9.highlightcolor  当窗口小部件具有焦点时，焦点的颜色突出显示。<br>10.image  要在按钮上显示的图像（而不是文本）。<br>11.justify  如何显示多行文本：LEFT左对齐每行；CENTER将它们居中；或RIGHT右对齐。<br>12.padx  文本左侧和右侧的其他填充。<br>13.pady  文本上方和下方的其他填充。<br>14.relief  指定边框的类型。其中一些值为SUNKEN，RAISED，GROOVE和RIDGE。<br>15.state  将此选项设置为DISABLED可使按钮变灰并使它无响应。鼠标悬停在按钮上时，其值为ACTIVE。默认值为NORMAL。<br>16.underline  默认值为-1，表示该按钮上的文本的任何字符都不会带有下划线。如果为非负数，则相应的文本字符将带有下划线。<br>17.width  按钮的宽度，以字母（如果显示文本）或像素（如果显示图像）为单位。<br>18.wraplength  如果将此值设置为正数，则文本行将被包装以适合此长度。</p>
+<p>方法：<br>1.flash()  使按钮在活动颜色和正常颜色之间闪烁几次。使按钮保持原来的状态。如果该按钮被禁用，忽视这个函数。<br>2.invoke()  调用按钮的回调，并返回该函数返回的内容。如果按钮被禁用或没有回调，则无效。</p>
+<p>那么试一试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test1.py</span></span><br><span class="line">from tkinter import *</span><br><span class="line">import tkinter.messagebox as msg</span><br><span class="line"></span><br><span class="line">window = Tk()</span><br><span class="line">window.title(<span class="string">&quot;helloGUI&quot;</span>)</span><br><span class="line">window.geometry(<span class="string">&#x27;1068x681+10+10&#x27;</span>)</span><br><span class="line"><span class="comment">#建立窗口，设置标题，窗口初始大小</span></span><br><span class="line"></span><br><span class="line">label_text = StringVar()</span><br><span class="line">label_text.set(<span class="string">&#x27;Hello the GUI&#x27;</span>)</span><br><span class="line"><span class="comment">#label = Label(window,text=&#x27;Hello the GUI&#x27;)</span></span><br><span class="line">label = Label(window,textvariable = label_text)</span><br><span class="line"><span class="comment">#建立标签label</span></span><br><span class="line"></span><br><span class="line">def click_button():</span><br><span class="line">    <span class="comment">#label.config(text = &#x27;Yes&#x27;)</span></span><br><span class="line">    label_text.set(<span class="string">&#x27;Yes&#x27;</span>)</span><br><span class="line">    msg.showinfo(<span class="string">&#x27;Hello Button&#x27;</span>,<span class="string">&#x27;Hello&#x27;</span>)</span><br><span class="line"></span><br><span class="line">button = Button(window,text=<span class="string">&#x27;click it&#x27;</span>,<span class="built_in">command</span> = click_button)</span><br><span class="line"></span><br><span class="line">label.pack()</span><br><span class="line">button.pack()</span><br><span class="line"><span class="comment">#几何控制，控制部件的位置</span></span><br><span class="line"></span><br><span class="line">window.mainloop()</span><br><span class="line"><span class="comment">#进入主事件循环</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面有两种修改text的方法，一种是用textvariable来修改，另一种是用config()来修改<br>然后，我还是用了messagebox函数来输出，这个将会在之后进行补充。</p>
+<p>我们已经初步使用了按钮和标签，那么我们就可以建立一个计算器了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test2.py</span></span><br><span class="line">from tkinter import *</span><br><span class="line">import tkinter.messagebox as msg</span><br><span class="line"></span><br><span class="line">window = Tk()</span><br><span class="line">window.title(<span class="string">&quot;Calculator&quot;</span>)</span><br><span class="line">window.geometry(<span class="string">&#x27;1068x681+10+10&#x27;</span>)</span><br><span class="line"><span class="comment">#建立窗口，设置标题，窗口初始大小</span></span><br><span class="line"></span><br><span class="line">label_text = StringVar()</span><br><span class="line">label_text.set(<span class="string">&#x27;Hello The Calculator&#x27;</span>)</span><br><span class="line">in_put = <span class="string">&#x27;&#x27;</span></span><br><span class="line">str_num = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">pre_num = 0</span><br><span class="line">number = 0</span><br><span class="line">pre_ope= 0</span><br><span class="line">label = Label(window,textvariable = label_text)</span><br><span class="line"><span class="comment">#建立标签label</span></span><br><span class="line"></span><br><span class="line">def deal(dat):</span><br><span class="line">    global in_put,str_num</span><br><span class="line">    in_put += dat</span><br><span class="line">    label_text.set(in_put)</span><br><span class="line">    <span class="keyword">if</span> dat.isdigit():</span><br><span class="line">        str_num += dat</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        global number,pre_num,pre_ope</span><br><span class="line">        number = int(str_num)</span><br><span class="line">        msg.showinfo(<span class="string">&#x27;str_num&#x27;</span>,str_num)</span><br><span class="line">        msg.showinfo(<span class="string">&#x27;number&#x27;</span>,str(number))</span><br><span class="line">        msg.showinfo(<span class="string">&#x27;pre_num&#x27;</span>,str(pre_num))</span><br><span class="line">        str_num = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> dat == <span class="string">&#x27;=&#x27;</span>:</span><br><span class="line">            in_put = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">if</span> pre_ope == 1:</span><br><span class="line">                number += pre_num</span><br><span class="line">                pre_number = number</span><br><span class="line">            msg.showinfo(<span class="string">&#x27;Answer&#x27;</span>,number)</span><br><span class="line">        <span class="keyword">elif</span> dat == <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">            pre_num = number</span><br><span class="line">            number = 0</span><br><span class="line">            pre_ope = 1</span><br><span class="line"><span class="comment">#建立数据处理函数</span></span><br><span class="line"></span><br><span class="line">def click_1():</span><br><span class="line">    tmp=<span class="string">&#x27;1&#x27;</span></span><br><span class="line">    deal(tmp)</span><br><span class="line">def click_add():</span><br><span class="line">    tmp=<span class="string">&#x27;+&#x27;</span></span><br><span class="line">    deal(tmp)</span><br><span class="line">def click_equ():</span><br><span class="line">    tmp=<span class="string">&#x27;=&#x27;</span></span><br><span class="line">    deal(tmp)</span><br><span class="line"><span class="comment">#建立按键函数</span></span><br><span class="line"></span><br><span class="line">button_1 = Button(window,text=<span class="string">&#x27;1&#x27;</span>,<span class="built_in">command</span> = click_1)</span><br><span class="line">button_add = Button(window,text=<span class="string">&#x27;+&#x27;</span>,<span class="built_in">command</span> = click_add)</span><br><span class="line">button_equ = Button(window,text=<span class="string">&#x27;=&#x27;</span>,<span class="built_in">command</span> = click_equ)</span><br><span class="line"><span class="comment">#建立按钮</span></span><br><span class="line"></span><br><span class="line">label.pack()</span><br><span class="line">button_1.pack()</span><br><span class="line">button_add.pack()</span><br><span class="line">button_equ.pack()</span><br><span class="line"><span class="comment">#几何控制，控制部件的位置</span></span><br><span class="line"></span><br><span class="line">window.mainloop()</span><br><span class="line"><span class="comment">#进入主事件循环</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上面的程序中，只有1和+和=三个按钮，但是已经可以进行运算过程。过程中通过showinfo来显示中间变量。</p>
+<p>但是，如果要完成一个完整的计算器就太复杂了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/16/Python%E4%B8%ADGUI%E7%BC%96%E7%A8%8Btkinker/" data-id="ckhnlm62r0014nng7f4ixfxpw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-从头开始创建PHP-MySQL驱动的论坛" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/28/%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BAPHP-MySQL%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%AE%BA%E5%9D%9B/" class="article-date">
+  <time datetime="2020-05-27T16:07:39.000Z" itemprop="datePublished">2020-05-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/28/%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BAPHP-MySQL%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%AE%BA%E5%9D%9B/">从头开始创建PHP/MySQL驱动的论坛</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/28/%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BAPHP-MySQL%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%AE%BA%E5%9D%9B/" data-id="ckhnlm649004cnng78imf35pu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上apt抽风出现的问题及修补" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/" class="article-date">
+  <time datetime="2020-05-21T05:53:33.000Z" itemprop="datePublished">2020-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/">Ubuntu上apt抽风出现的问题及修补</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>apt抽风了怎么办？<br>先哭。。<br>然后资料来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shimadear/article/details/90598646">https://blog.csdn.net/shimadear/article/details/90598646</a></p>
+<p>下面是详细：<br>apt下载出现下面的错误:<br>Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)</p>
+<p>解决办法：<br>第一种情况：<br>进程中存在与apt相关的正在运行的进程：<br>首先检查是否在运行apt,apt-get相关的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep -i apt</span><br></pre></td></tr></table></figure>
+<p>如果存在与apt相关的正在运行的进程，kill掉进程；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">kill</span> -9 &lt;process id&gt;</span><br></pre></td></tr></table></figure>
+<p>或者直接简单粗暴的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall apt apt-get</span><br></pre></td></tr></table></figure>
+<p>如果进行完上面的步骤还是无法顺利执行apt-get 操作，则属于第二种情况：</p>
+<p>第二种情况：<br>进程列表中已经没有与apt相关的进程在运行，但依然报错，在这种情况下，产生错误的根本原因是lock_file. lock_file用于防止两个或多个进程使用相同的数据。 当运行apt或apt-commands时，它会在几个地方创建lock files。 当前一个apt命令未正确终止时，lock file未被删除，因此它们会阻止任何新的apt / apt-get命令实例，比如正在执行apt-get upgrade，在执行过程中直接ctrl+c取消了该操作，很有可能就会造成这种情况。<br>要解决此问题，首先要删除lock file。<br>使用lsof命令获取持有lock file的进程的进程ID,依次运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lsof /var/lib/dpkg/lock</span><br><span class="line">lsof /var/lib/apt/lists/lock</span><br><span class="line">lsof /var/cache/apt/archives/lock</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，以上命令执行结果如果无返回，说明没有正在运行的进程；如果返回了相应的进程，需要kill掉。</p>
+<p>删除所有的lock file</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/lib/apt/lists/lock</span><br><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock</span><br></pre></td></tr></table></figure>
+<p>最后重新配置一下dpkg：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
+<p>如果上述命令不出任何错误，就万事大吉了。（我是到这里问题就解决了）</p>
+<p>但是有时候，生活总是嫌你不够惨，执行配置命令时可能会出现以下错误：</p>
+<p>dpkg: error: dpkg frontend is locked by another process<br>这需要我们额外进行一些操作：</p>
+<p>找出正在锁定lock file的进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lsof &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend</span><br><span class="line">kill掉输出的进程（如果输出为空则忽略）</span><br><span class="line">sudo kill -9 PID</span><br><span class="line">删除lock file并重新配置dpkg:</span><br><span class="line">sudo rm &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend</span><br><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/" data-id="ckhnlm63a002bnng7fjyy2sw9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上opencv教程5之特征检测及描述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/" class="article-date">
+  <time datetime="2020-05-16T09:17:03.000Z" itemprop="datePublished">2020-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/">Ubuntu上opencv教程5之特征检测及描述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>特征检测及描述内容：</p>
+<ol>
+<li>了解功能<br>图像的主要特征是什么。这些特征对我们有什么用处。</li>
+<li>(Harris)哈里斯角检测<br>拐角是一个很好的特征，我们如何找到它们。</li>
+<li>Shi-Tomasi拐角检测和良好的跟踪功能</li>
+<li>SIFT(Scale-Invariant Feature Transform)尺度不变特征变换<br>当图像比例改变时，Harris角检测不够好。为此出现了SIFT方法。</li>
+<li>SURF(Speeded-Up Robust Features)加速鲁棒特征<br>为了提高SIFT运算速度</li>
+<li>用于角点检测的快速算法<br>上面的特征检测分别有优势。但是它们在实时应用例如SLAM中的处理速度不够快。所以引入了运算速度更快的快速算法。</li>
+<li>BRIEF(Binary Robust Independent Elementary Features)二进制健壮的独立基本特征<br>SIFT使用了一个包含128个浮点数的特征描述。考虑到大量的特征。它将会花费大量内存和时间来匹配。我们可以表达它来使他更快。但是我们首先依然需要计算。BRIEF会使用更少的内存和更快的匹配来查找二进制特征。</li>
+<li>ORB(Oriented FAST and Rotated BRIEF)定向快速和旋转BRIEF<br>首先吐槽一下，这个名字的缩写里面又包含了一个缩写，还好里面的缩写上面刚好有，完整的名字实在是太长了。<br>SIFT和SURF各有利弊，但是如果你的应用中，每年都为使用他们花钱呢？他们都有专利。为了解决这个问题，opencv提供了一个全新的免费的SIFT和SURF代替品，那就是ORB。</li>
+<li>特征匹配<br>我们了解了大量关于特征检测和描述。现在开始匹配不同的描述，opencv提供了两种技术:Brute-Force和基于FLANN的匹配。</li>
+<li>特征匹配和单应性查找对象<br>现在我们了解了特征匹配，我们通过calib3d模块来在复杂的图片中查找物品。</li>
+</ol>
+<h1 id="1-了解特征"><a href="#1-了解特征" class="headerlink" title="1.了解特征"></a>1.了解特征</h1><p>这部分很简单，和标题一样，了解特征。</p>
+<p>就像拼图游戏一样，得到图片中的很多小的图片块，然后将他们正确的结合到一起，组成一个大的完整的实际图片。那该怎么做？</p>
+<p>将这个理论投影到计算机程序中，使计算机来玩拼图游戏。将这个话题进行延伸，我们是否可向计算机提供大量的自然图片，然后让计算机将图片组合为一个大的单个图片？继续延伸，将多个图片拼接到一起，那么是否可以提供大量相关结构的图片，然后让计算机创建3D模型？</p>
+<p>那么回归到最开始的问题。如何玩拼图游戏？</p>
+<p>答案是:寻找独特的特定模式或者特定特征，这些特征可以轻松跟踪和比较。如果我们对其进行定义，很难通过语言来表达，但是我们可以知道它们是什么。即使小孩子也可以指出图片中的某些特征。在游戏中，我们在图像中搜索这些特征，然后找到他们，然后在其他图像中找到相同的特征，将他们对齐。</p>
+<p>那么，这个问题更加具体，这些特征是什么。</p>
+<p>人类发现这些特征，这一个过程已经在大脑中进行了编程。但是，如果我们深入研究某些图片并且搜索不同的样式，我们会有一些有趣的特点。</p>
+<p>首先，如果你所搜寻的特征是一个平坦区域，那么这些特征你很难在图片中找到。可以知道大概的位置，但是很难找到准确的位置。</p>
+<p>当特征是物品的边缘，就可以找到一个大概的位置，但是准确的位置依然有些困难。因为沿着边缘，到处是不同的。虽然和平坦区域相比，边缘有更好的功能，但是依然不够准确。</p>
+<p>当你搜寻的图片是某些物体的角落，那么就很容易找到他们。因为在拐角处，将这部分图片移动到任意位置，图片都会有所不同。所以，他们有很好的功能。</p>
+<p>所以，总结一下，拐点被认为是图片中的良好的特征，在某些情况下，斑点也是一种很好的特征。</p>
+<p>那么，我们可以回答上面的问题。<br>寻找特征就是寻找图像中在其周围的所有区域中(少量移动)时变化最大的区域。</p>
+<p>寻找特征被称为特征检测。</p>
+<p>那么，假如我们在图像中找到了特征，那么，我们需要在其他图像中找到相同的内容。我们该怎么做？</p>
+<p>我们围绕该特征选取一个区域，用自己的话语来解释这个特征，例如，颜色大小等特征，然后在其他图像中搜索相同的区域，来在其他图像中找到他。这些表述称之为功能描述。获得功能描述后，可以在所有的图像中找到相同的功能并且将他们对齐或者缝合等操作。</p>
+<p>在这个模式里，我们用opencv中的不同算法来查找功能，进行描述，进行匹配。</p>
+<h1 id="2-Harris-哈里斯角检测"><a href="#2-Harris-哈里斯角检测" class="headerlink" title="2. (Harris)哈里斯角检测"></a>2. (Harris)哈里斯角检测</h1><h2 id="2-1-理论"><a href="#2-1-理论" class="headerlink" title="2.1 理论"></a>2.1 理论</h2><p>首先，我们可以知道角就是图像中各个方向上强度变化很大的区域。<br>1988年Chris Harris和Mike Stephens在论文组合式拐角和边缘检测器中尝试找到这些拐角。也就是哈里斯拐角检测器。然后形成了一个数学形式。<br><a target="_blank" rel="noopener" href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_features_harris/py_features_harris.html">https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_features_harris/py_features_harris.html</a><br>上面是部分证明过程。</p>
+<h2 id="2-2-opencv中哈里斯角检测"><a href="#2-2-opencv中哈里斯角检测" class="headerlink" title="2.2 opencv中哈里斯角检测"></a>2.2 opencv中哈里斯角检测</h2><p>Opencv中有cv2.cornerHarris()函数，里面有变量:<br>img<br>输入图片，灰度图而且为float32类型。<br>blockSize<br>角检测附近区域的大小<br>ksize<br>使用的Sobel导数的孔径参数<br>k<br>方程中的哈里斯检测器自由参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import cv2 </span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;chessboard.png&#x27;</span></span><br><span class="line">img = cv2.imread(filename)</span><br><span class="line">gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">gray= np.float32(gray)</span><br><span class="line">dst = cv2.cornerHarris(gray,2,3,0.04)</span><br><span class="line"></span><br><span class="line">dst = cv2.dilate(dst,None)</span><br><span class="line"></span><br><span class="line">img[dst&gt;0.01*dst.max()] = [0,0,255]</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;dst&#x27;</span>,img)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> cv2.waitKey(0) &amp; 0xff == 27: </span><br><span class="line">    cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-亚像素精度的拐角"><a href="#2-3-亚像素精度的拐角" class="headerlink" title="2.3 亚像素精度的拐角"></a>2.3 亚像素精度的拐角</h2><p>什么是亚像素，就是将两个像素之间进行细分，将每个像素划分为更小的单元。<br>有时候，你需要获取最大精度的角。opencv提供了一个函数cv2.cornerSubPix()函数来重新获取亚精度的拐角。首先，我们需要获取Harris拐角，然后，我们将这些拐角的中心传递到函数中，来重新获取它们。在这个函数中，我们需要定义精度来确定什么时候停止。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;chessboard2.jpg&#x27;</span></span><br><span class="line">img = cv2.imread(filename)</span><br><span class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find Harris corners</span></span><br><span class="line">gray = np.float32(gray)</span><br><span class="line">dst = cv2.cornerHarris(gray,2,3,0.04)</span><br><span class="line">dst = cv2.dilate(dst,None)</span><br><span class="line">ret, dst = cv2.threshold(dst,0.01*dst.max(),255,0)</span><br><span class="line">dst = np.uint8(dst)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find centroids</span></span><br><span class="line">ret, labels, stats, centroids = cv2.connectedComponentsWithStats(dst)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the criteria to stop and refine the corners</span></span><br><span class="line">criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.001)</span><br><span class="line">corners = cv2.cornerSubPix(gray,np.float32(centroids),(5,5),(-1,-1),criteria)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now draw them</span></span><br><span class="line">res = np.hstack((centroids,corners))</span><br><span class="line">res = np.int0(res)</span><br><span class="line">img[res[:,1],res[:,0]]=[0,0,255]</span><br><span class="line">img[res[:,3],res[:,2]] = [0,255,0]</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&#x27;subpixel5.png&#x27;</span>,img)</span><br></pre></td></tr></table></figure>
+<p>这一部分有些不太了解，待定。</p>
+<h1 id="3-Shi-Tomasi拐角检测和良好的跟踪功能"><a href="#3-Shi-Tomasi拐角检测和良好的跟踪功能" class="headerlink" title="3. Shi-Tomasi拐角检测和良好的跟踪功能"></a>3. Shi-Tomasi拐角检测和良好的跟踪功能</h1><p>这一部分我们需要重新学习一种拐角检测方式:Shi-Tomasi拐角检测</p>
+<h2 id="3-1-理论"><a href="#3-1-理论" class="headerlink" title="3.1 理论"></a>3.1 理论</h2><p>这部分待定，主要是将Harris拐角检测的公式进行了简化，看看就行。</p>
+<h2 id="3-2-代码"><a href="#3-2-代码" class="headerlink" title="3.2 代码"></a>3.2 代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"><span class="comment">#读取图片，然后转换为灰度图</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;simple.jpg&#x27;</span>)</span><br><span class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过goodFeaturesToTrack函数通过Shi-Tomasi获取25个最有效的拐角</span></span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray,25,0.01,10)</span><br><span class="line">corners = np.int0(corners)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> corners:</span><br><span class="line">    x,y = i.ravel()</span><br><span class="line">    cv2.circle(img,(x,y),3,255,-1)</span><br><span class="line"></span><br><span class="line">plt.imshow(img),plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-SIFT-Scale-Invariant-Feature-Transform-尺度不变特征变换"><a href="#4-SIFT-Scale-Invariant-Feature-Transform-尺度不变特征变换" class="headerlink" title="4. SIFT(Scale-Invariant Feature Transform)尺度不变特征变换"></a>4. SIFT(Scale-Invariant Feature Transform)尺度不变特征变换</h1><h1 id="5-SURF-Speeded-Up-Robust-Features-加速鲁棒特征"><a href="#5-SURF-Speeded-Up-Robust-Features-加速鲁棒特征" class="headerlink" title="5. SURF(Speeded-Up Robust Features)加速鲁棒特征"></a>5. SURF(Speeded-Up Robust Features)加速鲁棒特征</h1><h1 id="6-用于角点检测的快速算法"><a href="#6-用于角点检测的快速算法" class="headerlink" title="6. 用于角点检测的快速算法"></a>6. 用于角点检测的快速算法</h1><h1 id="7-BRIEF-Binary-Robust-Independent-Elementary-Features-二进制健壮的独立基本特征"><a href="#7-BRIEF-Binary-Robust-Independent-Elementary-Features-二进制健壮的独立基本特征" class="headerlink" title="7. BRIEF(Binary Robust Independent Elementary Features)二进制健壮的独立基本特征"></a>7. BRIEF(Binary Robust Independent Elementary Features)二进制健壮的独立基本特征</h1><h1 id="8-ORB-Oriented-FAST-and-Rotated-BRIEF-定向快速和旋转BRIEF"><a href="#8-ORB-Oriented-FAST-and-Rotated-BRIEF-定向快速和旋转BRIEF" class="headerlink" title="8. ORB(Oriented FAST and Rotated BRIEF)定向快速和旋转BRIEF"></a>8. ORB(Oriented FAST and Rotated BRIEF)定向快速和旋转BRIEF</h1><h1 id="9-特征匹配"><a href="#9-特征匹配" class="headerlink" title="9. 特征匹配"></a>9. 特征匹配</h1><h1 id="10-特征匹配和单应性查找对象"><a href="#10-特征匹配和单应性查找对象" class="headerlink" title="10. 特征匹配和单应性查找对象"></a>10. 特征匹配和单应性查找对象</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/" data-id="ckhnlm63j002knng7efqgg4h9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-在Python中调用C代码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/07/%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8C%E4%BB%A3%E7%A0%81/" class="article-date">
+  <time datetime="2020-04-07T07:55:53.000Z" itemprop="datePublished">2020-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/07/%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8C%E4%BB%A3%E7%A0%81/">在Python中调用C代码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>为什么在Python中调用C代码？<br>1.提升代码运行速度<br>2.C语言中的传统类库<br>3.从内存到文件接口的底层资源访问</p>
+<p>有哪些方法？<br>1.-ctypes<br>2.SWIG<br>3.Python/C API</p>
+<h1 id="1-CTypes"><a href="#1-CTypes" class="headerlink" title="1.CTypes"></a>1.CTypes</h1><p>使用Python中的ctypes模块是最为简单的。ctypes提供了和C兼容的数据类型和函数来加载dll文件，因此在调用时不需要对源文件做任何修改。<br>下面是例子:</p>
+<h2 id="1-1-建立C函数"><a href="#1-1-建立C函数" class="headerlink" title="1.1 建立C函数"></a>1.1 建立C函数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"> </span><br><span class="line">int add_int(int, int);</span><br><span class="line"><span class="built_in">float</span> add_float(<span class="built_in">float</span>, <span class="built_in">float</span>);</span><br><span class="line"> </span><br><span class="line">int add_int(int num1, int num2)&#123;</span><br><span class="line">    <span class="built_in">return</span> num1 + num2;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">float</span> add_float(<span class="built_in">float</span> num1, <span class="built_in">float</span> num2)&#123;</span><br><span class="line">    <span class="built_in">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-将C语言编译为-so文件-windows下为dll-生成adder-so文件。"><a href="#1-2-将C语言编译为-so文件-windows下为dll-生成adder-so文件。" class="headerlink" title="1.2 将C语言编译为.so文件(windows下为dll),生成adder.so文件。"></a>1.2 将C语言编译为.so文件(windows下为dll),生成adder.so文件。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#For Linux</span></span><br><span class="line">$  gcc -shared -Wl,-soname,adder -o adder.so -fPIC add.c</span><br><span class="line"> </span><br><span class="line"><span class="comment">#For Mac</span></span><br><span class="line">$ gcc -shared -Wl,-install_name,adder.so -o adder.so -fPIC add.c</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-在Python代码中调用C函数"><a href="#1-3-在Python代码中调用C函数" class="headerlink" title="1.3 在Python代码中调用C函数"></a>1.3 在Python代码中调用C函数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from ctypes import *</span><br><span class="line"> </span><br><span class="line"><span class="comment">#load the shared object file</span></span><br><span class="line">adder = CDLL(<span class="string">&#x27;./adder.so&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#Find sum of integers</span></span><br><span class="line">res_int = adder.add_int(4,5)</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;Sum of 4 and 5 = &quot;</span> + str(res_int)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#Find sum of floats</span></span><br><span class="line">a = c_float(5.5)</span><br><span class="line">b = c_float(4.1)</span><br><span class="line"> </span><br><span class="line">add_float = adder.add_float</span><br><span class="line">add_float.restype = c_float</span><br><span class="line"><span class="built_in">print</span> <span class="string">&quot;Sum of 5.5 and 4.1 = &quot;</span>, str(add_float(a, b))</span><br></pre></td></tr></table></figure>
+<p>在这个文件中，C语言是自解释的。</p>
+<p>在Python文件中，一开始先导入ctypes模块，然后使用CDLL函数来加载我们创建的库文件。这样我们就可以通过变量adder来使用C类库中的函数了。当adder.add_int()被调用时，内部将发起一个对C函数add_int的调用。ctypes接口允许我们在调用C函数时使用原生Python中默认的字符串型和整型。</p>
+<p>而对于其他类似布尔型和浮点型这样的类型，必须要使用正确的ctype类型才可以。如向adder.add_float()函数传参时, 我们要先将Python中的十进制值转化为c_float类型，然后才能传送给C函数。这种方法虽然简单，清晰，但是却很受限。例如，并不能在C中对对象进行操作。</p>
+<h1 id="2-SWIG-Simplified-Wrapper-and-Interface-Generator"><a href="#2-SWIG-Simplified-Wrapper-and-Interface-Generator" class="headerlink" title="2.SWIG(Simplified Wrapper and Interface Generator)"></a>2.SWIG(Simplified Wrapper and Interface Generator)</h1><p>这个方法需要编写额外的接口文件来作为SWIG的入口，一般不使用这个方法，因为比较复杂。但是，当你一个C/C++代码库需要被多种语言调用时，这就很有用了。<br>例子:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//example.c</span><br><span class="line"><span class="comment">#include &lt;time.h&gt;</span></span><br><span class="line">double My_variable = 3.0;</span><br><span class="line"> </span><br><span class="line">int fact(int n) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= 1) <span class="built_in">return</span> 1;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> n*fact(n-1);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int my_mod(int x, int y) &#123;</span><br><span class="line">    <span class="built_in">return</span> (x%y);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">char *get_time()</span><br><span class="line">&#123;</span><br><span class="line">    time_t ltime;</span><br><span class="line">    time(&amp;ltime);</span><br><span class="line">    <span class="built_in">return</span> ctime(&amp;ltime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unix % swig -python example.i</span><br><span class="line">unix % gcc -c example.c example_wrap.c \</span><br><span class="line">    -I/usr/<span class="built_in">local</span>/include/python2.1</span><br><span class="line">unix % ld -shared example.o example_wrap.o -o _example.so</span><br></pre></td></tr></table></figure>
+<p>输出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import example</span><br><span class="line">&gt;&gt;&gt; example.fact(5)</span><br><span class="line">120</span><br><span class="line">&gt;&gt;&gt; example.my_mod(7,3)</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; example.get_time()</span><br><span class="line"><span class="string">&#x27;Sun Feb 11 23:01:07 1996&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-Python-C-API"><a href="#3-Python-C-API" class="headerlink" title="3.Python/C API"></a>3.Python/C API</h1><p>最广泛使用的方法，不仅简单而且可以在C代码中操作Python对象。<br>这种方法需要以特定的方式来编写C代码以供Python去调用它。所有的Python对象都被表示为一种叫做PyObject的结构体，并且Python.h头文件中提供了各种操作它的函数。例如，如果PyObject表示为PyListType(列表类型)时，那么我们便可以使用PyList_Size()函数来获取该结构的长度，类似Python中的len(list)函数。大部分对Python原生对象的基础函数和操作在Python.h头文件中都能找到。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/07/%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8C%E4%BB%A3%E7%A0%81/" data-id="ckhnlm64f004nnng70yyyhgvw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Python上数独处理程序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/07/Python%E4%B8%8A%E6%95%B0%E7%8B%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2020-04-07T00:29:51.000Z" itemprop="datePublished">2020-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/07/Python%E4%B8%8A%E6%95%B0%E7%8B%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/">Python上数独处理程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>之前，我用C语言编写了数独的运算程序，可以直接在我的代码仓库中找到。但是，有一个部分我想优化一下，关于数独的输入，我希望能够直接通过opencv来直接读取一个数独的图片，然后计算出结果。<br>现在的目标具体是:<br>输入一个数独题目的图片，图片非常理想干净，图片中仅有数独，而且没有光影等影响，类似于直接在电脑上截图一样。<br>大概的思路是这样的:<br>1.读取图片，然后转换为灰度图，便于处理数据<br>2.对灰度图进行滤波处理，降低图片中的噪声<br>3.进行阈值化处理，将图片转变为二值图<br>4.进行轮廓处理，在此之前可以先膨胀或者侵蚀处理一下<br>5.寻找数独的最外层轮廓，遍历数独轮廓，父节点有81个子节点<br>6.对最外层轮廓进行仿射变换，从而提取出标准的数独部分<br>7.遍历轮廓</p>
+<p>如果对其中的函数不太了解，可以看之前博客中关于opencv的内容。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/07/Python%E4%B8%8A%E6%95%B0%E7%8B%AC%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F/" data-id="ckhnlm62q0011nng76ftu7tx4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上opencv教程4之图像处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/27/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B4%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2020-03-26T17:29:34.000Z" itemprop="datePublished">2020-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/27/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B4%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">Ubuntu上opencv教程4之图像处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0. 简介"></a>0. 简介</h1><p>这部分包含了以下几个部分：</p>
+<p>1.颜色空间的改变<br>学习如何在不同的色彩空间来更改图像，此外还要学会如何跟踪视频中的彩色物体。<br>2.图片阈值处理<br>使用全局阈值和自适应阈值来将图像转换为二进制图像<br>3.图片的几何转换<br>学习旋转，平移等。<br>4.平滑图像<br>学习模糊图像，使用自定义内核过滤图像等。<br>5.形态转换<br>了解例如侵蚀，膨胀，打开或者关闭等形态的变化。<br>6.图像渐变<br>7.Canny边缘检测<br>8.影像金字塔<br>9.opencv中的轮廓<br>10.opencv中的直方图<br>11.opencv中的图像转换<br>12.模板匹配<br>13.霍夫线变换<br>14.霍夫圆变换<br>15.分水岭算法的图像分割<br>16.使用GrabCut进行交互前景提取</p>
+<h1 id="1-颜色空间的改变"><a href="#1-颜色空间的改变" class="headerlink" title="1.颜色空间的改变"></a>1.颜色空间的改变</h1><p>这个部分需要学习将图片从一个颜色空间转变为另一个，例如BGR和Gray的变换或者BGR和HSV之间变换等。<br>除此之外，我们将会建立一个应用来抽取视频中的彩色的物体。<br>将会使用cv2.cvtColor(),cv2.inRange()等等。</p>
+<h2 id="1-1-修改颜色空间"><a href="#1-1-修改颜色空间" class="headerlink" title="1.1 修改颜色空间"></a>1.1 修改颜色空间</h2><p>opencv中有150多种颜色空间的变换方法。但是，我们仅仅注意最为重要的以及普遍的两种：BGR&lt;-&gt;Gray , BGR &lt;-&gt; HSV。</p>
+<h3 id="1-1-0-颜色空间"><a href="#1-1-0-颜色空间" class="headerlink" title="1.1.0 颜色空间"></a>1.1.0 颜色空间</h3><p>备注：HSV是什么？Hue Saturation Value<br>RGB,YUV和HSV颜色空间模型<br>颜色通常用三个独立的属性来描述，三个独立变量综合作用，自然就构成一个空间坐标，这就是颜色空间。但被描述的颜色对象本身是客观的，不同颜色空间只是从不同的角度去衡量同一个对象。颜色空间按照基本机构可以分为两大类：基色颜色空间和色、亮分离颜色空间。前者典型的是RGB，后者包括YUV和HSV等等。</p>
+<h3 id="1-1-1-RGB颜色空间"><a href="#1-1-1-RGB颜色空间" class="headerlink" title="1.1.1 RGB颜色空间"></a>1.1.1 RGB颜色空间</h3><p>1、计算机色彩显示器和彩色电视机显示色彩的原理一样，都是采用R、G、B相加混色的原理，通过发射出三种不同强度的电子束，使屏幕内侧覆盖的红、绿、蓝磷光材料发光而产生色彩。这种色彩的表示方法称为RGB色彩空间表示。<br>2、在RGB颜色空间中，任意色光F都可以用R、G、B三色不同分量的相加混合而成：F=r[R]+r[G]+r[B]<br>RGB色彩空间还可以用一个三维的立方体来描述。当三基色分量都为0(最弱)时混合为黑色光；当三基色都为k(最大，值由存储空间决定)时混合为白色光。<br>3、RGB色彩空间根据每个分量在计算机中占用的存储字节数分为如下几种类型：<br>（1）RGB555<br>RGB555是一种16位的RGB格式，各分量都用5位表示，剩下的一位不用。<br>高字节 -&gt; 低字节<br>XRRRRRGGGGGBBBBB<br>（2）RGB565<br>RGB565也是一种16位的RGB格式，但是R占用5位，G占用6位，B占用5位。<br>（3）RGB24<br>RGB24是一种24位的RGB格式，各分量占用8位，取值范围为0-255。<br>（4）RGB32<br>RGB24是一种32位的RGB格式，各分量占用8位，剩下的8位作Alpha通道或者不用。<br>4、RGB色彩空间采用物理三基色表示，因而物理意义很清楚，适合彩色显象管工作。然而这一体制并不适应人的视觉特点。因而，产生了其它不同的色彩空间表示法。</p>
+<h3 id="1-1-2-YUV颜色空间"><a href="#1-1-2-YUV颜色空间" class="headerlink" title="1.1.2 YUV颜色空间"></a>1.1.2 YUV颜色空间</h3><p>1、YUV(亦称YCrCb)是被欧洲电视系统所采用的一种颜色编码方法。在现代彩色电视系统中，通常采用三管彩色摄像机或彩色CCD摄影机进行取像，然后把取得的彩色图像信号经分色、分别放大校正后得到RGB，再经过矩阵变换电路得到亮度信号Y和两个色差信号R-Y(即U)、B-Y(即V)，最后发送端将亮度和两个色差总共三个信号分别进行编码，用同一信道发送出去。这种色彩的表示方法就是所谓的YUV色彩空间表示。采用YUV色彩空间的重要性是它的亮度信号Y和色度信号U、V是分离的。如果只有Y信号分量而没有U、V信号分量，那么这样表示的图像就是黑白灰度图像。彩色电视采用YUV空间正是为了用亮度信号Y解决彩色电视机与黑白电视机的兼容问题，使黑白电视机也能接收彩色电视信号。<br>2、YUV主要用于优化彩色视频信号的传输，使其向后相容老式黑白电视。与RGB视频信号传输相比，它最大的优点在于只需占用极少的频宽（RGB要求三个独立的视频信号同时传输）。其中“Y”表示明亮度（Luminance或Luma），也就是灰阶值；而“U”和“V” 表示的则是色度（Chrominance或Chroma），作用是描述影像色彩及饱和度，用于指定像素的颜色。“亮度”是透过RGB输入信号来建立的，方法是将RGB信号的特定部分叠加到一起。“色度”则定义了颜色的两个方面─色调与饱和度，分别用Cr和Cb来表示。其中，Cr反映了RGB输入信号红色部分与RGB信号亮度值之间的差异。而Cb反映的是RGB输入信号蓝色部分与RGB信号亮度值之同的差异。<br>3、YUV和RGB互相转换的公式如下（RGB取值范围均为0-255）︰<br>　Y = 0.299R + 0.587G + 0.114B<br>　U = -0.147R - 0.289G + 0.436B<br>　V = 0.615R - 0.515G - 0.100B<br>　R = Y + 1.14V<br>　G = Y - 0.39U - 0.58V<br>　B = Y + 2.03U</p>
+<h3 id="1-1-3-HSV颜色空间"><a href="#1-1-3-HSV颜色空间" class="headerlink" title="1.1.3 HSV颜色空间"></a>1.1.3 HSV颜色空间</h3><p>1、HSV是一种将RGB色彩空间中的点在倒圆锥体中的表示方法。HSV即色相(Hue)、饱和度(Saturation)、明度(Value)，又称HSB(B即Brightness)。色相是色彩的基本属性，就是平常说的颜色的名称，如红色、黄色等。饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。明度（V），取0-max(计算机中HSV取值范围和存储的长度有关)。HSV颜色空间可以用一个圆锥空间模型来描述。圆锥的顶点处，V=0，H和S无定义，代表黑色。圆锥的顶面中心处V=max，S=0，H无定义，代表白色。<br>2、RGB颜色空间中，三种颜色分量的取值与所生成的颜色之间的联系并不直观。而HSV颜色空间，更类似于人类感觉颜色的方式，封装了关于颜色的信息：“这是什么颜色？深浅如何？明暗如何？”</p>
+<p>Hue的范围是[0,179],Saturation的范围是[0,255],value的范围是[0,255]。不同的软件使用不同的规模，如果你用opencv配合其他软件，你需要规范化这些变量。</p>
+<p>对于颜色变换，我们通常使用cv2.cvtColor(input_image,flag)函数。<br>flag决定了变换的类型。</p>
+<p>对于BGR-&gt;Gray的变换，flag = cv2.COLOR_BGR2GRAY<br>BGR-&gt;HSV变换， flag = cv2.COLOR_BGR2HSV</p>
+<p>如果，你希望查找其他的flag，可以用下面的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">flags = [i <span class="keyword">for</span> i <span class="keyword">in</span> dir(cv2) <span class="keyword">if</span> i.startswith(<span class="string">&#x27;COLOR_&#x27;</span>)]</span><br><span class="line"><span class="built_in">print</span>(flags)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-物体跟踪"><a href="#1-2-物体跟踪" class="headerlink" title="1.2 物体跟踪"></a>1.2 物体跟踪</h2><p>现在，我们可以将BGR图像转换为HSV图像，我们可以通过这个来提取一个彩色的物体。在HSV中，我们可以更加容易的代表一种颜色，而不是RGB颜色空间。<br>我们需要提取一个蓝色的物体，下面是实现方式。<br>提取视频的每一帧<br>将BGR转换为HSV颜色空间<br>我们提取HSV图片中的蓝色范围<br>单独提取蓝色物体，我们可以在图片上做任何想做的事情。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"><span class="built_in">cap</span> = cv2.VideoCapture(0)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(1):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Take each frame</span></span><br><span class="line">    _, frame = cap.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Convert BGR to HSV</span></span><br><span class="line">    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># define range of blue color in HSV</span></span><br><span class="line">    lower_blue = np.array([110,50,50])</span><br><span class="line">    upper_blue = np.array([130,255,255])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Threshold the HSV image to get only blue colors</span></span><br><span class="line">    mask = cv2.inRange(hsv, lower_blue, upper_blue)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Bitwise-AND mask and original image</span></span><br><span class="line">    res = cv2.bitwise_and(frame,frame, mask= mask)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(<span class="string">&#x27;frame&#x27;</span>,frame)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;mask&#x27;</span>,mask)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;res&#x27;</span>,res)</span><br><span class="line">    k = cv2.waitKey(5) &amp; 0xFF</span><br><span class="line">    <span class="keyword">if</span> k == 27:</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>注意，这个里面会有很多噪音，之后我们需要学习如何消除噪音。</p>
+<p>这是物体追踪的最简单的方法。如果你学会了轮廓的函数，你可以做很多事情，例如找到物体的中心和追踪物体，只要在摄像头前移动你的手，就可以花图以及其他有趣的东西。</p>
+<p>如何找到追踪的HSV数值？<br>这是非常常见的问题，你可以使用下面的方法,使用BGR来转换为HSV。<br>注意，opencv是以BGR格式读取数据，我们需要将RGB进行转换。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; green = np.uint8([[[0,255,0 ]]])</span><br><span class="line">&gt;&gt;&gt; hsv_green = cv2.cvtColor(green,cv2.COLOR_BGR2HSV)</span><br><span class="line">&gt;&gt;&gt; <span class="built_in">print</span> hsv_green</span><br><span class="line">[[[ 60 255 255]]]</span><br></pre></td></tr></table></figure>
+<p>然后你将[H-10,100,100]和[H+10,255,255]分别作为上下界。<br>除了这个方法，你还可以通过图片编辑软件GIMP或者在线转换器来找到数值，不要忘记配合HSV的范围。</p>
+<h1 id="2-图片阈值处理"><a href="#2-图片阈值处理" class="headerlink" title="2.图片阈值处理"></a>2.图片阈值处理</h1><p>图片的阈值处理之前我们已经遇到过，我们还需要有自适应阈值处理。</p>
+<h2 id="2-1-简单阈值"><a href="#2-1-简单阈值" class="headerlink" title="2.1 简单阈值"></a>2.1 简单阈值</h2><p>直接看代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;gradient.png&#x27;</span>,0)</span><br><span class="line">ret,thresh1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)</span><br><span class="line">ret,thresh2 = cv2.threshold(img,127,255,cv2.THRESH_BINARY_INV)</span><br><span class="line">ret,thresh3 = cv2.threshold(img,127,255,cv2.THRESH_TRUNC)</span><br><span class="line">ret,thresh4 = cv2.threshold(img,127,255,cv2.THRESH_TOZERO)</span><br><span class="line">ret,thresh5 = cv2.threshold(img,127,255,cv2.THRESH_TOZERO_INV)</span><br><span class="line"></span><br><span class="line">titles = [<span class="string">&#x27;Original Image&#x27;</span>,<span class="string">&#x27;BINARY&#x27;</span>,<span class="string">&#x27;BINARY_INV&#x27;</span>,<span class="string">&#x27;TRUNC&#x27;</span>,<span class="string">&#x27;TOZERO&#x27;</span>,<span class="string">&#x27;TOZERO_INV&#x27;</span>]</span><br><span class="line">images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(6):</span><br><span class="line">    plt.subplot(2,3,i+1),plt.imshow(images[i],<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    plt.title(titles[i])</span><br><span class="line">    plt.xticks([]),plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>上面使用了matplotlib绘制函数，可以复习一下。</p>
+<h2 id="2-2-自适应阈值"><a href="#2-2-自适应阈值" class="headerlink" title="2.2 自适应阈值"></a>2.2 自适应阈值</h2><p>上面是我们使用了一个全局变量作为阈值，但是在有些条件下，图片有不同的光照条件，所以，在这种情况下，我们使用自适应的阈值。在这个方法中，我们需要计算图片中某一区域中的阈值。这样，我们在不同的区域中有不同的阈值，从而得到更好的图片结果。</p>
+<p>自适应阈值函数中有三个输入变量和一个输出变量：<br>1.自适应规则：它决定了阈值的计算方法<br>cv2.ADAPTIVE_THRESH_MEAN_C<br>阈值设定为附近区域的中间值<br>cv2.ADAPTIVE_THRESH_GAUSSIAN_C<br>阈值取决于高斯窗口附近区域值的加权相加。大概是这么翻译的。又见高斯。。。<br>2.区块大小：决定了附近区域的大小<br>3.常数：一个从平均值或者加权平均值中减去的常数。</p>
+<p>下面是两个阈值的比较</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dave.jpg&#x27;</span>,0)</span><br><span class="line">img = cv2.medianBlur(img,5)</span><br><span class="line"></span><br><span class="line">ret,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)</span><br><span class="line">th2 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\</span><br><span class="line">            cv2.THRESH_BINARY,11,2)</span><br><span class="line">th3 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\</span><br><span class="line">            cv2.THRESH_BINARY,11,2)</span><br><span class="line"></span><br><span class="line">titles = [<span class="string">&#x27;Original Image&#x27;</span>, <span class="string">&#x27;Global Thresholding (v = 127)&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;Adaptive Mean Thresholding&#x27;</span>, <span class="string">&#x27;Adaptive Gaussian Thresholding&#x27;</span>]</span><br><span class="line">images = [img, th1, th2, th3]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(4):</span><br><span class="line">    plt.subplot(2,2,i+1),plt.imshow(images[i],<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    plt.title(titles[i])</span><br><span class="line">    plt.xticks([]),plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>上面的程序中有一个中值滤波来模糊化图片，能够有效地抑制噪声，从而消除孤立的噪声点。<br>cv2.medianBlur(src,ksize[,dst])-&gt;dst<br>变量<br>src:输入1,3,4通道图片，当ksize是3或者5,图片的深度应该是CV_8U,CV_16U或者是CV_32F，对于更加大的孔径，则只能是CV_8U<br>dst:和src一样大小和类型的目标数组<br>ksize:孔径大小,必须是奇数，而且大于1。</p>
+<p>这个函数通过中值滤波，在ksize×ksize的孔径中过滤，每个频道可以分别运算。</p>
+<p>下面是最重要的自适应函数部分，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.adaptiveThreshold(src, maxValue, adaptiveMethod, thresholdType, blockSize, C[, dst]) → dst</span><br></pre></td></tr></table></figure>
+<p>其中，<br>src:8位单通道图片<br>dst:有和原图片相同大小和类型的目标图片<br>maxValue:非0值，和之前的阈值函数一样<br>adaptiveMethod:自适应阈值的算法，类型有:<br>ADAPTIVE_THRESH_MEAN_C和ADAPTIVE_THRESH_GAUSSIAN_C<br>thresholdType:阈值类型有THRESH_BINARY或者THRESH_BINARY_INV<br>blockSize:像素区域的大小，3,5,7等等。<br>C:常数，用来将平均值和加权平均值减去的数字。</p>
+<h2 id="2-3-大津二值化算法"><a href="#2-3-大津二值化算法" class="headerlink" title="2.3 大津二值化算法"></a>2.3 大津二值化算法</h2><p>Otsu’s Binarization说实话，我不明白这是个人名还是什么的。<br>介绍一下，这是最大类间方差法，是一种自动确定二值化阈值的算法。<br>推导过程暂放，说一说它的结论:<br>S<sub>b</sub><sup>2</sup>=w<sub>0</sub><em>w<sub>1</sub></em>(M<sub>0</sub>-M<sub>1</sub>)<sup>2</sup><br>二值化阈值t将完整的区间分成两个类，S<sub>b</sub><sup>2</sup>类间方差最大时，t就是二值化阈值。<br>这个公式的变量:<br>S<sub>b</sub><sup>2</sup>:类间方差<br>w<sub>0</sub>，w<sub>1</sub>:被阈值t分开的两个类中的像素数占总像素数的比例<br>M<sub>0</sub>，M<sub>1</sub>:<br>两个类的像素值的平均值</p>
+<p>里面第二个变量是retVal，当我们使用大津二值化算法就用到它。<br>在全局阈值的情况下，我们使用一个任意值作为阈值。那么我们怎么看这个数值是好是坏呢？试错。考虑一个双峰图像，就是直方图有两个峰值。<br>对于那种图片，我们可以大概选取这两个峰值之间的数值来作为阈值。那么，大津二值化方法就是自动选取阈值，对于其他图片没有办法计算。</p>
+<p>因此，cv2.threshold()函数使用了，传入了一个其他的标志，cv2.THRESH_OTSU，将0赋值给阈值。然后，这个算法就会找到合适的阈值并且将它作为第二个返回值，retVal。如果不使用大津二值化方法，retVal就会是你所使用的阈值。</p>
+<p>例如，将一个充满噪声的图片输入，分别进行下列操作:<br>1.使用一个全局阈值127<br>2.使用大津二值化算法<br>3.5×5的高斯滤波，然后使用大津二值化算法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;noisy2.png&#x27;</span>,0)</span><br><span class="line"></span><br><span class="line"><span class="comment"># global thresholding</span></span><br><span class="line">ret1,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Otsu&#x27;s thresholding</span></span><br><span class="line">ret2,th2 = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Otsu&#x27;s thresholding after Gaussian filtering</span></span><br><span class="line">blur = cv2.GaussianBlur(img,(5,5),0)</span><br><span class="line">ret3,th3 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plot all the images and their histograms</span></span><br><span class="line">images = [img, 0, th1,</span><br><span class="line">          img, 0, th2,</span><br><span class="line">          blur, 0, th3]</span><br><span class="line">titles = [<span class="string">&#x27;Original Noisy Image&#x27;</span>,<span class="string">&#x27;Histogram&#x27;</span>,<span class="string">&#x27;Global Thresholding (v=127)&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Original Noisy Image&#x27;</span>,<span class="string">&#x27;Histogram&#x27;</span>,<span class="string">&quot;Otsu&#x27;s Thresholding&quot;</span>,</span><br><span class="line">          <span class="string">&#x27;Gaussian filtered Image&#x27;</span>,<span class="string">&#x27;Histogram&#x27;</span>,<span class="string">&quot;Otsu&#x27;s Thresholding&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(3):</span><br><span class="line">    plt.subplot(3,3,i*3+1),plt.imshow(images[i*3],<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    plt.title(titles[i*3]), plt.xticks([]), plt.yticks([])</span><br><span class="line">    plt.subplot(3,3,i*3+2),plt.hist(images[i*3].ravel(),256)</span><br><span class="line">    plt.title(titles[i*3+1]), plt.xticks([]), plt.yticks([])</span><br><span class="line">    plt.subplot(3,3,i*3+3),plt.imshow(images[i*3+2],<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    plt.title(titles[i*3+2]), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>这里只有一些函数需要补充。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.hist():用来表示直方图</span><br><span class="line">等等，省略了相关的内容</span><br></pre></td></tr></table></figure>
+<p>顺便，大津二值方法可以直接用下面的代码实现:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;noisy2.png&#x27;</span>,0)</span><br><span class="line">blur = cv2.GaussianBlur(img,(5,5),0)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find normalized_histogram, and its cumulative distribution function</span></span><br><span class="line">hist = cv2.calcHist([blur],[0],None,[256],[0,256])</span><br><span class="line">hist_norm = hist.ravel()/hist.max()</span><br><span class="line">Q = hist_norm.cumsum()</span><br><span class="line"></span><br><span class="line">bins = np.arange(256)</span><br><span class="line"></span><br><span class="line">fn_min = np.inf</span><br><span class="line">thresh = -1</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(1,256):</span><br><span class="line">    p1,p2 = np.hsplit(hist_norm,[i]) <span class="comment"># probabilities</span></span><br><span class="line">    q1,q2 = Q[i],Q[255]-Q[i] <span class="comment"># cum sum of classes</span></span><br><span class="line">    b1,b2 = np.hsplit(bins,[i]) <span class="comment"># weights</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># finding means and variances</span></span><br><span class="line">    m1,m2 = np.sum(p1*b1)/q1, np.sum(p2*b2)/q2</span><br><span class="line">    v1,v2 = np.sum(((b1-m1)**2)*p1)/q1,np.sum(((b2-m2)**2)*p2)/q2</span><br><span class="line"></span><br><span class="line">    <span class="comment"># calculates the minimization function</span></span><br><span class="line">    fn = v1*q1 + v2*q2</span><br><span class="line">    <span class="keyword">if</span> fn &lt; fn_min:</span><br><span class="line">        fn_min = fn</span><br><span class="line">        thresh = i</span><br><span class="line"></span><br><span class="line"><span class="comment"># find otsu&#x27;s threshold value with OpenCV function</span></span><br><span class="line">ret, otsu = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)</span><br><span class="line"><span class="built_in">print</span> thresh,ret</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-图片的几何转换"><a href="#3-图片的几何转换" class="headerlink" title="3.图片的几何转换"></a>3.图片的几何转换</h1><p>学习平移，旋转，仿射变换等。<br>使用下面的函数cv2.getPerspectiveTransform</p>
+<h2 id="3-0-转换"><a href="#3-0-转换" class="headerlink" title="3.0 转换"></a>3.0 转换</h2><p>opencv有两个变换函数cv2.warpAffine和cv2.warpPerspective。<br>通过这两个函数可以使用任意种类的变换:<br>cv2.warpAffine采用2×3变换矩阵，<br>cv2.warpPerspective将3×3个变换矩阵作为输入</p>
+<h2 id="3-1-比例缩放"><a href="#3-1-比例缩放" class="headerlink" title="3.1 比例缩放"></a>3.1 比例缩放</h2><p>缩放修改图片的大小，opencv包含一个cv2.resize()函数。可以手动指定图像的大小，也可以指定缩放系数。使用不同的插值方法。推荐的插值方法是cv2.INTER_AREA收缩和cv2.INTER_CUBIC(慢)和cv2.INTER_LINEAR(快速)<br>默认使用cv2.INTER_LINEAR插值方法，可以使用下面的方法来实现修改图片大小。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;messi5.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">res = cv2.resize(img,None,fx=2, fy=2, interpolation = cv2.INTER_CUBIC)</span><br><span class="line"></span><br><span class="line"><span class="comment">#OR</span></span><br><span class="line"></span><br><span class="line">height, width = img.shape[:2]</span><br><span class="line">res = cv2.resize(img,(2*width, 2*height), interpolation = cv2.INTER_CUBIC)</span><br></pre></td></tr></table></figure>
+<p>cv2.resize(src, dsize[, dst[, fx[, fy[, interpolation]]]]) → dst<br>变量有:<br>src :输入图片<br>dst :输出图片<br>dsize:输出图片的大小，如果为0,则通过下面的公式计算:<br>dsize = size(round(fx<em>src.cols),round(fy</em>src.rows))<br>fx,fy:分别是缩放系数<br>interpolation:插值方法<br>INTER_NEAREST:最近临插值法<br>INTER_LINEAR:双线性插值法，默认<br>INTER_AREA: 使用像素区域重新采样。它可能是图像抽取的首选方法，因为它提供了无莫尔的结果。但是，当图像被缩放时，它类似于INTER_NEAREST方法。<br>INTER_CUBIC:4×4临域像素点上的bixubic插值(双三次插值)<br>INTER_LANCZOS4:8x8临域像素点上的Lanczos插值</p>
+<h2 id="3-2-平移"><a href="#3-2-平移" class="headerlink" title="3.2 平移"></a>3.2 平移</h2><p>平移是修改物体的位置，如果知道平移的方向(t<sub>x</sub>,t<sub>y</sub>)，可以建立一个转换矩阵。</p>
+<p>1 0 t<sub>x</sub><br>0 1 t<sub>y</sub></p>
+<p>我们可以建立np.float32类新的数组，然后将变量传递到cv2.warpAffine<br>例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;messi5.jpg&#x27;</span>,0)</span><br><span class="line">rows,cols = img.shape</span><br><span class="line"></span><br><span class="line">M = np.float32([[1,0,100],[0,1,50]])</span><br><span class="line">dst = cv2.warpAffine(img,M,(cols,rows))</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;img&#x27;</span>,dst)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>这样，图片就进行了平移的操作。</p>
+<h2 id="3-3-旋转"><a href="#3-3-旋转" class="headerlink" title="3.3 旋转"></a>3.3 旋转</h2><p>旋转的角度x,可以变换为变换矩阵M:</p>
+<p>cosx -sinx<br>sinx cosx</p>
+<p>但是，opencv提供了以合适的旋转中心缩放旋转的函数，所以你可以旋转你所需要的角度和位置，可以将转换矩阵修改为</p>
+<p>a   b   (1-a)<em>center.x-b</em>center.y<br>-b  a   b*center.x+(1-a)*center.y</p>
+<p>其中:</p>
+<p>a=scale<em>cosx<br>b=scale</em>sinx</p>
+<p>opencv提供了cv2.getRotationMatrix2D函数，用来获取上面的转换矩阵。<br>下面的例子中，以图片的中心逆时针旋转90度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;messi5.jpg&#x27;</span>,0)</span><br><span class="line">rows,cols = img.shape</span><br><span class="line"></span><br><span class="line">M = cv2.getRotationMatrix2D((cols/2,rows/2),90,1)</span><br><span class="line">dst = cv2.warpAffine(img,M,(cols,rows))</span><br></pre></td></tr></table></figure>
+<p>其中:<br>cv2.getRotationMatrix2D()的变量有<br>旋转中心，旋转角度，放大或缩小系数。</p>
+<h2 id="3-4-仿射变换"><a href="#3-4-仿射变换" class="headerlink" title="3.4 仿射变换"></a>3.4 仿射变换</h2><p>在仿射变换中，所有原图片中的平行线将会在输出图片中保持平行。<br>为了找到变换矩阵，我们需要原图片中的三个点，和输出图片中对应的位置。然后，cv2.getAffineTransform()会建立一个2×3的矩阵作为cv2.warpAffine()的输入变量。</p>
+<p>下面的例子中，选取的点用绿色来标记。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;drawing.png&#x27;</span>)</span><br><span class="line">rows,cols,ch = img.shape</span><br><span class="line"></span><br><span class="line">pts1 = np.float32([[50,50],[200,50],[50,200]])</span><br><span class="line">pts2 = np.float32([[10,100],[200,50],[100,250]])</span><br><span class="line"></span><br><span class="line">M = cv2.getAffineTransform(pts1,pts2)</span><br><span class="line"></span><br><span class="line">dst = cv2.warpAffine(img,M,(cols,rows))</span><br><span class="line"></span><br><span class="line">plt.subplot(121),plt.imshow(img),plt.title(<span class="string">&#x27;Input&#x27;</span>)</span><br><span class="line">plt.subplot(122),plt.imshow(dst),plt.title(<span class="string">&#x27;Output&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-透视变换"><a href="#3-5-透视变换" class="headerlink" title="3.5 透视变换"></a>3.5 透视变换</h2><p>对于透视变换，我们需要一个3×3变换矩阵。在变换前后，直线始终笔直。<br>为了找到这个变换矩阵，我们需要输入图片的四个点并且输出图片中相对应的点。在这四个点中，它们中的三个不能共线。然后通过cv2.getPerspectiveTransform函数来找到变换矩阵，然后在cv2.warpPerspective中使用3×3变换矩阵。<br>可以看到下面的例子:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">&#x27;sudokusmall.png&#x27;</span>)</span><br><span class="line">rows,cols,ch = img.shape</span><br><span class="line"></span><br><span class="line">pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]])</span><br><span class="line">pts2 = np.float32([[0,0],[300,0],[0,300],[300,300]])</span><br><span class="line"></span><br><span class="line">M = cv2.getPerspectiveTransform(pts1,pts2)</span><br><span class="line"></span><br><span class="line">dst = cv2.warpPerspective(img,M,(300,300))</span><br><span class="line"></span><br><span class="line">plt.subplot(121),plt.imshow(img),plt.title(<span class="string">&#x27;Input&#x27;</span>)</span><br><span class="line">plt.subplot(122),plt.imshow(dst),plt.title(<span class="string">&#x27;Output&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-平滑图像"><a href="#4-平滑图像" class="headerlink" title="4.平滑图像"></a>4.平滑图像</h1><p>使用各种低通滤波器来平滑图像。<br>对图像使用自定义过滤器(二维卷积)</p>
+<h2 id="4-1-二维卷积-图片过滤"><a href="#4-1-二维卷积-图片过滤" class="headerlink" title="4.1 二维卷积(图片过滤)"></a>4.1 二维卷积(图片过滤)</h2><p>对于一维的信号，图片可以通过低通滤波器来滤波(LPF),高通滤波器(HPF)等等。一个LPF可以用于消除噪音，或者模糊图像。一个HPF可以找到图片中的边缘。</p>
+<p>opencv提供了cv2.filter2D()函数，用图像来卷积内核。下面的例子中，我们将会对图像进行平均滤波，一个5×5的平均滤波器内核K的定义是。</p>
+<p>25K =</p>
+<p>1 1 1 1 1<br>1 1 1 1 1<br>1 1 1 1 1<br>1 1 1 1 1<br>1 1 1 1 1</p>
+<p>使用上面的滤波器内核进行过滤的结果是，对于每个像素，5×5窗口以该像素所为中心，将该窗口内的所有像素相加，然后将结果除以25。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;opencv_logo.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line">kernel = np.ones((5,5),np.float32)/25</span><br><span class="line">dst = cv2.filter2D(img,-1,kernel)</span><br><span class="line"></span><br><span class="line">plt.subplot(121),plt.imshow(img),plt.title(<span class="string">&#x27;Original&#x27;</span>)</span><br><span class="line">plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(122),plt.imshow(dst),plt.title(<span class="string">&#x27;Averaging&#x27;</span>)</span><br><span class="line">plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>其中:<br>cv2.filter2D(src, ddepth, kernel[, dst[, anchor[, delta[, borderType]]]]) → dst<br>变量:<br>ddepth:目标图片的深度，如果为负数，它将会和原图片的深度相同。<br>其他的变量可以缺省，暂时待定。</p>
+<h2 id="4-2-图片模糊-平滑图像"><a href="#4-2-图片模糊-平滑图像" class="headerlink" title="4.2 图片模糊(平滑图像)"></a>4.2 图片模糊(平滑图像)</h2><p>图像模糊是通过卷积图像与低通滤波核来实现的。它对消除噪音很有用。<br>它实际上会从图像中移除高频内容（例如：噪声、边缘），从而在应用此 滤波器时导致边缘模糊。（当然，有些模糊技术不会模糊边缘）。OpenCV主要提供四种模糊技术。</p>
+<h3 id="4-2-1-均值"><a href="#4-2-1-均值" class="headerlink" title="4.2.1 均值"></a>4.2.1 均值</h3><p>这是通过卷积图像与一个规范化的盒子过滤器。它只需要取内核区域下所有像素的平均值，并用该平均值替换中心元素。这是通过函数blur或boxFilter完成。我们应该指定内核的宽度和高度。一个5x5规格化的盒式过滤器如下所示:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;opencv_logo.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line">blur = cv2.blur(img,(5,5))</span><br><span class="line"></span><br><span class="line">plt.subplot(121),plt.imshow(img),plt.title(<span class="string">&#x27;Original&#x27;</span>)</span><br><span class="line">plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(122),plt.imshow(blur),plt.title(<span class="string">&#x27;Blurred&#x27;</span>)</span><br><span class="line">plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>注意，如果不想使用规范化的框过滤器，请使用cv2.boxFilter并将参数normalize=False传递给函数。</p>
+<h3 id="4-2-2-高斯滤波"><a href="#4-2-2-高斯滤波" class="headerlink" title="4.2.2 高斯滤波"></a>4.2.2 高斯滤波</h3><p>在这种方法中，使用高斯核替代了由相同的系数组成的盒子过滤器。<br>使用了cv2.GaussianBlur函数。<br>我们应该确定核心的高度和宽度，他们必须是正奇数。<br>同时，我们需要设定X和Y方向的标准偏差，分别为sigmaX和sigmaY。<br>如果只设定了sigmaX,那么sigmaY的数值相同。如果都为0,那么通过核心的大小来计算标准偏差。<br>高斯滤波在图片中消除高斯噪声中有很有效。</p>
+<p>可以通过cv2.getGaussianKernel函数来获取高斯核心。<br>上面的代码可以修改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blur = cv2.GaussianBlur(img,(5,5),0)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-3-中值滤波"><a href="#4-2-3-中值滤波" class="headerlink" title="4.2.3 中值滤波"></a>4.2.3 中值滤波</h3><p>cv2.medianBlur函数可以计算出核心区域中像素点的中间值，并且将中间的像素点的数值修改为中间值。这个方法可以高效消除椒盐噪声。<br>在高斯和平均滤波中，过滤之后的数值可能在原图像中并不存在。<br>然而，中值滤波中，因为中心元素总是被图像中的某个像素值代替，这有效地降低了噪音。内核大小必须是正奇数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">median = cv2.medianBlur(img,5)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-4-双边滤波"><a href="#4-2-4-双边滤波" class="headerlink" title="4.2.4 双边滤波"></a>4.2.4 双边滤波</h3><p>正如之前注意到的，前面的滤波器都会将边缘模糊。双边滤波器cv2.bilateralFilter会在保留边缘的情况下，非常有效地消除噪声。<br>但是与其他滤波器相比，速度会更慢。<br>原理没有看懂。。尴尬。直接看需要的参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blur = cv2.bilateralFilter(img,9,75,75)</span><br></pre></td></tr></table></figure>
+<p>cv2.bilateralFilter()中变量有:<br>src:原图像<br>dst:目标图像<br>d:像素临域的直径，如果小于0,则通过sigmaSpace计算<br>sigmaColor:在颜色空间中过滤sigma，参数值越大，像素临域中更多的颜色将会混合在一起。从而，产生更大的混合颜色区域。大概是这个意思。<br>sigmaSpace:<br>在坐标空间中过滤sigma。参数值越大，意味着更远的像素将相互影响，只要它们的颜色足够接近（参见sigmaColor）。当d&gt;0时，它指定邻域大小，而不考虑sigmaSpace。否则，d与sigmaSpace成比例。</p>
+<h1 id="5-形态转换"><a href="#5-形态转换" class="headerlink" title="5.形态转换"></a>5.形态转换</h1><p>我们将会学习不同的形态学操作，例如:侵蚀，扩张，打开，关闭等。<br>我们将会使用以下的函数:<br>cv2.erode()<br>cv2.dilate()<br>cv2.morphologyEx()</p>
+<h2 id="5-0-理论"><a href="#5-0-理论" class="headerlink" title="5.0 理论"></a>5.0 理论</h2><p>形态转化是基于图片形状的一些简单运算。它通常在二进制图像中运行。它需要两个输入，一个是原始图像，另一个是决定操作性质的结构元素或者内核。两个基本的形态学操作是侵蚀和扩张。然后它的各种形式例如:开，关，梯度等也发挥作用。</p>
+<h2 id="5-1-侵蚀"><a href="#5-1-侵蚀" class="headerlink" title="5.1 侵蚀"></a>5.1 侵蚀</h2><p>侵蚀的基本概念就像土壤侵蚀，它会侵蚀前景对象的边界，总是尽量保持前景为白色。它有什么作用呢？内核在图像中滑动(例如，二维卷积)，原始图像中的像素(取值为0或1)在内核都为1的情况下，为1。1为白色，0为黑色。其他则被侵蚀，为0。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;j.png&#x27;</span>,0)</span><br><span class="line">kernel = np.ones((5,5),np.uint8)</span><br><span class="line">erosion = cv2.erode(img,kernel,iterations = 1)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-扩张"><a href="#5-2-扩张" class="headerlink" title="5.2 扩张"></a>5.2 扩张</h2><p>和侵蚀相反，当内核中至少一个像素为1时，那么那个像素为1。所以，它增加了白色区域的大小或者前景物体增加。</p>
+<p>正常情况下，噪声消除的情况下，侵蚀之后会扩张。因为，侵蚀消除了白噪音，但是也会缩小了我们的目标。所以我们把它放大。既然噪声消失,但是我们的区域缩小了。它在分割图像上也有用处。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dilation = cv2.dilate(img,kernel,iterations = 1)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-3-打开"><a href="#5-3-打开" class="headerlink" title="5.3 打开"></a>5.3 打开</h2><p>打开是侵蚀之后扩张的别称。对于消除噪声很有效。说实话，在看这部分的时候哪个在前哪个在后，傻傻分不清楚。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-4-关闭"><a href="#5-4-关闭" class="headerlink" title="5.4 关闭"></a>5.4 关闭</h2><p>关闭是扩张之后侵蚀的别称。可以消除前景物体的空洞。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-5-形态梯度"><a href="#5-5-形态梯度" class="headerlink" title="5.5 形态梯度"></a>5.5 形态梯度</h2><p>这是扩张和侵蚀之间的差。表现为物体的轮廓。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradient = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-6-Top-Hat-高帽"><a href="#5-6-Top-Hat-高帽" class="headerlink" title="5.6 Top Hat(高帽?)"></a>5.6 Top Hat(高帽?)</h2><p>原始图片-打开运算(先腐蚀后扩张)后的图片。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-7-Black-Hat-黑帽"><a href="#5-7-Black-Hat-黑帽" class="headerlink" title="5.7 Black Hat(黑帽?)"></a>5.7 Black Hat(黑帽?)</h2><p>关闭运算(先扩张后腐蚀)后的图片-原始图片。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-8-结构元素"><a href="#5-8-结构元素" class="headerlink" title="5.8 结构元素"></a>5.8 结构元素</h2><p>我们通常使用Numpy来建立构造元素在之前的例子里面，是矩形的。但是在一些情况下，有时候我们需要椭圆或者圆形的核心。<br>因此有一个函数getStructuringElement。你可以将形状和大小传递进去，然后得到需要的核心。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Rectangular Kernel</span></span><br><span class="line">&gt;&gt;&gt; cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))</span><br><span class="line">array([[1, 1, 1, 1, 1],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [1, 1, 1, 1, 1]], dtype=uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Elliptical Kernel</span></span><br><span class="line">&gt;&gt;&gt; cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))</span><br><span class="line">array([[0, 0, 1, 0, 0],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [0, 0, 1, 0, 0]], dtype=uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Cross-shaped Kernel</span></span><br><span class="line">&gt;&gt;&gt; cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))</span><br><span class="line">array([[0, 0, 1, 0, 0],</span><br><span class="line">       [0, 0, 1, 0, 0],</span><br><span class="line">       [1, 1, 1, 1, 1],</span><br><span class="line">       [0, 0, 1, 0, 0],</span><br><span class="line">       [0, 0, 1, 0, 0]], dtype=uint8)</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-图像渐变"><a href="#6-图像渐变" class="headerlink" title="6.图像渐变"></a>6.图像渐变</h1><p>这部分我们需要学习。<br>找到图片渐变，边缘等。<br>使用下列的函数:<br>cv2.Sobel()<br>cv2.Scharr()<br>cv2.Laplacian()</p>
+<h2 id="6-0-理论"><a href="#6-0-理论" class="headerlink" title="6.0 理论"></a>6.0 理论</h2><p>opencv提供了三种类型的梯度滤波器或者高通滤波器:Sobel,Scharr和Laplacian。</p>
+<h2 id="6-0-1-Sobel-Scharr导数"><a href="#6-0-1-Sobel-Scharr导数" class="headerlink" title="6.0.1 Sobel-Scharr导数"></a>6.0.1 Sobel-Scharr导数</h2><p>来了，来了。Sobel算子是一种高斯平滑加微分的联合算子，因此对噪声的抵抗能力更强。可以指定要获取的垂直或水平导数的方向（分别由参数yorder和xorder指定）。还可以通过参数ksize指定内核的大小。如果ksize=-1，则使用3x3Scharr滤波器，其结果比3x3Sobel滤波器更好。</p>
+<h2 id="6-0-2-拉普拉斯导数"><a href="#6-0-2-拉普拉斯导数" class="headerlink" title="6.0.2 拉普拉斯导数"></a>6.0.2 拉普拉斯导数</h2><p>待定。。。</p>
+<h2 id="6-1-代码"><a href="#6-1-代码" class="headerlink" title="6.1 代码"></a>6.1 代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;dave.jpg&#x27;</span>,0)</span><br><span class="line"></span><br><span class="line">laplacian = cv2.Laplacian(img,cv2.CV_64F)</span><br><span class="line">sobelx = cv2.Sobel(img,cv2.CV_64F,1,0,ksize=5)</span><br><span class="line">sobely = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=5)</span><br><span class="line"></span><br><span class="line">plt.subplot(2,2,1),plt.imshow(img,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Original&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(2,2,2),plt.imshow(laplacian,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Laplacian&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(2,2,3),plt.imshow(sobelx,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Sobel X&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(2,2,4),plt.imshow(sobely,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Sobel Y&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2-一件重要的事情"><a href="#6-2-一件重要的事情" class="headerlink" title="6.2 一件重要的事情"></a>6.2 一件重要的事情</h2><p>在上一个示例中，输出数据类型是cv2.CV_8U或np.uint8。<br>但有一个小问题。黑白过渡为正斜率（有正值），黑白过渡为负斜率（有负值）。因此，当您将数据转换为np.uint8时，所有负斜率都设为零。<br>简单地说，你错过了这一点。<br>如果要检测两条边，更好的选择是将输出数据类型保持为一些更高的形式，如cv2.CV_16S、cv2.CV_64F等。取其绝对值，然后转换回cv2.CV_8U。下面的代码演示了水平Sobel筛选器的此过程和结果差异。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;box.png&#x27;</span>,0)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output dtype = cv2.CV_8U</span></span><br><span class="line">sobelx8u = cv2.Sobel(img,cv2.CV_8U,1,0,ksize=5)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output dtype = cv2.CV_64F. Then take its absolute and convert to cv2.CV_8U</span></span><br><span class="line">sobelx64f = cv2.Sobel(img,cv2.CV_64F,1,0,ksize=5)</span><br><span class="line">abs_sobel64f = np.absolute(sobelx64f)</span><br><span class="line">sobel_8u = np.uint8(abs_sobel64f)</span><br><span class="line"></span><br><span class="line">plt.subplot(1,3,1),plt.imshow(img,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Original&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(1,3,2),plt.imshow(sobelx8u,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Sobel CV_8U&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(1,3,3),plt.imshow(sobel_8u,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Sobel abs(CV_64F)&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-Canny边缘检测"><a href="#7-Canny边缘检测" class="headerlink" title="7.Canny边缘检测"></a>7.Canny边缘检测</h1><p>这部分内容主要有:<br>Canny边缘检测的概念<br>opencv中的cv2.Canny函数</p>
+<h2 id="7-0-理论"><a href="#7-0-理论" class="headerlink" title="7.0 理论"></a>7.0 理论</h2><h3 id="7-0-1-降噪"><a href="#7-0-1-降噪" class="headerlink" title="7.0.1 降噪"></a>7.0.1 降噪</h3><h3 id="7-0-2-找到图片的强度梯度"><a href="#7-0-2-找到图片的强度梯度" class="headerlink" title="7.0.2 找到图片的强度梯度"></a>7.0.2 找到图片的强度梯度</h3><h3 id="7-0-3-非最大抑制"><a href="#7-0-3-非最大抑制" class="headerlink" title="7.0.3 非最大抑制"></a>7.0.3 非最大抑制</h3><h3 id="7-0-4-滞后阈值"><a href="#7-0-4-滞后阈值" class="headerlink" title="7.0.4 滞后阈值"></a>7.0.4 滞后阈值</h3><h2 id="7-1-opencv中的Canny边缘检测"><a href="#7-1-opencv中的Canny边缘检测" class="headerlink" title="7.1 opencv中的Canny边缘检测"></a>7.1 opencv中的Canny边缘检测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;messi5.jpg&#x27;</span>,0)</span><br><span class="line">edges = cv2.Canny(img,100,200)</span><br><span class="line"></span><br><span class="line">plt.subplot(121),plt.imshow(img,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Original Image&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.subplot(122),plt.imshow(edges,cmap = <span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Edge Image&#x27;</span>), plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-影像金字塔"><a href="#8-影像金字塔" class="headerlink" title="8.影像金字塔"></a>8.影像金字塔</h1><h1 id="9-opencv中的轮廓"><a href="#9-opencv中的轮廓" class="headerlink" title="9.opencv中的轮廓"></a>9.opencv中的轮廓</h1><p>这个部分感觉挺复杂的，包含:<br>轮廓入门:<br>学习查找和绘制轮廓<br>轮廓特征:<br>学习查找轮廓的不同特征，例如面积，周长，边界矩形等。<br>轮廓属性:<br>学习查找轮廓的不同属性，例如实体度，平均强度等。<br>轮廓更多功能:<br>学习查找凸度缺陷，pointPolygonTest,匹配不同的形状等。<br>轮廓层次:<br>了解轮廓层次结构</p>
+<h2 id="9-1-轮廓入门"><a href="#9-1-轮廓入门" class="headerlink" title="9.1 轮廓入门:"></a>9.1 轮廓入门:</h2><p>学习查找和绘制轮廓<br>将会使用以下的函数:<br>cv2.findContours()<br>cv2.drawContours()</p>
+<h3 id="9-1-1-什么是轮廓"><a href="#9-1-1-什么是轮廓" class="headerlink" title="9.1.1 什么是轮廓"></a>9.1.1 什么是轮廓</h3><p>轮廓可以解释为所有沿边界的连续点的曲线，具有相同的颜色或者强度。轮廓线是形状分析，目标检测和识别的工具。</p>
+<p>注意:<br>为了获得更好的精度，请使用二进制图像。因此，在寻找轮廓前，应该用阈值或者Canny边缘检测。<br>findContours函数会修改原始图片。所以如果你希望在寻找轮廓后使用原始图像，提前将它存储在其他变量中。<br>在opencv中，寻找轮廓就像在黑色的背景中寻找白色的物体。所以记住，目标物体需要是白色的，而且背景是黑色的。</p>
+<p>那么如何在一个二进制图片中找到轮廓呢?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">im = cv2.imread(<span class="string">&#x27;test.jpg&#x27;</span>)</span><br><span class="line">imgray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)</span><br><span class="line">ret,thresh = cv2.threshold(imgray,127,255,0)</span><br><span class="line">image, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)</span><br></pre></td></tr></table></figure>
+<p>看到上面的代码，我想到一个问题:<br>直接读取彩色图片同时转换为灰度图和先读取彩色图片然后转换为灰度图这两个方法有什么区别。。待定。</p>
+<p>在findContours中有三个变量:<br>第一个是原始图片<br>第二个是轮廓提取模式<br>第三个是轮廓近似法<br>输出变量分别是:图片，轮廓和层次</p>
+<p>代码中，contours是Python中图片里所有轮廓的list。<br>每一个独立的轮廓是物体边界点(x,y)坐标的Numpy数组。</p>
+<p>之后，我们将会详细讨论第二和第三个参数以及层级的问题。</p>
+<h3 id="9-1-2-如何绘制轮廓"><a href="#9-1-2-如何绘制轮廓" class="headerlink" title="9.1.2 如何绘制轮廓"></a>9.1.2 如何绘制轮廓</h3><p>使用drawContours函数来绘制函数。只要你有它的边界点就可以绘制任意形状。<br>第一个参数是原始图像<br>第二个参数是作为Pyhon列表传递的轮廓<br>第三个参数是轮廓索引，在绘制单个轮廓时有用。绘制所有轮廓时需要参数为-1<br>剩下的分别为颜色，厚度等。</p>
+<p>在一个图片中绘制所有轮廓。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.drawContours(img, contours, -1, (0,255,0), 3)</span><br></pre></td></tr></table></figure>
+<p>绘制单独的轮廓</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.drawContours(img, contours, 3, (0,255,0), 3)</span><br></pre></td></tr></table></figure>
+<p>大多数时间，我们都使用下面的方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnt = contours[4]</span><br><span class="line">img = cv2.drawContours(img, [cnt], 0, (0,255,0), 3)</span><br></pre></td></tr></table></figure>
+<p>下面的更加常见。</p>
+<h3 id="9-1-3-轮廓近似方法"><a href="#9-1-3-轮廓近似方法" class="headerlink" title="9.1.3 轮廓近似方法"></a>9.1.3 轮廓近似方法</h3><p>这是findContours函数的第三个参数。<br>上面，我们说轮廓具有相同强度的形状的边界。他存储形状边界的(x,y)坐标，但是不能存储所有的坐标。该轮廓由轮廓近似方法指定。<br>如果通过CHAIN_APPROX_NONE，则存储所有边界点。但实际上我们需要所有的点吗？例如，你发现了一条直线的轮廓。你需要这条线上的所有点来表示那条线吗？不，我们只需要那条线的两个端点。这就是CHAIN_APPROX_SIMPLE所做的。它删除所有冗余点并压缩轮廓，从而节省内存。<br>演示这种技术。只需在轮廓数组中的所有坐标上画一个边界轮廓（用蓝色绘制）。第一个方案我用CHAIN_APPROX_NONE得到的点（734个点），第二个方案用CHAIN_APPROX_SIMPLE得到的点（只有4个点）。看，它节省了多少内存！！！</p>
+<h2 id="9-2轮廓特征"><a href="#9-2轮廓特征" class="headerlink" title="9.2轮廓特征:"></a>9.2轮廓特征:</h2><p>学习查找轮廓的不同特征，例如面积，周长，边界矩形等。</p>
+<h2 id="9-3轮廓属性"><a href="#9-3轮廓属性" class="headerlink" title="9.3轮廓属性:"></a>9.3轮廓属性:</h2><p>学习查找轮廓的不同属性，例如实体度，平均强度等。</p>
+<h2 id="9-4轮廓更多功能"><a href="#9-4轮廓更多功能" class="headerlink" title="9.4轮廓更多功能:"></a>9.4轮廓更多功能:</h2><p>学习查找凸度缺陷，pointPolygonTest,匹配不同的形状等。</p>
+<h2 id="9-5轮廓层次"><a href="#9-5轮廓层次" class="headerlink" title="9.5轮廓层次:"></a>9.5轮廓层次:</h2><p>了解轮廓层次结构</p>
+<h1 id="10-opencv中的直方图"><a href="#10-opencv中的直方图" class="headerlink" title="10.opencv中的直方图"></a>10.opencv中的直方图</h1><h1 id="11-opencv中的图像转换"><a href="#11-opencv中的图像转换" class="headerlink" title="11.opencv中的图像转换"></a>11.opencv中的图像转换</h1><h1 id="12-模板匹配"><a href="#12-模板匹配" class="headerlink" title="12.模板匹配"></a>12.模板匹配</h1><h1 id="13-霍夫线变换"><a href="#13-霍夫线变换" class="headerlink" title="13.霍夫线变换"></a>13.霍夫线变换</h1><h1 id="14-霍夫圆变换"><a href="#14-霍夫圆变换" class="headerlink" title="14.霍夫圆变换"></a>14.霍夫圆变换</h1><h1 id="15-分水岭算法的图像分割"><a href="#15-分水岭算法的图像分割" class="headerlink" title="15.分水岭算法的图像分割"></a>15.分水岭算法的图像分割</h1><h1 id="16-使用GrabCut进行交互前景提取"><a href="#16-使用GrabCut进行交互前景提取" class="headerlink" title="16.使用GrabCut进行交互前景提取"></a>16.使用GrabCut进行交互前景提取</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/27/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B4%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" data-id="ckhnlm65r009onng71vsi98cb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上Python教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/15/Ubuntu%E4%B8%8APython%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-02-15T10:42:26.000Z" itemprop="datePublished">2020-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/Ubuntu%E4%B8%8APython%E6%95%99%E7%A8%8B/">Ubuntu上Python教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Python中常见的括号-的区别："><a href="#Python中常见的括号-的区别：" class="headerlink" title="Python中常见的括号(),[],{}的区别："></a>Python中常见的括号(),[],{}的区别：</h1><p>Python中的这三种数据类型有不同的作用，分别代表不同的Python基本内置数据类型。</p>
+<h2 id="1-tuple元组数据类型"><a href="#1-tuple元组数据类型" class="headerlink" title="1 () tuple元组数据类型"></a>1 () tuple元组数据类型</h2><p>元组是一种不可变序列，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; tup = (1,2,3)</span><br><span class="line">&gt;&gt;&gt; tup</span><br><span class="line">(1, 2, 3)</span><br><span class="line">&gt;&gt;&gt; ()</span><br><span class="line">()</span><br><span class="line">&gt;&gt;&gt; 55,</span><br><span class="line">(55,)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-列表数据类型"><a href="#2-列表数据类型" class="headerlink" title="2 []列表数据类型"></a>2 []列表数据类型</h2><p>列表是一种可变序列，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list(<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;n&#x27;</span>]</span><br><span class="line">&gt;&gt;&gt; list(<span class="string">&#x27;ABC&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>]</span><br><span class="line">&gt;&gt;&gt; list([<span class="string">&#x27;ABC&#x27;</span>])</span><br><span class="line">[<span class="string">&#x27;ABC&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-字典数据类型"><a href="#3-字典数据类型" class="headerlink" title="3 {}字典数据类型"></a>3 {}字典数据类型</h2><p>字典是Python中唯一内建的映射类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; dic = &#123;<span class="string">&#x27;jon&#x27;</span>:<span class="string">&#x27;boy&#x27;</span>,<span class="string">&#x27;lili&#x27;</span>:<span class="string">&#x27;girl&#x27;</span>&#125;</span><br><span class="line">&gt;&gt;&gt; dic</span><br><span class="line">&#123;<span class="string">&#x27;jon&#x27;</span>: <span class="string">&#x27;boy&#x27;</span>, <span class="string">&#x27;lili&#x27;</span>: <span class="string">&#x27;girl&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Python下载第三方模块，下载速度慢，如何换源"><a href="#Python下载第三方模块，下载速度慢，如何换源" class="headerlink" title="Python下载第三方模块，下载速度慢，如何换源"></a>Python下载第三方模块，下载速度慢，如何换源</h1><p>‘’’<br>mkdir ~/.pip<br>vim ~/.pip/pip.conf<br>‘’’</p>
+<p>‘’’<br>[global]<br>index-url = <a target="_blank" rel="noopener" href="http://pypi.douban.com/simple">http://pypi.douban.com/simple</a><br>[install]<br>use-mirrors =true<br>mirrors =<a target="_blank" rel="noopener" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a><br>trusted-host =pypi.douban.com<br>‘’’</p>
+<h1 id="不变数据类型和可变数据类型"><a href="#不变数据类型和可变数据类型" class="headerlink" title="不变数据类型和可变数据类型"></a>不变数据类型和可变数据类型</h1><p>可变数据类型：value值改变，id值不变；<br>不变数据类型：value值改变，id值也改变。</p>
+<p>分辨方式:在改变value值的同时，使用id()函数来查看变量id值是否发生变化。</p>
+<p>不变 整型 浮点型 字符串 元组<br>可变 列表 字典</p>
+<p>不变和可变数据类型对运算结果的影响：</p>
+<p>不变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">b = a</span><br><span class="line">b += 1</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+<p>Ans</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>可变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>&#125;</span><br><span class="line">b = a</span><br><span class="line">b[<span class="string">&#x27;age&#x27;</span>] = 27</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+<p>Ans</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:27&#125;</span><br><span class="line">&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:27&#125;</span><br></pre></td></tr></table></figure>
+<p>简而言之，对于不可变数据类型，当多个名称包含的内容都是相同的，当改变一个之后，其他的不变，改变的指向另外的地址。<br>对于可变的数据类型，当多个内容相同，改变一个之后，所有指向的地址不变，但是内容改变了。</p>
+<h1 id="打包可执行文件"><a href="#打包可执行文件" class="headerlink" title="打包可执行文件"></a>打包可执行文件</h1><p>通过pyinstaller将python程序打包为可执行文件。</p>
+<p>pyinstaller,distribute分别是打包所需要的通过pip3来安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple distribute</span><br><span class="line"></span><br><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple pyinstaller</span><br></pre></td></tr></table></figure>
+<p>注意，有时候会遇到问题，当执行打包好的文件时，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">no module named <span class="string">&#x27;pkg_resources.py2_warn&#x27;</span></span><br><span class="line">//这个可以通过下面的方法来解决</span><br><span class="line">pip uninstall setuptools</span><br><span class="line">pip install setuptools==44.0.0</span><br><span class="line">//这是将setuptools进行降级处理，可能会出现有些功能无法使用的问题</span><br></pre></td></tr></table></figure>
+<p>还有一个解决方法记录一下：<br>1.先用pyinstaller -D(F) xxx.py生成一下(不一定能正常运行)<br>2.(关键)经过第一步之后，目录下有个.spec文件，用记事本打开，里面有个hiddenimports，在这条里面加上pkg_resources.py2_warn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hiddenimports=[<span class="string">&#x27;pkg_resources.py2_warm&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>3.再次用pyinstaller,注意这时候输入的命令是pyinstaller -D(F) xxx.spec<br>4.经过步骤2就可以解决这个问题，若仍然提示no module named XXXXX ,则再次写入到hiddenimports<br>5.需要经过几次调试，建议先用-D处理没问题之后再-F。</p>
+<h1 id="Python中关键词"><a href="#Python中关键词" class="headerlink" title="Python中关键词"></a>Python中关键词</h1><h2 id="name"><a href="#name" class="headerlink" title="name"></a><strong>name</strong></h2><p><strong>name__是python的一个内置类属性，它存储模块的名称。<br>python的模块既可以被调用，也可以独立运行。而被调用时__name__存储的是py文件名(模块名称)，独立运行时存储的是”__main</strong>“。<br>那么它的作用主要就是用来区分，当前模块是独立运行还是被调用。</p>
+<p>具体应用<br>当我们建立一个模块的时候，我们会在该模块最后输出调试信息，进行调试，调试之后，会在其他地方导入这个模块，但是，我们在调用这个模块的时候不希望产生调试信息，所以我们就需要区分这个模块是独立运行还是被调用，被调用的情况下就不输出调试信息。</p>
+<p>例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/15/Ubuntu%E4%B8%8APython%E6%95%99%E7%A8%8B/" data-id="ckhnlm631001snng73h2g3mqb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上opencv教程3之核心操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/15/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B3%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2020-02-15T05:33:48.000Z" itemprop="datePublished">2020-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B3%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C/">Ubuntu上opencv教程3之核心操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>1.对图片的基本操作<br>读取和修改像素数值，选取部分图片区域<br>2.对图片的算数操作<br>3.计算改进技术<br>提高运算效率<br>4.数学运算工具<br>opencv中的数学工具例如PCA，SVD等</p>
+<h1 id="1-图片的基本操作"><a href="#1-图片的基本操作" class="headerlink" title="1.图片的基本操作"></a>1.图片的基本操作</h1><h2 id="1-1-获取和修改像素值"><a href="#1-1-获取和修改像素值" class="headerlink" title="1.1 获取和修改像素值"></a>1.1 获取和修改像素值</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;pic.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">px = img[100,100]</span><br><span class="line"><span class="built_in">print</span>(px)</span><br><span class="line"></span><br><span class="line">blue = img[100,100,0]</span><br><span class="line"><span class="built_in">print</span>(blue)</span><br><span class="line"></span><br><span class="line">img[100,100] = [255,255,255]</span><br><span class="line"><span class="built_in">print</span>(img[100,100])</span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[157 166 200]</span><br><span class="line">157</span><br><span class="line">[255 255 255]</span><br></pre></td></tr></table></figure>
+<p>注意：<br>numpy是一个快速数组计算的库，所以简单的获取和修改单个像素的值都是缓慢的，不建议如此使用。</p>
+<p>上面的方法通常用来选择数组的一个区域，例如前5行和后3列。<br>对于单个像素的获取，通常用array.item()和array.itemset()，但是它总是返回一个数值，所以如果你想要获取所有BGR的值，就需要分别获取。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取 RED 值</span></span><br><span class="line">img.item(10,10,2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改 RED 值</span></span><br><span class="line">img.itemset((10,10,2),100)</span><br><span class="line">img.item(10,10,2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-获取图片的属性"><a href="#1-2-获取图片的属性" class="headerlink" title="1.2 获取图片的属性"></a>1.2 获取图片的属性</h2><p>图片属性包括：行，列，通道，图片数据的类型，像素的数目等等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(img.shape)</span><br><span class="line"><span class="comment">#获取图片的行，列，通道</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(img.size)</span><br><span class="line"><span class="comment">#获取图片中的像素数目</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(img.dtype)</span><br><span class="line"><span class="comment">#获取图片的数据类型</span></span><br></pre></td></tr></table></figure>
+<p>图片的数据类型是非常重要的，因为很多的时候错误原因就是不合适的数据类型。</p>
+<h2 id="1-3-选取图片的区域-ROI-Region-Of-Image"><a href="#1-3-选取图片的区域-ROI-Region-Of-Image" class="headerlink" title="1.3 选取图片的区域 ROI(Region Of Image)"></a>1.3 选取图片的区域 ROI(Region Of Image)</h2><p>有时候，需要选取某些区域的图像，例如，对于眼睛的检测，需要首先执行面部检测，然后再面部内搜索眼睛，这种方法提高了准确性和性能。</p>
+<p>所以，ROI是包含了numpy数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ball = img[280:340, 330:390]</span><br><span class="line">&gt;&gt;&gt; img[273:333, 100:160] = ball</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-分割和融合图片的通道"><a href="#1-4-分割和融合图片的通道" class="headerlink" title="1.4 分割和融合图片的通道"></a>1.4 分割和融合图片的通道</h2><p>B，G，R是彩色图片的通道，对于这个的操作有</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b,g,r = cv2.split(img)</span><br><span class="line">img = cv2.merge((b,g,r))</span><br><span class="line"></span><br><span class="line">b = img[:,:,0]</span><br><span class="line">img[:,:,2] = 0</span><br></pre></td></tr></table></figure>
+<p>注意cv2.split()是一个时间花费昂贵的运算，只有必要的时候才会使用，一般情况下，numpy数组是更加有效的，并且尽可能用。</p>
+<h2 id="1-5-为图片制作边框-Padding"><a href="#1-5-为图片制作边框-Padding" class="headerlink" title="1.5 为图片制作边框(Padding)"></a>1.5 为图片制作边框(Padding)</h2><p>Padding,内边框，填充，<br>如果你想在图片的周围制造边框，可以使用cv2.copyMakeBorder()函数，但是对复杂的运算有更多的应用，无内边框等，这个函数有下列的变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">src </span><br><span class="line"><span class="comment">#输入图片</span></span><br><span class="line">top,bottom,left,right</span><br><span class="line"><span class="comment">#在相对应的方向的边界的宽度，单位是像素数目。</span></span><br><span class="line">borderType </span><br><span class="line">/*</span><br><span class="line">标志位用来确定添加哪种边界,有下列的类型</span><br><span class="line">cv2.BORDER_CONSTANT 添加一个固定颜色的边界，下个变量应该是颜色</span><br><span class="line">cv2.BORDER_REFLECT  边界将会镜像边界的元素，</span><br><span class="line">例如：fedcba|abcdefgh|hgfedcb</span><br><span class="line">cv2.BORDER_REFLECT_101</span><br><span class="line">cv2.BORDER_DEFAULT  上面两个都是一样的，和上面的相似，但是有不同</span><br><span class="line">例如： gfedcb|abcdefgh|gfedcba</span><br><span class="line">cv2.BORDER_REPLICATE最后的元素代替边界</span><br><span class="line">例如：aaaaaa|abcdefgh|hhhhhhh</span><br><span class="line">cv2.BORDER_WRAP     就像：cdefgh|abcdefgh|abcdefg</span><br><span class="line">*/</span><br><span class="line">value</span><br><span class="line"><span class="comment">#如果边界类型是固定颜色的边界，那么需要变量来表示边界的颜色</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，下面是例程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">BLUE = [255,0,0]</span><br><span class="line"></span><br><span class="line">img1 = cv2.imread(<span class="string">&#x27;opencv_logo.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line">replicate = cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_REPLICATE)</span><br><span class="line">reflect = cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_REFLECT)</span><br><span class="line">reflect101 = cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_REFLECT_101)</span><br><span class="line">wrap = cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_WRAP)</span><br><span class="line">constant= cv2.copyMakeBorder(img1,10,10,10,10,cv2.BORDER_CONSTANT,value=BLUE)</span><br><span class="line"></span><br><span class="line">plt.subplot(231),plt.imshow(img1,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;ORIGINAL&#x27;</span>)</span><br><span class="line">plt.subplot(232),plt.imshow(replicate,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;REPLICATE&#x27;</span>)</span><br><span class="line">plt.subplot(233),plt.imshow(reflect,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;REFLECT&#x27;</span>)</span><br><span class="line">plt.subplot(234),plt.imshow(reflect101,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;REFLECT_101&#x27;</span>)</span><br><span class="line">plt.subplot(235),plt.imshow(wrap,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;WRAP&#x27;</span>)</span><br><span class="line">plt.subplot(236),plt.imshow(constant,<span class="string">&#x27;gray&#x27;</span>),plt.title(<span class="string">&#x27;CONSTANT&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>上面有matplotlib，类似于matlab的绘制函数</p>
+<h1 id="2-图片的算数操作"><a href="#2-图片的算数操作" class="headerlink" title="2.图片的算数操作"></a>2.图片的算数操作</h1><h2 id="2-1-图片加法"><a href="#2-1-图片加法" class="headerlink" title="2.1 图片加法"></a>2.1 图片加法</h2><p>通过opencv的函数cv2.add()将两个图片相加，或者通过数组res=img1+img2。所有的图片必须有相同的类型和深度，或者第二个图片可以是一个灰度值。</p>
+<p>但是这两个方法有区别：<br>opencv加法是饱和运算<br>numpy是取余运算<br>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x = np.uint8([250])</span><br><span class="line">&gt;&gt;&gt; y = np.uint8([10])</span><br><span class="line">&gt;&gt;&gt; <span class="built_in">print</span> cv2.add(x,y) <span class="comment"># 250+10 = 260 =&gt; 255</span></span><br><span class="line">[[255]]</span><br><span class="line">&gt;&gt;&gt; <span class="built_in">print</span> x+y          <span class="comment"># 250+10 = 260 % 256 = 4</span></span><br><span class="line">[4]</span><br></pre></td></tr></table></figure>
+<p>当你添加两个图片时候，opencv函数将会提供更好的结果，最好使用opencv函数。</p>
+<h2 id="2-2-图像混合"><a href="#2-2-图像混合" class="headerlink" title="2.2 图像混合"></a>2.2 图像混合</h2><p>也是图片加法，但是不同的权重给图片，有混合和透明度的感觉。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g(x) = (1 - a)f0(x) + af1(x)</span><br></pre></td></tr></table></figure>
+<p>将a从0到1,可以将一个图片转换为另一个图片，可以用cv2.addWeighted()来进行图片的混合。<br>cv2.addWeighted(img1,a,img2,b,c)</p>
+<p>out = a * img1 + b * img2 + c</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img1 = cv2.imread(<span class="string">&#x27;img.png&#x27;</span>)</span><br><span class="line">img2 = cv2.imread(<span class="string">&#x27;logo.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dst = cv2.addWeighted(img1,0.7,img2,0.3,0)</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;dst&#x27;</span>,dst)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-位运算操作"><a href="#2-3-位运算操作" class="headerlink" title="2.3 位运算操作"></a>2.3 位运算操作</h2><p>and,or,not或者xor位运算，这些在抽取图片的不矩形部分中，非常有用。<br>将一个logo放在一个图片上，如果将两个图片直接相加，它将会修改颜色。如果将两个图片进行图像混合，就会有透明度。如果是一个矩形区域就可以直接用之前的ROI图片区域方法。可以通过位操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载两个图片</span></span><br><span class="line">img1 = cv2.imread(<span class="string">&#x27;img.jpg&#x27;</span>)</span><br><span class="line">img2 = cv2.imread(<span class="string">&#x27;logo.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将logo放在左上角，所以可以选取图片区域</span></span><br><span class="line">rows,cols,channels = img2.shape</span><br><span class="line">roi = img1[0:rows, 0:cols ]</span><br><span class="line"><span class="comment"># 将logo转变为灰度创立了一个logo的掩体，然后建立一个相反的掩体</span></span><br><span class="line">img2gray = cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)</span><br><span class="line">ret, mask = cv2.threshold(img2gray, 10, 255, cv2.THRESH_BINARY)</span><br><span class="line">mask_inv = cv2.bitwise_not(mask)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将logo相反的掩膜来提取图片中logo部分以外的数据</span></span><br><span class="line">img1_bg = cv2.bitwise_and(roi,roi,mask = mask_inv)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用logo的掩膜来提取图片中logo的数据</span></span><br><span class="line">img2_fg = cv2.bitwise_and(img2,img2,mask = mask)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将获取的数据进行相加，就可以获取修改之后的图片数据</span></span><br><span class="line">dst = cv2.add(img1_bg,img2_fg)</span><br><span class="line">img1[0:rows, 0:cols ] = dst</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;res&#x27;</span>,img1)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>其中有图片阈值函数，cv2.threshold()函数，当像素的数值大于某个阈值，像素点会被分配为一个数值，其他的分配另外的数值。第一个变量是图片，应该是灰度图。第二个变量是阈值，第三个变量是最大值，代表了如果像素值高于或者低于阈值的时候，所需要的数值，第四个变量是阈值函数的类型，分别有：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cv2.THRESH_BINARY   //像素值大于阈值，就修改为最大值，其他的为0</span><br><span class="line">cv2.THRESH_BINARY_INV//像素值大于阈值为0,否则是最大值</span><br><span class="line">cv2.THRESH_TRUNC    //像素值大于阈值则为阈值，否则是原本的数值</span><br><span class="line">cv2.THRESH_TOZERO   //像素值大于阈值则不变，否则为0</span><br><span class="line">cv2.THRESH_TOZERO_INV//像素值大于阈值为0,否则不变</span><br></pre></td></tr></table></figure>
+<p>备注：<br>BINARY模式，阈值的最大值是255,也就是白色，特别注意在opencv中，0代表黑色。<br>TOZERO模式，将部分数值变为0<br>INV模式，就是相反</p>
+<p>之后是cv2.bitwise_and()函数，这里面有一个掩膜，例如<br>out = cv2.bitwise_and(img1,img2,mask = mask_defined)<br>首先，img1和img2有相同的大小，而且<br>out[i] = img1[i] &amp; img2[i] if mask[i] != 0</p>
+<h1 id="3-改进运算效率的技术"><a href="#3-改进运算效率的技术" class="headerlink" title="3.改进运算效率的技术"></a>3.改进运算效率的技术</h1><p>在图片的运算中，我们每秒需要处理大量的运算，所以，代码不仅仅需要得到正确的解法，而且具有很高的效率，这一部分包含下面的内容：<br>测量代码运行的效率<br>提高代码效率的一些小诀窍<br>需要使用下面的一部分函数：cv2.getTickCount,cv2.getTickFrequency。<br>除了opencv，python中有time模块，可以用来测量执行的时间，以及profile模块来得到代码的详细内容，例如，代码中每个功能所需要的时间，函数被调用了多少次等。但是，如果你使用IPython，这些特性都很好的被包含在内。</p>
+<h2 id="3-1-使用opencv来测量性能"><a href="#3-1-使用opencv来测量性能" class="headerlink" title="3.1 使用opencv来测量性能"></a>3.1 使用opencv来测量性能</h2><p>cv2.getTickCount函数用来返回一个相关事件（例如，机器启动的时刻）之后直到这个函数被调用之间的时钟周期数，所以，你可以在函数前后调用这个函数来计算得到这个函数的执行需要多少个时钟周期。</p>
+<p>cv2.getTickFrequency函数返回了时钟周期频率，或者可以说每秒的时钟周期数目，所以可以通过下面的代码获取执行时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">e1 = cv2.getTickCount()</span><br><span class="line"><span class="comment"># your code execution</span></span><br><span class="line">e2 = cv2.getTickCount()</span><br><span class="line">time = (e2 - e1)/ cv2.getTickFrequency()</span><br></pre></td></tr></table></figure>
+<p>你可以直接使用time模块中的time.time()函数，取两个函数返回值的差大概。没有用过。</p>
+<h2 id="3-2-opencv中默认的优化"><a href="#3-2-opencv中默认的优化" class="headerlink" title="3.2  opencv中默认的优化"></a>3.2  opencv中默认的优化</h2><p>opencv中的许多函数都通过SSE2,AVX等进行了优化，它还包含了没有优化的代码。所以如果我们的系统支持这些特性，我们应该使用他们，几乎大多数现代处理器都支持他们。在编译的时候这些就默认使用了。所以，当默认使用的时候，opencv运行优化过的代码，否则运行没有优化过的代码。你可以使用cv2.useOptimized()函数来检查它是否已经启用，也可以使用cv2.setUseOptimized()来开启或者关闭优化。<br>样例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># check if optimization is enabled</span></span><br><span class="line">In [5]: cv2.useOptimized()</span><br><span class="line">Out[5]: True</span><br><span class="line"></span><br><span class="line">In [6]: %timeit res = cv2.medianBlur(img,49)</span><br><span class="line">10 loops, best of 3: 34.9 ms per loop</span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable it</span></span><br><span class="line">In [7]: cv2.setUseOptimized(False)</span><br><span class="line"></span><br><span class="line">In [8]: cv2.useOptimized()</span><br><span class="line">Out[8]: False</span><br><span class="line"></span><br><span class="line">In [9]: %timeit res = cv2.medianBlur(img,49)</span><br><span class="line">10 loops, best of 3: 64.1 ms per loop</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-IPython中的检测性能"><a href="#3-3-IPython中的检测性能" class="headerlink" title="3.3 IPython中的检测性能"></a>3.3 IPython中的检测性能</h2><p>首先，IPython是什么：<br>它只是python中的一个模块，可以通过pip来安装。<br>然后，它有什么用处：<br>是python的交互式shell,比默认的python shell好用的多，支持自动缩进，bash shell命令，也内置了很多有用的函数以及功能，可以高效使用python,也是利用python来进行科学计算和交互可视化的平台。</p>
+<p>主要功能：<br>1.运行ipython控制台<br>2.使用ipython作为系统shell<br>3.使用历史输入(history)<br>4.Tab补全<br>5.使用%run命令运行脚本<br>6.使用%timeit命令快速测量时间<br>7.使用%pdb命令快速debug<br>8.使用pylab进行交互计算<br>9.使用IPython Notebook</p>
+<p>但是，我居然还没用过。。。我直接找一些资料先补充。以后用到再说。<br>样例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">In [10]: x = 5</span><br><span class="line"></span><br><span class="line">In [11]: %timeit y=x**2</span><br><span class="line">10000000 loops, best of 3: 73 ns per loop</span><br><span class="line"></span><br><span class="line">In [12]: %timeit y=x*x</span><br><span class="line">10000000 loops, best of 3: 58.3 ns per loop</span><br><span class="line"></span><br><span class="line">In [15]: z = np.uint8([5])</span><br><span class="line"></span><br><span class="line">In [17]: %timeit y=z*z</span><br><span class="line">1000000 loops, best of 3: 1.25 us per loop</span><br><span class="line"></span><br><span class="line">In [19]: %timeit y=np.square(z)</span><br><span class="line">1000000 loops, best of 3: 1.16 us per loop</span><br></pre></td></tr></table></figure>
+<p>说实话，看到上面的样例，感觉有点像Linux中的time函数，我偶尔发现的。<br>再次提醒，python的数值计算远快于numpy数值计算。所以仅包含一两个元素的运算，我们尽量使用python的数值运算，当数组的大小更大的时候使用numpy。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [35]: %timeit z = cv2.countNonZero(img)</span><br><span class="line">100000 loops, best of 3: 15.8 us per loop</span><br><span class="line"></span><br><span class="line">In [36]: %timeit z = np.count_nonzero(img)</span><br><span class="line">1000 loops, best of 3: 370 us per loop</span><br></pre></td></tr></table></figure>
+<p>所以opencv函数比numpy函数快25倍，说实话，这是怎么算出来的？370/15.8,恩就这样。</p>
+<h2 id="3-4-更多IPython的指令"><a href="#3-4-更多IPython的指令" class="headerlink" title="3.4 更多IPython的指令"></a>3.4 更多IPython的指令</h2><p>还有其他命令来测量性能，分析性能，行分析，存储空间测量等。</p>
+<h2 id="3-5-优化性能的技巧"><a href="#3-5-优化性能的技巧" class="headerlink" title="3.5 优化性能的技巧"></a>3.5 优化性能的技巧</h2><p>注意，首先简单实现算法，之后分析，找到瓶颈对其优化。<br>1.尽量不要在python中使用循环，尤其是多重循环<br>2.numpy和opencv已经对向量运算进行了优化，因此尽量使用向量<br>3.利用缓存？<br>4.除非必要，不要复制数组，而是尝试使用视图。？？<br>如果这样依旧无法解决问题，那么使用Cython库。</p>
+<h1 id="4-opencv中的数学运算工具"><a href="#4-opencv中的数学运算工具" class="headerlink" title="4.opencv中的数学运算工具"></a>4.opencv中的数学运算工具</h1><p>这里面很复杂，包含SVD和PCA。<br>SVD Singular Value Decomposition奇异指分解 数值降维<br>PCA Principal Component Analysis主成分分析 降维算法<br>这两个方法我会专门进行补充。。待定</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/15/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B3%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C/" data-id="ckhnlm63i002jnng7bs2z283w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上opencv教程2之用户界面" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B2%E4%B9%8B%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/" class="article-date">
+  <time datetime="2020-02-11T15:59:37.000Z" itemprop="datePublished">2020-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B2%E4%B9%8B%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/">Ubuntu上opencv教程2之用户界面</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>这部分分为多个部分：<br>1.图片入门<br>2.视频入门<br>3.绘画功能<br>4.将鼠标作为画笔<br>5.跟踪条作为调色板</p>
+<h1 id="1-图片入门"><a href="#1-图片入门" class="headerlink" title="1.图片入门"></a>1.图片入门</h1><h2 id="1-1-读取图片"><a href="#1-1-读取图片" class="headerlink" title="1.1 读取图片"></a>1.1 读取图片</h2><p>使用cv2.imread()函数来获取图片，图片需要在工作目录或者完整的目录中。</p>
+<p>第二个变量是图片读取方式的标识。<br>1.cv2.IMREAD_COLOR<br>加载一个彩色的图片，任何的图片的透明度都会被忽视，默认选项。<br>2.cv2.IMREAD_GRAYSCALE<br>加载一个灰度图片<br>3.cv2.IMREAD_UNCHANGED<br>加载图片包含alpha通道（不知道）</p>
+<p>可以直接用1,0,-1来分别表示。</p>
+<p>样例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#load an color image in grayscale</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;img.jpg&#x27;</span>,0)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-显示图片"><a href="#1-2-显示图片" class="headerlink" title="1.2 显示图片"></a>1.2 显示图片</h2><p>使用cv2.imshow()函数在一个窗口中显示图片，窗口自动适应图片的大小。</p>
+<p>第一个参数是窗口的名字，是一个字符串。<br>第二个参数是图片。<br>你可以创造任意多的窗口，每个窗口有不同的名字。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cv2.imshow(<span class="string">&#x27;image&#x27;</span>,img)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>cv2.waitKey()是一个键盘绑定功能。他的变量是时间，单位是毫秒。<br>这个函数等待特定的时间，来等待任意键盘事件。如果你按下按键，程序继续执行。</p>
+<p>当变量是0,它一直等待按键按下，这也可以被设置为等待特定的按键。</p>
+<p>cv2.destroyAllWindows()是关闭我们建立的所有窗口。如果你想关闭特定的窗口，可以使用函数cv2.destroyWindow()，变量为具体的窗口名称。</p>
+<h2 id="1-3-保存图片"><a href="#1-3-保存图片" class="headerlink" title="1.3 保存图片"></a>1.3 保存图片</h2><p>cv2.imwrite()来保存图片<br>cv2.imwrite(‘img.png’,img)<br>将图片以PNG方式保存在工作路径下。</p>
+<h2 id="1-4-小结"><a href="#1-4-小结" class="headerlink" title="1.4 小结"></a>1.4 小结</h2><p>将图片以灰度图的形式保存，然后展示，并且当输入s的时候保存，当输入ESC的时候，退出。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">img_path = <span class="string">&quot;./pc1.png&quot;</span></span><br><span class="line"></span><br><span class="line">img = cv2.imread(img_path,0)</span><br><span class="line">cv2.imshow(<span class="string">&quot;pic&quot;</span>,img)</span><br><span class="line"></span><br><span class="line">k = cv2.waitKey(0)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> k == 27:</span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line"><span class="keyword">elif</span> k == ord(<span class="string">&#x27;s&#x27;</span>)</span><br><span class="line">    cv2.imwrite(<span class="string">&#x27;backup.png&#x27;</span>,img)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注意，当使用64位机器，你需要将<br>k = cv2.waitKey(0)<br>修改为<br>k = cv2.waitKey(0) &amp; 0xFF</p>
+<h2 id="1-5-使用Matplotlib"><a href="#1-5-使用Matplotlib" class="headerlink" title="1.5 使用Matplotlib"></a>1.5 使用Matplotlib</h2><p>Matplotlib是一个Python的绘制库，包含了大量的绘制函数，可以使用Matplotlib来显示图片，选择图片区域以及保存它。</p>
+<p>更多的待定补充</p>
+<h1 id="2-视频入门"><a href="#2-视频入门" class="headerlink" title="2.视频入门"></a>2.视频入门</h1><h2 id="2-1-捕获视频和播放视频"><a href="#2-1-捕获视频和播放视频" class="headerlink" title="2.1 捕获视频和播放视频"></a>2.1 捕获视频和播放视频</h2><p>捕获视频需要创造VideoCapture对象，变量可以是设备目录或者视频文件的名字，设备目录只是指定摄像头的数字，之后就会一帧一帧地获取视频，最后不要忘记释放捕获。</p>
+<p>cap.read()返回一个bool值，如果帧被正确读取，返回1,所以可以通过检测返回值来检查是否视频结束。</p>
+<p>有时候，cap也许没有初始化摄像头，会显示错误，可以通过cap.isOpened()来判断是否初始化完成，如果返回1,继续，否则，使用cap.open()函数。</p>
+<p>你可以通过cap.get(propld)来获取视频的参数，使用cap.set(propld,value)来设置视频参数的值。<br>例如，可以通过cap.get(3)和cap.get(4)检查帧的宽度和长度，默认宽长度是640×480。<br>修改为320×240,需要</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ret = cap.set(3,320)</span><br><span class="line">ret = cap.set(4,240)</span><br></pre></td></tr></table></figure>
+<p>如果你遇到错误，确保摄像头可以正常工作通过使用其他的摄像头程序，例如cheese。</p>
+<p>样例程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"><span class="built_in">cap</span> = cv2.VideoCapture(0)</span><br><span class="line">/*</span><br><span class="line">上面的是读取摄像头，如果读取视频文件那么就用下面的方法</span><br><span class="line"><span class="built_in">cap</span> = cv2.VideoCapture(<span class="string">&#x27;vtest.avi&#x27;</span>)</span><br><span class="line">*/</span><br><span class="line"><span class="keyword">while</span>(True):</span><br><span class="line">    ret,frame = cap.read()</span><br><span class="line">    gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;frame&#x27;</span>,gray)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(1) &amp; 0xFF == ord(<span class="string">&#x27;q&#x27;</span>)</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>注意里面cv2.waitKey()里面的参数，如果参数太小，视频播放就会非常快速，大的话就会播放速度很慢。25微秒是合适的。</p>
+<p>确保安装了合适版本的ffmpeg或者gstreamer，有时候版本不对会导致错误。</p>
+<h2 id="2-2-保存视频"><a href="#2-2-保存视频" class="headerlink" title="2.2 保存视频"></a>2.2 保存视频</h2><p>我们捕获一个视频，一帧一帧地播放视频然后保存视频。<br>保存图片只需要cv2.imwrite()，保存视频就稍微有些复杂。</p>
+<p>当我们创建了一个VideoWriter对象，我们应该确定输出文件的名称，然后我们应该确定FourCC代码，这个是什么，待定。然后fps每秒的帧数和帧的大小应该确定，最后是isColor标志，来确定是彩色还是灰度。</p>
+<p>FourCC是4字节的代码用来确定视频的解码器，我们可以使用下列的解码器In Fedora: DIVX, XVID, MJPG, X264, WMV1, WMV2. (XVID is more preferable. MJPG results in high size video. X264 gives very small size video)<br>In Windows: DIVX (More to be tested and added)<br>In OSX : (I don’t have access to OSX. Can some one fill this?)</p>
+<p>上面的待定，自己看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"><span class="built_in">cap</span> = cv2.VideoCapture(0)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-绘制函数"><a href="#2-3-绘制函数" class="headerlink" title="2.3 绘制函数"></a>2.3 绘制函数</h2><p>常用变量：<br>img 绘画图形所在的图片<br>color 图片的形状 BGR 例如（255,0,0）<br>thickness 厚度，如果为-1,那么全部填充<br>lineType 线条的格式， 是否8联，抗混叠等。</p>
+<h3 id="2-3-1-画线"><a href="#2-3-1-画线" class="headerlink" title="2.3.1 画线"></a>2.3.1 画线</h3><p>图片，起点，终点，颜色，厚度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.line(img,(0,0),(511,511),(250,0,0),5)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-2-画矩形"><a href="#2-3-2-画矩形" class="headerlink" title="2.3.2 画矩形"></a>2.3.2 画矩形</h3><p>图片，左上角，右下角，颜色，厚度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.rectangle(img,(384,0),(510,128),(0,255,0),3)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-3-画圆"><a href="#2-3-3-画圆" class="headerlink" title="2.3.3 画圆"></a>2.3.3 画圆</h3><p>图片，圆心，半径，颜色，厚度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.circle(img,(447,63), 63, (0,0,255), -1)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-4-画椭圆"><a href="#2-3-4-画椭圆" class="headerlink" title="2.3.4 画椭圆"></a>2.3.4 画椭圆</h3><p>图片，中心位置，xy轴长度，旋转角度逆时针方向，开始角度，结束角度从长轴顺时针方向，颜色，厚度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.ellipse(img,(256,256),(100,50),0,0,180,255,-1)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-5-画多边形"><a href="#2-3-5-画多边形" class="headerlink" title="2.3.5 画多边形"></a>2.3.5 画多边形</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pts = np.array([[10,5],[20,30],[70,20],[50,10]], np.int32)</span><br><span class="line">pts = pts.reshape((-1,1,2))</span><br><span class="line">img = cv2.polylines(img,[pts],True,(0,255,255))</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-6-文字"><a href="#2-3-6-文字" class="headerlink" title="2.3.6 文字"></a>2.3.6 文字</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">font = cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">cv2.putText(img,<span class="string">&#x27;OpenCV&#x27;</span>,(10,500), font, 4,(255,255,255),2,cv2.LINE_AA)</span><br></pre></td></tr></table></figure>
+<p>其中，变量有图片，字符串，位置，字格式，字大小，颜色，厚度，线风格等等</p>
+<h2 id="2-4-鼠标作为画笔"><a href="#2-4-鼠标作为画笔" class="headerlink" title="2.4 鼠标作为画笔"></a>2.4 鼠标作为画笔</h2><p>学习关于鼠标事件cv2.setMouseCallback()</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import cv2</span><br><span class="line">&gt;&gt;&gt; events = [i <span class="keyword">for</span> i <span class="keyword">in</span> dir(cv2) <span class="keyword">if</span> <span class="string">&#x27;EVENT&#x27;</span> <span class="keyword">in</span> i]</span><br><span class="line">&gt;&gt;&gt; <span class="built_in">print</span>(events)</span><br></pre></td></tr></table></figure>
+<p>cv2.EVENT_MOUSEMOVE     鼠标滑动<br>cv2.EVENT_LBUTTONDOWN   左键点击<br>cv2.EVENT_RBUTTONDOWN   右键点击<br>cv2.EVENT_MBUTTONDOWN   中间点击<br>cv2.EVENT_LBUTTONUP     左键释放<br>cv2.EVENT_RBUTTONUP     右键释放<br>cv2.EVENT_MBUTTONUP     中间释放<br>cv2.EVENT_LBUTTONDBLCLK 左键双击<br>cv2.EVENT_RBUTTONDBLCLK 右键双击<br>cv2.EVENT_MBUTTONDBLCLK 中间双击,<br>以及FLAG:<br>cv2.EVENT_FLAG_LBUTTON  左键拖拽  <br>cv2.EVENT_FLAG_RBUTTON  右键拖拽</p>
+<p>下面需要cv2.setMouseCallback函数，这个非常特别，里面的参数。<br>而且，可以先创造窗口，然后画图。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"><span class="comment"># mouse callback function</span></span><br><span class="line">def draw_circle(event,x,y,flags,param):</span><br><span class="line">    <span class="keyword">if</span> event == cv2.EVENT_LBUTTONDBLCLK:</span><br><span class="line">        cv2.circle(img,(x,y),100,(255,0,0),-1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a black image, a window and bind the function to window</span></span><br><span class="line">img = np.zeros((512,512,3), np.uint8)</span><br><span class="line">cv2.namedWindow(<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">cv2.setMouseCallback(<span class="string">&#x27;image&#x27;</span>,draw_circle)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(1):</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;image&#x27;</span>,img)</span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(20) &amp; 0xFF == 27:</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-轨迹栏作为调色板"><a href="#2-5-轨迹栏作为调色板" class="headerlink" title="2.5 轨迹栏作为调色板"></a>2.5 轨迹栏作为调色板</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def nothing(x):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a black image, a window</span></span><br><span class="line">img = np.zeros((300,512,3), np.uint8)</span><br><span class="line">cv2.namedWindow(<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create trackbars for color change</span></span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;R&#x27;</span>,<span class="string">&#x27;image&#x27;</span>,0,255,nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;image&#x27;</span>,0,255,nothing)</span><br><span class="line">cv2.createTrackbar(<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;image&#x27;</span>,0,255,nothing)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create switch for ON/OFF functionality</span></span><br><span class="line">switch = <span class="string">&#x27;0 : OFF \n1 : ON&#x27;</span></span><br><span class="line">cv2.createTrackbar(switch, <span class="string">&#x27;image&#x27;</span>,0,1,nothing)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(1):</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;image&#x27;</span>,img)</span><br><span class="line">    k = cv2.waitKey(1) &amp; 0xFF</span><br><span class="line">    <span class="keyword">if</span> k == 27:</span><br><span class="line">        <span class="built_in">break</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># get current positions of four trackbars</span></span><br><span class="line">    r = cv2.getTrackbarPos(<span class="string">&#x27;R&#x27;</span>,<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">    g = cv2.getTrackbarPos(<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">    b = cv2.getTrackbarPos(<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line">    s = cv2.getTrackbarPos(switch,<span class="string">&#x27;image&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> s == 0:</span><br><span class="line">        img[:] = 0</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        img[:] = [b,g,r]</span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B2%E4%B9%8B%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/" data-id="ckhnlm63h002hnng7cf9z6emk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-18T13:05:09.561Z</updated>
+  <updated>2020-11-18T13:25:41.988Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,14 +21,408 @@
     <link href="http://example.com/2020/11/18/hello-world/"/>
     <id>http://example.com/2020/11/18/hello-world/</id>
     <published>2020-11-18T13:05:09.561Z</published>
-    <updated>2020-11-18T13:05:09.561Z</updated>
+    <updated>2020-11-18T13:25:41.988Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html">Deployment</a></p>]]></content>
     
     
       
       
     <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>AdaBoost模型</title>
+    <link href="http://example.com/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://example.com/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/</id>
+    <published>2020-10-23T11:56:51.000Z</published>
+    <updated>2020-11-18T13:25:41.940Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>资料来源:<br><a href="https://blog.paperspace.com/adaboost-optimizer/#:~:text=AdaBoost%20is%20an%20ensemble%20learning,turn%20them%20into%20strong%20ones">https://blog.paperspace.com/adaboost-optimizer/#:~:text=AdaBoost%20is%20an%20ensemble%20learning,turn%20them%20into%20strong%20ones</a>.</p><p>Ensemble Learning:<br>集成学习(或者是组合学习)，将多个基础的算法相结合，构造成一个优化的预测模型。</p><p>为什么需要集成学习:<br>1.减少变量<br>2.减少偏置<br>3.提高预测性能</p><p>集成学习被分为了两个类型:</p><ol><li>顺序学习，通过依次生成不同的模型，之前模型的错误被后来的模型学习，利用模型之间的依赖性，使得错误标记有更大的权重。</li></ol><p>例如:AdaBoost</p><p>2.并行学习，并行产生基本的模型，这通过平均错误来利用了模型的独立性。</p><p>例如:Random Forest 随机森林</p><p>集成方法中的Boosting<br>例如人类从错误中学习，并且尝试将来不再犯同样的错误，Boost算法尝试从多个弱分类器的错误中建立一个更强的学习预测模型。<br>你一开始从训练数据中建立一个模型，<br>然后你从上一个模型中建立第二个模型通过尝试从减少上一个模型的误差。<br>模型被顺序增加，每一个都修改它的前面一个模型，知道训练数据被完美的预测或者增加了最大数量的模型。</p><p>Boosting基本上是试图减少模型无法识别数据中的相关趋势的时候所引起的偏差。这是通过评估预测数据和实际数据的差值所实现的。</p><p>Boost算法的类别:<br>1.AdaBoost(Adaptive Boosting)<br>2.Gradient Tree Boosting<br>3.XGBoost</p><p>我们主要注意AdaBoost中的细节，这个是Boost算法中最流行的算法。</p><p>单个分类器也许无法正确预测每个对象的类别，但是当我们将多个弱分类器组合到一起，每个分类器从其他分类器中分类错误的对象中进行学习，我们可以构建一个强模型，弱分类器可以是任何基本分类器，从决策树到Logistic回归等。</p><p>那么什么是弱分类器？<br>弱分类器的性能优于随机猜测，但是在指定对象的类中表现不佳，例如，较弱的分类器可以预测40岁以上的每个人都无法参加马拉松比赛，但是低于40岁的人可以参加马拉松比赛，也许就会有60%以上的准确度，但是仍然会有许多数据点误分。</p><p>AdaBoost不仅仅可以作为模型本身使用，还可以应用在任何分类器之上，从其缺点中学习并且提出更加准确的模型。因此可以称为最佳现成分类器。</p><p>那么开始了解AdaBoost是如何和决策树桩一起使用，决策树桩就像随机森林中的数目，但不是完全生长的，它有一个节点和两个叶子，AdaBoost使用了这样的树桩森林，而不是树。</p><p>单靠树桩并不是做出决定的好方法。一棵成熟的树结合了所有变量的决策以预测目标值。另一方面，树桩只能使用一个变量来做出决定。让我们通过查看几个变量来确定一个人是否“健康”（身体健康），来逐步了解AdaBoost算法的幕后知识。</p><p>例子:<br>STEP1:<br>一个弱分类，基于加权的样本，样本的权重表示正确分类的重要性，对于第一个弱分类，我们给所有样本同样的权重。</p><p>STEP2:<br>我们为每一个变量创造一个决策树桩，并查看每一个树桩分类的结果，例如，我们检查了年龄、吃垃圾食物和锻炼。我们将看每个树桩将多少样本正确分类。</p><p>STEP3:<br>我们将更多的权重分配给分类错误的样本，以便在下一个决策树桩中对样本进行正确的分类，权重还会根据每个分类器的准确性分配给每个分类器，高精度的分类器就有更好的权重。</p><p>STEP4:<br>第二步重复进行，直到所有数据点都正确分类。</p><p><img src="fully_grown_tree_vs_stumps.png"></p><p><img src="more_import_stumps.jpeg"></p><p>下面是数学方面的表示:<br>首先是数据集:<br><img src="input.png"><br>其中:<br>n:数字的维度，或者说是数据集的特征数</p><p>x:数据点的集合</p><p>y:目标变量为-1和1,当为二分类问题的时候</p><p>那么，每个样本的权重，如何计算?</p><p>一开始的时候，每个样本的权重都相同，为1/N<br>其中:N为数据点的总数</p><p>这使得加权的样本和为1</p><p>之后，计算分类器的影响力，通过下面的公式:<br><img src="classifier_inf.png"></p><p>Total Error就是错误分类的数目，那么关系如下图所示:<br><img src="Alpha_vs_Error_Rate.png"></p><p>记住，当分类器表现好的时候，影响力大，当0.5的时候为0,当非常不好的时候，为负数。</p><p>之后，样本的权重呢?<br><img src="sample_weights.png"></p><p>总结:<br>AdaBoost的好坏:<br>优点：<br>比SVM简单好用，不需要调整参数<br>AdaBoost不会倾向于过拟合<br>提高了弱分类器的准确性，使其更加灵活</p><p>缺点：<br>需要有高质量的数据，对噪声敏感</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;p&gt;资料来源:&lt;br&gt;&lt;a href=&quot;https://blog.paperspace.com/adaboost-optimizer/#:~:t</summary>
+      
+    
+    
+    
+    
+    <category term="adaboost" scheme="http://example.com/tags/adaboost/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RNN神经网络</title>
+    <link href="http://example.com/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <id>http://example.com/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</id>
+    <published>2020-10-18T15:07:02.000Z</published>
+    <updated>2020-11-18T13:25:41.992Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="RNN%E6%A8%A1%E5%9E%8B.jpg"><br>RNN背后的想法是利用顺序信息。在传统的神经网络中，我们假设所有输入（和输出）彼此独立。但是对于许多任务来说，这是一个非常糟糕的主意。如果要预测句子中的下一个单词，则最好知道哪个单词在它之前。RNN之所以称为递归， 是因为它们对序列的每个元素执行相同的任务，其输出取决于先前的计算。思考RNN的另一种方法是，它们具有“内存”，可以捕获有关到目前为止已计算出的内容的信息。从理论上讲，RNN可以任意长的顺序使用信息，但实际上，它们仅限于回顾一些步骤（稍后再介绍）。</p><p>通过展开，我们仅表示我们为整个序列写出了网络。例如，如果我们关心的序列是5个单词的句子，则该网络将展开为5层神经网络，每个单词一层。控制RNN中发生的计算的公式如下：</p><p>￼是时间步的输入￼。例如，￼ 可以是与句子的第二个单词相对应的“一字通”向量。<br>￼是时间步的隐藏状态￼。这是网络的“内存”。￼根据先前的隐藏状态和当前步骤的输入来计算￼。该函数￼通常是诸如tanh或ReLU之类的非线性函数。  ￼计算第一个隐藏状态所需的，通常初始化为全零。</p><p>下面的内容是如何实现RNN网络:<br><a href="https://blog.csdn.net/rtygbwwwerr/article/details/51012699">https://blog.csdn.net/rtygbwwwerr/article/details/51012699</a><br><a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/">http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/</a><br>语言模型:<br>某一句话s是由n个词语(w)组成的集合，那么这句话生成的概率为:<br>P(s) = P(w_1,w_2,…,w_n)=P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)…P(w_n|w_1,…,w_n-1)</p><p>公式中，需要n个联合条件分布率，通常我们做一些假设，每一个词语都依赖它的前一个词语，那么就可以化简为:<br>P(s) = P(w_1)P(w_2|w_1)P(w_3|w_2)…P(w_n|w_n-1)<br>当依赖两个单词的时候同样类似。</p><p>上面就被称为2-Gram和3-Gram,关联的词语越多，模型就越精确，训练成本也很大。</p><p>这里使用RNN训练一个2-Gram模型。也就是通过RNN来估计每对单词的条件概率P(w_i|w_j)</p><p>训练样本数为Ns,目标词典的word数量为Nw,每个单词使用one-hot表示。<br>输入/出层节点数为 Ni=No=Nw<br>隐藏层节点数为Nh(通常为Ni的十分之一)<br>隐藏层的激活函数为tanh,<br>输出层激活函数为softmax<br>隐藏层存在一个递归边，每个时刻的输出乘以权值矩阵W后，将作为下一个时刻输入的一部分。</p><p>权值矩阵:<br>U :Input Layer      -&gt; Hidden Layer Nh<em>Ni<br>V :Hidden(t) Layer  -&gt; Output Layer No</em>Nh<br>W :Hidden(t-1) Layer-&gt; Hidden(t) Layer Nh*Nh<br>f_h:隐藏层激活函数<br>f_o:输出层激活函数</p><p>s_k(t):t时刻第k个隐藏层节点的输出值<br>o_k(t):t时刻第k个输出层节点的输出值</p><p>y_k:第k个输出层就诶点的目标输出值</p><p><img src="RNN%E7%BB%93%E6%9E%84.png"></p><p>程序的组成:</p><p>1.标记文本：<br>我们有原始的文本，但是，我们希望在词语的基础上进行预测，这就表示，我们需要在句子中对文本进行标识，我们可以通过空格将每个评论分割开，但是这样就无法正确处理符号，<br>句子‘He left!’应该是三个词语令牌:’He’,’left’,’!’我们将会使用NLTK中的word_tokenize和sent_tokenize方法，这将会替我们完成最复杂的工作。</p><p>2.删除低频词语<br>文本中的大多数词语仅仅出现1到2次，将低频的词语删除是一个好方法。<br>大量的词汇表将会使得训练的速度降低。而且，由于我们没有很多低频词语的上下文实例，因此我们也无法学习如何正确使用低频词语。为了能够理解如何使用一个单词，你需要在不同的上下文中看到它。</p><p>代码中，我们将最常用的词汇表限制为vocabulary_size，默认为8000，但是可以随意修改。我们将不包含在词汇表中的词语用UNKNOWN_TOKEN来代替。</p><p>我们将会把UNKNOWN——TOKEN作为我们词汇的一部分，当我们生成新的文本的时候，我们可以再次替换UNKNOWN——TOKEN，例如通过在词汇表中抽取一个随机采样的单词，或者我们可以通过生成句子，直到得到一个不包含未知标记的句子。</p><p>3.添加开始和结束标记:<br>我们同样希望学习哪些词语在开头或者结尾，为此，我们准备了SENTENCE——START和SENTENCE-END令牌，考虑到第一个token是SENTENCE-START,那么什么词语跟在后面呢，也就是句子的第一个单词。</p><p>4.建立训练数据矩阵<br>CNN的输入是向量，我们需要建立一个单词到序列的映射，index_to_word和word_to_index</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;RNN%E6%A8%A1%E5%9E%8B.jpg&quot;&gt;&lt;br&gt;RNN背后的想法是利用顺序信息。在传统的神经网络中，我们假设所有输入（和输出）彼此独立。但是对于许多任务来说，这是一个非常糟糕的主意。如果要预测句子中的下一个单词，则最好知道哪个单词在它之前。</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>idea</title>
+    <link href="http://example.com/2020/10/12/idea/"/>
+    <id>http://example.com/2020/10/12/idea/</id>
+    <published>2020-10-12T01:04:14.000Z</published>
+    <updated>2020-11-18T13:25:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>学习过程中的小想法:</p><h1 id="1-内容"><a href="#1-内容" class="headerlink" title="1.内容"></a>1.内容</h1><p>adaboost: 样本权重通过聚合程度过滤之后再修改权重，避免误差</p><p>BERT+判断模型 NER ELECTRA</p><p>字图片+上下文 分析NER</p><p>BERT中究竟学了什么内容</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;学习过程中的小想法:&lt;/p&gt;
+&lt;h1 id=&quot;1-内容&quot;&gt;&lt;a href=&quot;#1-内容&quot; class=&quot;headerlink</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>知识图谱推理</title>
+    <link href="http://example.com/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/"/>
+    <id>http://example.com/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/</id>
+    <published>2020-10-10T22:32:19.000Z</published>
+    <updated>2020-11-18T13:25:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>综述参考:<br>文献[27]对知识抽取的研究进展进行了综述,<br>文献[28-31]分别对知识图谱构建、实体对齐、知识表示学习以及知识融合进行了综述,<br>文献[32]对知识抽取、知识表示、知识融合和知识推理这4个方面的研究进展进行了总结和展望.<br>面向知识图谱的知识推理研究进展</p><p>面向知识图谱的知识推理旨在根据已有的知识推理出新的知识或识别错误的知识</p><p>它包括两方面的内容:<br>知识图谱补全(knowledge graph completion,knowledge base completion)[1316]<br>包括:<br>连接预测 (link prediction)[19-21]<br>实体预测(entity prediction)[22-24]<br>关系预测(relation prediction)[22-25]<br>属性预测(attribute prediction)[26]等</p><p>知识图谱去噪 (knowledge graph refinement,knowledge graph cleaning)[17,18].</p><p>据推理类型划分,将面向知识图谱的知识推理分为单步推理和多步推理,<br>根据方法的不同,每类又包括基于规则的推理、基于分布式表示的推理、基于神经网络的推理以及混合推理.</p><p>目前的知识图谱有<br>KnowItAll[5]<br>YAGO[6-8]<br>DBpedia[9]<br>Freebase[10]、<br>NELL[11]<br>Probase[12]等.</p><p>人工智能下一个十年</p><p>知识图谱+认知推理+逻辑表达 -&gt; 认知图谱(Cognitive Graph)</p><p>深度学习算法经过的阶段:<br>1.向前网络:深度学习算法<br>2.自学习、自编码代表的学习时代<br>3.自循环神经网络，概率图模型<br>4.增强学习</p><p>路线:<br>1.脑科学<br>2.数据与知识</p><p>方向:<br>1.推理<br>2.可解释能力</p><p>paper: Das, R. , Neelakantan, A. , Belanger, D. , &amp; Mccallum, A. . (2016). Chains of reasoning over entities, relations, and text using recurrent neural networks</p><p>pro : <a href="https://rajarshd.github.io/ChainsofReasoning/">https://rajarshd.github.io/ChainsofReasoning/</a></p><p>OWL等规则及Jena工具</p><p>源码:<a href="https://github.com/debuluoyi">https://github.com/debuluoyi</a></p><p>基于基本的Path-RNN的架构进行改进。<br>基本Path-RNN:<br>输入:两个实体之间的路径，<br>输出:推理出的二者之间的新关系。<br>将关系之间的连接用RNN表示来进行推理。路径的表示是在处理完路径中所有的关系之后由RNN的最后的隐状态给出的。</p><p>改进有：<br>1.之前要为每一个需要预测的relation-type单独训练模型。而优化后只训练一个RNN来预测所有的relation type，共享了RNN参数精度也显著提高了。共享了relation type的表示以及RNN的composition matrices，这样同样的训练数据变量就大大减少了。训练模型的损失函数用的是negative log-likelihood<br>2.本文使用了neural attention机制对多条路径进行推理。之前的工作只推理了relation，没有推理组成路径上节点的entities，本文对关系类型，实体和实体类型进行了联合学习和推理。<br>3.分别用Top-kaverage和LogSumExp等多纬度为每一条路径的相似度评分加上权重，这样就考虑了每一条路径包含的信息，而不仅仅是评分最高的那条。</p><p>解决方法和公式:<br>首先进行下列的定义:<br>(e_s,e_t):一对实体<br>S:实体之间的路径集合<br>Pi = {e_s,r_1,e_1,r_2,…,r_k,e_t}:(e_s,e_t)之间的一条路径，<br>其中，路径的长度是路径上的关系的数目<br>len(Pi) = k</p><p>y_rt 表示节点r_t的向量表式，维度为d<br>RNN模型将所有的关系放到Pi序列中使用了一个RNN网络。中间层表示是h_t。</p><p><img src="RNN%E5%85%AC%E5%BC%8F1.png"></p><p>其中W_hh(h<em>h)和W_ih(d</em>h)分别是RNN网络的参数，其中上标r表示的是询问的关系。Path-RNN对于每一个关系都有不同的参数(y_rt,W_hh,W_ih)。<br>上面的f是sigmoid函数，路径的向量表式Pi(y_pi)是最后的隐藏层h_k.</p><p>y_pi和y_r的相似度可以计算为:<br><img src="%E7%9B%B8%E4%BC%BC%E5%BA%A6%E8%AE%A1%E7%AE%97.png"></p><p>对于一个实体对的N条通路，Path-RNN通过下列的公式计算了两个实体之间的关系:<br><img src="PRNN%E5%A4%9A%E9%80%9A%E8%B7%AF.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;综述参考:&lt;br&gt;文献[27]对知识抽取的研究进展进行了综述,&lt;br&gt;文献[28-31]分别对知识图谱构建、实体对齐、知识表示学习以及知识融合进行了综述,&lt;br&gt;文献[32]对知识抽取、知识表示、知识融合和知识推理这4个方面的研究进展进行了总结和展望.&lt;br&gt;面向知识图谱的</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python之正则表达式详解</title>
+    <link href="http://example.com/2020/10/08/Python%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://example.com/2020/10/08/Python%E4%B9%8B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/</id>
+    <published>2020-10-07T21:02:22.000Z</published>
+    <updated>2020-11-18T13:25:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>资料来源:<br><a href="https://docs.python.org/zh-cn/3/library/re.html">https://docs.python.org/zh-cn/3/library/re.html</a></p><p>模式和被搜索的字符串可以是Unicode字符串(str)或者8位字节串(bytes).但是两者不能够混用，</p><p>提供正则表达式操作。</p><p>其中有常用的几种方法:<br>不进行转义处理: r”\n” 表示 \和n两个字符的字符串，而”\n”表示换行符。</p><p>有一些字符是特殊的元字符(matacharacters),并且不匹配自己。相反，它们表示匹配一些不同的东西，或者通过重复它们或者改变它们的含义来影响正则的其他部分。</p><h1 id="1-元字符的完整列表"><a href="#1-元字符的完整列表" class="headerlink" title="1.元字符的完整列表:"></a>1.元字符的完整列表:</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. ^ $ * + ? &#123;  &#125; [  ] \ | (  )</span><br></pre></td></tr></table></figure><h2 id="1-1-匹配字符"><a href="#1-1-匹配字符" class="headerlink" title="1.1 匹配字符"></a>1.1 匹配字符</h2><p>[  ]:用来指定字符类，希望匹配的一组字符。<br>例如：<br> [abc] 将匹配任何字符 a、 b 或 c ；这与 [a-c] 相同，它使用一个范围来表示同一组字符。 如果你只想匹配小写字母，你的正则是 [a-z] 。</p><p> 字符类中的元字符不生效。<br> 例如：<br> [akm$] 将匹配 ‘a’ ， ‘k’ 、 ‘m’ 或 ‘$’ 中的任意字符； ‘$’ 通常是一个元字符，但在一个字符类中它被剥夺了特殊性。</p><p>你可以通过以下方式匹配 complementing 设置的字符类中未列出的字符。这通过包含一个 ‘^’ 作为该类的第一个字符来表示。 例如，[^5] 将匹配除 ‘5’ 之外的任何字符。 如果插入符出现在字符类的其他位置，则它没有特殊含义。 例如：[5^] 将匹配 ‘5’ 或 ‘^’。</p><p>也许最重要的元字符是反斜杠，\。 与 Python 字符串文字一样，反斜杠后面可以跟各种字符，以指示各种特殊序列。它也用于转义所有元字符，因此您仍然可以在模式中匹配它们；例如，如果你需要匹配 [ 或 \，你可以在它们前面加一个反斜杠来移除它们的特殊含义：[ 或 \。</p><p>一些以 ‘&#39; 开头的特殊序列表示通常有用的预定义字符集，例如数字集、字母集或任何非空格的集合。</p><p>\d<br>\D<br>\s<br>\S<br>\w<br>\W<br>.(点) 在默认模式，匹配除了换行的任意字符。如果指定了标签 DOTALL ，它将匹配包括换行符的任意字符。</p><p>^<br>(插入符号) 匹配字符串的开头，</p><h2 id="1-2-重复"><a href="#1-2-重复" class="headerlink" title="1.2 重复"></a>1.2 重复</h2><p>重复中我们要了解的第一个元字符是 *。 * 与字面字符 ‘*’ 不匹配；相反，它指定前一个字符可以匹配零次或多次，而不是恰好一次。</p><p>例如，ca*t 将匹配 ‘ct’ (0个 ‘a’ 字符)，’cat’ (1个 ‘a’ )， ‘caaat’ (3个 ‘a’ 字符)，等等。</p><p>另一个重复的元字符是 +，它匹配一次或多次。 要特别注意 * 和 + 之间的区别；* 匹配 零次 或更多次，因此重复的任何东西都可能根本不存在，而 + 至少需要 一次。 </p><p>例如，ca+t 将匹配 ‘cat’ (1 个 ‘a’)，’caaat’ (3 个 ‘a’)，但不会匹配 ‘ct’。</p><p>重复限定字符，问号字符 ? 匹配一次或零次；你可以把它想象成是可选的。</p><p>例如，home-?brew 匹配 ‘homebrew’ 或 ‘home-brew’。</p><p>最复杂的重复限定符是 {m,n}，其中 m 和 n 是十进制整数。 这个限定符意味着必须至少重复 m 次，最多重复 n 次。</p><p>例如，a/{1,3}b 将匹配 ‘a/b’ ，’a//b’ 和 ‘a///b’ 。 它不匹配没有斜线的 ‘ab’，或者有四个的 ‘a////b’。</p><p>你可以省略 m 或 n; 在这种情况下，将假定缺失值的合理值。 省略 m 被解释为 0 下限，而省略 n 则为无穷大的上限。</p><p>还原论者的读者可能会注意到其他三个限定符都可以用这种表示法表达。 {0,} 与 * 相同， {1,} 相当于 + ， {0,1} 和 ? 相同。 最好使用 * ， + 或 ? ，只要因为它们更短更容易阅读。</p><h1 id="2-使用正则表达式"><a href="#2-使用正则表达式" class="headerlink" title="2.使用正则表达式"></a>2.使用正则表达式</h1><p>方法 / 属性</p><p>目的</p><p>match()：确定正则是否从字符串的开头匹配。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">group()：返回正则匹配的字符串</span><br><span class="line">start()：返回匹配的开始位置</span><br><span class="line">end()：返回匹配的结束位置</span><br><span class="line">span()：返回包含匹配 (start, end) 位置的元组</span><br></pre></td></tr></table></figure><p>search()：扫描字符串，查找此正则匹配的任何位置。</p><p>findall()：找到正则匹配的所有子字符串，并将它们作为列表返回。</p><p>finditer()：找到正则匹配的所有子字符串，并将它们返回为一个 iterator。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;资料来源:&lt;br&gt;&lt;a href=&quot;https://docs.python.org/zh-cn/3/library/re.h</summary>
+      
+    
+    
+    
+    
+    <category term="python" scheme="http://example.com/tags/python/"/>
+    
+    <category term="re" scheme="http://example.com/tags/re/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BeautifulSoup4笔记</title>
+    <link href="http://example.com/2020/10/02/BeautifulSoup4%E7%AC%94%E8%AE%B0/"/>
+    <id>http://example.com/2020/10/02/BeautifulSoup4%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-10-02T08:25:52.000Z</published>
+    <updated>2020-11-18T13:25:41.940Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>参考文档:<br><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/</a></p><p>Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br><span class="line">//安装</span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">//加载模块</span><br></pre></td></tr></table></figure><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种:Tag,NavigableString,BeautifulSoup,Comment.</p><p>其中的正则表达式re模块需要参考下面的文档:<br><a href="https://docs.python.org/zh-cn/3/howto/regex.html#regex-howto">https://docs.python.org/zh-cn/3/howto/regex.html#regex-howto</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;参考文档:&lt;br&gt;&lt;a href=&quot;https://www.crummy.com/software/BeautifulSou</summary>
+      
+    
+    
+    
+    
+    <category term="python" scheme="http://example.com/tags/python/"/>
+    
+    <category term="beautifulsoup" scheme="http://example.com/tags/beautifulsoup/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pre-train模型</title>
+    <link href="http://example.com/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://example.com/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/</id>
+    <published>2020-09-30T11:30:56.000Z</published>
+    <updated>2020-11-18T13:25:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>资料来源:李宏毅教授教程Deep Learning of Human Language Process</p><h1 id="1-Pre-Train-Model"><a href="#1-Pre-Train-Model" class="headerlink" title="1.Pre-Train Model"></a>1.Pre-Train Model</h1><p>为什么需要Pre-Train Model<br><img src="why_pre_train.png"></p><p>Pre-Train Model的具体流程如下图所示。<br><img src="pre_train_model.png"></p><p>由许多层组成，有如下的几种架构方法:<br>1.LSTM<br>2.Self-attention layers<br>流行的model<br>3.Tree-based model<br>在公式表示中有很好的表现</p><p>Pre-Train发展:<br>ELMO<br>Predict Next Token(Bidirectional):<br><img src="ELMO.png"></p><p>BERT(类似与CBOW)<br>Masking Input:<br><img src="BERT_MASKING.png"></p><p>补充:<br><img src="CBOW.png"></p><p>bert看所有的sequence,而CBOW有固定的窗口</p><p>Mask Input:<br>首先，Original BERT Input<br>probability<br>pro [MASK] ##lity</p><p>然后，Whole Word Masking(WWM)<br>probability<br>[MASK]</p><p>最后，Phrase-level和Entity-level(Enhanced Representation through Knowledge Integration,ERNIE)</p><p>小的BERT模型有:<br>ALBERT 每一层的参数都相同，小一些，但是效果没怎么变</p><p>Network Compression <a href="https://youtu.be/dPp8rCAnU_A">https://youtu.be/dPp8rCAnU_A</a><br>其中:<br>Network Pruning<br>Knowledge Distillation<br>Parameter Quantization<br>Architecture Design</p><p>BERT模型压缩:<br><a href="http://mitchgordon.me/machine/learning/2019/11/18/all-the-ways-to-compress-BERT.html">http://mitchgordon.me/machine/learning/2019/11/18/all-the-ways-to-compress-BERT.html</a><br>all the ways to compress BERT</p><p>减少self-attention的运算量(n^2,其中n为sequence的长度):<br>Reformer<br>Longformer</p><p>有了Pre-Train Model之后，如何Fine-Tune？如图所示。<br><img src="fine-tune1.png"></p><h1 id="2-优化"><a href="#2-优化" class="headerlink" title="2.优化"></a>2.优化</h1><h2 id="2-1-Adaptor"><a href="#2-1-Adaptor" class="headerlink" title="2.1 Adaptor"></a>2.1 Adaptor</h2><p>当我们进行Fine-Tune任务的时候，通常是如下图所示。<br><img src="adaptor1.png"></p><p>增加adaptor模块<br><img src="adaptor2.png"></p><p><img src="adaptor3.png"></p><p>将效果进行对比<br><img src="adaptor%E6%AF%94%E8%BE%83.png"></p><h1 id="3-GPT-3"><a href="#3-GPT-3" class="headerlink" title="3.GPT-3"></a>3.GPT-3</h1><p>参考论文:language model are few-shot learners<br>其中，few-shot是什么意思呢？</p><p>首先，GPT-3的few-shot和其他模型的few-shot不同,如上图所示。<br>在其他模型中，few-shot learning是指用少量的训练资料去Fine Tune它。<br>在GPT-3中没有Fine Tune的内容，直接将问题的简介、样例(有的没有)和问题作为模型的输入，然后输出问题的答案。</p><p>如下图所示:<br><img src="GPT-3_3_learning.png"></p><p>这种学习被称为In-context learning,图中有三种类型。</p><p>精度随着变量变化的趋势。<br><img src="GPT-3_ACCURACY.png"></p><p>精度随着样本的变化趋势<br><img src="number_samples_accu.png"></p><p>在数学计算上的精度:<br><img src="cal_gpt3.png"></p><h1 id="4-GPT和BERT对比"><a href="#4-GPT和BERT对比" class="headerlink" title="4.GPT和BERT对比"></a>4.GPT和BERT对比</h1><p>首先，BERT是使用了MASK Input模型来获取上下文的资料，而GPT是根据前面的token来进行预训练。</p><p>所以GPT在autoregressive生成句子中有劣势，但是，在non-regressive中可能会有好的效果。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;资料来源:李宏毅教授教程Deep Learning of Human Language Process&lt;/p&gt;
+&lt;h1 id</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>friends</title>
+    <link href="http://example.com/2020/09/28/friends/"/>
+    <id>http://example.com/2020/09/28/friends/</id>
+    <published>2020-09-27T19:26:52.000Z</published>
+    <updated>2020-11-18T13:25:41.952Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="%E8%8A%9D%E9%BA%BB%E8%A1%97.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;%E8%8A%9D%E9%BA%BB%E8%A1%97.png&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>GPT模型的使用</title>
+    <link href="http://example.com/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://example.com/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-09-24T07:59:03.000Z</published>
+    <updated>2020-11-18T13:25:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<p>GPT使用有下面的几个方式:<br>1.直接使用<br><a href="https://ner.algomo.com/">https://ner.algomo.com/</a><br>这是直接调用GPT-3模型的API，里面的原理待定。</p><p>2.对自己所需要的小数据进行预训练<br><a href="https://github.com/Emir-Liu/GPT2-Chinese">https://github.com/Emir-Liu/GPT2-Chinese</a><br>GPT2中文训练，使用了BERT的Tokenizer???。主要使用</p><p>3.对模型进行微调之后使用<br>通过微调预训练的GPT-2模型，来生成特定主题的文本。<br><a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">http://nlp.seas.harvard.edu/2018/04/03/attention.html</a><br>其中，直接使用了transformers模块中的函数，直接加载预训练模块，然后训练？？，就结束了，其中训练的过程就是一个黑箱。</p><p>上面就是GPT模型的一些使用的方法。<br>但是，对于初学者来说，更重要的事情是了解黑箱之中是什么原理，以及如何实现。<br>之前已经了解了GPT模型的原理，下面是学习其实现。</p><p>首先BERT和GPT模型都是基于Transformer模型，所以，我简单实现Transformer模型。</p><p>在之前已经了解了Transformer模型的原理，那么，其中，有下面多个优化。</p><p>例如:<br>1.参数初始化方式<br>nn.init.xavier_uniform:参数初始化方式<br><a href="https://blog.csdn.net/luoxuexiong/article/details/95772045">https://blog.csdn.net/luoxuexiong/article/details/95772045</a></p><p><a href="https://prateekvjoshi.com/2016/03/29/understanding-xavier-initialization-in-deep-neural-networks/">https://prateekvjoshi.com/2016/03/29/understanding-xavier-initialization-in-deep-neural-networks/</a></p><p>2.Batch Normalization批量归一化<br><a href="https://zhuanlan.zhihu.com/p/47812375">https://zhuanlan.zhihu.com/p/47812375</a></p><p>Normalization 有很多种，但是它们都有一个共同的目的，那就是把输入转化成均值为 0 方差为 1 的数据。我们在把数据送入激活函数之前进行 normalization（归一化），因为我们不希望输入数据落在激活函数的饱和区。</p><p>BN:<br>在每一层的每一批数据上进行归一化。我们可能会对输入数据进行归一化，但是经过该网络层的作用后，我们的数据已经不再是归一化的了。随着这种情况的发展，数据的偏差越来越大，我的反向传播需要考虑到这些大的偏差，这就迫使我们只能使用较小的学习率来防止梯度消失或者梯度爆炸。</p><p>BN 的具体做法就是对每一小批数据，在批这个方向上做归一化。</p><p>2.学习速率优化<br><a href="https://blog.csdn.net/luoxuexiong/article/details/90412213">https://blog.csdn.net/luoxuexiong/article/details/90412213</a></p><p>论文：<br>ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION</p><p>Adam是Momentum 和 RMSProp算法的结合</p><p>3.过拟合的检验方式</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;GPT使用有下面的几个方式:&lt;br&gt;1.直接使用&lt;br&gt;&lt;a href=&quot;https://ner.algomo.com/&quot;&gt;https://ner.algomo.com/&lt;/a&gt;&lt;br&gt;这是直接调用GPT-3模型的API，里面的原理待定。&lt;/p&gt;
+&lt;p&gt;2.对自己所需要的小</summary>
+      
+    
+    
+    
+    
+    <category term="gpt" scheme="http://example.com/tags/gpt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu上Jupyter编辑.ipynb文件教程</title>
+    <link href="http://example.com/2020/09/13/Ubuntu%E4%B8%8AJupyter%E7%BC%96%E8%BE%91-ipynb%E6%96%87%E4%BB%B6%E6%95%99%E7%A8%8B/"/>
+    <id>http://example.com/2020/09/13/Ubuntu%E4%B8%8AJupyter%E7%BC%96%E8%BE%91-ipynb%E6%96%87%E4%BB%B6%E6%95%99%E7%A8%8B/</id>
+    <published>2020-09-13T12:36:32.000Z</published>
+    <updated>2020-11-18T13:25:41.992Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>.ipynb文件是python的一种文件格式，可以通过jupyter notebook来打开执行文件。<br>和简单的.py文件相比，.ipynb文件能够将代码进行分块处理，就能够部分运行，及时查看输出，特别是在展示程序原理。</p><h1 id="1-必要文件安装"><a href="#1-必要文件安装" class="headerlink" title="1.必要文件安装"></a>1.必要文件安装</h1><p>ipython和jupyter两个安装一下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install xxx</span><br></pre></td></tr></table></figure><h1 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-简介&quot;&gt;&lt;a href=&quot;#0-简介&quot; class=&quot;headerlink&quot; title=&quot;0.简介&quot;&gt;&lt;/a&gt;0.简介&lt;/h1&gt;&lt;p&gt;.ipynb文件是python的一种文件格式，可以通过jupyter notebook来打开执行文件。&lt;br&gt;和简单的.py</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Torch模块解析</title>
+    <link href="http://example.com/2020/09/13/Torch%E6%A8%A1%E5%9D%97%E8%A7%A3%E6%9E%90/"/>
+    <id>http://example.com/2020/09/13/Torch%E6%A8%A1%E5%9D%97%E8%A7%A3%E6%9E%90/</id>
+    <published>2020-09-13T08:17:09.000Z</published>
+    <updated>2020-11-18T13:25:41.992Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>原始GNN和GCN网络详解</title>
+    <link href="http://example.com/2020/09/10/GNN%E5%92%8CGCN%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://example.com/2020/09/10/GNN%E5%92%8CGCN%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3/</id>
+    <published>2020-09-09T16:12:07.000Z</published>
+    <updated>2020-11-18T13:25:41.984Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>之前的博客中学习了神经网络，但是，神经网络只能处理简单的类似于表格的数据，其中没有各个数据之间的联系，例如图片数据等。<br>但是在实际中，我们需要表示各个数据之间的联系，所以我们引入了图结构，图中的节点表示数据，节点之间的线表示各个数据之间的关系，图结构能够表达出比表数据更多的内容。</p><a id="more"></a><p>下面是图结构数据的图像表示:<br><img src="%E5%9B%BE%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E5%9B%BE%E5%83%8F.png"></p><p>这部分内容为:原始GNN网络和GCN网络</p><h1 id="1-原始GNN网络"><a href="#1-原始GNN网络" class="headerlink" title="1.原始GNN网络"></a>1.原始GNN网络</h1><p>为了方便理解，我们需要建立如下的变量:<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E5%8F%98%E9%87%8F.png"><br>其中，获取的数据中有每个节点的特征向量</p><p>简单解释一下原始GNN网络的结构。<br>1.对每个节点建立一个状态变量，每个节点的状态变量都取决于该节点的特征、和该节点相连接的边的特征、和该节点相连节点的特征、和该节点相邻节点的状态，对此建立一个状态转换方程<br>2.对每一个节点建立一个输出变量，每个节点的输出变量取决于该节点的状态、该节点的特征，对此建立一个输出方程<br>3.建立一个二次损失函数，使得其最小</p><p>上面两个方程中:<br>输出方程为线性方程，其中的系数都是需要训练的参数，初始时使用符合正态分布的随机数，<br>状态转换方程比较复杂，因为状态变量需要有解，也就是能够全局收敛，需要满足Banach不动点理论，为此，状态转换方程需要满足一定的条件，具体的条件下面继续说明。<br>在之后的训练中会对这些参数进行训练，使得二次损失函数越来越小，输出越来越接近我们期望的输出。</p><p>训练的过程为随机梯度下降，关于随机梯度下降算法等可以参考神经网络和深度学习的博客。</p><p>上面就是其结构，说得非常简单，但是上面有几个需要提的问题:<br>1.知道了所有节点和边的特征，如何计算得到节点的状态:<br>在状态转换方程中，输入中有变量与该节点相邻的节点的状态，输出为该节点的状态，这个方程的求解需要使用一个理论，就是上面提到的Banach不动点理论。<br>2.训练的过程中有两个方程，每个方程都需要训练不同的参数，如何同时训练两个方程:<br>由于原始GNN网络结构的特殊性，有特殊的计算方法。</p><p>下面是程序流程图:<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%9B%BE1.png"><br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%9B%BE2.png"></p><p>直接看流程图可以发现流程依然简单:<br>1.初始化所有方程中的权重，也就是所有的参数<br>2.通过初始化的参数计算出每个节点的状态，其中使用了FORWARD(w)算法。<br>3.然后，使用随机梯度下降算法不断迭代，计算出最终学习之后的参数数值。其中使用了BACKWARD()算法。</p><p>其中，FORWARD算法就是利用不动点理论，对方程进行迭代处理，就会不断接近节点的状态。<br>BACKWARD算法依然是利用了状态全局收敛，利用不动点理论，然后进行迭代，求解二次代价函数对参数的偏导。</p><p>上面就是对其理论的简单介绍。</p><p>下面，就是代码实现:<br>1.原始GNN网络的模型验证:<br>自己编写的原始GNN网络，其中的数据为自己随机建立的数据，用来了解原始GNN网络的结构与原理，其内容为随机将18个点分为3类，每一类有6个点，用不同的颜色表示，通过部分节点进行标注训练对其他节点的类别进行分类预测。<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B.png"></p><p>其输出结果为:<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA1.png"><br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA2.png"></p><p>2.原始GNN网络Core数据集分类:<br>这个实现更加接近实际应用情况，采用Core数据集，对其中的内容进行分类。<br>Core数据集中为机器学习领域的论文，其中被分为了七个类别，其中，一共有2708篇论文，有1433个关键词作为特征，论文之间的引用关系作为边有5429条边。</p><h1 id="2-GCN网络"><a href="#2-GCN网络" class="headerlink" title="2.GCN网络"></a>2.GCN网络</h1><p>首先，GCN网络需要一些前提知识:<br><img src="GCN%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5.png"><br>上面的度矩阵表示每个节点相邻节点的数目，邻接矩阵表示各个节点之间的连接关系，下面简单介绍一下GCN公式的原理。<br><img src="GCN%E5%85%AC%E5%BC%8F%E7%AE%80%E5%8D%95%E6%8E%A8%E5%AF%BC1.png"><br><img src="GCN%E5%85%AC%E5%BC%8F%E7%AE%80%E5%8D%95%E6%8E%A8%E5%AF%BC2.png"><br>第一个公式类似于之前博客中的神经网络，只是输入中增加了邻接矩阵。<br>第二个公式就是优化后的GCN网络:<br>1.将邻接矩阵A增加一个单位矩阵得到矩阵A波浪，这样避免在计算当前节点时候，忽略当前节点的特征，经过实验表明，这样可以增加网络的精度。<br>2.增加归一化步骤，上面的D波浪是A波浪的度矩阵，进行归一化可以避免很多意外的问题。<br>下面是输出结果:<br><img src="GCN%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C.png"></p><p>代码实现:<br>1.GCN根据MR数据进行情感分类:<br>直接输入了电影的评论文本数据，分别有两个标签:积极和消极<br>节点为评论和词语<br>边为：评论和词语、词语和词语<br>对于边的权重如下图所示:<br><img src="GCN%E7%BD%91%E7%BB%9CMR%E6%95%B0%E6%8D%AE%E8%BE%B9%E6%9D%83%E9%87%8D%E5%85%AC%E5%BC%8F.png"></p><p>首先是词语和评论之间的权重:TF-IDF<br>TF:Term Frequency<br>表示某个词语在段落中出现的次数，公式如下。<br><img src="TF%E5%85%AC%E5%BC%8F.png"><br>n(i,j) 词i在文档j中出现的次数<br>分母为文档j中所有词出现的次数之和</p><p>IDF:Inverse Document Frequency<br>反文档频率:包含词语的段落数量的反比。<br>它的含义为:包含词语的段落越少，则IDF越大，说明这个词语有很强的区别能力，表现词语的重要性大小，公式如下。<br><img src="IDF%E5%85%AC%E5%BC%8F.png"><br>|D| 语料库中doc总数<br>分母为包含词条ti的doc的数目，避免为0，要加1</p><p>那么TF-IDF为TF×IDF。</p><p>然后是词语与词语之间的权重PMI:<br>用来表示两个词语之间的语义相关性，&lt;0表示相关性弱或没有相关性，&gt;0表示相关性强，公式如下图。<br><img src="PMI%E5%85%AC%E5%BC%8F.png"><br>上面的公式中:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#W(i)包含词i的滑窗数目</span></span><br><span class="line"><span class="comment">#W(i,j)包含词i和词j的滑窗数目</span></span><br><span class="line"><span class="comment">#W表示滑窗总数</span></span><br></pre></td></tr></table></figure><h1 id="3-原始GNN网络和GCN网络对比"><a href="#3-原始GNN网络和GCN网络对比" class="headerlink" title="3.原始GNN网络和GCN网络对比"></a>3.原始GNN网络和GCN网络对比</h1><h2 id="3-1-数据"><a href="#3-1-数据" class="headerlink" title="3.1 数据:"></a>3.1 数据:</h2><p>这两个算法都是在一个固定的图上面进行训练，如果增加新的节点需要重新进行训练</p><h2 id="3-2-算法"><a href="#3-2-算法" class="headerlink" title="3.2 算法:"></a>3.2 算法:</h2><p>(1)GNN中节点的状态，需要与它相连的节点的状态，从而保存了边的信息，而这两个都是未知的，所以，利用了不动点原理，通过迭代的方法，我们可以计算出节点的状态。<br>(2)GCN中每一层的状态由上一层的状态所决定，和当前层的状态没有关系。通过邻接矩阵来保存边的信息。<br>从而:<br>(1)GCN省去了不动点迭代的过程，可以产生多层的结构。<br>(2)为了保证公式能够有解，GNN需要引入额外的参数进行学习，而GCN的参数就仅仅是上面公式里面的权重。参数数量的减少使得GCN的训练效果更加快速。</p><h2 id="3-3-总结"><a href="#3-3-总结" class="headerlink" title="3.3 总结"></a>3.3 总结</h2><p>和原始GNN网络相比GCN网络训练的速度更快。有的时候不需要经过多次训练就能提取很好的特征</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;之前的博客中学习了神经网络，但是，神经网络只能处理简单的类似于表格的数据，其中没有各个数据之间的联系，例如图片数据等。&lt;br&gt;但是在实际中，我们需要表示各个数据之间的联系，所以我们引入了图结构，图中的节点表示数据，节点之间的线表示各个数据之间的关系，图结构能够表达出比表数据更多的内容。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="原始GNN" scheme="http://example.com/tags/%E5%8E%9F%E5%A7%8BGNN/"/>
+    
+    <category term="GCN" scheme="http://example.com/tags/GCN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息论及交叉熵解析</title>
+    <link href="http://example.com/2020/09/09/%E4%BF%A1%E6%81%AF%E8%AE%BA%E5%8F%8A%E4%BA%A4%E5%8F%89%E7%86%B5%E8%A7%A3%E6%9E%90/"/>
+    <id>http://example.com/2020/09/09/%E4%BF%A1%E6%81%AF%E8%AE%BA%E5%8F%8A%E4%BA%A4%E5%8F%89%E7%86%B5%E8%A7%A3%E6%9E%90/</id>
+    <published>2020-09-08T17:50:42.000Z</published>
+    <updated>2020-11-18T13:25:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>信息论与信息熵是 AI 或机器学习中非常重要的概念，我们经常需要使用它的关键思想来描述概率分布或者量化概率分布之间的相似性。<br>我们从最基本的自信息和信息熵到交叉熵讨论了信息论的基础，再由最大似然估计推导出 KL 散度而加强我们对量化分布间相似性的理解。</p><h1 id="1-自信息"><a href="#1-自信息" class="headerlink" title="1.自信息"></a>1.自信息</h1><p>香农熵的基本概念就是所谓的一个事件背后的自信息（self-information），有时候也叫做不确定性。自信息的直觉解释如下，当某个事件（随机变量）的一个不可能的结果出现时，我们就认为它提供了大量的信息。相反地，当观察到一个经常出现的结果时，我们就认为它具有或提供少量的信息。<br>例如:<br>在硬币抛掷实验中，1bit信息代表单独抛掷一个硬币的两个可能的结果。<br>假如连续三次投掷硬币，一共有2^3=8种可能的结果，每种结果的可能性为0.5^3=0.125。<br>所以这次实验的自信息为-log_2(0.125) = 3,也就是需要3bit来表示其信息，<br>这样我们就能够看出，小概率对应着较高的自信息，其定义如下图所示。</p><p><img src="%E8%87%AA%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%B9%89.png"><br>上面对数的底数可以为2,但是通常都使用10或者e方便计算，影响不大，因为底数不同仅仅是前面的系数不同。</p><p>根据公式，我们可以看出，较小的概率对应着较高的自信息。<br><img src="%E8%87%AA%E4%BF%A1%E6%81%AF%E5%92%8C%E6%A6%82%E7%8E%87%E7%9A%84%E5%85%B3%E7%B3%BB.jpeg"></p><p>当我们面对连续随机变量的情况下，我们针对三种不同的概率密度函数考虑了其对应的信息函数。<br><img src="%E8%BF%9E%E7%BB%AD%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E4%BF%A1%E6%81%AF%E5%87%BD%E6%95%B0.jpeg"></p><h1 id="2-香农熵-信息熵"><a href="#2-香农熵-信息熵" class="headerlink" title="2.香农熵(信息熵)"></a>2.香农熵(信息熵)</h1><p>我们到现在一直讨论的都是自信息。在正常的硬币实验中，自信息实际上都等于香农熵，因为所有的结果都是等概率出现的。通常，香农熵是变量的所有可能结果的自信息的期望值。<br><img src="%E9%A6%99%E5%86%9C%E7%86%B5%E6%8E%A8%E5%AF%BC.png"><br>和之前的一样其底数b可以为任意数值。<br><img src="%E9%A6%99%E5%86%9C%E7%86%B5%E7%9A%84%E5%AE%9A%E4%B9%89.png"><br>推导之后为上面的公式，底数可以为任意值。</p><p>上面的三个连续变量分别为冲击函数(0)，高斯分布(174)和均匀分布(431),可以看出，越寛的分布有越高的信息熵。例如，高斯分布中，自信息曲线下面的面积远大于均匀分布，但是，需要经过概率加权处理。</p><h1 id="3-交叉熵"><a href="#3-交叉熵" class="headerlink" title="3.交叉熵"></a>3.交叉熵</h1><p>交叉熵是用来比较两个概率分布p和q的数学工具，和香农熵类似，交叉熵为在概率p的情况下，q的自信息-log(q)的期望。<br><img src="%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8E%A8%E5%AF%BC.png"><br>在信息论中，这个量值代表用q编码方式去编码服从q分布的事件，我们所需要的信息bit数。这是一个衡量概率分布相似性的工具，经常作为损失函数。<br>同时，交叉熵等于KL散度减去信息熵，当我们最小化交叉熵的时候，后面的信息熵是一个常量，所以能够省略，在这种情况下，交叉熵等于KL散度，因为KL散度能够简单的从最大似然估计推导出來，之后会有以MLE推导KL散度的表达式。</p><h1 id="4-KL散度"><a href="#4-KL散度" class="headerlink" title="4.KL散度"></a>4.KL散度</h1><p>与交叉熵紧密相关，KL散度是另一个在机器学习中衡量相似度的量。<br>从q到p的KL散度如下图所示。</p><p><img src="KL%E6%95%A3%E5%BA%A6%E5%AE%9A%E4%B9%89.png"></p><p>用q来近似p的时候造成的信息损失。和上面的交叉熵相比，减了一个常数项，从优化的目标进行考虑，两者是等价的。其属性为，当p和q相同的时候，KL散度的数值为0.</p><p>还有，KL散度为非负的，二期衡量的是两个分布之间的差异，通常用来分布之间的某种距离。然而，并未真的距离，因为它不是对称的。</p><h1 id="5-通过极大似然估计推导KL散度"><a href="#5-通过极大似然估计推导KL散度" class="headerlink" title="5.通过极大似然估计推导KL散度"></a>5.通过极大似然估计推导KL散度</h1><p>参考李宏毅教授的讲解中，假如给定一个样本数据的分布P_data(x)和生成数据的分布P_g(x;&theta;)<br><img src="%E7%94%A8%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1%E6%8E%A8%E5%AF%BCKL%E6%95%A3%E5%BA%A6.jpeg"><br>上面的推导过程中，我们需要最大化似然函数，然后对最大似然函数取对数，然后将乘法转换为加法，接着转换为期望，然后减去信息熵，就得到了KL散度。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;信息论与信息熵是 AI 或机器学习中非常重要的概念，我们经常需要使用它的关键思想来描述概率分布或者量化概率分布之间的相似性。</summary>
+      
+    
+    
+    
+    
+    <category term="信息论" scheme="http://example.com/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/"/>
+    
+    <category term="交叉熵" scheme="http://example.com/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Transformer模型教程</title>
+    <link href="http://example.com/2020/09/05/Transformer%E6%A8%A1%E5%9E%8B%E6%95%99%E7%A8%8B/"/>
+    <id>http://example.com/2020/09/05/Transformer%E6%A8%A1%E5%9E%8B%E6%95%99%E7%A8%8B/</id>
+    <published>2020-09-05T01:03:28.000Z</published>
+    <updated>2020-11-18T13:25:41.992Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>Transformer是第一个完全依靠自我注意力来计算其输入和输出表示的转换模型，无需使用序列对其的RNN或者卷积。</p><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;Transformer是第一个完全依靠自我注意力来计算其输入和输出表示的转换模型，无需使用序列对其的RNN或者卷积。&lt;/p&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="transformer" scheme="http://example.com/tags/transformer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GPT-3教程</title>
+    <link href="http://example.com/2020/09/04/GPT-3%E6%95%99%E7%A8%8B/"/>
+    <id>http://example.com/2020/09/04/GPT-3%E6%95%99%E7%A8%8B/</id>
+    <published>2020-09-04T01:08:03.000Z</published>
+    <updated>2020-11-18T13:25:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>GPT-3(Generative Pre-trained Transformer 3)是一种自动回归语言模型(这是什么东西？)。<br>使用基于Transformer的深度学习神经网络生成类似于人写的文本。其完整版本包含了1750亿个机器学习的参数。<br>GPT-3在2020年5月推出，在7月进行Beta测试。</p><a id="more"></a><p>相关资料:<br>论文:<br>GPT-3<br>Language Models are Few-Shot Learners<br><a href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a></p><p>GPT-2<br>Language Models are Unsupervised Multitask Learners<br><a href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a></p><p>GPT模型<br>Improving Language Understanding by Generative Pre-Training<br><a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf</a></p><p>GPT-3使用了和GPT-2相同的模型和架构，也是基于Transformer模型，所以，研究GPT-3模型，就直接看GPT模型。GPT和bert模型都是基于Transformer模型，但是不同的是:<br>GPT模型是通过多层解码器构建，而BERT是通过多层编码器模块构建的。</p><p>BERT模型与GPT系列的对比:<br>BERT与GPT-1:<br>都使用了预训练和微调两个阶段，然后使用了Transformer来抽取特征<br>但是，BERT使用了双向语言模型来预训练，而GPT-1使用了单向语言模型<br>导致了Bert的效果更好</p><p>GPT-2与GPT-1:<br>GPT-2在GPT-1的框架下，将第二阶段中的微调部分中有监督的NLP任务转换为无监督的下游任务，从而不需要修改任何参数和结构。<br>提高了Transformer模型的层数和参数规模，从而增加了模型的通用性。<br>用足够大的语言模型来实现学习，虽然学习效率比有监督的方法慢很多，但是是很大的进步</p><p>GPT-3与GPT-2:<br>在语言模型的方向上越走越远。</p><p>GPT模型的训练有两个步骤：<br>第一个步骤是，无监督预训练，在大型的文本集上学习的高能力语言模型，<br>第二个步骤是，有监督微调，将模型调整为带有标记数据的区分任务。</p><p>无监督预训练:<br>获取无监督的语料库u={u_1,…,u_n},然后，我们使用标准的语言建模使得下面的概率最大:<br><img src="GPT3%E9%A2%84%E8%AE%AD%E7%BB%83%E5%85%AC%E5%BC%8F1.png"><br>其中，k是文档窗口的大小，条件概率P是包含变量&Theta;的神经网络模型，而这些变量都是通过随机梯度下降训练出的。</p><p>我们使用了一个多层的Transformer解码器模型，其中多头注意力机制和位置前馈网络产生了一个目标位置的输出分布。</p><p><img src="GPT3%E9%A2%84%E8%AE%AD%E7%BB%83%E5%85%AC%E5%BC%8F2.png"></p><p>其中，U=(u_-k,…,u_-1)是词语token的内容向量，n是层的数目，W_e是词语token的嵌入矩阵，W_p是位置嵌入矩阵。</p><p>其中h_0是GPT的输入，然后计算出每一层的输出，得到最后一层的输出h_t,然后送到softmax函数中计算下个单词出现的概率。</p><p>其中，矩阵的维度为:<br>V:词汇表的大小<br>L:最长句子的长度<br>dim:词嵌入的唯独<br>W_p:L×dim矩阵<br>W_e:V×dim矩阵</p><p>有监督微调:<br>在无监督预训练之后，我们根据有监督的目标任务修改变量。假设有一个有标签的数据集C，每个实例都是包含输入x1,…,xm和标签y。由预训练模型作为输入，来获取最终的transformer block中的h_m,l,然后将其和变量W_y输入到线性输出层,来预测y:<br><img src="GPT3%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83%E5%85%AC%E5%BC%8F1.png"></p><p>将所有的概率通过公式叠加，使其最大:<br><img src="GPT3%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83%E5%85%AC%E5%BC%8F2.png"></p><p>将语言建模作为微调的辅助目标，可以:<br>1.提高模型的范化能力<br>2.加快收敛<br>我们可以优化其目标函数:<br><img src="GPT3%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83%E5%85%AC%E5%BC%8F3.png"></p><p>GPT的模型和应用:<br><img src="GPT%E6%A8%A1%E5%9E%8B%E5%8F%8A%E5%BA%94%E7%94%A8.png"><br>其中的应用分别是:<br>分类问题:<br>应用方法，增加起始和终止符。</p><p>Textual entailment(文本蕴含任务):<br>自然语言推理的一部分(其中还有机器阅读，问答系统和对话)，内容是给定一个前提文本(premise)，根据这个前提文本去推断假说文本(hypothesis)与前提的关系，一般为蕴含(entailment)和矛盾(contradiction)。<br>蕴含关系为从前提中可以推理出假说，矛盾关系为前提和假设矛盾。<br>应用方法，两个句子之间增加分割符</p><p>Similarity(相似性):<br>对于相似性问题，两个比较的句子之间相似性。<br>应用方法，将两个句子顺序颠倒作为两个输入</p><p>问题解答和常识推理:<br>对于一个文档，一个问题和一系列可能的回答</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;GPT-3(Generative Pre-trained Transformer 3)是一种自动回归语言模型(这是什么东西？)。&lt;br&gt;使用基于Transformer的深度学习神经网络生成类似于人写的文本。其完整版本包含了1750亿个机器学习的参数。&lt;br&gt;GPT-3在2020年5月推出，在7月进行Beta测试。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="nlp" scheme="http://example.com/tags/nlp/"/>
+    
+    <category term="gpt" scheme="http://example.com/tags/gpt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu上LibreOffice公式输入</title>
+    <link href="http://example.com/2020/08/19/Ubuntu%E4%B8%8ALibreOffice%E5%85%AC%E5%BC%8F%E8%BE%93%E5%85%A5/"/>
+    <id>http://example.com/2020/08/19/Ubuntu%E4%B8%8ALibreOffice%E5%85%AC%E5%BC%8F%E8%BE%93%E5%85%A5/</id>
+    <published>2020-08-19T12:39:38.000Z</published>
+    <updated>2020-11-18T13:25:41.992Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近写博客，发现很多地方需要用到公式，有很多方法，但是都太麻烦了，所以，直接想用LibreOffice里面的插入公式，然后再截图放到博客上面。<br>下面是在LibreOffice中插入公式需要的一些知识。</p><a id="more"></a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">基础操作</span><br><span class="line">newline 换行</span><br><span class="line">alignl  左对齐</span><br><span class="line">alignc  中间对齐</span><br><span class="line">alignr  右对齐</span><br><span class="line"></span><br><span class="line">数学位置操作</span><br><span class="line">binom&#123;&lt;?&gt;&#125;&#123;&lt;?&gt;&#125;     上下标</span><br><span class="line">&#123;&lt;?&gt;&#125; over &#123;&lt;?&gt;&#125;    上下分数形式</span><br><span class="line">&lt;?&gt;^&#123;&lt;?&gt;&#125;           上标</span><br><span class="line">&lt;?&gt;_&#123;&lt;?&gt;&#125;           下标</span><br><span class="line">sum from&#123;&lt;?&gt;&#125; &lt;?&gt;   叠加</span><br><span class="line"></span><br><span class="line">数学符号</span><br><span class="line">partial 偏导符号</span><br><span class="line">odot    圆圈里有一个点</span><br><span class="line"></span><br><span class="line">希腊符号</span><br><span class="line">%alpha</span><br><span class="line">%beta</span><br><span class="line">%gamma</span><br><span class="line">%delta</span><br><span class="line">%varepsilon</span><br><span class="line">%zeta</span><br><span class="line">%eta</span><br><span class="line">%theta</span><br><span class="line">%iota</span><br><span class="line">%kappa</span><br><span class="line">%lambda</span><br><span class="line">%mu</span><br><span class="line">%nu </span><br><span class="line">%xi </span><br><span class="line">%omicron </span><br><span class="line">%pi </span><br><span class="line">%rho </span><br><span class="line">%varsigma</span><br><span class="line">%sigma </span><br><span class="line">%tau </span><br><span class="line">%upsilon </span><br><span class="line">%varphi </span><br><span class="line">%chi </span><br><span class="line">%psi </span><br><span class="line">%omega </span><br><span class="line">%vartheta</span><br><span class="line">%phi </span><br><span class="line">%varpi </span><br><span class="line">%varrho </span><br><span class="line">%epsilon</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近写博客，发现很多地方需要用到公式，有很多方法，但是都太麻烦了，所以，直接想用LibreOffice里面的插入公式，然后再截图放到博客上面。&lt;br&gt;下面是在LibreOffice中插入公式需要的一些知识。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="ubuntu" scheme="http://example.com/tags/ubuntu/"/>
+    
+    <category term="libreoffice" scheme="http://example.com/tags/libreoffice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BERT模型应用</title>
+    <link href="http://example.com/2020/08/19/BERT%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/"/>
+    <id>http://example.com/2020/08/19/BERT%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/</id>
+    <published>2020-08-19T05:38:05.000Z</published>
+    <updated>2020-11-18T13:25:41.948Z</updated>
+    
+    
+    
+    
+    
+    <category term="bert" scheme="http://example.com/tags/bert/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python中常用模块</title>
+    <link href="http://example.com/2020/08/12/Python%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/"/>
+    <id>http://example.com/2020/08/12/Python%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/</id>
+    <published>2020-08-12T09:34:08.000Z</published>
+    <updated>2020-11-18T13:25:41.988Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-模块列表"><a href="#0-模块列表" class="headerlink" title="0.模块列表"></a>0.模块列表</h1><p>Seaborn</p><h1 id="1-Seaborn"><a href="#1-Seaborn" class="headerlink" title="1.Seaborn"></a>1.Seaborn</h1><p>seaborn是在matplotlib基础上进行封装，Seaborn就是让困难的东西更加简单。用Matplotlib最大的困难是其默认的各种参数，而Seaborn则完全避免了这一问题。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-模块列表&quot;&gt;&lt;a href=&quot;#0-模块列表&quot; class=&quot;headerlink&quot; title=&quot;0.模块列表&quot;&gt;&lt;/a&gt;0.模块列表&lt;/h1&gt;&lt;p&gt;Seaborn&lt;/p&gt;
+&lt;h1 id=&quot;1-Seaborn&quot;&gt;&lt;a href=&quot;#1-Seaborn&quot; cl</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>BERT模型分析</title>
+    <link href="http://example.com/2020/08/10/BERT%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90/"/>
+    <id>http://example.com/2020/08/10/BERT%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90/</id>
+    <published>2020-08-10T02:05:49.000Z</published>
+    <updated>2020-11-18T13:25:41.948Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>Transformer和Bert之间的关系:<br>Transformer模型是2017年谷歌发表的论文attention is all you need中提出的seq2seq模型。现在已经取得了大范围的应用和扩展，而BERT就是从transformer中衍生出来的预训练语言模型</p><p>BERT使用TensorFlow，2018年提供了BERT的PyTorch版本Transformer</p><p>来源:<br>论文:BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding<br>模型的整体框架就是一个seq2seq结构<br>Google AI Language<br>NLP中的预训练:<br>词嵌入是NLP深度学习的基础</p><p><img src="%E8%AF%8D%E5%90%91%E9%87%8F.png"><br>词嵌入(word2vec,GloVe)是通过共现文本对统计，对文本语料库进行预训练<br><img src="%E5%85%B1%E7%8E%B0%E6%96%87%E6%9C%AC%E5%AF%B9%E7%BB%9F%E8%AE%A1.png"></p><p>上下文表示:<br>之前的问题:<br>词嵌入是应用于与上下文无关的方式<br><img src="%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E7%9A%84%E8%AF%8D%E5%B5%8C%E5%85%A5.png"></p><p>解决方法:<br>在语料库中训练上下文表示。<br><img src="%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E5%85%B3%E7%9A%84%E8%AF%8D%E5%B5%8C%E5%85%A5.png"></p><p>上下文相关的表示方法:<br>半监督的序列学习,Google,2015<br><img src="%E5%8D%8A%E7%9B%91%E7%9D%A3%E7%9A%84%E5%BA%8F%E5%88%97%E5%AD%A6%E4%B9%A0.png"></p><p>ELMo:深度上下文词嵌入，2017<br><img src="%E6%B7%B1%E5%BA%A6%E4%B8%8A%E4%B8%8B%E6%96%87%E8%AF%8D%E5%B5%8C%E5%85%A5.png"></p><p>通过通用的预训练来提升语言理解OpenAL,2018<br><img src="%E9%80%9A%E8%BF%87%E9%80%9A%E7%94%A8%E9%A2%84%E8%AE%AD%E7%BB%83%E6%9D%A5%E6%8F%90%E5%8D%87%E8%AF%AD%E8%A8%80%E7%90%86%E8%A7%A3.png"></p><p>模型:借鉴于Attention Is All You Need中的Encoder<br><img src="AttentionIsAllYouNeed.png"><br>完全由注意力机制构成，其分为左右两部分:<br>左侧:编码器部分<br>N=6<br>All Layers output size 512<br>Embedding<br>Positional Encoding<br><img src="PositionalEncoding.png"><br>Notice the Residual connection<br>Multi-head Attention<br>LayerNorm(x + Sublayer(x))<br>Position wise feed forward</p><p>右侧:解码器部分<br>N=6<br>All Layers output size 512<br>Embedding<br>Positional Encoding<br>Notice the Residual connection<br>Multi-head Attention<br><img src="Multi-headAttention.png"><br>LayerNorm(x + Sublayer(x))<br>Position wise feed forward<br>Softmax<br><img src="SoftMax.png"></p><p>其中，解码器中的Multi-head Attention的原理:<br><img src="Multi-HeadAttention%E6%A8%A1%E5%9E%8B.png"><br>其中点乘注意力模型为:<br><img src="ScaledDotProductAttention.png"><br>公式:<br><img src="Attention%E6%A8%A1%E5%9E%8B.png"><br>多注意力模型公式:<br><img src="%E5%A4%9A%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E5%85%AC%E5%BC%8F.png"><br>其中，公式中的Q，K，V的定义为:<br>编码器-解码器注意力层中，序列Q来自之前的解码器层，记忆力关键词K和数值V来自编码器的输出。<br>这三个变量都来自之前的层(hidden state)</p><p>然后是Feed Forward前馈网络Position-wise Feed-Forward network<br><img src="PositionWiseFeedForwardNetwork.png"></p><p>Attention Is All You Need解析:<a href="https://www.jianshu.com/p/b1030350aadb">https://www.jianshu.com/p/b1030350aadb</a><br>Seq2Seq模型的简介:<a href="https://www.jianshu.com/p/b2b95f945a98">https://www.jianshu.com/p/b2b95f945a98</a><br>Seq2Seq模型是输出的长度不确定时采用的模型，这种情况一般是在机器翻译的任务中出现，将一句中文翻译成英文，那么这句英文的长度有可能会比中文短，也有可能会比中文长，所以输出的长度就不确定了。如下图所，输入的中文长度为4，输出的英文长度为2。<br><img src="Seq2Seq%E6%A8%A1%E5%9E%8B.webp"><br>在网络结构中，输入一个中文序列，然后输出它对应的中文翻译，输出的部分的结果预测后面，根据上面的例子，也就是先输出“machine”，将”machine”作为下一次的输入，接着输出”learning”,这样就能输出任意长的序列。<br>机器翻译、人机对话、聊天机器人等等，这些都是应用在当今社会都或多或少的运用到了我们这里所说的Seq2Seq。</p><p>Seq2Seq结构<br>seq2seq属于encoder-decoder结构的一种，这里看看常见的encoder-decoder结构，基本思想就是利用两个RNN，一个RNN作为encoder，另一个RNN作为decoder。encoder负责将输入序列压缩成指定长度的向量，这个向量就可以看成是这个序列的语义，这个过程称为编码，如下图，获取语义向量最简单的方式就是直接将最后一个输入的隐状态作为语义向量C。也可以对最后一个隐含状态做一个变换得到语义向量，还可以将输入序列的所有隐含状态做一个变换得到语义变量。<br><img src="encoder_decoder%E7%BB%93%E6%9E%84.webp"><br>而decoder则负责根据语义向量生成指定的序列，这个过程也称为解码，如下图，最简单的方式是将encoder得到的语义变量作为初始状态输入到decoder的RNN中，得到输出序列。可以看到上一时刻的输出会作为当前时刻的输入，而且其中语义向量C只作为初始状态参与运算，后面的运算都与语义向量C无关。<br><img src="encoder_decoder%E7%BB%93%E6%9E%841.webp"><br>decoder处理方式还有一种，就是语义向量参与了序列的所有时刻的运算，上一时刻的输出仍然作为当前时刻的输入，但是语义向量会参与到所有时刻的运算。<br><img src="encoder_decoder%E7%BB%93%E6%9E%842.webp"></p><p>如何训练Seq2Seq模型:<br>RNN是可以学习概率分布，然后进行预测，比如我们输入t时刻的数据后，预测t+1时刻的数据，比较常见的是字符预测例子或者时间序列预测。为了得到概率分布，一般会在RNN的输出层使用softmax激活函数，就可以得到每个分类的概率。<br>Softmax在机器学习和深度学习中有着非常广泛的应用。尤其在处理多分类（C &gt; 2）问题，分类器最后的输出单元需要Softmax 函数进行数值处理。关于Softmax 函数的定义如下所示：<br><img src="softmax.svg"></p><p>其中，Vi是分类器前级输出单元的输出。i表示类别索引，总的类别个数为C,表示的是当前元素的指数与所有元素指数和的比值。Softmax 将多分类的输出数值转化为相对概率，更容易理解和比较。我们来看下面这个例子。<br>一个多分类问题，C = 4。线性分类器模型最后输出层包含了四个输出值，分别是：<br><img src="math%E8%BE%93%E5%85%A5.svg"><br>通过Softmax处理之后，数值转化为相对概率:<br><img src="math%E8%BE%93%E5%87%BA.svg"><br>很明显，Softmax 的输出表征了不同类别之间的相对概率。我们可以清晰地看出，S1 = 0.8390，对应的概率最大，则更清晰地可以判断预测为第1类的可能性更大。Softmax 将连续数值转化成相对概率，更有利于我们理解。<br><img src="Seq2Seq%E6%A8%A1%E5%9E%8BSoftmax%E5%85%AC%E5%BC%8F.webp"><br>对于RNN，对于某个序列，对于时序t，它的词向量输出概率为P(xt|x1,x2,…,xt-1)，则softmax层每个神经元的计算如下。<br><img src="%E7%A5%9E%E7%BB%8F%E5%85%83%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.svg"><br>其中ht是隐含状态，它与上一时刻的状态及当前输入有关，即h<sub>t</sub>=f(h<sub>t-1</sub>,x<sub>t</sub>)<br>那么整个序列的概率就为:<br><img src="%E5%BA%8F%E5%88%97%E7%9A%84%E6%A6%82%E7%8E%87.svg"><br><img src="RNNDecodeEncode%E6%A8%A1%E5%9E%8B.webp"></p><p>而对于encoder-decoder模型，设有输入序列x<sub>1</sub>,x<sub>2</sub>，x<sub>3</sub>,…,x<sub>T</sub>,输出序列y<sub>1</sub>，y<sub>2</sub>,y<sub>3</sub>，…,y<sub>T</sub>，输入序列和输出序列的长度可能不同。那么其实就需要根据输入序列去得到输出序列可能输出的词概率，于是有下面的条件概率，￼发生的情况下，￼发生的概率等于￼连乘，如下公式所示。其中v表示￼对应的隐含状态向量，它其实可以等同表示输入序列。</p><p>Seq2Seq模型:<a href="https://dataxujing.github.io/seq2seqlearn/chapter2/">https://dataxujing.github.io/seq2seqlearn/chapter2/</a></p><p>部分教程:<a href="https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/">https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/</a><br>bert tensorflow版本:<a href="https://github.com/google-research/bert">https://github.com/google-research/bert</a><br>bert pytorch版本:<a href="https://github.com/huggingface/transformers">https://github.com/huggingface/transformers</a><br>bert pytorch版本说明文档:<a href="https://huggingface.co/transformers/quicktour.html">https://huggingface.co/transformers/quicktour.html</a><br>BERT Bidirectional Encoder Representations from Transformers<br>一种从Transformers模型得来的双向编码表征模型<br>下面通过理论和实践两部分来解释BERT模型<br>1.理论：<br>1.1 为什么需要BERT<br>1.2 它背后的核心思想是什么<br>1.3 它是如何工作的<br>1.4 我们什么时候可以使用它并且对其进行微调</p><p>2.实践</p><h1 id="1-理论"><a href="#1-理论" class="headerlink" title="1.理论"></a>1.理论</h1><h2 id="1-1-为什么需要BERT"><a href="#1-1-为什么需要BERT" class="headerlink" title="1.1 为什么需要BERT"></a>1.1 为什么需要BERT</h2><p>NLP的最大挑战之一是缺乏足够的培训数据。总体而言，有大量文本数据可用，但是如果我们要创建特定于任务的数据集，则需要将该堆拆分为许多不同的类型。而当我们这样做时，我们最终仅得到数千或数十万个人工标记的训练样本。但是，为了表现良好，基于深度学习的NLP模型需要大量数据-在数百万或数十亿的带注释的训练样本上进行训练时，他们看到了重大改进。为了解决上面的数据问题，研究人员开发了多种技术，可在网络上使用大量未注释的文本来训练通用语言表示模型（这被称为预训练）。然后，可以在较小的用于特定任务的数据集上微调这些通用的预训练模型，例如，在处理诸如问题回答和情感分析之类的问题。与从头开始对较小的特定于任务的数据集进行训练相比，此方法可显着提高准确性。BERT是用于NLP预训练的最新的技术。它在深度学习社区引起了轰动，因为它在各种NLP任务（例如问题解答）中都提供了最先进的结果。</p><p>关于BERT的最好的部分是可以免费下载和使用-我们可以使用BERT模型从文本数据中提取高质量的语言特征，也可以根据特定任务（例如情感分析）微调这些模型并使用我们自己的数据回答问题，以产生最先进的预测。</p><h2 id="1-2-它背后的核心思想是什么"><a href="#1-2-它背后的核心思想是什么" class="headerlink" title="1.2 它背后的核心思想是什么"></a>1.2 它背后的核心思想是什么</h2><p>语言建模的真正意义是什么？语言模型试图解决哪些问题？基本上，他们的任务是根据上下文“填补空白”。例如，给定</p><p>“那个女人去商店买了_____鞋。”<br>‘The woman went to the store and bought a __ of shoes’</p><p>语言模型可能会说20%是’cart’，80%是’pair’</p><p>在BERT模型出现之前，语言模型会在训练期间从左到右或这将从左到右和从右到左的结合来查看此文本序列。这种单向方法很适合生成句子-我们可以预测下一个单词，将其附加到序列中，然后预测下一个单词的下一个单词，直到获得完整的句子。</p><p>现在使用BERT模型，这是一种经过双向训练的语言模型（这也是其关键的技术创新）。这意味着与单向语言模型相比，我们现在可以对语言上下文和流程有更深刻的了解。</p><p>BERT并没有预测序列中的下一个单词，而是使用一种称为Masked LM（MLM）的新颖技术：它 随机屏蔽句子中的单词，然后尝试预测它们。掩蔽Mask意味着该模型从两个方向看，并且它使用句子的整个上下文（包括左边和右边的语境）来预测被掩盖的单词。与以前的语言模型不同，它同时考虑了前一个和下一个tokens令牌  。LSTM模型将从左到右和从右到左相结合，并没有同时考虑这两个方向。（不过，说BERT是无方向性的可能更准确。）</p><p>额外提出一个问题，为什么这个无方向性的方法这么有效呢？<br>预训练语言表示分为context-free(和上下文无关)和context-based(基于上下文).<br>context-based表示可以是单向或者双向。<br>context-free表示,例如word2vec产生了一个简单的词嵌入(数字向量)表示词汇表中的每一个词语。<br>例如bank将会有相同的context-free表示在’bank account’和’bank of river’中。</p><p>另一方面，基于上下文的模型建立代表每一个词语的表示是基于句子中的其他词语。<br>例如:I accessed the bank account<br>在单向网络模型中，词语bank是基于I accessed the bank 而不是 account<br>但是，在BERT中，bank是使用了其上下文 I accessed the … account<br>它从深度神经网络的最底层开始，使其深度双向化。</p><p>而且，BERT是基于Transformer model architecture(Transformer模型架构),而不是LSTM，我们很快就会讨论BERT的细节，但是总体而言:<br>Transformer通过执行少量恒定的步骤来工作。在每个步骤中，它都会应用一种注意力机制来理解句子中所有单词之间的关系，而不管它们各自的位置如何。例如，给定句子’I arrive at the bank after crossing the river’，以确定‘bank’一词是指河岸而不是金融机构，那么Transformer可以学会立即注意单词“ river”，然后一步一步做出决定。</p><p>现在，我们了解了BERT的关键思想，让我们深入研究细节。</p><h2 id="1-3-它是如何工作的"><a href="#1-3-它是如何工作的" class="headerlink" title="1.3 它是如何工作的"></a>1.3 它是如何工作的</h2><p>BERT依赖于Transformer（一种学习文本中单词之间的上下文关系的注意力机制）。一个基本的Transformer包括一个读取文本输入的编码器和一个对任务进行预测的解码器。由于BERT的目标是生成语言表示模型，因此只需要编码器部分即可。BERT编码器的输入是一系列令牌，这些令牌首先被转换为矢量，然后在神经网络中进行处理。但是在开始处理之前，BERT需要对输入进行处理并用一些额外的元数据修饰：<br>令牌嵌入：在第一个句子的开头将[CLS]令牌添加到输入的单词令牌中，并在每个句子的末尾插入[SEP]令牌。<br>段嵌入：将指示句子A或句子B的标记添加到每个标记。这允许编码器区分句子。<br>位置嵌入：将位置嵌入添加到每个标记，以指示其在句子中的位置。<br><img src="BERT%E8%BE%93%E5%85%A5.png"><br>BERT输入表示：输入嵌入是令牌嵌入、分段嵌入和位置嵌入的总和</p><p>本质上，Transformer会堆叠一个将序列映射到序列的层，因此输出也是对应索引的输入和输出令牌之间一对一对应关系的向量序列。而且正如我们之前所了解的，BERT不会尝试预测句子中的下一个单词。培训使用以下两种策略：</p><h3 id="1-3-1-Masked-LM-MLM"><a href="#1-3-1-Masked-LM-MLM" class="headerlink" title="1.3.1 Masked LM (MLM)"></a>1.3.1 Masked LM (MLM)</h3><p>这里的想法很简单：随机掩盖输入中15％的单词（用[MASK]令牌替换），通过基于BERT注意的编码器运行整个序列，然后根据序列中其他未屏蔽单词提供的上下文来预测被掩盖的词语。但是，这种掩盖方法存在一个问题-模型仅在输入中存在[MASK]令牌的时候尝试预测，而我们希望模型在不管输入中有什么令牌的时候，都尝试预测正确的令牌。输入。要解决此问题，15％用于屏蔽的令牌中：</p><p>实际上有80％的令牌已替换为令牌[MASK]。<br>10％的令牌被替换为随机令牌。<br>10％的令牌保持不变。<br>在训练BERT损失函数时，仅考虑掩蔽标记的预测，而忽略非掩蔽标记的预测。这导致模型收敛的速度比从左至右或从右至左的模型慢得多。</p><h3 id="1-3-2-Next-Sentence-Prediction-NSP"><a href="#1-3-2-Next-Sentence-Prediction-NSP" class="headerlink" title="1.3.2 Next Sentence Prediction(NSP)"></a>1.3.2 Next Sentence Prediction(NSP)</h3><p>为了理解两个句子之间的关系，BERT训练过程还使用下一个句子预测。具有这种理解的预训练模型与诸如回答问题之类的任务有关。在训练过程中，该模型接受句子的输入对，并且学习预测第二个句子是否也是原始文本中的下一个句子。</p><p>如前所述，BERT使用特殊的[SEP]标记分隔句子。在训练过程中，模型每次输入两个输入语句，从而：</p><p>第二句话是第一句话之后的概率是50％。<br>有50％的概率是整个语料库中的随机句子。</p><p>然后要求BERT预测第二个句子是否是随机的，并假设该随机句子将与第一个句子断开：<br><img src="BERT%E5%8F%A5%E5%AD%90%E9%A2%84%E6%B5%8B.png"></p><p>为了预测第二句话是否与第一句话相连，基本上整个输入序列都会经过基于Transformer的模型，使用简单的分类层将[CLS]令牌的输出转换为2×1形状的矢量，并使用softmax确认IsNext-Label标签。</p><p>结合使用“Marked LM”和“下一句预测”对模型进行训练。这是为了最小化这两种策略的组合损失函数-  “在一起更好”。</p><h3 id="1-3-4-结构"><a href="#1-3-4-结构" class="headerlink" title="1.3.4 结构"></a>1.3.4 结构</h3><p>有4种类型的BERT预训练版本，取决于模型结构的大小<br>BERT-Base：12层，768个隐藏节点，12个注意点，110M参数<br>BERT-Large：24层，1024个隐藏节点，16个注意点，340M参数</p><p>有趣的事实：BERT-Base在4个云TPU上进行了4天的训练，而BERT-Large在16个TPU上进行了4天的训练！</p><h2 id="1-4-我们什么时候可以使用它并且对其进行微调"><a href="#1-4-我们什么时候可以使用它并且对其进行微调" class="headerlink" title="1.4 我们什么时候可以使用它并且对其进行微调"></a>1.4 我们什么时候可以使用它并且对其进行微调</h2><p>在一般语言理解（例如自然语言推理，情感分析，问题回答，释义检测和语言可接受性）下，BERT在各种任务上的表现都超过了最新技术。</p><p>现在，我们如何针对特定任务对其进行微调？BERT可用于多种语言任务。如果要基于自己的数据集微调原始模型，可以通过在核心模型的顶部添加一个单独的层来实现。</p><p>例如，假设我们正在创建一个问答应用程序。本质上，问题解答只是一项预测任务-在收到问题作为输入时，应用程序的目标是从某个语料库中识别正确的答案。因此，给定一个问题和一个上下文段落，该模型将从最有可能回答该问题的段落中预测一个开始和结束标记。这意味着使用BERT可以通过学习两个标记答案开头和结尾的额外矢量来训练我们应用程序的模型。<br><img src="BERT%E5%9B%9E%E7%AD%94.png"></p><p>就像句子对任务一样，问题将成为输入序列中的第一个句子，第二个句子成为段落。但是，这一次在微调期间学习了两个新参数：起始向量和结束向量。</p><p>在微调训练中，大多数超参数保持与BERT训练中相同；本文针对需要调整的超参数给出了具体指导。</p><p>请注意，如果要进行微调，我们需要将输入转换为用于预训练核心BERT模型的特定格式，例如，我们需要添加特殊标记以标记开始（[CLS ]）以及句子的分隔/结尾（[SEP]）和用于区分不同句子的句段ID －将数据转换为BERT使用的特征。</p><h1 id="2-实践"><a href="#2-实践" class="headerlink" title="2.实践"></a>2.实践</h1><p>实践环境:ubuntu python torch transformers</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-简介&quot;&gt;&lt;a href=&quot;#0-简介&quot; class=&quot;headerlink&quot; title=&quot;0.简介&quot;&gt;&lt;/a&gt;0.简介&lt;/h1&gt;&lt;p&gt;Transformer和Bert之间的关系:&lt;br&gt;Transformer模型是2017年谷歌发表的论文attention </summary>
       
     
     

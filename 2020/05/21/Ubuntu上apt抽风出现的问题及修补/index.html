@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Ubuntu上apt抽风出现的问题及修补 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="apt抽风了怎么办？先哭。。然后资料来源：https:&#x2F;&#x2F;blog.csdn.net&#x2F;shimadear&#x2F;article&#x2F;details&#x2F;90598646 下面是详细：apt下载出现下面的错误:Could not get lock &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend - open (11: Resource temporarily unavailable) 解决办法：第一种情况">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu上apt抽风出现的问题及修补">
+<meta property="og:url" content="http://example.com/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="apt抽风了怎么办？先哭。。然后资料来源：https:&#x2F;&#x2F;blog.csdn.net&#x2F;shimadear&#x2F;article&#x2F;details&#x2F;90598646 下面是详细：apt下载出现下面的错误:Could not get lock &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend - open (11: Resource temporarily unavailable) 解决办法：第一种情况">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-21T05:53:33.000Z">
+<meta property="article:modified_time" content="2020-11-18T13:25:41.992Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="apt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ubuntu上apt抽风出现的问题及修补" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/" class="article-date">
+  <time datetime="2020-05-21T05:53:33.000Z" itemprop="datePublished">2020-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu上apt抽风出现的问题及修补
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>apt抽风了怎么办？<br>先哭。。<br>然后资料来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shimadear/article/details/90598646">https://blog.csdn.net/shimadear/article/details/90598646</a></p>
+<p>下面是详细：<br>apt下载出现下面的错误:<br>Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)</p>
+<p>解决办法：<br>第一种情况：<br>进程中存在与apt相关的正在运行的进程：<br>首先检查是否在运行apt,apt-get相关的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep -i apt</span><br></pre></td></tr></table></figure>
+<p>如果存在与apt相关的正在运行的进程，kill掉进程；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">kill</span> -9 &lt;process id&gt;</span><br></pre></td></tr></table></figure>
+<p>或者直接简单粗暴的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall apt apt-get</span><br></pre></td></tr></table></figure>
+<p>如果进行完上面的步骤还是无法顺利执行apt-get 操作，则属于第二种情况：</p>
+<p>第二种情况：<br>进程列表中已经没有与apt相关的进程在运行，但依然报错，在这种情况下，产生错误的根本原因是lock_file. lock_file用于防止两个或多个进程使用相同的数据。 当运行apt或apt-commands时，它会在几个地方创建lock files。 当前一个apt命令未正确终止时，lock file未被删除，因此它们会阻止任何新的apt / apt-get命令实例，比如正在执行apt-get upgrade，在执行过程中直接ctrl+c取消了该操作，很有可能就会造成这种情况。<br>要解决此问题，首先要删除lock file。<br>使用lsof命令获取持有lock file的进程的进程ID,依次运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lsof /var/lib/dpkg/lock</span><br><span class="line">lsof /var/lib/apt/lists/lock</span><br><span class="line">lsof /var/cache/apt/archives/lock</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，以上命令执行结果如果无返回，说明没有正在运行的进程；如果返回了相应的进程，需要kill掉。</p>
+<p>删除所有的lock file</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/lib/apt/lists/lock</span><br><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock</span><br></pre></td></tr></table></figure>
+<p>最后重新配置一下dpkg：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
+<p>如果上述命令不出任何错误，就万事大吉了。（我是到这里问题就解决了）</p>
+<p>但是有时候，生活总是嫌你不够惨，执行配置命令时可能会出现以下错误：</p>
+<p>dpkg: error: dpkg frontend is locked by another process<br>这需要我们额外进行一些操作：</p>
+<p>找出正在锁定lock file的进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lsof &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend</span><br><span class="line">kill掉输出的进程（如果输出为空则忽略）</span><br><span class="line">sudo kill -9 PID</span><br><span class="line">删除lock file并重新配置dpkg:</span><br><span class="line">sudo rm &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend</span><br><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/" data-id="ckhnlm63a002bnng7fjyy2sw9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/28/%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BAPHP-MySQL%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%AE%BA%E5%9D%9B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          从头开始创建PHP/MySQL驱动的论坛
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ubuntu上opencv教程5之特征检测及描述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

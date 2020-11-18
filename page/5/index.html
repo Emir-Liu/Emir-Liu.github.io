@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Ubuntu上opencv教程1之简介" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B1%E4%B9%8B%E7%AE%80%E4%BB%8B/" class="article-date">
+  <time datetime="2020-02-11T14:19:52.000Z" itemprop="datePublished">2020-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B1%E4%B9%8B%E7%AE%80%E4%BB%8B/">Ubuntu上opencv教程1之简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-总结"><a href="#0-总结" class="headerlink" title="0.总结"></a>0.总结</h1><p>这个部分的内容在于如何在电脑中配置opencv-python，以及介绍。</p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h1><h2 id="1-1-opencv"><a href="#1-1-opencv" class="headerlink" title="1.1 opencv"></a>1.1 opencv</h2><p>opencv项目1999年开始，2000年公布。<br>现在opencv支持很多语言C++，Python,Java等等。可以在很多平台上使用Windows,Linux,OS X,Android,IOS等等。</p>
+<h2 id="1-2-opencv-python"><a href="#1-2-opencv-python" class="headerlink" title="1.2 opencv-python"></a>1.2 opencv-python</h2><p>opencv-python是opencv的python的API接口。它结合了opencv的C++API接口和Python语言。</p>
+<p>因为python的简单和可读性，而十分流行。</p>
+<p>和其他语言C/C++相比，Python速度较慢，但是，Python可以容易地用C/C++来扩展。这个特性有助于在C/C++中编写计算密集型代码，并且为其创建Python包装器，然后可以将这些包装器来用作Python模块。因此，这个有两个优点：</p>
+<p>1.它的后台实际是C++代码，所以我们的代码和原始C/C++代码一样快。</p>
+<p>2.Python中代码非常容易</p>
+<p>这就是opencv python的工作原理，它就是围绕原始C++实现的Python包装器。</p>
+<p>Numpy的支持使任务变得非常容易，Numpy是一个高度优化的数值运算库。提供了一个MATLAB风格的语法。所有OpenCV数组结构都转变为Numpy数组。</p>
+<p>opencv python教程<br>开始之前需要了解python和numpy，因为用opencv python编写优化代码，就必须具备良好的numpy知识。</p>
+<h1 id="2-ubuntu上opencv使用入门"><a href="#2-ubuntu上opencv使用入门" class="headerlink" title="2.ubuntu上opencv使用入门"></a>2.ubuntu上opencv使用入门</h1><h2 id="2-1-Ubuntu上使用摄像头"><a href="#2-1-Ubuntu上使用摄像头" class="headerlink" title="2.1 Ubuntu上使用摄像头"></a>2.1 Ubuntu上使用摄像头</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /dev/v*  //  可以看到摄像头，例如/dev/video0,表示成功驱动摄像头    </span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2如何安装应用程序显示摄像头捕捉到的视频"><a href="#2-2如何安装应用程序显示摄像头捕捉到的视频" class="headerlink" title="2.2如何安装应用程序显示摄像头捕捉到的视频"></a>2.2如何安装应用程序显示摄像头捕捉到的视频</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install camorama</span><br><span class="line">sudo apt install cheese //camorama/cheese分别是两款应用程序</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3opencv操作方式"><a href="#2-3opencv操作方式" class="headerlink" title="2.3opencv操作方式"></a>2.3opencv操作方式</h2><p>使用opencv需要使用pip来下载相关的包，但是下载源在国外，将下载源修改到国内就可以加速下载了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple 包名</span><br><span class="line">//这个是使用清华的镜像源</span><br></pre></td></tr></table></figure>
+<p>上面是临时的方法，下面是永久的方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br><span class="line"></span><br><span class="line">[global]</span><br><span class="line">index-url = http://mirrors.aliyun.com/pypi/simple</span><br><span class="line">[install]</span><br><span class="line">trusted-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<p>为了使用opencv需要使用python3中的包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install opencv-python</span><br></pre></td></tr></table></figure>
+<p>之后需要相关的包也这样下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">path = <span class="string">&quot;...&quot;</span></span><br><span class="line">image = cv2.imread(paht)                                //            输入代操作的图片的路径</span><br><span class="line">gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)//                    灰度转换，降低计算强度</span><br><span class="line">cv2.rectangle(image,(x,y),(x+w,y+w),(0,255,0),2)</span><br><span class="line">//对图片进行编辑，最后一个参数为画笔的大小</span><br><span class="line">cv2.imshow(<span class="string">&quot;image-title&quot;</span>,image)                             //        显示图像</span><br><span class="line">cv2.waitKey(0)                                                            </span><br><span class="line">//注意要加上这一句要不然会看不见图片，</span><br><span class="line">//参数为延迟多少毫秒，当为0时，延迟无穷大秒</span><br><span class="line">face_cascade = cv2.CascadeClassifier(...)</span><br><span class="line">//获取人脸识别的训练数据，来自Github上opencv/data/haarcascades</span><br></pre></td></tr></table></figure>
+<h2 id="2-4人脸识别源码"><a href="#2-4人脸识别源码" class="headerlink" title="2.4人脸识别源码"></a>2.4人脸识别源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import cv2 </span><br><span class="line"> </span><br><span class="line">image_path      = <span class="string">&quot;./pc1.png&quot;</span></span><br><span class="line">facedata_path   = <span class="string">&quot;./haarcascade_frontalface_default.xml&quot;</span></span><br><span class="line">face_cascade    = cv2.CascadeClassifier(facedata_path)</span><br><span class="line"> </span><br><span class="line">image   = cv2.imread(image_path)</span><br><span class="line">gray    = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)</span><br><span class="line">cv2.imshow(<span class="string">&quot;Picture&quot;</span>,image)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">faces = face_cascade.detectMultiScale(</span><br><span class="line">         gray,</span><br><span class="line">         scaleFactor = 1.15,</span><br><span class="line">         minNeighbors= 5,</span><br><span class="line">         minSize     = (5,5),</span><br><span class="line">         flags       = cv2.CASCADE_SCALE_IMAGE</span><br><span class="line">         )   </span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;find &#123;0&#125; face(s)!&quot;</span>,format(len(faces)))</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span>(x,y,w,h) <span class="keyword">in</span> faces:</span><br><span class="line">     cv2.circle(image,((x+x+w)/2,(y+y+h)/2),w/2,(0,255,0),2)</span><br><span class="line">cv2.imshow(<span class="string">&quot;Find Faces!&quot;</span>,image)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B1%E4%B9%8B%E7%AE%80%E4%BB%8B/" data-id="ckhnlm63g002gnng7dh8s1v5h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上opencv教程0之入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B0%E4%B9%8B%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-02-11T13:54:01.000Z" itemprop="datePublished">2020-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B0%E4%B9%8B%E5%85%A5%E9%97%A8/">Ubuntu上opencv教程0之入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这一部分教程分为多个部分：<br>1.opencv的简介(已完成)<br> 学习如何在电脑上设置opencv-python</p>
+<p>2.opencv上Gui特性(已完成)<br> 了解如何显示和保存图像和视频，控制鼠标事件和创建轨迹栏</p>
+<p>3.核心操作(已完成) 学习基础的图片操作，像像素编辑，几何变换，代码优化，一些数学工具等。</p>
+<p>4.opencv图片操作(ing)<br> 学习opencv中不同的图片处理功能。</p>
+<p>5.特征检测和描述<br> 学习特征检测和描述</p>
+<p>6.视频分析<br> 学习不同的技术来处理视频，如对象跟踪等。</p>
+<p>7.摄像机标定和三位重建<br> 学习摄像定位和立体成像等。</p>
+<p>8.机器学习<br> 学习机器学习</p>
+<p>9.计算摄影<br> 学习不同的计算摄影技术，如图像去噪等。</p>
+<p>10.目标检测<br> 学习目标检测技术，如人脸检测等。</p>
+<p>11.opencv-python绑定<br> 如何生成opencv-python绑定。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/11/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B0%E4%B9%8B%E5%85%A5%E9%97%A8/" data-id="ckhnlm63f002fnng745ay35mi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-比特币分析1之比特币的由来" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="article-date">
+  <time datetime="2020-02-09T11:43:14.000Z" itemprop="datePublished">2020-02-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/">比特币分析1之比特币的由来及原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介："><a href="#0-简介：" class="headerlink" title="0.简介："></a>0.简介：</h1><p>这篇文章主要讲解其大概的原理，但是对其数据结构，算法和协议没有分析。</p>
+<h1 id="1-比特币的诞生"><a href="#1-比特币的诞生" class="headerlink" title="1.比特币的诞生"></a>1.比特币的诞生</h1><p>这一部分很少，主要将了比特币的诞生的原因，里面包含了货币的发展过程。</p>
+<h2 id="1-1-以物易物"><a href="#1-1-以物易物" class="headerlink" title="1.1 以物易物"></a>1.1 以物易物</h2><p>一开始，生产力较低，生活靠自给自足，没有大规模的贸易，相互之间的交易通过以物易物来实现。</p>
+<h2 id="1-2-实体货币"><a href="#1-2-实体货币" class="headerlink" title="1.2 实体货币"></a>1.2 实体货币</h2><p>将黄金等贵重金属作为一般等价物，将所需要的物品通过一般等价物为基础，进行交换，从而避免了以物易物。使用货币来得到需要的货物。</p>
+<h2 id="1-3-符号货币"><a href="#1-3-符号货币" class="headerlink" title="1.3 符号货币"></a>1.3 符号货币</h2><p>重金属货币容易磨损，不易携带，开采困难等问题，导致了钞票的出现，国家发行钞票，将重金属货币回收，以钞票作为抵押，承诺钞票和金属货币相同。</p>
+<h2 id="1-4-中央系统虚拟货币"><a href="#1-4-中央系统虚拟货币" class="headerlink" title="1.4 中央系统虚拟货币"></a>1.4 中央系统虚拟货币</h2><p>为了减少货币发行的数量，将纸币回收，在帐目上记下回收的纸币的数量，当交易时，直接修改帐目，支付的过程变为了账本上数字的变更。</p>
+<h2 id="1-5-分布式虚拟货币"><a href="#1-5-分布式虚拟货币" class="headerlink" title="1.5 分布式虚拟货币"></a>1.5 分布式虚拟货币</h2><p>中央系统完全依赖于账本持有人的信用，如果账本的数据随意篡改，货币系统就会崩溃。<br>为了不以来任何中央处理，设置了分布式虚拟货币。</p>
+<h1 id="2-比特币系统框架"><a href="#2-比特币系统框架" class="headerlink" title="2. 比特币系统框架"></a>2. 比特币系统框架</h1><h2 id="2-1-账本公开"><a href="#2-1-账本公开" class="headerlink" title="2.1 账本公开"></a>2.1 账本公开</h2><p>账本上不再记载人的余额，而是记载每一笔交易，付款人，收款人和付款金额。只要账本的初始状态确定，每一笔交易记录可靠并且有时序，当前每个人有多少钱是可以推算出来的。</p>
+<p>账本公开，只要任何人需要都可以获取当前完整的账本，账本上记录了从账本创建开始到当前所有的交易记录。</p>
+<h2 id="2-2-身份和签名机制（公钥加密系统）"><a href="#2-2-身份和签名机制（公钥加密系统）" class="headerlink" title="2.2 身份和签名机制（公钥加密系统）"></a>2.2 身份和签名机制（公钥加密系统）</h2><p>每个人的身份是保密的，有一个保密印章和印章扫描器。</p>
+<p>保密印章隐含整个比特币网络中唯一的一串字符串，但字符串被隐藏了。无法被伪造。</p>
+<p>印章扫描器可以扫描已经盖好的章，读出隐含信息，显示字符。</p>
+<h2 id="2-3-成立挖矿群体"><a href="#2-3-成立挖矿群体" class="headerlink" title="2.3 成立挖矿群体"></a>2.3 成立挖矿群体</h2><p>矿工为组为单位，一组可以是单独的一个人，也可以是几个人。<br>矿工从事挖矿活动。<br>挖矿可以随时退出。<br>矿工有一定可能性获得报酬。</p>
+<h2 id="2-4-创建初始账本（创世块）"><a href="#2-4-创建初始账本（创世块）" class="headerlink" title="2.4 创建初始账本（创世块）"></a>2.4 创建初始账本（创世块）</h2><p>账本的开始记录了交易记录，付款人是系统，一开始比特币很少，随着比特币的流通和矿工的活动，比特币会增加。</p>
+<h1 id="3-比特币工作流程"><a href="#3-比特币工作流程" class="headerlink" title="3. 比特币工作流程"></a>3. 比特币工作流程</h1><p>下面是在比特币的系统中是如何实现挖矿和交易的。</p>
+<h2 id="3-1-交易"><a href="#3-1-交易" class="headerlink" title="3.1 交易"></a>3.1 交易</h2><p>A给B10个比特币，那么A，B分别有一个标识字符串a,b。那么交易单上有：a给b10个比特币，来源是系统送的。后面是a的保密章。</p>
+<p>B拿到交易单之后，用印章扫描器来确定是a签署的，但是还需要矿工来确定付款人是否有足够的余额，记账和确认交易的有效性。</p>
+<h2 id="3-2-挖矿"><a href="#3-2-挖矿" class="headerlink" title="3.2 挖矿"></a>3.2 挖矿</h2><p>挖矿是最为复杂的部分，但是很贴切。</p>
+<p>每个组都复制一份初始账本，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/" data-id="ckhnlm64o0051nng7aiu10yy2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之链接文件分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2020-01-03T10:58:26.000Z" itemprop="datePublished">2020-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/">Ubuntu上STM32开发之链接文件分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>接着上面的启动文件的分析之后，这一篇就是关于链接文件的介绍，链接文件也就是：stm32_flash.ld。连接器需要通过链接文件来形成最后的目标文件。<br>链接程序脚本是提供给链接程序的脚本，用于指定内存布局并在执行固件时初始化固件所使用的各个内存段。这些脚本至关重要，因为它们指定了闪存和RAM的起始地址以及它们的大小。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">/* Entry Point */</span><br><span class="line"> ENTRY(Reset_Handler)</span><br><span class="line">/*</span><br><span class="line">指定程序的入口点，即程序中要执行的第一条指令。</span><br><span class="line">*/</span><br><span class="line"> /* Highest address of the user mode stack */</span><br><span class="line"> _estack = 0x20005000;    /* end of 20K RAM */</span><br><span class="line">/*</span><br><span class="line">声明一个变量_estack，该值表示堆栈的开始。</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">HEAP 和 STACK 在前面的启动文件中有解释</span><br><span class="line">*/</span><br><span class="line"> _Min_Heap_Size = 0;      /* required amount of heap  */</span><br><span class="line"> _Min_Stack_Size = 0x100; /* required amount of stack */</span><br><span class="line"> </span><br><span class="line">/*</span><br><span class="line">这一部分需要根据你选择的芯片来确定。</span><br><span class="line">在我之前的关于STM32下载的博客中，通过stm32flash可以看到</span><br><span class="line">Interface serial_posix: 57600 8E1</span><br><span class="line">Version      : 0x22</span><br><span class="line">Option 1     : 0x00</span><br><span class="line">Option 2     : 0x00</span><br><span class="line">Device ID    : 0x0410 (STM32F10xxx Medium-density)</span><br><span class="line">- RAM        : 20KiB  (512b reserved by bootloader)</span><br><span class="line">- Flash      : 128KiB (size first sector: 4x1024)</span><br><span class="line">- Option RAM : 16b</span><br><span class="line">- System RAM : 2KiB</span><br><span class="line">在下载程序的时候可以看到是下载到flash里面，下载地址从0x08000000开始。</span><br><span class="line">ORIGIN 起始地址</span><br><span class="line">LENGTH 大小</span><br><span class="line">*/</span><br><span class="line"> /* Specify the memory areas */</span><br><span class="line"> MEMORY</span><br><span class="line"> &#123;</span><br><span class="line">   FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 128K</span><br><span class="line">   RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 20K</span><br><span class="line">   MEMORY_B1 (rx)  : ORIGIN = 0x60000000, LENGTH = 0K</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">/* Define output sections */</span><br><span class="line"> SECTIONS</span><br><span class="line"> &#123;</span><br><span class="line">   /* The startup code goes first into FLASH */</span><br><span class="line">   .isr_vector :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     KEEP(*(.isr_vector)) /* Startup code */</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"> </span><br><span class="line">   /* The program code and other data goes into FLASH */</span><br><span class="line">   .text :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     *(.text)           /* .text sections (code) */</span><br><span class="line">     *(.text*)          /* .text* sections (code) */</span><br><span class="line">     *(.rodata)         /* .rodata sections (constants, strings, etc.  ) */</span><br><span class="line">     *(.rodata*)        /* .rodata* sections (constants, strings, etc. ) */</span><br><span class="line">     *(.glue_7)         /* glue arm to thumb code */</span><br><span class="line">     *(.glue_7t)        /* glue thumb to arm code */</span><br><span class="line"> </span><br><span class="line">     KEEP (*(.init))</span><br><span class="line">     KEEP (*(.fini))</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _etext = .;        /* define a global symbols at end of code */</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"></span><br><span class="line">    .ARM.extab   : &#123; *(.ARM.extab* .gnu.linkonce.armextab.*) &#125; &gt;FLASH</span><br><span class="line">     .ARM : &#123;</span><br><span class="line">     __exidx_start = .;</span><br><span class="line">       *(.ARM.exidx*)</span><br><span class="line">       __exidx_end = .;</span><br><span class="line">     &#125; &gt;FLASH</span><br><span class="line"> </span><br><span class="line">   .ARM.attributes : &#123; *(.ARM.attributes) &#125; &gt; FLASH</span><br><span class="line"> </span><br><span class="line">   .preinit_array     :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__preinit_array_start = .);</span><br><span class="line">     KEEP (*(.preinit_array*))</span><br><span class="line">     PROVIDE_HIDDEN (__preinit_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line">   .init_array :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__init_array_start = .);</span><br><span class="line">     KEEP (*(SORT(.init_array.*)))</span><br><span class="line">     KEEP (*(.init_array*))</span><br><span class="line">     PROVIDE_HIDDEN (__init_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line">   .fini_array :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__fini_array_start = .);</span><br><span class="line">     KEEP (*(.fini_array*))</span><br><span class="line">     KEEP (*(SORT(.fini_array.*)))</span><br><span class="line">     PROVIDE_HIDDEN (__fini_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"></span><br><span class="line">   /* used by the startup to initialize data */</span><br><span class="line">   _sidata = .;</span><br><span class="line"> </span><br><span class="line">   /* Initialized data sections goes into RAM, load LMA copy after     code */</span><br><span class="line">   .data : AT ( _sidata )</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _sdata = .;        /* create a global symbol at data start */</span><br><span class="line">     *(.data)           /* .data sections */</span><br><span class="line">     *(.data*)          /* .data* sections */</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _edata = .;        /* define a global symbol at data end */</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"> </span><br><span class="line">   /* Uninitialized data section */</span><br><span class="line">   . = ALIGN(4);</span><br><span class="line">   .bss :</span><br><span class="line">   &#123;</span><br><span class="line">     /* This is used by the startup <span class="keyword">in</span> order to initialize the .bss    secion */</span><br><span class="line">     _sbss = .;         /* define a global symbol at bss start */</span><br><span class="line">     __bss_start__ = _sbss;</span><br><span class="line">     *(.bss)</span><br><span class="line">     *(.bss*)</span><br><span class="line">     *(COMMON)</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _ebss = .;         /* define a global symbol at bss end */</span><br><span class="line">     __bss_end__ = _ebss;</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"></span><br><span class="line">   PROVIDE ( end = _ebss );</span><br><span class="line">   PROVIDE ( _end = _ebss );</span><br><span class="line"> </span><br><span class="line">   /* User_heap_stack section, used to check that there is enough RAM  left */</span><br><span class="line">   ._user_heap_stack :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     . = . + _Min_Heap_Size;</span><br><span class="line">     . = . + _Min_Stack_Size;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"> </span><br><span class="line">   /* MEMORY_bank1 section, code must be located here                  explicitly            */</span><br><span class="line">   /* Example: extern int foo(void) __attribute__ ((section (<span class="string">&quot;.        mb1text&quot;</span>))); */</span><br><span class="line">   .memory_b1_text :</span><br><span class="line">   &#123;</span><br><span class="line">     *(.mb1text)        /* .mb1text sections (code) */</span><br><span class="line">     *(.mb1text*)       /* .mb1text* sections (code)  */</span><br><span class="line">     *(.mb1rodata)      /* read-only data (constants) */</span><br><span class="line">     *(.mb1rodata*)</span><br><span class="line">   &#125; &gt;MEMORY_B1</span><br><span class="line"> </span><br><span class="line">   /* Remove information from the standard libraries */</span><br><span class="line">   /DISCARD/ :</span><br><span class="line">   &#123;</span><br><span class="line">     libc.a ( * )</span><br><span class="line">     libm.a ( * )</span><br><span class="line">     libgcc.a ( * )</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在看完上面的链接文件，以及之前博客关于启动文件的分析，可以了解到。</p>
+<p>在文件的一开始，便将程序的入口地址设定为了Reset中断。</p>
+<p>进入Reset中断之后，首先将从0x80000（这里有几个0我数不清了，随便打的）开始的flash地址中的data数据复制到RAM中，其中flash中的数据就是我们下载的工程的程序，然后将bss段清零初始化。</p>
+<p>重新回顾一下text.data数据段和bss数据段：<br>TEXT:<br>通常是指用来存放程序执行带没的一块内存，这部分区域的内容在程序运行之前就已经确定了，通常属于只读，但是某些架构也会允许读写，也就是修改程序。里面可能包含一些常数变量。有的地方写为CODE。</p>
+<p>DATA(data segment):<br>通常是指用来存放程序中已经初始化的全局变量的一块内存，属于静态分配。</p>
+<p>BSS(bss segment):Block Started by Symbol  通常指用来存放程序中没有初始化的全局变量的一块内存，属于静态内存分配。</p>
+<p>但是，为什么需要进行复制呢？考虑一下flash和RAM的关系。<br>都是随机存储器，断电数据消失，但Flash有点不一样，它在消失数据之前，添加了一个“性质”，这个性质能上电后再识别，且把这个信号返回到ram中，这样近似的把flash当成了eeprom来使用，就是这样，RAM芯片断电后数据会丢失，Flash芯片断电后数据不会丢失，但是RAM的读取数据速度远远快于Flash芯片。</p>
+<p>所以，将flash中的data数据复制到ram中大概可以提高运行速度之类的。我猜的。有必要看一下哪些数据被分配到了data数据段。</p>
+<p>接着进行跳转，先是系统初始化，也就是调用系统时钟初始化函数。<br>然后调用静态构造函数，对静态数据进行初始化的函数，从名字上来看。<br>接着调用自己编写的工程，从main函数开始。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" data-id="ckhnlm6390028nng7gk6vce0d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之启动文件分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2020-01-03T03:11:25.000Z" itemprop="datePublished">2020-01-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/">Ubuntu上STM32开发之文件分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>在建立stm32f1的工程之后，通过makefile来管理所有工程，然后通过gcc-arm-none-eabi工具链编译链接，通过串口stm32flash下载，接着用minicom来进行串口通信之后，终于完成了初步的了解。</p>
+<p>那么，这次我主要想了解一下，stm32f1工程中调用的ST官网下载的固件库的文件，里面包含了启动，链接，库函数文件的意义。</p>
+<p>至于这个工程，可以找我的仓库。</p>
+<h1 id="1-启动文件startup-stm32f10x-md-s"><a href="#1-启动文件startup-stm32f10x-md-s" class="headerlink" title="1 启动文件startup_stm32f10x_md.s"></a>1 启动文件startup_stm32f10x_md.s</h1><p>这个启动文件是适合gnu编译器的启动文件，记得，之前说过，不同的编译器，需要选择不同的启动文件。<br>看后缀就知道这个是汇编语言的文件，但是这是ARMCPU中的汇编和之前学过的x86CPU中的汇编不太一样可以参考GNU ARM Assembler Quick Reference文件来查询。</p>
+<p>启动文件主要的定义了：</p>
+<ol>
+<li>初始SP<br>//_estack变量就是SP(stack point),由连接文件定义</li>
+<li>初始PC = Reset_Handler 复位中断</li>
+<li>设置中断向量表的入口和 ISR地址<br>//ISR就是中断服务处理 Interrupt Service Routines</li>
+<li>配置了系统时钟</li>
+<li>分支到了C库的main函数，最终调用main函数</li>
+</ol>
+<p>复位后，Cortex-M3处理器进入到线程模式，优先级为Privileged,堆栈设置在了main。<br>//这一句不了解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br></pre></td><td class="code"><pre><span class="line">.syntax unified     //说明下面的指令是ARM和THUMB通用格式</span><br><span class="line">.cpu cortex-m3      //定义内核为Cortex-M3</span><br><span class="line">.fpu softvfp        //定义fpu使用</span><br><span class="line">.thumb              //定义汇编代码为Thumb指令集</span><br><span class="line"></span><br><span class="line">//定义全局标签可以对外部链接程序可见， </span><br><span class="line"> .global g_pfnVectors       //该标签指向中断向量表</span><br><span class="line"> .global Default_Handler    //该标签指向默认中断，为死循环</span><br><span class="line"> </span><br><span class="line">/*</span><br><span class="line">通常情况下：</span><br><span class="line">BSS(bss segment):Block Started by Symbol  通常指用来存放程序中没有初始化的全局变量的一块内存，属于静态内存分配</span><br><span class="line"></span><br><span class="line">DATA(data segment):</span><br><span class="line">通常是指用来存放程序中已经初始化的全局变量的一块内存，属于静态分配。</span><br><span class="line"></span><br><span class="line">TEXT(sode segment):</span><br><span class="line">通常是指用来存放程序执行带没的一块内存，这部分区域的打掉在程序运行之前就已经确定了，通常属于只读，但是某些架构也会允许读写，也就是修改程序。里面可能包含一些常数变量。有的地方写为CODE。</span><br><span class="line"></span><br><span class="line">上面的三个在GNU中可以默认识别。下面程序中还有相关的介绍。</span><br><span class="line"></span><br><span class="line">HEAP:</span><br><span class="line">用于存放进程运行中被动态分配的内存段，大小不固定，可以动态增减，当进程调用malloc等函数分配内存时，新分配的内存会添加到堆上，当调用free等函数释放内存时，就会从堆中剔除。</span><br><span class="line"></span><br><span class="line">STACK:</span><br><span class="line">栈，有称之为堆栈，是用户存放程序临时创建的局部变量，也就是函数&#123;&#125;中定义的变量，但是不包括static申明的变量，static申明的变量在数据段中存储。同时，函数被调用时候，参数也会进入发起调用的进程栈中，调用结束之后，函数的返回值，也会存放在栈中，因为先进先出的特点，特别方便用来保存，回复调用现场。可以将它看作一个寄存，交换临时数据的内存区。</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">/*label: .word value 将4字节的value放在由连接器分配的label地址上 */</span><br><span class="line"> .word   _sidata    //.data部分 初始化的数值 启动地址</span><br><span class="line"> .word   _sdata     //.data部分 在链接脚本定义的 启动地址</span><br><span class="line"> .word   _edata     //.data部分 在链接脚本定义的 结束地址</span><br><span class="line"> .word   _sbss      //.bss部分 在链接脚本定义的 启动地址</span><br><span class="line"> .word   _ebss      //.bss部分 在链接脚本定义的 结束地址</span><br><span class="line"> </span><br><span class="line">/*.equ &lt;symbol name&gt;, &lt;value&gt;直接对标签赋值类(似于armasm中的EQU)*/ </span><br><span class="line"> .equ  BootRAM, 0xF108F85F</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">这是处理器在复位后首次开始执行时调用的代码，仅执行必要的设置，然后调用应用程序提供的main函数。</span><br><span class="line">.section &lt;section_name&gt; &#123;,”&lt;flags&gt;”&#125; </span><br><span class="line">开始一个新的代码或者数据区域。 之前说过的三个区域有默认的标志，并且三个区域名称是连接器所默认的</span><br><span class="line">下面是一些区域的标志指示</span><br><span class="line">&lt;Flag&gt; Meaning</span><br><span class="line"> a allowable section</span><br><span class="line"> w writable section</span><br><span class="line"> x executable section</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">     .section    .text.Reset_Handler</span><br><span class="line">/*.weak是弱申明，为了将来可以重映射之类的，和<span class="built_in">printf</span>重映射类似,将来可以重新定义函数的内容*/</span><br><span class="line">     .weak   Reset_Handler</span><br><span class="line">     .<span class="built_in">type</span>   Reset_Handler, %<span class="keyword">function</span></span><br><span class="line"> Reset_Handler:  //将Reset_Handler复位中断放在程序的开始确定CP</span><br><span class="line"> </span><br><span class="line">/*下面这部分的含义是将flash中的数据段复制到SRAM中 */</span><br><span class="line">   movs  r1, <span class="comment">#0 //将立即数0赋值给r1寄存器</span></span><br><span class="line">/*arm CPU中的b指令和x86 CPU中的jmp指令类似。branch，无条件分支*/</span><br><span class="line">   b LoopCopyDataInit   //程序转移到LoopCopyDataInit处</span><br><span class="line"> </span><br><span class="line"> CopyDataInit:</span><br><span class="line">     ldr r3, =_sidata   //从存储器中将_sidata加载到寄存器r3中</span><br><span class="line">     ldr r3, [r3, r1]   //从地址r3+r1处读取一个字（32bit）到r3中  r3为基地址，r1为偏移地址</span><br><span class="line">     str r3, [r0, r1]   //把寄存器r3的值存储到存储器中地址为r0+r1地址处</span><br><span class="line">     adds    r1, r1, <span class="comment">#4 //r1+4</span></span><br><span class="line"> </span><br><span class="line"> LoopCopyDataInit:      //循环拷贝数据</span><br><span class="line">/*</span><br><span class="line">LDR (immediate offset)</span><br><span class="line">Load with immediate offset, pre-indexed immediate offset, or post-indexed immediate offset.</span><br><span class="line">*/</span><br><span class="line">     ldr r0, =_sdata    //DATA起始地址</span><br><span class="line">     ldr r3, =_edata    //r3给出尾地址</span><br><span class="line">/*</span><br><span class="line">adds,如果算术指令的最后有s，就代表n,z,c,v符号位也会立即更新</span><br><span class="line">n == 0 (Negative)结果不是负数</span><br><span class="line">z == 1 (Zero)结果是0</span><br><span class="line">c == 1 (Carry)有进位</span><br><span class="line">v == 0 (Overflow)溢出</span><br><span class="line">*/     </span><br><span class="line">     adds    r2, r0, r1 //r2=r0+r1</span><br><span class="line">/*cmp r1,r2 ：r1-r2,然后根据运算结果更新标志位*/    </span><br><span class="line">     cmp r2, r3         //r2和r3比较，地址还在data段</span><br><span class="line">/*Branch <span class="keyword">if</span> C is Clear当没有借位的时候跳转到下面*/</span><br><span class="line">     bcc CopyDataInit</span><br><span class="line">     ldr r2, =_sbss     //从存储器中将_sbss加载到寄存器r2中</span><br><span class="line">     b   LoopFillZerobss//循环置位bss段</span><br><span class="line"> /* Zero fill the bss segment. */</span><br><span class="line"> FillZerobss:</span><br><span class="line">     movs    r3, <span class="comment">#0</span></span><br><span class="line">     str r3, [r2], <span class="comment">#4</span></span><br><span class="line"> </span><br><span class="line"> LoopFillZerobss:</span><br><span class="line">     ldr r3, = _ebss    //从存储器中将_ebss加载到寄存器r3中</span><br><span class="line">     cmp r2, r3         //同上</span><br><span class="line">     bcc FillZerobss</span><br><span class="line">/*</span><br><span class="line">bl 有返回的跳转，</span><br><span class="line">在跳转到子程序之前，将下一条指令的地址拷贝到LR链接寄存器(R14)</span><br><span class="line">由于BL指令保存了下条指令的地址，</span><br><span class="line">所以可以使用MOV PC LR来实现子程序的返回。</span><br><span class="line">*/</span><br><span class="line"> /* Call the clock system intitialization <span class="keyword">function</span>.*/</span><br><span class="line">     bl  SystemInit</span><br><span class="line"> /* Call static constructors */</span><br><span class="line">     bl __libc_init_array</span><br><span class="line"> /* Call the application<span class="string">&#x27;s entry point.*/</span></span><br><span class="line"><span class="string">     bl  main</span></span><br><span class="line"><span class="string">/*</span></span><br><span class="line"><span class="string">bc lr类似于</span></span><br><span class="line"><span class="string">mov pc ,lr</span></span><br><span class="line"><span class="string">跳转到lr(链接寄存器)也就是返回地址</span></span><br><span class="line"><span class="string">*/</span></span><br><span class="line"><span class="string">     bx  lr</span></span><br><span class="line"><span class="string"> .size   Reset_Handler, .-Reset_Handler</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .section    .text.Default_Handler,&quot;ax&quot;,%progbits</span></span><br><span class="line"><span class="string"> Default_Handler://这就是上面说的默认中断，是一个死循环</span></span><br><span class="line"><span class="string"> Infinite_Loop:</span></span><br><span class="line"><span class="string">     b   Infinite_Loop</span></span><br><span class="line"><span class="string">     .size   Default_Handler, .-Default_Handler</span></span><br><span class="line"><span class="string"> /******************************************************************************</span></span><br><span class="line"><span class="string"> *</span></span><br><span class="line"><span class="string"> * The minimal vector table for a Cortex M3.  Note that the proper constructs</span></span><br><span class="line"><span class="string"> * must be placed on this to ensure that it ends up at physical address</span></span><br><span class="line"><span class="string"> * 0x0000.0000.</span></span><br><span class="line"><span class="string"> *</span></span><br><span class="line"><span class="string"> ******************************************************************************/</span></span><br><span class="line"><span class="string">     .section    .isr_vector,&quot;a&quot;,%progbits</span></span><br><span class="line"><span class="string">     .type   g_pfnVectors, %object</span></span><br><span class="line"><span class="string">     .size   g_pfnVectors, .-g_pfnVectors</span></span><br><span class="line"><span class="string">g_pfnVectors://这就是上面说的中断向量表</span></span><br><span class="line"><span class="string">     .word   _estack</span></span><br><span class="line"><span class="string">     .word   Reset_Handler</span></span><br><span class="line"><span class="string">     .word   NMI_Handler</span></span><br><span class="line"><span class="string">     .word   HardFault_Handler</span></span><br><span class="line"><span class="string">     .word   MemManage_Handler</span></span><br><span class="line"><span class="string">     .word   BusFault_Handler</span></span><br><span class="line"><span class="string">     .word   UsageFault_Handler</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   SVC_Handler</span></span><br><span class="line"><span class="string">     .word   DebugMon_Handler</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   PendSV_Handler</span></span><br><span class="line"><span class="string">     .word   SysTick_Handler</span></span><br><span class="line"><span class="string">     .word   WWDG_IRQHandler</span></span><br><span class="line"><span class="string">     .word   PVD_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TAMPER_IRQHandler</span></span><br><span class="line"><span class="string">     .word   RTC_IRQHandler</span></span><br><span class="line"><span class="string">     .word   FLASH_IRQHandler</span></span><br><span class="line"><span class="string">     .word   RCC_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI0_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI1_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI2_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI3_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI4_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel1_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel2_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel3_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel4_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel5_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel6_IRQHandler</span></span><br><span class="line"><span class="string">     .word   DMA1_Channel7_IRQHandler</span></span><br><span class="line"><span class="string">     .word   ADC1_2_IRQHandler</span></span><br><span class="line"><span class="string">     .word   USB_HP_CAN1_TX_IRQHandler</span></span><br><span class="line"><span class="string">     .word   USB_LP_CAN1_RX0_IRQHandler</span></span><br><span class="line"><span class="string">     .word   CAN1_RX1_IRQHandler</span></span><br><span class="line"><span class="string">     .word   CAN1_SCE_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI9_5_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM1_BRK_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM1_UP_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM1_TRG_COM_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM1_CC_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM2_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM3_IRQHandler</span></span><br><span class="line"><span class="string">     .word   TIM4_IRQHandler</span></span><br><span class="line"><span class="string">     .word   I2C1_EV_IRQHandler</span></span><br><span class="line"><span class="string">     .word   I2C1_ER_IRQHandler</span></span><br><span class="line"><span class="string">     .word   I2C2_EV_IRQHandler</span></span><br><span class="line"><span class="string">     .word   I2C2_ER_IRQHandler</span></span><br><span class="line"><span class="string">     .word   SPI1_IRQHandler</span></span><br><span class="line"><span class="string">     .word   SPI2_IRQHandler</span></span><br><span class="line"><span class="string">     .word   USART1_IRQHandler</span></span><br><span class="line"><span class="string">     .word   USART2_IRQHandler</span></span><br><span class="line"><span class="string">     .word   USART3_IRQHandler</span></span><br><span class="line"><span class="string">     .word   EXTI15_10_IRQHandler</span></span><br><span class="line"><span class="string">     .word   RTCAlarm_IRQHandler</span></span><br><span class="line"><span class="string">     .word   USBWakeUp_IRQHandler</span></span><br><span class="line"><span class="string">   .word 0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   0</span></span><br><span class="line"><span class="string">     .word   BootRAM       //0x108. This is for boot in RAM mode </span></span><br><span class="line"><span class="string">   /*</span></span><br><span class="line"><span class="string">   下面的都是对中断函数进行弱申明</span></span><br><span class="line"><span class="string">   在工程中会在stm32f10x_it文件中重新申明</span></span><br><span class="line"><span class="string">   */</span></span><br><span class="line"><span class="string">   .weak NMI_Handler</span></span><br><span class="line"><span class="string">     .thumb_set NMI_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">   .weak HardFault_Handler</span></span><br><span class="line"><span class="string">     .thumb_set HardFault_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">   .weak MemManage_Handler</span></span><br><span class="line"><span class="string">     .thumb_set MemManage_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">   .weak BusFault_Handler</span></span><br><span class="line"><span class="string">     .thumb_set BusFault_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   UsageFault_Handler</span></span><br><span class="line"><span class="string">     .thumb_set UsageFault_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   SVC_Handler</span></span><br><span class="line"><span class="string">     .thumb_set SVC_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DebugMon_Handler</span></span><br><span class="line"><span class="string">     .thumb_set DebugMon_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   PendSV_Handler</span></span><br><span class="line"><span class="string">     .thumb_set PendSV_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   SysTick_Handler</span></span><br><span class="line"><span class="string">     .thumb_set SysTick_Handler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   WWDG_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set WWDG_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TAMPER_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TAMPER_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   RTC_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set RTC_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   FLASH_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set FLASH_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   RCC_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set RCC_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   EXTI0_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI0_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   EXTI1_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI1_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   EXTI2_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI2_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   EXTI3_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI3_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   EXTI4_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI4_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DMA1_Channel1_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel1_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DMA1_Channel2_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel2_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string">    .weak   DMA1_Channel3_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel3_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DMA1_Channel4_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel4_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DMA1_Channel5_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel5_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DMA1_Channel6_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel6_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   DMA1_Channel7_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set DMA1_Channel7_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   ADC1_2_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set ADC1_2_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   USB_HP_CAN1_TX_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set USB_HP_CAN1_TX_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   USB_LP_CAN1_RX0_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set USB_LP_CAN1_RX0_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   CAN1_RX1_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set CAN1_RX1_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   CAN1_SCE_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set CAN1_SCE_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string">     .weak   EXTI9_5_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI9_5_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM1_BRK_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM1_BRK_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM1_UP_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM1_UP_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM1_TRG_COM_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM1_TRG_COM_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM1_CC_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM1_CC_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM2_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM2_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM3_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM3_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   TIM4_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set TIM4_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   I2C1_EV_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set I2C1_EV_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   I2C1_ER_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set I2C1_ER_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string">     .weak   SPI1_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set SPI1_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   SPI2_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set SPI2_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   USART1_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set USART1_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   USART2_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set USART2_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   USART3_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set USART3_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   EXTI15_10_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set EXTI15_10_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   RTCAlarm_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set RTCAlarm_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">     .weak   USBWakeUp_IRQHandler</span></span><br><span class="line"><span class="string">     .thumb_set USBWakeUp_IRQHandler,Default_Handler</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+<p>好了上面写的很复杂，主要是有一些必要的知识点补充，可以看原本没有注释的文件，就能够看懂这个启动文件的内容了。</p>
+<p>下面是启动流程：<br>首先，STM32上电通过BOOT0和BOOT1两个引脚连接高低电平来确定启动初始地址在哪里，STM32启动位置有三种：</p>
+<p>1.Main Flash memory<br>是STM32内置的Flash，一般我们使用JTAG或者SWD模式下载程序时，就是下载到这个里面，重启后也直接从这启动程序。</p>
+<p>2.System memory<br>从系统存储器启动，这种模式启动的程序功能是由厂家设置的。一般来说，这种启动方式用的比较少。</p>
+<p>3.Embedded Memory<br>内置SRAM，既然是SRAM，自然也就没有程序存储的能力了，这个模式一般用于程序调试。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" data-id="ckhnlm6370023nng741r423mu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上vim进阶教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/02/Ubuntu%E4%B8%8Avim%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-01-02T06:21:18.000Z" itemprop="datePublished">2020-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/02/Ubuntu%E4%B8%8Avim%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B/">Ubuntu上vim进阶教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>这是对我之前的博客vim操作指南的一个补充，是对于我的配置的一些讲解</p>
+<p>我有一个仓库，里面就是关于vim的配置。之前也提到过:<a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/vimrc">https://github.com/Emir-Liu/vimrc</a></p>
+<p>我们看一看user vimrc file，里面有下面的内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> runtimepath+=~/.vim_runtime</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.vim_runtime/vimrcs/basic.vim</span><br><span class="line"><span class="built_in">source</span> ~/.vim_runtime/vimrcs/filetypes.vim</span><br><span class="line"><span class="built_in">source</span> ~/.vim_runtime/vimrcs/plugins_config.vim</span><br><span class="line"><span class="built_in">source</span> ~/.vim_runtime/vimrcs/extended.vim</span><br><span class="line"></span><br><span class="line">try</span><br><span class="line"><span class="built_in">source</span> ~/.vim_runtime/my_configs.vim</span><br><span class="line">catch</span><br><span class="line">endtry</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其中，采用了source命令，这是一个很有趣的东西，在当前的bash环境中，读取并且执行文件中的命令。</p>
+<p>讲解一下source的来源，是从C Shell而来的，这是什么？是bash的内置命令。通常情况下，通常使用“.”来代替。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/02/Ubuntu%E4%B8%8Avim%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B/" data-id="ckhnlm63k002mnng7ckb7d05r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之UC-OS-III移植" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/30/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8BUC-OS-III%E7%A7%BB%E6%A4%8D/" class="article-date">
+  <time datetime="2019-12-30T11:35:46.000Z" itemprop="datePublished">2019-12-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/30/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8BUC-OS-III%E7%A7%BB%E6%A4%8D/">Ubuntu上STM32开发之UC/OS-III移植</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0准备"><a href="#0准备" class="headerlink" title="0准备"></a>0准备</h1><p>makefile 管理工程脚本语言<br>STM32F1的固件库，之前的博客有提到<br>UC/OS III文件，从Micrium官网下载符合STM32的版本。</p>
+<h1 id="1提取必要的文件"><a href="#1提取必要的文件" class="headerlink" title="1提取必要的文件"></a>1提取必要的文件</h1><p>UC/OS III文档中，该文件结构的分析：<br>EvalBoards:<br>开发板相关的文件，主要配置底层和系统，需要提取部分文件<br>uC-CPU:CPU相关的文件，但是我打算使用STM32F1的标准固件库，就不用这部分了<br>uC-LIB:这是Micrium官方的库，刚接触的时候可以不用<br>uCOS-III:这是关键的部分，主要的移植内容。其中有两个文件夹。<br>Ports:与系统相关的端口配置文件<br>Source:OS的全部文件</p>
+<p>知道了文档的结构之后，该提取了。<br>提取uCOS-III文档，和EvalBoards中的app_cfg.h和os_cfg.h。<br>app_cfg.h:应用配置文件：任务优先级和堆栈大小等。<br>os_cfg.h：系统配置文件：使能相应的功能函数，裁剪系统<br>STM32固件库中的必要文件：<br>  启动文件<br>  链接文件<br>  库文件</p>
+<h1 id="2-配置文件："><a href="#2-配置文件：" class="headerlink" title="2 配置文件："></a>2 配置文件：</h1><p>  首先的我们需要配置系统节拍器system TIck TImer,SysTIck，也就是俗称的系统滴答，其作用类似于驱动整个系统的心脏。</p>
+<h2 id="2-1-初始化系统节拍器"><a href="#2-1-初始化系统节拍器" class="headerlink" title="2.1 初始化系统节拍器"></a>2.1 初始化系统节拍器</h2><p>  我们使用ST的系统节拍器作为操作系统的系统节拍器，芯片的SysTick是内核Cortex-M3的一部分，所以，在初始化的时候调用CM3中的SysTick_Config函数。</p>
+<p>  说明一下，SysTick是专门为系统而设计的Cortex-M3内核的芯片的功能。</p>
+<p>  配置过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//app_cfg.c</span><br><span class="line">void OSTick_Init(void)</span><br><span class="line">&#123;</span><br><span class="line">  RCC_ClocksTypeDef RCC_ClocksStructure;</span><br><span class="line">  RCC_GetClocksFreq(&amp;RCC_ClocksStructure);  //获取系统时钟频率</span><br><span class="line">  SysTick_Config(RCC_ClocksStructure.HCLK_Frequency/OS_TICKS_PER_SEC);</span><br><span class="line">//初始化并启动SysTick和它的中断</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-系统节拍器中断配置"><a href="#2-2-系统节拍器中断配置" class="headerlink" title="2.2 系统节拍器中断配置"></a>2.2 系统节拍器中断配置</h2><p>中断函数需要调用系统相关的函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void SysTick_Handler(void)</span><br><span class="line">&#123;</span><br><span class="line">  OSIntEnter();</span><br><span class="line">  OSTimeTick();</span><br><span class="line">  OSIntExit();</span><br><span class="line">//系统节拍器调用OS函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-裁剪系统"><a href="#2-3-裁剪系统" class="headerlink" title="2.3 裁剪系统"></a>2.3 裁剪系统</h2><p>  打开或者关闭系统的某些功能，也就是配置os_cfg.h文件。</p>
+<h3 id="2-3-1最低优先级-os-lowest-prio"><a href="#2-3-1最低优先级-os-lowest-prio" class="headerlink" title="2.3.1最低优先级 os_lowest_prio"></a>2.3.1最低优先级 os_lowest_prio</h3><p>  优先级：优先级越小，数值越大。配置优先值数值的最大值。</p>
+<h3 id="2-3-2系统每秒的滴答数-os-ticks-per-sec"><a href="#2-3-2系统每秒的滴答数-os-ticks-per-sec" class="headerlink" title="2.3.2系统每秒的滴答数 os_ticks_per_sec"></a>2.3.2系统每秒的滴答数 os_ticks_per_sec</h3><h3 id="2-3-3任务堆栈大小-os-task-xxx-stk-size"><a href="#2-3-3任务堆栈大小-os-task-xxx-stk-size" class="headerlink" title="2.3.3任务堆栈大小 os_task_xxx_stk_size"></a>2.3.3任务堆栈大小 os_task_xxx_stk_size</h3><h2 id="2-4-配置os-cpu-a-asm文件"><a href="#2-4-配置os-cpu-a-asm文件" class="headerlink" title="2.4 配置os_cpu_a.asm文件"></a>2.4 配置os_cpu_a.asm文件</h2><p>  位于uc/os iii ports下面，主要是系统底层相关的一部分汇编代码，内容是对外部引用（全局变量，函数）声明，以及部分系统相关源代码（汇编）做定义。</p>
+<h1 id="3-工程结构"><a href="#3-工程结构" class="headerlink" title="3 工程结构"></a>3 工程结构</h1><p>第一类 标准外设库<br>  startup code:启动代码<br>  STM32F10x_StdPeriph_Dricer:标准外设库驱动<br>  CMSIS：标准接口</p>
+<p>第二类 uC/OS III内核<br>  uC/OS III Source:内核源代码<br>  uC/OS III Ports:OS端口底层代码，与处理器，编译平台有关。</p>
+<p>第三类 用户应用<br>  Bsp:应用底层代码（初始化，驱动等）<br>  App:应用实现代码（配置OS，应用等）</p>
+<p>FAQ:<br>1.SYSTEM\sys\sys.c:33:7: error: expected ‘(‘ before ‘void’ __ASM void MSR_MSP(u32 addr)</p>
+<p>我在编译工程的时候遇到的这个问题，说实话这个东西应该是编译器的版本的问题吧，大概，需要将上面的文件修改一些：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__ASM void MSR_MSP(u32 addr)</span><br><span class="line">&#123;</span><br><span class="line">MSR MSP, r0 //<span class="built_in">set</span> Main Stack value</span><br><span class="line">BX r14</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将上面那种写法修改成下面这种应该就没事了</span><br><span class="line">//为什么？我也不知道。总之先记下了。</span><br><span class="line">void MSR_MSP(u32 addr)</span><br><span class="line">&#123;</span><br><span class="line">__ASM volatile(<span class="string">&quot;MSR MSP, r0&quot;</span>);</span><br><span class="line">__ASM volatile(<span class="string">&quot;BX r14&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/30/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8BUC-OS-III%E7%A7%BB%E6%A4%8D/" data-id="ckhnlm634001wnng7et8m99wx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之printf函数重映射" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/" class="article-date">
+  <time datetime="2019-12-28T11:22:40.000Z" itemprop="datePublished">2019-12-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/">Ubuntu上STM32开发之printf函数重映射</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在之前的博客中，我在尝试使用标准输出函数printf的时候，发现没有显示。</p>
+<p>以为自己什么时候出问题了，甚至以为自己没有成功编译下载程序。</p>
+<p>但是，我在Windows系统下面，编译了包含printf函数的hex文件，然后，在Ubuntu环境下下载，查看串口。发现没有问题。</p>
+<p>我才发现，是因为自己没有重定义printf的底层函数的问题。</p>
+<p>首先发代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &quot;stm32f10x_conf.h&quot;</span></span><br><span class="line"> </span><br><span class="line">void uart_init(u32 bound)&#123;</span><br><span class="line">  GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">  USART_InitTypeDef USART_InitStructure;</span><br><span class="line">  NVIC_InitTypeDef NVIC_InitStructure;</span><br><span class="line"></span><br><span class="line">  RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1|RCC_APB2Periph_GPIOA, ENABLE); </span><br><span class="line"></span><br><span class="line">  //USART1_TX   GPIOA.9</span><br><span class="line"></span><br><span class="line">  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; //PA.9</span><br><span class="line">  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; </span><br><span class="line">  GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">  //USART1_RX   GPIOA.10</span><br><span class="line">  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//PA10</span><br><span class="line">  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;</span><br><span class="line">  GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">  //Usart1 NVIC </span><br><span class="line">   NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;</span><br><span class="line">  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;</span><br><span class="line">  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;    </span><br><span class="line">  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;     </span><br><span class="line">  NVIC_Init(&amp;NVIC_InitStructure); </span><br><span class="line"></span><br><span class="line">  USART_InitStructure.USART_BaudRate = bound;</span><br><span class="line">  USART_InitStructure.USART_WordLength = USART_WordLength_8b;</span><br><span class="line">  USART_InitStructure.USART_StopBits = USART_StopBits_1;</span><br><span class="line">  USART_InitStructure.USART_Parity = USART_Parity_No;</span><br><span class="line">  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;</span><br><span class="line">  USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx; </span><br><span class="line">  USART_Init(USART1, &amp;USART_InitStructure); </span><br><span class="line">  USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);</span><br><span class="line">  USART_Cmd(USART1, ENABLE);                    </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int _write (int fd, char *pBuffer, int size)</span><br><span class="line">    &#123;</span><br><span class="line">        int i=0;</span><br><span class="line">        <span class="keyword">for</span> (i = 0; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!(USART1-&gt;SR &amp; USART_SR_TXE))</span><br><span class="line">            &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            USART_SendData(USART1, pBuffer[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	uart_init(9600);</span><br><span class="line">    int i=0;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">while</span>(1)</span><br><span class="line">  &#123;</span><br><span class="line">       <span class="keyword">for</span>(i=0;i&lt;1000000;i++);</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;hello!\r\n&quot;</span>);</span><br><span class="line"> </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里，我写了一个_write函数，因为在gcc_arm_none_eabi编译器中，printf函数是通过_write函数来实现的，我们需要将printf的输出流重映射到串口上，就需要修改这些底层的实现。</p>
+<p>还有，在Windows环境下Keil软件中的arm编译器则采取不同的底层实现方式，所以，在不同编译器的情况下，需要重新修改函数。补充一下，在Keil的C库中，printf和scanf是通过fputc和fgetc来操作的。</p>
+<p>还有，听说在用GNU的printf需要在最后添加\n或者使用fflush(stdout)函数。来刷新输出流。否则printf不会输出任何数据，而且会被后来的正确发送的printf数据覆盖。这是由于printf的数据流在扫描到 \n以前会被保存在缓存中，直到 \n出现或是fflush(stdout)强制刷新才会输出数据，如果我们在printf数据的末尾不加入\n或fflush(stdout)，这个printf数据就不会被发送出去，而且在新的printf语句也会重写printf的缓存内容，使得新的printf语句不会附带之前的内容一起输出，从而造成上一条错误的printf内容不显示且丢失。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/" data-id="ckhnlm635001ynng7ajj2b7d7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之工程管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2019-12-26T11:38:11.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/">Ubuntu上STM32开发之工程管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过makefile来实现工程的管理。<br>首先工程的结构是：<br>CORE:cm的核心文件<br>HARDWARE:硬件方面的.c和.h文件<br>STM32F10x_FWLib:STM32F10X的固件库<br>SYSTEM:常用的功能的.c和.h文件<br>USER:用户写的main.c等<br>makefile文件<br>ld文件</p>
+<p>CORE和STM32F10x_FWLib都是来自ST官网的固件库里面。<br>说到ST官网，大概说一下固件库在STM32系列-&gt;Tools&amp;Software-&gt;Embedded Software-&gt;MCU&amp;MPU Embedded Software-&gt;Standard Peripheral Libraries</p>
+<p>建立自己的工程文件夹，在里面建立CORE，STM32F10x_FWLib，HARDWARE，SYSTEM，USER文件夹。<br>首先，将固件库的inc和src文件复制到自己工程的STM32F10x_FWLib文件夹中。<br>再选择文件到CORE文件夹中，按照下面我的工程进行挑选，在选择的过程中，有多个启动文件，选择TrueSTUDIO文件夹下的启动文件，然后，不同启动文件对应不同的内存，我就选startup_stm32f10x_md.s作为我的启动文件，我的芯片是STM32F103RBT6。然后记得要挑选链接文件.ld，</p>
+<p>记住不要忘记stm32f10x_conf.h文件。</p>
+<p>然后，如果在编译的时候遇到下面的问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/tmp/ccSTjuNC.s: Assembler messages:</span><br><span class="line">/tmp/ccSTjuNC.s:890: Error: registers may not be the same -- `strexb r3,r2,[r3]<span class="string">&#x27;</span></span><br><span class="line"><span class="string">/tmp/ccSTjuNC.s:943: Error: registers may not be the same -- `strexh r3,r2,[r3]&#x27;</span></span><br><span class="line">makefile:32: recipe <span class="keyword">for</span> target <span class="string">&#x27;CORE/core_cm3.o&#x27;</span> failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这是因为GCC更新之后，对于源代码的错误的容忍性降低了，很多旧版本可以忽略的代码错误，在新版本就会被拒绝。<br>这些问题的最常见原因是在文件core_cm3.c的内联汇编过程中（通常未链接）对strexh和strexb的错误使用，该文件是ARM CMSIS库的一部分，包含在ST外设库中。<br>您有两种方法可以解决此问题。两种方法均有效，您可以根据自己的情况选择一种：</p>
+<p>1.更新所有库（CMSIS，外围设备库等）。这是一种更简洁的方法，并且从长远来看是最好的，但是如果您使用的是旧版本的库，则短期内可能需要大量工作才能适应调用库的代码。（万恶的ST更新库了吗？我不知道，因为我写的时候还没有更新这个问题）</p>
+<p>2.编辑core_cm3.c并注释掉函数__STREXH和__STREXB的定义。这些存在问题的函数很少使用，您的应用程序很可能不需要它们。如果确实使用它们，则应更新库（上面的选项1）。</p>
+<p>上面来源：<a target="_blank" rel="noopener" href="http://support.raisonance.com/node/431888">http://support.raisonance.com/node/431888</a></p>
+<p>但是，其实我们可以通过修改core_cm3的汇编部分代码来避免这个错误：</p>
+<p>在core_cm3.h文件中，我们需要修改__STREXB和 __STREXH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//原本是这样的</span><br><span class="line">__ASM volatile (<span class="string">&quot;strexh %0, %2, [%1]&quot;</span> : <span class="string">&quot;=r&quot;</span> (result) : <span class="string">&quot;r&quot;</span> (addr), <span class="string">&quot;r&quot;</span>(value) );</span><br><span class="line">//现在是这样的</span><br><span class="line">__ASM volatile (<span class="string">&quot;strexh %0, %2, [%1]&quot;</span> : <span class="string">&quot;=&amp;r&quot;</span> (result) : <span class="string">&quot;r&quot;</span> (addr), <span class="string">&quot;r&quot;</span>(value) );</span><br><span class="line">//就是将=r 修改为了 =&amp;r</span><br></pre></td></tr></table></figure>
+<p>这样问题就解决了<br>下面是我的工程模板</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── CORE</span><br><span class="line">│   ├── core_cm3.c</span><br><span class="line">│   ├── core_cm3.h</span><br><span class="line">│   ├── startup_stm32f10x_md.s</span><br><span class="line">│   ├── stm32f10x.h</span><br><span class="line">│   ├── system_stm32f10x.c</span><br><span class="line">│   └── system_stm32f10x.h</span><br><span class="line">├── HARDWARE</span><br><span class="line">│   ├── led.c</span><br><span class="line">│   └── led.h</span><br><span class="line">├── makefile</span><br><span class="line">├── STM32F10x_FWLib</span><br><span class="line">│   ├── inc</span><br><span class="line">│   │   ├── misc.h</span><br><span class="line">│   │   ├── stm32f10x_adc.h</span><br><span class="line">│   │   ├── stm32f10x_bkp.h</span><br><span class="line">│   │   ├── stm32f10x_can.h</span><br><span class="line">│   │   ├── stm32f10x_cec.h</span><br><span class="line">│   │   ├── stm32f10x_crc.h</span><br><span class="line">│   │   ├── stm32f10x_dac.h</span><br><span class="line">│   │   ├── stm32f10x_dbgmcu.h</span><br><span class="line">│   │   ├── stm32f10x_dma.h</span><br><span class="line">│   │   ├── stm32f10x_exti.h</span><br><span class="line">│   │   ├── stm32f10x_flash.h</span><br><span class="line">│   │   ├── stm32f10x_fsmc.h</span><br><span class="line">│   │   ├── stm32f10x_gpio.h</span><br><span class="line">│   │   ├── stm32f10x_i2c.h</span><br><span class="line">│   │   ├── stm32f10x_iwdg.h</span><br><span class="line">│   │   ├── stm32f10x_pwr.h</span><br><span class="line">│   │   ├── stm32f10x_rcc.h</span><br><span class="line">│   │   ├── stm32f10x_rtc.h</span><br><span class="line">│   │   ├── stm32f10x_sdio.h</span><br><span class="line">│   │   ├── stm32f10x_spi.h</span><br><span class="line">│   │   ├── stm32f10x_tim.h</span><br><span class="line">│   │   ├── stm32f10x_usart.h</span><br><span class="line">│   │   └── stm32f10x_wwdg.h</span><br><span class="line">│   └── src</span><br><span class="line">│       ├── misc.c</span><br><span class="line">│       ├── stm32f10x_adc.c</span><br><span class="line">│       ├── stm32f10x_bkp.c</span><br><span class="line">│       ├── stm32f10x_can.c</span><br><span class="line">│       ├── stm32f10x_cec.c</span><br><span class="line">│       ├── stm32f10x_crc.c</span><br><span class="line">│       ├── stm32f10x_dac.c</span><br><span class="line">│       ├── stm32f10x_dbgmcu.c</span><br><span class="line">│       ├── stm32f10x_dma.c</span><br><span class="line">│       ├── stm32f10x_exti.c</span><br><span class="line">│       ├── stm32f10x_flash.c</span><br><span class="line">│       ├── stm32f10x_fsmc.c</span><br><span class="line">│       ├── stm32f10x_gpio.c</span><br><span class="line">│       ├── stm32f10x_i2c.c</span><br><span class="line">│       ├── stm32f10x_iwdg.c</span><br><span class="line">│       ├── stm32f10x_pwr.c</span><br><span class="line">│       ├── stm32f10x_rcc.c</span><br><span class="line">│       ├── stm32f10x_rtc.c</span><br><span class="line">│       ├── stm32f10x_sdio.c</span><br><span class="line">│       ├── stm32f10x_spi.c</span><br><span class="line">│       ├── stm32f10x_tim.c</span><br><span class="line">│       ├── stm32f10x_usart.c</span><br><span class="line">│       └── stm32f10x_wwdg.c</span><br><span class="line">├── stm32_flash.ld</span><br><span class="line">├── SYSTEM</span><br><span class="line">│   ├── delay.c</span><br><span class="line">│   ├── delay.h</span><br><span class="line">│   ├── sys.c</span><br><span class="line">│   └── sys.h</span><br><span class="line">└── USER</span><br><span class="line">    ├── main.c</span><br><span class="line">    └── stm32f10x_conf.h</span><br><span class="line"></span><br><span class="line">7 directories, 62 files</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实际工程中的makefile文件是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">TARGET = test_project</span><br><span class="line"></span><br><span class="line">PREFIX  = arm-none-eabi-</span><br><span class="line">CC      = $(PREFIX)gcc</span><br><span class="line">AS      = $(PREFIX)as</span><br><span class="line">LD      = $(PREFIX)ld</span><br><span class="line">OBJCOPY = $(PREFIX)objcopy</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取当前工作目录</span></span><br><span class="line">TOP=$(shell <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#include头文件</span></span><br><span class="line">INC_FLAGS= -I $(TOP)/CORE                   \</span><br><span class="line">           -I $(TOP)/HARDWARE               \</span><br><span class="line">           -I $(TOP)/STM32F10x_FWLib/inc    \   </span><br><span class="line">           -I $(TOP)/SYSTEM                 \</span><br><span class="line">           -I $(TOP)/USER</span><br><span class="line"></span><br><span class="line"><span class="comment">#GCC选项</span></span><br><span class="line"><span class="comment"># -W -Wall        :开启警报</span></span><br><span class="line"><span class="comment"># -g              :产生调试信息，用于产生.elf调试文件</span></span><br><span class="line"><span class="comment"># mcpu=cortex-m3  :用于设定芯片内核参数</span></span><br><span class="line"><span class="comment"># -mthumb         :表明使用的指令集</span></span><br><span class="line"><span class="comment"># -D STM32F10X_MD -D USE_STDPERIPH_DRIVER :宏定义</span></span><br><span class="line"><span class="comment"># -O0             :优化等级有O0,O1,O2等</span></span><br><span class="line"><span class="comment"># -std=gnu11      :设定语言标准GNU11,当然可以换为C98等</span></span><br><span class="line">CFLAGS =  -W -Wall -g -mcpu=cortex-m3 -mthumb -D STM32F10X_MD -D USE_STDPERIPH_DRIVER $(INC_FLAGS) -O0 -std=gnu11</span><br><span class="line">ASFLAGS = -W -Wall -g -mcpu=cortex-m3 -mthumb</span><br><span class="line"></span><br><span class="line"><span class="comment">#搜索并返回当前路径下的所有.c文件的集合</span></span><br><span class="line"><span class="comment">#将C_SRC包含的文件的.c后缀代替为.o文件</span></span><br><span class="line">C_SRC=$(shell find ./ -name <span class="string">&#x27;*.c&#x27;</span>)</span><br><span class="line">C_OBJ=$(C_SRC:%.c=%.o)</span><br><span class="line"></span><br><span class="line">ASM_SRC=$(shell find ./ -name <span class="string">&#x27;*.s&#x27;</span>)</span><br><span class="line">ASM_OBJ=$(ASM_SRC:%.s=%.o)</span><br><span class="line"></span><br><span class="line"><span class="comment">#.PHONY关键字，代表后面的执行对象，不是文件</span></span><br><span class="line">.PHONY: all clean update</span><br><span class="line"></span><br><span class="line"><span class="comment">#all的依赖对象是$(C_OBJ)和$(ASM_OBJ),一个变量是以.c或.s为后缀文件替换为.o为后缀&gt;的文件的集合，如果.o文件修改则更新all。</span></span><br><span class="line">all:$(C_OBJ) $(ASM_OBJ)</span><br><span class="line">  $(CC) $(C_OBJ) $(ASM_OBJ) -T stm32_flash.ld -o $(TARGET).elf   -mthumb -mcpu=cortex-m3 -Wl,--start-group -lc -lm -Wl,--end-group -specs=nano.specs -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=Project.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x80 </span><br><span class="line"><span class="comment">#通过.elf文件，生成.bin和.hex文件</span></span><br><span class="line">  $(OBJCOPY) $(TARGET).elf  $(TARGET).bin -Obinary </span><br><span class="line">  $(OBJCOPY) $(TARGET).elf  $(TARGET).hex -Oihex</span><br><span class="line"></span><br><span class="line"><span class="comment">#.o文件依赖于.o文件</span></span><br><span class="line"><span class="comment">#其中 $@:目标文件 $^:所有依赖文件 $&lt;:第一个依赖文件</span></span><br><span class="line">$(C_OBJ):%.o:%.c</span><br><span class="line">  $(CC) -c $(CFLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#$(ASM_OBJ):%.o:%.c</span></span><br><span class="line"><span class="comment"># $(AS) -c $(ASFLAGS) -o $@ $&lt;</span></span><br><span class="line">$(ASM_OBJ): $(ASM_SRC)</span><br><span class="line">  $(AS) -c $(ASFLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.o&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.d&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.map&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.elf&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.bin&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.hex&#x27;</span>)</span><br><span class="line"></span><br><span class="line">update:</span><br><span class="line">  openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg  -f /usr/share/openocd/scripts/target/stm32f1x_stlink.cfg -c init -c halt -c <span class="string">&quot;flash write_image erase <span class="subst">$(TOP)</span>/LED_project.hex&quot;</span> -c reset -c shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/" data-id="ckhnlm6380024nng75mbcfugk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之单片机下载程序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2019-12-25T13:55:38.000Z" itemprop="datePublished">2019-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/">Ubuntu上STM32开发之单片机下载程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我选用的是STM32F103芯片设计的最小系统板，由于自己在画板子的时候忘记了STlink接口，所以，就很尴尬，只能通过USART串口下载了。<br>然后，我选用stm32flash软件，进行烧录，然后，通过minicom来检测串口。</p>
+<h1 id="1-软件准备"><a href="#1-软件准备" class="headerlink" title="1.软件准备"></a>1.软件准备</h1><p>stm32flash:用于串口下载源程序。<br>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install stm32flash</span><br></pre></td></tr></table></figure>
+<p>常用指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo stm32flash /dev/ttyUSB0 //获取设备信息</span><br><span class="line"></span><br><span class="line">sudo stm32flash -w filename -v -g 0 /dev/ttyUSB0 //验证写入，然后写入源程序</span><br><span class="line"></span><br><span class="line">sudo stm32flash -r filename /dev/ttyUSB0 //读闪存到文件，没用过。</span><br><span class="line"></span><br><span class="line">sudo stm32flash -g 0 /dev/ttyUSB0 //开始执行，说实话，这一句我从来没用过。</span><br><span class="line"></span><br><span class="line">输入时，BOOT0置高，BOOT1置低</span><br></pre></td></tr></table></figure>
+<p>备注，首先将BOOT0置高，BOOT1置低，复位后，输入指令获取设备信息,接着写入源程序。<br>接着BOOT0置低，BOOT1置低，复位后，就自动执行程序了。</p>
+<p>minicom串口工具。<br>安装方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install minicom</span><br></pre></td></tr></table></figure>
+<p>配置方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo minicom -s //注意在进行串口的操作时候，需要有sudo权限，或者修改串口的权限，修改的方式看下面</span><br></pre></td></tr></table></figure>
+<p>选择Serial port setup,然后回车，进行配置。<br>输入a,选择串口设备，也就是输入串口号/dev/ttyUSB0，如何查询串口号，也看下面。修改之后回车。<br>然后，输入e，修改波特率及配置为 115200 8N1,修改完成后回车。<br>然后，输入f，配置硬件控制流，选择No。同上，软件控制流也为No。</p>
+<p>配置完成后，回车返回上一个界面，选择save setup as dfl将配置保存在默认位置。<br>然后exit，关闭minicom。</p>
+<p>再次输入sudo minicom，就使得配置生效。</p>
+<p>问题1：查询串口号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dmesg //可以查看安装的驱动信息，里面有串口设备的串口号但是里面的驱动实在是太多了。</span><br><span class="line"></span><br><span class="line">ls -l /dev/ttyUSB* //可以查询到串口号，</span><br></pre></td></tr></table></figure>
+
+<p>这样，就成功将单片机通过串口连接到电脑上了，这样就能够接受到串口的数据了。</p>
+<p>但是，通过串口传输数据，发送到电脑上我没有做到，后来发现，是源程序的编译链接成hex程序的过程中存在问题，使用printf函数，好像有一些额外条件。之后另外补充。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/" data-id="ckhnlm6360020nng70wvh4n4r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

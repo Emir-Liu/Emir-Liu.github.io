@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>计算机网络入门（第一章） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="来源：计算机网络自上向下方法 第一章 计算机网络与因特网    因特网：世界范围的计算机网络，接入这个网络的设备为主机host。    主机通过通信链路communication link和交换机packet switch连接到一起。    链路有不同的物理媒介，同轴电缆等。传输速度单位为bps。    当一台主机和另一台主机发送数据，发送端将数据分段，在段接上首部字节，术语为，形成的数据包为pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络入门（第一章）">
+<meta property="og:url" content="http://example.com/2019/10/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="来源：计算机网络自上向下方法 第一章 计算机网络与因特网    因特网：世界范围的计算机网络，接入这个网络的设备为主机host。    主机通过通信链路communication link和交换机packet switch连接到一起。    链路有不同的物理媒介，同轴电缆等。传输速度单位为bps。    当一台主机和另一台主机发送数据，发送端将数据分段，在段接上首部字节，术语为，形成的数据包为pa">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-26T04:27:44.000Z">
+<meta property="article:modified_time" content="2020-11-18T13:25:42.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-计算机网络入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2019-10-26T04:27:44.000Z" itemprop="datePublished">2019-10-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      计算机网络入门（第一章）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>来源：计算机网络自上向下方法</p>
+<p>第一章 计算机网络与因特网<br>    因特网：世界范围的计算机网络，接入这个网络的设备为主机host。<br>    主机通过通信链路communication link和交换机packet switch连接到一起。<br>    链路有不同的物理媒介，同轴电缆等。传输速度单位为bps。<br>    当一台主机和另一台主机发送数据，发送端将数据分段，在段接上首部字节，术语为，形成的数据包为packet（又被称为分组），通过网络发送到目的主机，重新装配为初始数据。<br>    分组交换机从一条通信链路接收到达的数据包，并从一条通信链路朝着最终的目的地转发该数据包，在当今的因特网中，分为两类：路由器router和链路层交换机link-layer switch。第四章研究路由器，第五章研究链路层交换机。<br>    从发送端到接收端，一个数据包经历的一系列通信链路和分组交换及称为通过该网络的路径route/path。第一个交换机产生于20世纪70年代。对因特网通信量的分析，2005年，进入流量为250吉10^9比特每秒。<br>    主机通过因特网服务提供商Internet Server Provider ISP接入因特网。<br>    每个ISP是一个或者多个分组交换机和多段通信链路组成的网络，不同ISP为主机提供了不同的网络接入，包括拨号接入，局域网接入等。ISP也为内容提供者提供了因特网接入服务。将Web站点直接接入因特网。为了允许因特网用户之间的相互通信，低层的ISP通过高层ISP互相连接，例如低层ISP通过国家国际的高层ISP互联。无论高层或者低层ISP网络都是独立管理的，运行IP协议，遵从命名和地址习惯。<br>    因特网的部件都要运行接受和发送的一系列协议protocol。<br>    TCP Transmission Control Protocol 传输控制协议<br>    IP Internet Protocol 网络协议<br>    这两个是因特网中最重要的协议。IP协议定义了在路由器和主机的发送和接收的分组的格式。因特网的主要协议就是TCP/IP。<br>    为了每个人能够就各个协议的作用达成共识，因特网标准Internet Standard由因特网工程任务组Internet Engineering Task Force IETF研发，IETF的标准文档被称为请求评论Request For Comment RFC。RFC最初为普通的请求评论，以解决因特网先驱的体系结构问题。定义了TCP，IP，HTTP用于Web，SMTP用于电子邮件的开放标准这样的协议。<br>    公共因特网是一个特定的网络，具有全球性质。还有内部网络，类似于公司政府网络，这些主机不能与专用网络之外的主机交换信息，除非通过防火墙，否则会限制报文进入或者流出网络，这些网络被称为内联网intranet。它们与公共因特网由相同类型的主机，路由器，链路和协议。<br>    除了以上的方法可以描述互联网，从另外一个角度而言，即为应用程序提供服务的基础设施角度。这些应用程序由电子邮件，Web冲浪，即时讯息，IP上的语音VoIP,广播，流式视频，分布式游戏，对等文件共享peer to peer等，这些程序称为分布式应用程序。因为他们涉及多台相互交换数据的主机。重要的是，因特网应用程序运行在主机上，尽管交换机促进了主机之间的数据交换，但是并不关心数据的源或宿主的应用程序。<br>    当你开发了一个分布式因特网应用程序，运行在不同主机的软件需要相互发送数据。那么运行在一个主机的应用程序如何才能够指示因特网向另一个主机的软件发送数据。<br>    与因特网相连的主机提供了一个应用程序编程接口Application Programming Interface API,规定了运行在一个主机上的软件请求因特网基础设施，向运行在另一个主机的特定目的地软件交付数据的方式。第二章会详细讨论因特网API。当然API与邮政服务类似，有不同种类的服务，因特网也为应用程序提供了多种服务。第三章描述因特网是如何提供那些服务的。<br>    记住，因特网是一种基础设施，新的应用程序在这个基础上不断的发明与设置。</p>
+<p>网络协议：<br>    网络协议是一种交互过程，一方首先发起，开始与另一方进行通信，另一方会进行回应，根据回应来采取不同的动作。这要求两方都采用相同的协议。<br>    以最常用的协议为例，当你向Web服务器发送请求，<br>    1。主机向服务器发送连接请求的报文。<br>    2。等待回答<br>    3。Web服务器接收到连接请求的报文，返回连接响应的报文。<br>    4。主机接收到连接响应的报文得知Web服务器状态正常后，<br>    5。主机在一条GET报文中发送Web服务器上网页的名字，<br>    6。Web服务器向计算机返回Web网页/文件</p>
+<p>一个协议定义了在两个或者多个通话实体之间交换的报文格式和次序，以及在报文传输或接受其他事件所采取的动作。</p>
+<p>一般而言，计算机网络广泛的使用了协议，不同的协议实现了不同的通信任务。一些协议简单直接，而一些协议复杂难懂，</p>
+<p>与因特网相连接的设备是主机end system，主机又被进一步分为两类：<br>    客户机client等同于桌面或者移动PC等<br>    服务器server等同于存储或者发布Web页面，流视频以及转发电子邮件。<br>    客户机程序是运行在一个主机的程序，它发出请求，从运行在另一个主机系统的服务器程序中接受服务。客户机-服务器模式是因特网上最流行的结构。同时P2P应用程序越来越广泛。</p>
+<p>主机接入：<br>    1。局域网LAN通常用于连接主机和路由器，以太网的运行速率是100Mbps以上。<br>  2。无线接入由两种方式，无线局域网wireless LAN和广域无线接入网，用于蜂窝煤电话的相同无线基础设施进行发送，基站由电信提供商管理，为数万米半径的用户提供无线接入服务。</p>
+<p>路由器从与它相连的一条通信链路中得到数据包，将数据包转发到另一条通信链路，那么路由器是如何确定它应当向哪条链路进行转发，不同的计算机网络采用不同的方法，因特网采用了以下的方法。<br>    每个通过该网络传输的分组在首部包含了目的的地址，就像邮政地址一样，地址是一个层次结构，当分组到达网络中的一台路由器的时候，由每台路由器检查分组目的地址的一部分，并向相邻路由器转发该分组，特别的是，每个路由器都有一个转发表，用于将目的地址或目的地址的一部分映射到输出链路，当分组到达一台路由器时候，该路由器检查目的地址，并用这个目的地址来搜索转发表，找到合适的输出链路，然后路由器将该分组导向输出链路。</p>
+<p>但是转发表是如何设置的在第四章讨论。因特网由特殊的选路协议，用于自动的设置转发表，例如选录协议可以决定每台路由器到每个目的地的最短路径，并使用这些最短路径来配置路由其中的转发表。</p>
+<p>该过程和问路相似。</p>
+<p>分组网络中的时延，丢包和吞吐量：</p>
+<p>根据之前，因特网是为运行在主机上的分布式应用，提供服务的基础设施。理想情况下，希望因特网服务可以在任意两个主机上瞬间移动大量数据，而没有任何数据的丢失，然而，显示中很难做到。计算机网络必须限制主机之间的吞吐量，也就是，每秒能够传输的数据量。在主机中引入时延，丢包。</p>
+<p>时延的描述：<br>    数据包从一台主机出发，通过路由器传输，在另一台主机结束这个过程。当数据包从一个节点沿着路径到达后继节点，该分组经历了不同类型的时延。<br>nodal processing delay节点处理时延<br>    检查分组首部和决定该数据包导向何处所需要的时间以及检查比特级差错所需要的时间等。<br>queuing delya    排队时延<br>    当分组在链路上等待传输，如果队列为空，当前没有其他分组在传输，则分组时延为0。如果流量很大，有许多数据包在等待传输，排队时延就很大。<br>transmission delay传输时延<br>    当所有已经到达的数据包被传输后，才会传输我们的数据包，L表示数据包的长度，R bps表示从A节点到B节点的链路传输速率。<br>    例如，10M bps的以太网链路，R = 10 Mbps ，传输时延为L/R，这是将所有数据的比特传输向链路所需要的时间。<br>propagation delay 传播时延<br>    一个比特被推向链路，该比特向B节点传播，从该链路的起点到B节点所需要的时间。与两个节点之间的距离有关。<br>这些时延总体累加为节点总时延d<sub>nodal</sub>。<br>d<sub>nodal</sub> = d<sub>proc</sub> + d<sub>queue</sub> + d<sub>trans</sub> + d<sub>prop</sub></p>
+<p>排队延时和丢包：<br>    这是最重要的一部分，也是复杂有趣的是排队时延d<sub>queue</sub>,这种延时与其他延时不同，对于不同的数据包是不同的。如果有10个数据包同时到达空队列，传输的第一个数据包没有延时，最后一个将会有相对较大的排队延时，在表征排队延时，通常使用统计量来测量，例如，平均排队时延，排队时延的方差和排队时延超过某些特定值的概率。<br>    那么什么时候排队时延较大？取决于流量到达该队列的速率，链路的传输速率和到达流量的性质，即流量是周期性到达或者突发式到达。<br>    数据包到达队列的平均速度：a 单位：pkt/s 数据包每秒。<br>    传输速率：R 单位： bps/s 比特从队列中推出的速率。<br>    假设所有的数据包由L比特组成，则比特到达队列的平均速率是La bps。<br>    最后假定队列的容量为无限大。<br>    流量强度traffic intensity La/R,用于估计排队时延的影响程度。<br>    如果La/R &gt; 1,则比特到达队列的平均速率超过从该队列传输出去的速率，因此，队列将会一直增加，从而排队时延将会趋向于无穷大。所以设计系统时，流量强度不能够大于1。<br>    如果数据包以突发性出现，而不是周期性出现，就可能会有很大的平均排队时延。<br>    到达队列的过程通常是随机的，并不遵循任何模式。在这种真实的情况下，流量强度通常无法全面的表征时延的统计量。不过可以直观的理解排队时延的影响程度。特别，如果流量强度接近0,则几乎没有数据包到达，并且间隔时间很大，平均排队时延将接近0。<br>    平均排队时延随着流量强度迅速增加。</p>
+<p>丢包：<br>现实中，排队容量极大地依赖于路由器的设计与成本，但是一条链路前的队列只有有限的容量。所以，当流量强度接近1时，排队时延也不会趋向于无穷大，而是到达的数据包会发现一个满的队列。由于没有地方存储数据包，那么路由器将会丢弃这个数据包，该数据包将会丢失。</p>
+<p>从主机的角度而言，上述现象看起来是一个数据包已经传输到网络核心，但是并不会出现在目的地，丢失数据的数量随着流量强度的增加而增加。引起，节点的性能不仅根据时延来度量，而且通过数据包丢失的概率来度量。</p>
+<p>端到端的时延：<br>每个节点存在各个节点有不同的时延和平均排队时延的情况，需要对公式进行一般处理。</p>
+<p>traceroute<br>运行在因特网上中的主机上，当用户指定一个目的主机名称，该程序会向该目的地发送多个特殊的分组。当这些分组向目的地传送时候，通过一系列的路由器，当路由器接受到这些分组之一时候，它会向源发送一个短报文，包括路由器的名字和地址。</p>
+<p>具体而言，假定源与目的之间有N-1台路由器，则将向网络发送N个特殊的分组，每个分组地址指向最终的目的。这N个特殊分组标识为1到N，第n个分组的标识为n，第n台路由器接受到第n个特殊数据包，路由器会向其源发送一个报文，源会记录从发送第一个到接受对应返回报文所经受的时间，以及返回报文的路由器或目的主机的名字和地址。这种方式能够重建从源到目的地所采用的路由，以及所有中间路由器的往返时延。</p>
+<p>实际上，对刚才的过程重复了3次，因此实际上，源发送了3 × N 个数据包。</p>
+<p>当使用traceroute xxx时，发现星号，则是由于防火墙封掉了ICMP信息。或者在linux上使用traceroute，默认使用udp协议，除了第一跳，剩下的都是* * *。强制使用icmp就可以了，例如<br>traceroute -I xxx</p>
+<p>计算机网络中的吞吐量<br>除了时延和丢包之外，计算机网络中另一个性能测度是端到端的吞吐量，从主机A到主机B通过计算机网络传输文件。</p>
+<p>任何瞬间的瞬时吞吐量 instantaneous throughput 是主机B接受到该文件的速率 单位 bps。</p>
+<p>如果，该文件有F比特，主机接收所有比特用了T秒，则文件传输的平均吞吐量 average throughput是 F/Tbps。</p>
+<p>为了深入了解吞吐量，举例：吞吐量类似于最小割最大流算法，当然具体的算法早就忘记了。<br>但是具体情况下，我们需要了解分组层次和协议的问题。</p>
+<p>协议层次和服务模型：<br>分层的体系系统：<br>通过分层可以以不同的方式来实现同一个功能，而其他部分不变，经常应用于大而且复杂并且不断更新的系统。<br>协议分层：<br>一个协议层以软件或者硬件来实现。HTTP和SMTP等应用层协议通常都是在主机中通过软件实现，运输层协议同样是这样。因为物理层和数据链路层负责处理跨特定链路的通信，它们通常在与给定链路相关的网络接口卡中实现。网络层通常是软件和硬件的混合体。注意，协议位于构成网络的主机或者其他组件中。</p>
+<p>但是分层有一个潜在的缺点，某一层可能重复其较低层的功能。例如，许多协议栈都是基于链路和主机到主机这两种情况提供了差错恢复。<br>第二个潜在的缺点是，某层的功能可能需要仅在其他层才出现的信息，违反了层次分离的目标。</p>
+<p>各层的所有协议被称为协议栈 protocol stack。因特网的协议栈由5个层次组成：<br>1.应用层：<br>网络应用程序及其应用层协议保存的地方，包含了许多的协议，例如：<br>HTTP：为Web文档提供了请求和传送<br>SMTP：提供了电子邮件报文的传输<br>FTP：提供了两个主机之间的文件传输<br>可以了解，将<a target="_blank" rel="noopener" href="http://www.google.com这样的名字转换为32位比特网络地址,也是借助于域名系统dns完成的,第二章中,创建和部署自己的新的应用层协议是非常容易的./">www.google.com这样的名字转换为32位比特网络地址，也是借助于域名系统DNS完成的，第二章中，创建和部署自己的新的应用层协议是非常容易的。</a></p>
+<p>2.运输层：<br>提供了在应用程序主机之间传送应用层报文的服务，在因特网中，有两个运输层协议，即TCP和UDP，利用其中一个都可以传输应用层报文。<br>TCP向程序提供了面向连接的服务，这种服务包括了应用层报文向目的地的确保传递和流量控制。TCP将长报文划分为短报文，并且提供了拥塞控制机制，当网络拥塞时，源抑制其传输速率。<br>UDP协议向它的程序提供了无连接服务，这是一种不提供不必要服务的服务，不提供可靠性，没有流量控制，也没有拥塞控制，在书中，运输层数据包为报文段segment。</p>
+<p>3.网络层：<br>网络层将数据报datagram的网络层数据包从一台主机移动到另一台主机。源主机中的因特网运输层协议TCP或者UDP向网络层递交运输层报文段和目的地地址。<br>网络层中包含著名的IP协议，定义了数据报中的各个字段以及主机或者路由器如何作用于这些字段。</p>
+<p>4.链路层：<br>网络层通过一系列路由器在源和目的地之间发送分组，为了将数据包从一个节点移动到下一个节点，网络层必须依靠链路层的服务。在每个节点，网络层将数据下传给链路层，链路层沿着路径将数据传递给下一个节点。在下一个节点，链路层将数据上传到网络层。<br>链路层提供的服务取决于应用于该链路的特定链路层协议。链路层的数据包是帧frame。<br>将整个帧从一个网络元素移动到临近的网络元素。</p>
+<p>5.物理层：<br>将某个帧的每个比特从一个节点移动到下一个节点。</p>
+<p>同样存在一个7层的ISO OSI参考模型<br>1.应用层<br>2.表示层：<br>使通信程序能够解释交换数据的含义。提供了包含数据压缩，数据加密，数据描述。</p>
+<p>3.会话层：<br>提供了数据交换的定界和同步功能，包括建立检查点和恢复方案。</p>
+<p>4.运输层<br>5.网络层<br>6.链路层<br>7.物理层</p>
+<p>报文，报文段，数据报和帧</p>
+<p>应用层 报文<br>运输层 报文段<br>网络层 数据报<br>链路层 帧</p>
+<p>攻击威胁下的网络</p>
+<p>从因特网中发送接收数据中，会有恶意软件，能够影响我们的设备，一旦恶意软件感染了设备，就能够将信息发送到网络中，大多数的恶意软件是自我复制，一旦感染一台主机就会进入更多的主机。恶意软件就能够快速扩散。</p>
+<p>病毒是一种需要某种形式的用户交互来感染用户设备的恶意软件。例如带有恶意执行代码的电子邮件。如果接受并打开这样的附件，就在不经意间运行了恶意软件。</p>
+<p>蠕虫是一种无需任何明显用户交互就能够进入设备的恶意软件。</p>
+<p>拒绝服务Denial of service DoS使合法的用户不能够使用网络，主机等。大多数Dos攻击属于下面的三种类型。</p>
+<p>1.弱点攻击：<br>向目标主机上易受攻击的应用程序发送报文，可能使服务停止运行，甚至导致主机崩溃。</p>
+<p>2.带宽洪泛：<br>向目的主机发送大量数据包，导致目标的接入链路变得拥堵，使合法的数据包无法到达服务器。</p>
+<p>3.连接洪泛：<br>在目标主机中创建大量的半开或者全开TCP连接，目标主机因此停止合法的连接。</p>
+<p>关于带宽洪泛攻击，单一攻击源可能无法产生足够大的流量来危害服务器，如果，从单一源发出所有流量，上游路由器可以检测出攻击并且在流量靠近服务器前就将其阻挡下来。</p>
+<p>分布式DoS DDOS控制多个源让每个源对目标发送流量。难以检测和防御。<br>网络设计者需要通过不同方式应对DOS攻击，下面是三种DOS攻击的应对方法。</p>
+<p>1.嗅探分组：</p>
+<p>用户通过无线设备接入因特网，在无线传输设备附近放置被动接收机，该接收机就能够得到传输的每个分组的拷贝，这些分组中有各种敏感信息，记录每个流经的分组拷贝的被动接收机称为分组嗅探器，packet sniffer，就能够得到每个数据包的拷贝，包含各种敏感信息。</p>
+<p>嗅探器也可以应用于有线环境中，因为分组嗅探器是被动的，它们不向信道中注入分组，从而难以检测它们的存在，所以当我们向无线信道发送分组时，某些坏家伙可能记录了我们分组的拷贝。那么防御嗅探的方法基本上都与密码学有关。</p>
+<p>2.伪装成受信任的人：</p>
+<p>生成具有任何源地址，分组内容和目的地址的分组，然后将这个人工制作的分组传输到因特网中，是非常容易的，因特网将该分组转发到目的地。</p>
+<p>一个不可信的接受方接收了分组，用虚假的源地址伪装成真实的源地址，进而执行某些嵌入在该分组中的命令，例如修改转发表，将具有虚假源地址的分组注入到因特网中的能力被称为IP哄骗IP spoofing。这是用户能够冒充另一个用户的多种方式之一。</p>
+<p>为了解决这个问题，需要使用端点鉴别 end-point authentication机制，来确保报文源于正确的地址。</p>
+<p>3.修改或者删除报文</p>
+<p>通过中间人攻击（man-in-middle attack），在这类攻击中，插入到两个通信实体之间的通信路径中。</p>
+<p>A与B通信，在中间人通信中，坏家伙能够嗅探A和B之间的分组，并且能够危及A和B之间的数据的完整性。</p>
+<p>结合上面三种情况，我们需要保证网络传输中的机密性，端点鉴别和完整性问题。</p>
+<p>到这里第一章的内容就结束了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/" data-id="ckhnlm65q009inng700vsbh9c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/27/%E4%BB%B7%E6%A0%BC%E6%B3%A2%E5%8A%A8%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          价格波动分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/20/Ubuntu%E4%B8%8A%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%95%99%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ubuntu上线程和进程教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

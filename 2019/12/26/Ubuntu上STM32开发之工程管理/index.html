@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Ubuntu上STM32开发之工程管理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通过makefile来实现工程的管理。首先工程的结构是：CORE:cm的核心文件HARDWARE:硬件方面的.c和.h文件STM32F10x_FWLib:STM32F10X的固件库SYSTEM:常用的功能的.c和.h文件USER:用户写的main.c等makefile文件ld文件 CORE和STM32F10x_FWLib都是来自ST官网的固件库里面。说到ST官网，大概说一下固件库在STM32系列-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu上STM32开发之工程管理">
+<meta property="og:url" content="http://example.com/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通过makefile来实现工程的管理。首先工程的结构是：CORE:cm的核心文件HARDWARE:硬件方面的.c和.h文件STM32F10x_FWLib:STM32F10X的固件库SYSTEM:常用的功能的.c和.h文件USER:用户写的main.c等makefile文件ld文件 CORE和STM32F10x_FWLib都是来自ST官网的固件库里面。说到ST官网，大概说一下固件库在STM32系列-">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-26T11:38:11.000Z">
+<meta property="article:modified_time" content="2020-11-18T13:25:41.996Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="stm32">
+<meta property="article:tag" content="makefile">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ubuntu上STM32开发之工程管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2019-12-26T11:38:11.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu上STM32开发之工程管理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过makefile来实现工程的管理。<br>首先工程的结构是：<br>CORE:cm的核心文件<br>HARDWARE:硬件方面的.c和.h文件<br>STM32F10x_FWLib:STM32F10X的固件库<br>SYSTEM:常用的功能的.c和.h文件<br>USER:用户写的main.c等<br>makefile文件<br>ld文件</p>
+<p>CORE和STM32F10x_FWLib都是来自ST官网的固件库里面。<br>说到ST官网，大概说一下固件库在STM32系列-&gt;Tools&amp;Software-&gt;Embedded Software-&gt;MCU&amp;MPU Embedded Software-&gt;Standard Peripheral Libraries</p>
+<p>建立自己的工程文件夹，在里面建立CORE，STM32F10x_FWLib，HARDWARE，SYSTEM，USER文件夹。<br>首先，将固件库的inc和src文件复制到自己工程的STM32F10x_FWLib文件夹中。<br>再选择文件到CORE文件夹中，按照下面我的工程进行挑选，在选择的过程中，有多个启动文件，选择TrueSTUDIO文件夹下的启动文件，然后，不同启动文件对应不同的内存，我就选startup_stm32f10x_md.s作为我的启动文件，我的芯片是STM32F103RBT6。然后记得要挑选链接文件.ld，</p>
+<p>记住不要忘记stm32f10x_conf.h文件。</p>
+<p>然后，如果在编译的时候遇到下面的问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/tmp/ccSTjuNC.s: Assembler messages:</span><br><span class="line">/tmp/ccSTjuNC.s:890: Error: registers may not be the same -- `strexb r3,r2,[r3]<span class="string">&#x27;</span></span><br><span class="line"><span class="string">/tmp/ccSTjuNC.s:943: Error: registers may not be the same -- `strexh r3,r2,[r3]&#x27;</span></span><br><span class="line">makefile:32: recipe <span class="keyword">for</span> target <span class="string">&#x27;CORE/core_cm3.o&#x27;</span> failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这是因为GCC更新之后，对于源代码的错误的容忍性降低了，很多旧版本可以忽略的代码错误，在新版本就会被拒绝。<br>这些问题的最常见原因是在文件core_cm3.c的内联汇编过程中（通常未链接）对strexh和strexb的错误使用，该文件是ARM CMSIS库的一部分，包含在ST外设库中。<br>您有两种方法可以解决此问题。两种方法均有效，您可以根据自己的情况选择一种：</p>
+<p>1.更新所有库（CMSIS，外围设备库等）。这是一种更简洁的方法，并且从长远来看是最好的，但是如果您使用的是旧版本的库，则短期内可能需要大量工作才能适应调用库的代码。（万恶的ST更新库了吗？我不知道，因为我写的时候还没有更新这个问题）</p>
+<p>2.编辑core_cm3.c并注释掉函数__STREXH和__STREXB的定义。这些存在问题的函数很少使用，您的应用程序很可能不需要它们。如果确实使用它们，则应更新库（上面的选项1）。</p>
+<p>上面来源：<a target="_blank" rel="noopener" href="http://support.raisonance.com/node/431888">http://support.raisonance.com/node/431888</a></p>
+<p>但是，其实我们可以通过修改core_cm3的汇编部分代码来避免这个错误：</p>
+<p>在core_cm3.h文件中，我们需要修改__STREXB和 __STREXH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//原本是这样的</span><br><span class="line">__ASM volatile (<span class="string">&quot;strexh %0, %2, [%1]&quot;</span> : <span class="string">&quot;=r&quot;</span> (result) : <span class="string">&quot;r&quot;</span> (addr), <span class="string">&quot;r&quot;</span>(value) );</span><br><span class="line">//现在是这样的</span><br><span class="line">__ASM volatile (<span class="string">&quot;strexh %0, %2, [%1]&quot;</span> : <span class="string">&quot;=&amp;r&quot;</span> (result) : <span class="string">&quot;r&quot;</span> (addr), <span class="string">&quot;r&quot;</span>(value) );</span><br><span class="line">//就是将=r 修改为了 =&amp;r</span><br></pre></td></tr></table></figure>
+<p>这样问题就解决了<br>下面是我的工程模板</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── CORE</span><br><span class="line">│   ├── core_cm3.c</span><br><span class="line">│   ├── core_cm3.h</span><br><span class="line">│   ├── startup_stm32f10x_md.s</span><br><span class="line">│   ├── stm32f10x.h</span><br><span class="line">│   ├── system_stm32f10x.c</span><br><span class="line">│   └── system_stm32f10x.h</span><br><span class="line">├── HARDWARE</span><br><span class="line">│   ├── led.c</span><br><span class="line">│   └── led.h</span><br><span class="line">├── makefile</span><br><span class="line">├── STM32F10x_FWLib</span><br><span class="line">│   ├── inc</span><br><span class="line">│   │   ├── misc.h</span><br><span class="line">│   │   ├── stm32f10x_adc.h</span><br><span class="line">│   │   ├── stm32f10x_bkp.h</span><br><span class="line">│   │   ├── stm32f10x_can.h</span><br><span class="line">│   │   ├── stm32f10x_cec.h</span><br><span class="line">│   │   ├── stm32f10x_crc.h</span><br><span class="line">│   │   ├── stm32f10x_dac.h</span><br><span class="line">│   │   ├── stm32f10x_dbgmcu.h</span><br><span class="line">│   │   ├── stm32f10x_dma.h</span><br><span class="line">│   │   ├── stm32f10x_exti.h</span><br><span class="line">│   │   ├── stm32f10x_flash.h</span><br><span class="line">│   │   ├── stm32f10x_fsmc.h</span><br><span class="line">│   │   ├── stm32f10x_gpio.h</span><br><span class="line">│   │   ├── stm32f10x_i2c.h</span><br><span class="line">│   │   ├── stm32f10x_iwdg.h</span><br><span class="line">│   │   ├── stm32f10x_pwr.h</span><br><span class="line">│   │   ├── stm32f10x_rcc.h</span><br><span class="line">│   │   ├── stm32f10x_rtc.h</span><br><span class="line">│   │   ├── stm32f10x_sdio.h</span><br><span class="line">│   │   ├── stm32f10x_spi.h</span><br><span class="line">│   │   ├── stm32f10x_tim.h</span><br><span class="line">│   │   ├── stm32f10x_usart.h</span><br><span class="line">│   │   └── stm32f10x_wwdg.h</span><br><span class="line">│   └── src</span><br><span class="line">│       ├── misc.c</span><br><span class="line">│       ├── stm32f10x_adc.c</span><br><span class="line">│       ├── stm32f10x_bkp.c</span><br><span class="line">│       ├── stm32f10x_can.c</span><br><span class="line">│       ├── stm32f10x_cec.c</span><br><span class="line">│       ├── stm32f10x_crc.c</span><br><span class="line">│       ├── stm32f10x_dac.c</span><br><span class="line">│       ├── stm32f10x_dbgmcu.c</span><br><span class="line">│       ├── stm32f10x_dma.c</span><br><span class="line">│       ├── stm32f10x_exti.c</span><br><span class="line">│       ├── stm32f10x_flash.c</span><br><span class="line">│       ├── stm32f10x_fsmc.c</span><br><span class="line">│       ├── stm32f10x_gpio.c</span><br><span class="line">│       ├── stm32f10x_i2c.c</span><br><span class="line">│       ├── stm32f10x_iwdg.c</span><br><span class="line">│       ├── stm32f10x_pwr.c</span><br><span class="line">│       ├── stm32f10x_rcc.c</span><br><span class="line">│       ├── stm32f10x_rtc.c</span><br><span class="line">│       ├── stm32f10x_sdio.c</span><br><span class="line">│       ├── stm32f10x_spi.c</span><br><span class="line">│       ├── stm32f10x_tim.c</span><br><span class="line">│       ├── stm32f10x_usart.c</span><br><span class="line">│       └── stm32f10x_wwdg.c</span><br><span class="line">├── stm32_flash.ld</span><br><span class="line">├── SYSTEM</span><br><span class="line">│   ├── delay.c</span><br><span class="line">│   ├── delay.h</span><br><span class="line">│   ├── sys.c</span><br><span class="line">│   └── sys.h</span><br><span class="line">└── USER</span><br><span class="line">    ├── main.c</span><br><span class="line">    └── stm32f10x_conf.h</span><br><span class="line"></span><br><span class="line">7 directories, 62 files</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实际工程中的makefile文件是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">TARGET = test_project</span><br><span class="line"></span><br><span class="line">PREFIX  = arm-none-eabi-</span><br><span class="line">CC      = $(PREFIX)gcc</span><br><span class="line">AS      = $(PREFIX)as</span><br><span class="line">LD      = $(PREFIX)ld</span><br><span class="line">OBJCOPY = $(PREFIX)objcopy</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取当前工作目录</span></span><br><span class="line">TOP=$(shell <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#include头文件</span></span><br><span class="line">INC_FLAGS= -I $(TOP)/CORE                   \</span><br><span class="line">           -I $(TOP)/HARDWARE               \</span><br><span class="line">           -I $(TOP)/STM32F10x_FWLib/inc    \   </span><br><span class="line">           -I $(TOP)/SYSTEM                 \</span><br><span class="line">           -I $(TOP)/USER</span><br><span class="line"></span><br><span class="line"><span class="comment">#GCC选项</span></span><br><span class="line"><span class="comment"># -W -Wall        :开启警报</span></span><br><span class="line"><span class="comment"># -g              :产生调试信息，用于产生.elf调试文件</span></span><br><span class="line"><span class="comment"># mcpu=cortex-m3  :用于设定芯片内核参数</span></span><br><span class="line"><span class="comment"># -mthumb         :表明使用的指令集</span></span><br><span class="line"><span class="comment"># -D STM32F10X_MD -D USE_STDPERIPH_DRIVER :宏定义</span></span><br><span class="line"><span class="comment"># -O0             :优化等级有O0,O1,O2等</span></span><br><span class="line"><span class="comment"># -std=gnu11      :设定语言标准GNU11,当然可以换为C98等</span></span><br><span class="line">CFLAGS =  -W -Wall -g -mcpu=cortex-m3 -mthumb -D STM32F10X_MD -D USE_STDPERIPH_DRIVER $(INC_FLAGS) -O0 -std=gnu11</span><br><span class="line">ASFLAGS = -W -Wall -g -mcpu=cortex-m3 -mthumb</span><br><span class="line"></span><br><span class="line"><span class="comment">#搜索并返回当前路径下的所有.c文件的集合</span></span><br><span class="line"><span class="comment">#将C_SRC包含的文件的.c后缀代替为.o文件</span></span><br><span class="line">C_SRC=$(shell find ./ -name <span class="string">&#x27;*.c&#x27;</span>)</span><br><span class="line">C_OBJ=$(C_SRC:%.c=%.o)</span><br><span class="line"></span><br><span class="line">ASM_SRC=$(shell find ./ -name <span class="string">&#x27;*.s&#x27;</span>)</span><br><span class="line">ASM_OBJ=$(ASM_SRC:%.s=%.o)</span><br><span class="line"></span><br><span class="line"><span class="comment">#.PHONY关键字，代表后面的执行对象，不是文件</span></span><br><span class="line">.PHONY: all clean update</span><br><span class="line"></span><br><span class="line"><span class="comment">#all的依赖对象是$(C_OBJ)和$(ASM_OBJ),一个变量是以.c或.s为后缀文件替换为.o为后缀&gt;的文件的集合，如果.o文件修改则更新all。</span></span><br><span class="line">all:$(C_OBJ) $(ASM_OBJ)</span><br><span class="line">  $(CC) $(C_OBJ) $(ASM_OBJ) -T stm32_flash.ld -o $(TARGET).elf   -mthumb -mcpu=cortex-m3 -Wl,--start-group -lc -lm -Wl,--end-group -specs=nano.specs -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=Project.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x80 </span><br><span class="line"><span class="comment">#通过.elf文件，生成.bin和.hex文件</span></span><br><span class="line">  $(OBJCOPY) $(TARGET).elf  $(TARGET).bin -Obinary </span><br><span class="line">  $(OBJCOPY) $(TARGET).elf  $(TARGET).hex -Oihex</span><br><span class="line"></span><br><span class="line"><span class="comment">#.o文件依赖于.o文件</span></span><br><span class="line"><span class="comment">#其中 $@:目标文件 $^:所有依赖文件 $&lt;:第一个依赖文件</span></span><br><span class="line">$(C_OBJ):%.o:%.c</span><br><span class="line">  $(CC) -c $(CFLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#$(ASM_OBJ):%.o:%.c</span></span><br><span class="line"><span class="comment"># $(AS) -c $(ASFLAGS) -o $@ $&lt;</span></span><br><span class="line">$(ASM_OBJ): $(ASM_SRC)</span><br><span class="line">  $(AS) -c $(ASFLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.o&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.d&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.map&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.elf&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.bin&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.hex&#x27;</span>)</span><br><span class="line"></span><br><span class="line">update:</span><br><span class="line">  openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg  -f /usr/share/openocd/scripts/target/stm32f1x_stlink.cfg -c init -c halt -c <span class="string">&quot;flash write_image erase <span class="subst">$(TOP)</span>/LED_project.hex&quot;</span> -c reset -c shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/" data-id="ckhnlm6380024nng75mbcfugk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ubuntu上STM32开发之printf函数重映射
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ubuntu上STM32开发之单片机下载程序</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/18/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/12/idea/">idea</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/11/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%8E%A8%E7%90%86/">知识图谱推理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
