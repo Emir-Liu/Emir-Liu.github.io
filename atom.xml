@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-18T13:25:41.988Z</updated>
+  <updated>2020-11-23T04:18:09.181Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图谱生产与进化过程</title>
+    <link href="http://example.com/2020/11/23/%E5%9B%BE%E8%B0%B1%E7%94%9F%E4%BA%A7%E4%B8%8E%E8%BF%9B%E5%8C%96%E8%BF%87%E7%A8%8B/"/>
+    <id>http://example.com/2020/11/23/%E5%9B%BE%E8%B0%B1%E7%94%9F%E4%BA%A7%E4%B8%8E%E8%BF%9B%E5%8C%96%E8%BF%87%E7%A8%8B/</id>
+    <published>2020-11-23T01:42:20.000Z</published>
+    <updated>2020-11-23T04:18:09.181Z</updated>
+    
+    <content type="html"><![CDATA[<p>条目描述（知识组成）：<br>    概念图谱</p><pre><code>    ^    ^实体概念混合图谱</code></pre><p>构建动作：<br>节点人工补全（略）<br>节点冲突检测<br>条目生成编辑<br>概念归纳聚类</p><pre><code>    ^    ^</code></pre><p>素材条目库：<br>    素材文档图谱+工作文档图谱</p><p>构建动作：<br>领域：<br>领域相似性检测（相似度计算）</p><p>节点：<br>节点冲突检测<br>节点自动去重<br>节点自动挂接<br>节点自动合并</p><p>可视化：<br>可视化维护操作</p><p>条目：<br>条目自动合并<br>条目编辑合并</p><p>子图：<br>子图分类 （相似度计算）</p><p>条目<br>节点(实体或者概念)<br>概念<br>领域</p><p>自底向上构建方式：<br>1.信息抽取<br>    1.1.实体抽取<br>    1.2.关系抽取<br>    1.3.属性抽取<br>2.知识融合 消除概念的歧义，剔除冗余和错误的概念<br>    1.1.实体链接 将文本中抽取的实体链接到知识库中对应的实体对象<br>    1.2.知识合并 </p><p>3.知识加工</p><p>数据驱动的自动化本体构建：<br>1.实体并列关系相似度计算</p><p>2.实体上下位关系抽取</p><p>3.本体的生成</p><p>自顶向下的方式：</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;条目描述（知识组成）：&lt;br&gt;    概念图谱&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    ^
+    ^
+
+实体概念混合图谱&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;构建动作：&lt;br&gt;节点人工补全（略）&lt;br&gt;节点冲突检测&lt;br&gt;条目生成编辑&lt;br&gt;概念归纳聚类&lt;/p&gt;
+&lt;pre&gt;&lt;c</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Schedule</title>
+    <link href="http://example.com/2020/11/23/Schedule/"/>
+    <id>http://example.com/2020/11/23/Schedule/</id>
+    <published>2020-11-22T17:50:27.000Z</published>
+    <updated>2020-11-23T04:18:30.751Z</updated>
+    
+    <content type="html"><![CDATA[<p>frame:</p><p>neural network<br>convolution neural network</p><p>rnn<br>lstm<br>transformers<br>bert<br>gpt-2</p><p>lecture:</p><p>Deep learning for human language processing</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;frame:&lt;/p&gt;
+&lt;p&gt;neural network&lt;br&gt;convolution neural network&lt;/p&gt;
+&lt;p&gt;rnn&lt;br&gt;lstm&lt;br&gt;transformers&lt;br&gt;bert&lt;br&gt;gpt-2&lt;/p&gt;
+&lt;p&gt;lecture:&lt;/p&gt;
+&lt;p&gt;Dee</summary>
+      
+    
+    
+    
+    
+    <category term="schedule" scheme="http://example.com/tags/schedule/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -386,47 +438,6 @@
     
     
     <category term="bert" scheme="http://example.com/tags/bert/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python中常用模块</title>
-    <link href="http://example.com/2020/08/12/Python%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/"/>
-    <id>http://example.com/2020/08/12/Python%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/</id>
-    <published>2020-08-12T09:34:08.000Z</published>
-    <updated>2020-11-18T13:25:41.988Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-模块列表"><a href="#0-模块列表" class="headerlink" title="0.模块列表"></a>0.模块列表</h1><p>Seaborn</p><h1 id="1-Seaborn"><a href="#1-Seaborn" class="headerlink" title="1.Seaborn"></a>1.Seaborn</h1><p>seaborn是在matplotlib基础上进行封装，Seaborn就是让困难的东西更加简单。用Matplotlib最大的困难是其默认的各种参数，而Seaborn则完全避免了这一问题。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-模块列表&quot;&gt;&lt;a href=&quot;#0-模块列表&quot; class=&quot;headerlink&quot; title=&quot;0.模块列表&quot;&gt;&lt;/a&gt;0.模块列表&lt;/h1&gt;&lt;p&gt;Seaborn&lt;/p&gt;
-&lt;h1 id=&quot;1-Seaborn&quot;&gt;&lt;a href=&quot;#1-Seaborn&quot; cl</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>BERT模型分析</title>
-    <link href="http://example.com/2020/08/10/BERT%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90/"/>
-    <id>http://example.com/2020/08/10/BERT%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90/</id>
-    <published>2020-08-10T02:05:49.000Z</published>
-    <updated>2020-11-18T13:25:41.948Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>Transformer和Bert之间的关系:<br>Transformer模型是2017年谷歌发表的论文attention is all you need中提出的seq2seq模型。现在已经取得了大范围的应用和扩展，而BERT就是从transformer中衍生出来的预训练语言模型</p><p>BERT使用TensorFlow，2018年提供了BERT的PyTorch版本Transformer</p><p>来源:<br>论文:BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding<br>模型的整体框架就是一个seq2seq结构<br>Google AI Language<br>NLP中的预训练:<br>词嵌入是NLP深度学习的基础</p><p><img src="%E8%AF%8D%E5%90%91%E9%87%8F.png"><br>词嵌入(word2vec,GloVe)是通过共现文本对统计，对文本语料库进行预训练<br><img src="%E5%85%B1%E7%8E%B0%E6%96%87%E6%9C%AC%E5%AF%B9%E7%BB%9F%E8%AE%A1.png"></p><p>上下文表示:<br>之前的问题:<br>词嵌入是应用于与上下文无关的方式<br><img src="%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E7%9A%84%E8%AF%8D%E5%B5%8C%E5%85%A5.png"></p><p>解决方法:<br>在语料库中训练上下文表示。<br><img src="%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E5%85%B3%E7%9A%84%E8%AF%8D%E5%B5%8C%E5%85%A5.png"></p><p>上下文相关的表示方法:<br>半监督的序列学习,Google,2015<br><img src="%E5%8D%8A%E7%9B%91%E7%9D%A3%E7%9A%84%E5%BA%8F%E5%88%97%E5%AD%A6%E4%B9%A0.png"></p><p>ELMo:深度上下文词嵌入，2017<br><img src="%E6%B7%B1%E5%BA%A6%E4%B8%8A%E4%B8%8B%E6%96%87%E8%AF%8D%E5%B5%8C%E5%85%A5.png"></p><p>通过通用的预训练来提升语言理解OpenAL,2018<br><img src="%E9%80%9A%E8%BF%87%E9%80%9A%E7%94%A8%E9%A2%84%E8%AE%AD%E7%BB%83%E6%9D%A5%E6%8F%90%E5%8D%87%E8%AF%AD%E8%A8%80%E7%90%86%E8%A7%A3.png"></p><p>模型:借鉴于Attention Is All You Need中的Encoder<br><img src="AttentionIsAllYouNeed.png"><br>完全由注意力机制构成，其分为左右两部分:<br>左侧:编码器部分<br>N=6<br>All Layers output size 512<br>Embedding<br>Positional Encoding<br><img src="PositionalEncoding.png"><br>Notice the Residual connection<br>Multi-head Attention<br>LayerNorm(x + Sublayer(x))<br>Position wise feed forward</p><p>右侧:解码器部分<br>N=6<br>All Layers output size 512<br>Embedding<br>Positional Encoding<br>Notice the Residual connection<br>Multi-head Attention<br><img src="Multi-headAttention.png"><br>LayerNorm(x + Sublayer(x))<br>Position wise feed forward<br>Softmax<br><img src="SoftMax.png"></p><p>其中，解码器中的Multi-head Attention的原理:<br><img src="Multi-HeadAttention%E6%A8%A1%E5%9E%8B.png"><br>其中点乘注意力模型为:<br><img src="ScaledDotProductAttention.png"><br>公式:<br><img src="Attention%E6%A8%A1%E5%9E%8B.png"><br>多注意力模型公式:<br><img src="%E5%A4%9A%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E5%85%AC%E5%BC%8F.png"><br>其中，公式中的Q，K，V的定义为:<br>编码器-解码器注意力层中，序列Q来自之前的解码器层，记忆力关键词K和数值V来自编码器的输出。<br>这三个变量都来自之前的层(hidden state)</p><p>然后是Feed Forward前馈网络Position-wise Feed-Forward network<br><img src="PositionWiseFeedForwardNetwork.png"></p><p>Attention Is All You Need解析:<a href="https://www.jianshu.com/p/b1030350aadb">https://www.jianshu.com/p/b1030350aadb</a><br>Seq2Seq模型的简介:<a href="https://www.jianshu.com/p/b2b95f945a98">https://www.jianshu.com/p/b2b95f945a98</a><br>Seq2Seq模型是输出的长度不确定时采用的模型，这种情况一般是在机器翻译的任务中出现，将一句中文翻译成英文，那么这句英文的长度有可能会比中文短，也有可能会比中文长，所以输出的长度就不确定了。如下图所，输入的中文长度为4，输出的英文长度为2。<br><img src="Seq2Seq%E6%A8%A1%E5%9E%8B.webp"><br>在网络结构中，输入一个中文序列，然后输出它对应的中文翻译，输出的部分的结果预测后面，根据上面的例子，也就是先输出“machine”，将”machine”作为下一次的输入，接着输出”learning”,这样就能输出任意长的序列。<br>机器翻译、人机对话、聊天机器人等等，这些都是应用在当今社会都或多或少的运用到了我们这里所说的Seq2Seq。</p><p>Seq2Seq结构<br>seq2seq属于encoder-decoder结构的一种，这里看看常见的encoder-decoder结构，基本思想就是利用两个RNN，一个RNN作为encoder，另一个RNN作为decoder。encoder负责将输入序列压缩成指定长度的向量，这个向量就可以看成是这个序列的语义，这个过程称为编码，如下图，获取语义向量最简单的方式就是直接将最后一个输入的隐状态作为语义向量C。也可以对最后一个隐含状态做一个变换得到语义向量，还可以将输入序列的所有隐含状态做一个变换得到语义变量。<br><img src="encoder_decoder%E7%BB%93%E6%9E%84.webp"><br>而decoder则负责根据语义向量生成指定的序列，这个过程也称为解码，如下图，最简单的方式是将encoder得到的语义变量作为初始状态输入到decoder的RNN中，得到输出序列。可以看到上一时刻的输出会作为当前时刻的输入，而且其中语义向量C只作为初始状态参与运算，后面的运算都与语义向量C无关。<br><img src="encoder_decoder%E7%BB%93%E6%9E%841.webp"><br>decoder处理方式还有一种，就是语义向量参与了序列的所有时刻的运算，上一时刻的输出仍然作为当前时刻的输入，但是语义向量会参与到所有时刻的运算。<br><img src="encoder_decoder%E7%BB%93%E6%9E%842.webp"></p><p>如何训练Seq2Seq模型:<br>RNN是可以学习概率分布，然后进行预测，比如我们输入t时刻的数据后，预测t+1时刻的数据，比较常见的是字符预测例子或者时间序列预测。为了得到概率分布，一般会在RNN的输出层使用softmax激活函数，就可以得到每个分类的概率。<br>Softmax在机器学习和深度学习中有着非常广泛的应用。尤其在处理多分类（C &gt; 2）问题，分类器最后的输出单元需要Softmax 函数进行数值处理。关于Softmax 函数的定义如下所示：<br><img src="softmax.svg"></p><p>其中，Vi是分类器前级输出单元的输出。i表示类别索引，总的类别个数为C,表示的是当前元素的指数与所有元素指数和的比值。Softmax 将多分类的输出数值转化为相对概率，更容易理解和比较。我们来看下面这个例子。<br>一个多分类问题，C = 4。线性分类器模型最后输出层包含了四个输出值，分别是：<br><img src="math%E8%BE%93%E5%85%A5.svg"><br>通过Softmax处理之后，数值转化为相对概率:<br><img src="math%E8%BE%93%E5%87%BA.svg"><br>很明显，Softmax 的输出表征了不同类别之间的相对概率。我们可以清晰地看出，S1 = 0.8390，对应的概率最大，则更清晰地可以判断预测为第1类的可能性更大。Softmax 将连续数值转化成相对概率，更有利于我们理解。<br><img src="Seq2Seq%E6%A8%A1%E5%9E%8BSoftmax%E5%85%AC%E5%BC%8F.webp"><br>对于RNN，对于某个序列，对于时序t，它的词向量输出概率为P(xt|x1,x2,…,xt-1)，则softmax层每个神经元的计算如下。<br><img src="%E7%A5%9E%E7%BB%8F%E5%85%83%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.svg"><br>其中ht是隐含状态，它与上一时刻的状态及当前输入有关，即h<sub>t</sub>=f(h<sub>t-1</sub>,x<sub>t</sub>)<br>那么整个序列的概率就为:<br><img src="%E5%BA%8F%E5%88%97%E7%9A%84%E6%A6%82%E7%8E%87.svg"><br><img src="RNNDecodeEncode%E6%A8%A1%E5%9E%8B.webp"></p><p>而对于encoder-decoder模型，设有输入序列x<sub>1</sub>,x<sub>2</sub>，x<sub>3</sub>,…,x<sub>T</sub>,输出序列y<sub>1</sub>，y<sub>2</sub>,y<sub>3</sub>，…,y<sub>T</sub>，输入序列和输出序列的长度可能不同。那么其实就需要根据输入序列去得到输出序列可能输出的词概率，于是有下面的条件概率，￼发生的情况下，￼发生的概率等于￼连乘，如下公式所示。其中v表示￼对应的隐含状态向量，它其实可以等同表示输入序列。</p><p>Seq2Seq模型:<a href="https://dataxujing.github.io/seq2seqlearn/chapter2/">https://dataxujing.github.io/seq2seqlearn/chapter2/</a></p><p>部分教程:<a href="https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/">https://towardsml.com/2019/09/17/bert-explained-a-complete-guide-with-theory-and-tutorial/</a><br>bert tensorflow版本:<a href="https://github.com/google-research/bert">https://github.com/google-research/bert</a><br>bert pytorch版本:<a href="https://github.com/huggingface/transformers">https://github.com/huggingface/transformers</a><br>bert pytorch版本说明文档:<a href="https://huggingface.co/transformers/quicktour.html">https://huggingface.co/transformers/quicktour.html</a><br>BERT Bidirectional Encoder Representations from Transformers<br>一种从Transformers模型得来的双向编码表征模型<br>下面通过理论和实践两部分来解释BERT模型<br>1.理论：<br>1.1 为什么需要BERT<br>1.2 它背后的核心思想是什么<br>1.3 它是如何工作的<br>1.4 我们什么时候可以使用它并且对其进行微调</p><p>2.实践</p><h1 id="1-理论"><a href="#1-理论" class="headerlink" title="1.理论"></a>1.理论</h1><h2 id="1-1-为什么需要BERT"><a href="#1-1-为什么需要BERT" class="headerlink" title="1.1 为什么需要BERT"></a>1.1 为什么需要BERT</h2><p>NLP的最大挑战之一是缺乏足够的培训数据。总体而言，有大量文本数据可用，但是如果我们要创建特定于任务的数据集，则需要将该堆拆分为许多不同的类型。而当我们这样做时，我们最终仅得到数千或数十万个人工标记的训练样本。但是，为了表现良好，基于深度学习的NLP模型需要大量数据-在数百万或数十亿的带注释的训练样本上进行训练时，他们看到了重大改进。为了解决上面的数据问题，研究人员开发了多种技术，可在网络上使用大量未注释的文本来训练通用语言表示模型（这被称为预训练）。然后，可以在较小的用于特定任务的数据集上微调这些通用的预训练模型，例如，在处理诸如问题回答和情感分析之类的问题。与从头开始对较小的特定于任务的数据集进行训练相比，此方法可显着提高准确性。BERT是用于NLP预训练的最新的技术。它在深度学习社区引起了轰动，因为它在各种NLP任务（例如问题解答）中都提供了最先进的结果。</p><p>关于BERT的最好的部分是可以免费下载和使用-我们可以使用BERT模型从文本数据中提取高质量的语言特征，也可以根据特定任务（例如情感分析）微调这些模型并使用我们自己的数据回答问题，以产生最先进的预测。</p><h2 id="1-2-它背后的核心思想是什么"><a href="#1-2-它背后的核心思想是什么" class="headerlink" title="1.2 它背后的核心思想是什么"></a>1.2 它背后的核心思想是什么</h2><p>语言建模的真正意义是什么？语言模型试图解决哪些问题？基本上，他们的任务是根据上下文“填补空白”。例如，给定</p><p>“那个女人去商店买了_____鞋。”<br>‘The woman went to the store and bought a __ of shoes’</p><p>语言模型可能会说20%是’cart’，80%是’pair’</p><p>在BERT模型出现之前，语言模型会在训练期间从左到右或这将从左到右和从右到左的结合来查看此文本序列。这种单向方法很适合生成句子-我们可以预测下一个单词，将其附加到序列中，然后预测下一个单词的下一个单词，直到获得完整的句子。</p><p>现在使用BERT模型，这是一种经过双向训练的语言模型（这也是其关键的技术创新）。这意味着与单向语言模型相比，我们现在可以对语言上下文和流程有更深刻的了解。</p><p>BERT并没有预测序列中的下一个单词，而是使用一种称为Masked LM（MLM）的新颖技术：它 随机屏蔽句子中的单词，然后尝试预测它们。掩蔽Mask意味着该模型从两个方向看，并且它使用句子的整个上下文（包括左边和右边的语境）来预测被掩盖的单词。与以前的语言模型不同，它同时考虑了前一个和下一个tokens令牌  。LSTM模型将从左到右和从右到左相结合，并没有同时考虑这两个方向。（不过，说BERT是无方向性的可能更准确。）</p><p>额外提出一个问题，为什么这个无方向性的方法这么有效呢？<br>预训练语言表示分为context-free(和上下文无关)和context-based(基于上下文).<br>context-based表示可以是单向或者双向。<br>context-free表示,例如word2vec产生了一个简单的词嵌入(数字向量)表示词汇表中的每一个词语。<br>例如bank将会有相同的context-free表示在’bank account’和’bank of river’中。</p><p>另一方面，基于上下文的模型建立代表每一个词语的表示是基于句子中的其他词语。<br>例如:I accessed the bank account<br>在单向网络模型中，词语bank是基于I accessed the bank 而不是 account<br>但是，在BERT中，bank是使用了其上下文 I accessed the … account<br>它从深度神经网络的最底层开始，使其深度双向化。</p><p>而且，BERT是基于Transformer model architecture(Transformer模型架构),而不是LSTM，我们很快就会讨论BERT的细节，但是总体而言:<br>Transformer通过执行少量恒定的步骤来工作。在每个步骤中，它都会应用一种注意力机制来理解句子中所有单词之间的关系，而不管它们各自的位置如何。例如，给定句子’I arrive at the bank after crossing the river’，以确定‘bank’一词是指河岸而不是金融机构，那么Transformer可以学会立即注意单词“ river”，然后一步一步做出决定。</p><p>现在，我们了解了BERT的关键思想，让我们深入研究细节。</p><h2 id="1-3-它是如何工作的"><a href="#1-3-它是如何工作的" class="headerlink" title="1.3 它是如何工作的"></a>1.3 它是如何工作的</h2><p>BERT依赖于Transformer（一种学习文本中单词之间的上下文关系的注意力机制）。一个基本的Transformer包括一个读取文本输入的编码器和一个对任务进行预测的解码器。由于BERT的目标是生成语言表示模型，因此只需要编码器部分即可。BERT编码器的输入是一系列令牌，这些令牌首先被转换为矢量，然后在神经网络中进行处理。但是在开始处理之前，BERT需要对输入进行处理并用一些额外的元数据修饰：<br>令牌嵌入：在第一个句子的开头将[CLS]令牌添加到输入的单词令牌中，并在每个句子的末尾插入[SEP]令牌。<br>段嵌入：将指示句子A或句子B的标记添加到每个标记。这允许编码器区分句子。<br>位置嵌入：将位置嵌入添加到每个标记，以指示其在句子中的位置。<br><img src="BERT%E8%BE%93%E5%85%A5.png"><br>BERT输入表示：输入嵌入是令牌嵌入、分段嵌入和位置嵌入的总和</p><p>本质上，Transformer会堆叠一个将序列映射到序列的层，因此输出也是对应索引的输入和输出令牌之间一对一对应关系的向量序列。而且正如我们之前所了解的，BERT不会尝试预测句子中的下一个单词。培训使用以下两种策略：</p><h3 id="1-3-1-Masked-LM-MLM"><a href="#1-3-1-Masked-LM-MLM" class="headerlink" title="1.3.1 Masked LM (MLM)"></a>1.3.1 Masked LM (MLM)</h3><p>这里的想法很简单：随机掩盖输入中15％的单词（用[MASK]令牌替换），通过基于BERT注意的编码器运行整个序列，然后根据序列中其他未屏蔽单词提供的上下文来预测被掩盖的词语。但是，这种掩盖方法存在一个问题-模型仅在输入中存在[MASK]令牌的时候尝试预测，而我们希望模型在不管输入中有什么令牌的时候，都尝试预测正确的令牌。输入。要解决此问题，15％用于屏蔽的令牌中：</p><p>实际上有80％的令牌已替换为令牌[MASK]。<br>10％的令牌被替换为随机令牌。<br>10％的令牌保持不变。<br>在训练BERT损失函数时，仅考虑掩蔽标记的预测，而忽略非掩蔽标记的预测。这导致模型收敛的速度比从左至右或从右至左的模型慢得多。</p><h3 id="1-3-2-Next-Sentence-Prediction-NSP"><a href="#1-3-2-Next-Sentence-Prediction-NSP" class="headerlink" title="1.3.2 Next Sentence Prediction(NSP)"></a>1.3.2 Next Sentence Prediction(NSP)</h3><p>为了理解两个句子之间的关系，BERT训练过程还使用下一个句子预测。具有这种理解的预训练模型与诸如回答问题之类的任务有关。在训练过程中，该模型接受句子的输入对，并且学习预测第二个句子是否也是原始文本中的下一个句子。</p><p>如前所述，BERT使用特殊的[SEP]标记分隔句子。在训练过程中，模型每次输入两个输入语句，从而：</p><p>第二句话是第一句话之后的概率是50％。<br>有50％的概率是整个语料库中的随机句子。</p><p>然后要求BERT预测第二个句子是否是随机的，并假设该随机句子将与第一个句子断开：<br><img src="BERT%E5%8F%A5%E5%AD%90%E9%A2%84%E6%B5%8B.png"></p><p>为了预测第二句话是否与第一句话相连，基本上整个输入序列都会经过基于Transformer的模型，使用简单的分类层将[CLS]令牌的输出转换为2×1形状的矢量，并使用softmax确认IsNext-Label标签。</p><p>结合使用“Marked LM”和“下一句预测”对模型进行训练。这是为了最小化这两种策略的组合损失函数-  “在一起更好”。</p><h3 id="1-3-4-结构"><a href="#1-3-4-结构" class="headerlink" title="1.3.4 结构"></a>1.3.4 结构</h3><p>有4种类型的BERT预训练版本，取决于模型结构的大小<br>BERT-Base：12层，768个隐藏节点，12个注意点，110M参数<br>BERT-Large：24层，1024个隐藏节点，16个注意点，340M参数</p><p>有趣的事实：BERT-Base在4个云TPU上进行了4天的训练，而BERT-Large在16个TPU上进行了4天的训练！</p><h2 id="1-4-我们什么时候可以使用它并且对其进行微调"><a href="#1-4-我们什么时候可以使用它并且对其进行微调" class="headerlink" title="1.4 我们什么时候可以使用它并且对其进行微调"></a>1.4 我们什么时候可以使用它并且对其进行微调</h2><p>在一般语言理解（例如自然语言推理，情感分析，问题回答，释义检测和语言可接受性）下，BERT在各种任务上的表现都超过了最新技术。</p><p>现在，我们如何针对特定任务对其进行微调？BERT可用于多种语言任务。如果要基于自己的数据集微调原始模型，可以通过在核心模型的顶部添加一个单独的层来实现。</p><p>例如，假设我们正在创建一个问答应用程序。本质上，问题解答只是一项预测任务-在收到问题作为输入时，应用程序的目标是从某个语料库中识别正确的答案。因此，给定一个问题和一个上下文段落，该模型将从最有可能回答该问题的段落中预测一个开始和结束标记。这意味着使用BERT可以通过学习两个标记答案开头和结尾的额外矢量来训练我们应用程序的模型。<br><img src="BERT%E5%9B%9E%E7%AD%94.png"></p><p>就像句子对任务一样，问题将成为输入序列中的第一个句子，第二个句子成为段落。但是，这一次在微调期间学习了两个新参数：起始向量和结束向量。</p><p>在微调训练中，大多数超参数保持与BERT训练中相同；本文针对需要调整的超参数给出了具体指导。</p><p>请注意，如果要进行微调，我们需要将输入转换为用于预训练核心BERT模型的特定格式，例如，我们需要添加特殊标记以标记开始（[CLS ]）以及句子的分隔/结尾（[SEP]）和用于区分不同句子的句段ID －将数据转换为BERT使用的特征。</p><h1 id="2-实践"><a href="#2-实践" class="headerlink" title="2.实践"></a>2.实践</h1><p>实践环境:ubuntu python torch transformers</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-简介&quot;&gt;&lt;a href=&quot;#0-简介&quot; class=&quot;headerlink&quot; title=&quot;0.简介&quot;&gt;&lt;/a&gt;0.简介&lt;/h1&gt;&lt;p&gt;Transformer和Bert之间的关系:&lt;br&gt;Transformer模型是2017年谷歌发表的论文attention </summary>
-      
-    
-    
-    
     
   </entry>
   
