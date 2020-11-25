@@ -64,6 +64,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Pre-train模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2020-09-30T11:30:56.000Z" itemprop="datePublished">2020-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/">Pre-train模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>资料来源:李宏毅教授教程Deep Learning of Human Language Process</p>
+<h1 id="1-Pre-Train-Model"><a href="#1-Pre-Train-Model" class="headerlink" title="1.Pre-Train Model"></a>1.Pre-Train Model</h1><p>为什么需要Pre-Train Model<br><img src="why_pre_train.png"></p>
+<p>Pre-Train Model的具体流程如下图所示。<br><img src="pre_train_model.png"></p>
+<p>由许多层组成，有如下的几种架构方法:<br>1.LSTM<br>2.Self-attention layers<br>流行的model<br>3.Tree-based model<br>在公式表示中有很好的表现</p>
+<p>Pre-Train发展:<br>ELMO<br>Predict Next Token(Bidirectional):<br><img src="ELMO.png"></p>
+<p>BERT(类似与CBOW)<br>Masking Input:<br><img src="BERT_MASKING.png"></p>
+<p>补充:<br><img src="CBOW.png"></p>
+<p>bert看所有的sequence,而CBOW有固定的窗口</p>
+<p>Mask Input:<br>首先，Original BERT Input<br>probability<br>pro [MASK] ##lity</p>
+<p>然后，Whole Word Masking(WWM)<br>probability<br>[MASK]</p>
+<p>最后，Phrase-level和Entity-level(Enhanced Representation through Knowledge Integration,ERNIE)</p>
+<p>小的BERT模型有:<br>ALBERT 每一层的参数都相同，小一些，但是效果没怎么变</p>
+<p>Network Compression <a target="_blank" rel="noopener" href="https://youtu.be/dPp8rCAnU_A">https://youtu.be/dPp8rCAnU_A</a><br>其中:<br>Network Pruning<br>Knowledge Distillation<br>Parameter Quantization<br>Architecture Design</p>
+<p>BERT模型压缩:<br><a target="_blank" rel="noopener" href="http://mitchgordon.me/machine/learning/2019/11/18/all-the-ways-to-compress-BERT.html">http://mitchgordon.me/machine/learning/2019/11/18/all-the-ways-to-compress-BERT.html</a><br>all the ways to compress BERT</p>
+<p>减少self-attention的运算量(n^2,其中n为sequence的长度):<br>Reformer<br>Longformer</p>
+<p>有了Pre-Train Model之后，如何Fine-Tune？如图所示。<br><img src="fine-tune1.png"></p>
+<h1 id="2-优化"><a href="#2-优化" class="headerlink" title="2.优化"></a>2.优化</h1><h2 id="2-1-Adaptor"><a href="#2-1-Adaptor" class="headerlink" title="2.1 Adaptor"></a>2.1 Adaptor</h2><p>当我们进行Fine-Tune任务的时候，通常是如下图所示。<br><img src="adaptor1.png"></p>
+<p>增加adaptor模块<br><img src="adaptor2.png"></p>
+<p><img src="adaptor3.png"></p>
+<p>将效果进行对比<br><img src="adaptor%E6%AF%94%E8%BE%83.png"></p>
+<h1 id="3-GPT-3"><a href="#3-GPT-3" class="headerlink" title="3.GPT-3"></a>3.GPT-3</h1><p>参考论文:language model are few-shot learners<br>其中，few-shot是什么意思呢？</p>
+<p>首先，GPT-3的few-shot和其他模型的few-shot不同,如上图所示。<br>在其他模型中，few-shot learning是指用少量的训练资料去Fine Tune它。<br>在GPT-3中没有Fine Tune的内容，直接将问题的简介、样例(有的没有)和问题作为模型的输入，然后输出问题的答案。</p>
+<p>如下图所示:<br><img src="GPT-3_3_learning.png"></p>
+<p>这种学习被称为In-context learning,图中有三种类型。</p>
+<p>精度随着变量变化的趋势。<br><img src="GPT-3_ACCURACY.png"></p>
+<p>精度随着样本的变化趋势<br><img src="number_samples_accu.png"></p>
+<p>在数学计算上的精度:<br><img src="cal_gpt3.png"></p>
+<h1 id="4-GPT和BERT对比"><a href="#4-GPT和BERT对比" class="headerlink" title="4.GPT和BERT对比"></a>4.GPT和BERT对比</h1><p>首先，BERT是使用了MASK Input模型来获取上下文的资料，而GPT是根据前面的token来进行预训练。</p>
+<p>所以GPT在autoregressive生成句子中有劣势，但是，在non-regressive中可能会有好的效果。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/" data-id="ckhnlm62o000wnng77yrgbu2e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="bert-friends" class="article article-type-bert" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/28/friends/" class="article-date">
@@ -453,44 +518,6 @@
 
 
   
-    <article id="post-BERT模型应用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/19/BERT%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/" class="article-date">
-  <time datetime="2020-08-19T05:38:05.000Z" itemprop="datePublished">2020-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/19/BERT%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/">BERT模型应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/19/BERT%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/" data-id="ckhnlm6260001nng7h4xrerhv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bert/" rel="tag">bert</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -541,6 +568,10 @@
       <ul>
         
           <li>
+            <a href="/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/">Python模块打包及发布</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/23/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88/">知识图谱融合</a>
           </li>
         
@@ -554,10 +585,6 @@
         
           <li>
             <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
           </li>
         
       </ul>

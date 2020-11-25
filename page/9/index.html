@@ -64,6 +64,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-C语言编写解释器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/03/C%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E8%A7%A3%E9%87%8A%E5%99%A8/" class="article-date">
+  <time datetime="2019-10-03T13:08:07.000Z" itemprop="datePublished">2019-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/03/C%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E8%A7%A3%E9%87%8A%E5%99%A8/">C语言编写解释器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>相关资料：<br>基于栈的指令集和基于寄存器的指令集的对比：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wade-luffy/p/6058089.html">https://www.cnblogs.com/wade-luffy/p/6058089.html</a></p>
+<p>用C写了一个解释器，发现Java等高级语言通过虚拟机解释运行程序的过程和汇编语言编译为机器语言有异曲同工之妙。</p>
+<p>将代码解释为的字节码，和汇编语言很类似。</p>
+<h1 id="C语言编译原理"><a href="#C语言编译原理" class="headerlink" title="C语言编译原理"></a>C语言编译原理</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc [options] [filenames]</span><br></pre></td></tr></table></figure>
+<p>其中options就是编译器所需要的参数，filenames给出相关的文件名称。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-E</span><br><span class="line">//只激活预处理，生成.i文件</span><br><span class="line">//预处理：将头文件插入代码中，生成.i文件</span><br><span class="line">-S</span><br><span class="line">//只激活预处理和编译，生成汇编文件.s</span><br><span class="line">//编译：将预处理后的文件转换为为汇编语言，检查代码规范性，是否有语法错误等。检查完毕后，将代码翻译为汇编语言，生成.s文件。</span><br><span class="line">//gcc -S -O3 -fno-asynchronous-unwind-tables main.c这一句里面的参数不明白</span><br><span class="line">-c</span><br><span class="line">//只激活预处理,编译,和汇编,生成.o文件</span><br><span class="line">//汇编：将汇编语言转换为为机器语言，并将指令打包为可重定位目标程序的二进制格式，生成.o文件</span><br><span class="line">无参数</span><br><span class="line">//激活预处理，编译，汇编和连接，生成执行文件</span><br><span class="line">//链接：将调用的函数的目标文件与主程序整合到一起，将文件合并后生成一个可执行的目标文件</span><br><span class="line"></span><br><span class="line">gcc -E main.c -o main.i</span><br><span class="line">gcc -S main.i -o main.s</span><br><span class="line">gcc -c main.s -o hello.o</span><br><span class="line">gcc main.o -o main.out</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/03/C%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E8%A7%A3%E9%87%8A%E5%99%A8/" data-id="ckhnlm62b0008nng7hn8130jv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-FAQ" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/03/FAQ/" class="article-date">
@@ -356,7 +404,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>什么是最优秀的文本编辑器，当然是vim.<br>vim操作方便，在熟悉中会发现直接通过键盘进行操作比用鼠标更加的快速，可以享受到双手放在键盘上打字的畅快淋漓。<br>在打字过程中，不需要中断操作，然后再拿鼠标，减少了鼠标控制的打扰。<br>而且vim经历了大量大神的调教之后，增加了无数的扩展，更加贴近人的使用习惯。<br>完全可以用vim作为日常的程序文本编辑器，</p>
-<p>当你直接下载之后，vim是非常干净的，里面没有扩展，功能也很单一，在实际使用的情况下，我们需要对vim进行配置，来添加一些有用的插件。<br>我的vim配置?<a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/vimrc">https://github.com/Emir-Liu/vimrc</a><br>配置是fork其他大神的，里面的功能也在探索的过程中，使用它搭配makefile等可以进行项目的实践，贴图:<br><img src="stm32%E5%B7%A5%E7%A8%8B.png"><br>上面是我之前使用vim和一些工具做的STM32程序模板。</p>
+<p>当你直接下载之后，vim是非常干净的，里面没有扩展，功能也很单一，在实际使用的情况下，我们需要对vim进行配置，来添加一些有用的插件。<br>我的vim配置?<a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/vimrc">https://github.com/Emir-Liu/vimrc</a><br>配置是fork其他大神的，里面的功能也在探索的过程中，使用它搭配makefile等可以进行项目的实践，贴图:<br><img src="/2019/09/23/vim%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/stm32%E5%B7%A5%E7%A8%8B.png"><br>上面是我之前使用vim和一些工具做的STM32程序模板。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">ack.vim: </span><br><span class="line">Vim plugin <span class="keyword">for</span> the_silver_searcher (ag) or ack -- a wicked fast grep</span><br><span class="line">bufexplorer.zip: Quickly and easily switch between buffers. This plugin can be opened with &lt;leader+o&gt;</span><br><span class="line">ctrlp.vim: </span><br><span class="line">Fuzzy file, buffer, mru and tag finder. It<span class="string">&#x27;s mapped to &lt;Ctrl+F&gt;</span></span><br><span class="line"><span class="string">goyo.vim and vim-zenroom2:</span></span><br><span class="line"><span class="string">lightline.vim: </span></span><br><span class="line"><span class="string">A light and configurable statusline/tabline for Vim</span></span><br><span class="line"><span class="string">NERD Tree: </span></span><br><span class="line"><span class="string">A tree explorer plugin for vim</span></span><br><span class="line"><span class="string">mru.vim: </span></span><br><span class="line"><span class="string">Plugin to manage Most Recently Used (MRU) files. This plugin can be opened with &lt;leader+f&gt;</span></span><br><span class="line"><span class="string">open_file_under_cursor.vim: </span></span><br><span class="line"><span class="string">Open file under cursor when pressing gf</span></span><br><span class="line"><span class="string">pathogen.vim: </span></span><br><span class="line"><span class="string">Manage your vim runtimepath</span></span><br><span class="line"><span class="string">snipmate.vim: </span></span><br><span class="line"><span class="string">snipmate.vim aims to be a concise vim script that implements some of TextMate&#x27;</span>s snippets features <span class="keyword">in</span> Vim</span><br><span class="line">ale: </span><br><span class="line">Syntax and lint checking <span class="keyword">for</span> vim (ALE requires NeoVim &gt;= 0.2.0 or Vim 8 with +timers +job +channel)</span><br><span class="line">vim-commentary: </span><br><span class="line">Comment stuff out. Use gcc to comment out a line (takes a count), gc to comment out the target of a motion. gcu uncomments a <span class="built_in">set</span> of adjacent commented lines.</span><br><span class="line">vim-expand-region: </span><br><span class="line">Allows you to visually select increasingly larger regions of text using the same key combination</span><br><span class="line">vim-fugitive: </span><br><span class="line">A Git wrapper so awesome, it should be illegal</span><br><span class="line">vim-indent-object: </span><br><span class="line">Defines a new text object representing lines of code at the same indent level. Useful <span class="keyword">for</span> python/vim scripts</span><br><span class="line">vim-multiple-cursors: </span><br><span class="line">Sublime Text style multiple selections <span class="keyword">for</span> Vim, CTRL+N is remapped to CTRL+S (due to YankRing)</span><br><span class="line">vim-yankstack: </span><br><span class="line">Maintains a <span class="built_in">history</span> of previous yanks, changes and deletes</span><br><span class="line">vim-zenroom2 </span><br><span class="line">Remove all clutter and focus only on the essential. Similar to iA Writer or Write Room</span><br><span class="line">gist-vim Easily create gists from Vim using the :Gist <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
+
 <p>内容结构:<br>1.vim配置方式<br>2.vim操作指南<br>3.vim中一些有用的插件<br>3.1 NERDTree<br>3.2 ctags<br>4.FAQ</p>
 <h1 id="1-vim配置方式"><a href="#1-vim配置方式" class="headerlink" title="1.vim配置方式"></a>1.vim配置方式</h1><p>首先，为了让vim实现更多的功能，我们需要对其进行配置使得使用过程更加流畅方便，当然，如果没有配置同样可以使用，那就直接跳转到下一章。<br>配置之后，每次使用vim就可以直接为配置的样式。</p>
 <h2 id="1-1-配置文件的位置"><a href="#1-1-配置文件的位置" class="headerlink" title="1.1 配置文件的位置"></a>1.1 配置文件的位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim --version</span><br></pre></td></tr></table></figure>
@@ -539,42 +589,6 @@
 
 
   
-    <article id="post-批处理shadowsocks" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/18/%E6%89%B9%E5%A4%84%E7%90%86shadowsocks/" class="article-date">
-  <time datetime="2019-09-18T14:27:39.000Z" itemprop="datePublished">2019-09-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/%E6%89%B9%E5%A4%84%E7%90%86shadowsocks/">批处理shadowsocks</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/18/%E6%89%B9%E5%A4%84%E7%90%86shadowsocks/" data-id="ckhnlm64l004wnng7a2n52042" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -625,6 +639,10 @@
       <ul>
         
           <li>
+            <a href="/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/">Python模块打包及发布</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/23/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88/">知识图谱融合</a>
           </li>
         
@@ -638,10 +656,6 @@
         
           <li>
             <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
           </li>
         
       </ul>

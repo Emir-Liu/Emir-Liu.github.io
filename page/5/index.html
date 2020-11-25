@@ -64,6 +64,82 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ubuntu上Python教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/15/Ubuntu%E4%B8%8APython%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-02-15T10:42:26.000Z" itemprop="datePublished">2020-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/Ubuntu%E4%B8%8APython%E6%95%99%E7%A8%8B/">Ubuntu上Python教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Python中常见的括号-的区别："><a href="#Python中常见的括号-的区别：" class="headerlink" title="Python中常见的括号(),[],{}的区别："></a>Python中常见的括号(),[],{}的区别：</h1><p>Python中的这三种数据类型有不同的作用，分别代表不同的Python基本内置数据类型。</p>
+<h2 id="1-tuple元组数据类型"><a href="#1-tuple元组数据类型" class="headerlink" title="1 () tuple元组数据类型"></a>1 () tuple元组数据类型</h2><p>元组是一种不可变序列，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; tup = (1,2,3)</span><br><span class="line">&gt;&gt;&gt; tup</span><br><span class="line">(1, 2, 3)</span><br><span class="line">&gt;&gt;&gt; ()</span><br><span class="line">()</span><br><span class="line">&gt;&gt;&gt; 55,</span><br><span class="line">(55,)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-列表数据类型"><a href="#2-列表数据类型" class="headerlink" title="2 []列表数据类型"></a>2 []列表数据类型</h2><p>列表是一种可变序列，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list(<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;n&#x27;</span>]</span><br><span class="line">&gt;&gt;&gt; list(<span class="string">&#x27;ABC&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>]</span><br><span class="line">&gt;&gt;&gt; list([<span class="string">&#x27;ABC&#x27;</span>])</span><br><span class="line">[<span class="string">&#x27;ABC&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-字典数据类型"><a href="#3-字典数据类型" class="headerlink" title="3 {}字典数据类型"></a>3 {}字典数据类型</h2><p>字典是Python中唯一内建的映射类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; dic = &#123;<span class="string">&#x27;jon&#x27;</span>:<span class="string">&#x27;boy&#x27;</span>,<span class="string">&#x27;lili&#x27;</span>:<span class="string">&#x27;girl&#x27;</span>&#125;</span><br><span class="line">&gt;&gt;&gt; dic</span><br><span class="line">&#123;<span class="string">&#x27;jon&#x27;</span>: <span class="string">&#x27;boy&#x27;</span>, <span class="string">&#x27;lili&#x27;</span>: <span class="string">&#x27;girl&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Python下载第三方模块，下载速度慢，如何换源"><a href="#Python下载第三方模块，下载速度慢，如何换源" class="headerlink" title="Python下载第三方模块，下载速度慢，如何换源"></a>Python下载第三方模块，下载速度慢，如何换源</h1><p>‘’’<br>mkdir ~/.pip<br>vim ~/.pip/pip.conf<br>‘’’</p>
+<p>‘’’<br>[global]<br>index-url = <a target="_blank" rel="noopener" href="http://pypi.douban.com/simple">http://pypi.douban.com/simple</a><br>[install]<br>use-mirrors =true<br>mirrors =<a target="_blank" rel="noopener" href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a><br>trusted-host =pypi.douban.com<br>‘’’</p>
+<h1 id="不变数据类型和可变数据类型"><a href="#不变数据类型和可变数据类型" class="headerlink" title="不变数据类型和可变数据类型"></a>不变数据类型和可变数据类型</h1><p>可变数据类型：value值改变，id值不变；<br>不变数据类型：value值改变，id值也改变。</p>
+<p>分辨方式:在改变value值的同时，使用id()函数来查看变量id值是否发生变化。</p>
+<p>不变 整型 浮点型 字符串 元组<br>可变 列表 字典</p>
+<p>不变和可变数据类型对运算结果的影响：</p>
+<p>不变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">b = a</span><br><span class="line">b += 1</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+<p>Ans</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>可变</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>&#125;</span><br><span class="line">b = a</span><br><span class="line">b[<span class="string">&#x27;age&#x27;</span>] = 27</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+<p>Ans</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:27&#125;</span><br><span class="line">&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;jack&#x27;</span>,<span class="string">&#x27;age&#x27;</span>:27&#125;</span><br></pre></td></tr></table></figure>
+<p>简而言之，对于不可变数据类型，当多个名称包含的内容都是相同的，当改变一个之后，其他的不变，改变的指向另外的地址。<br>对于可变的数据类型，当多个内容相同，改变一个之后，所有指向的地址不变，但是内容改变了。</p>
+<h1 id="打包可执行文件"><a href="#打包可执行文件" class="headerlink" title="打包可执行文件"></a>打包可执行文件</h1><p>通过pyinstaller将python程序打包为可执行文件。</p>
+<p>pyinstaller,distribute分别是打包所需要的通过pip3来安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple distribute</span><br><span class="line"></span><br><span class="line">pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple pyinstaller</span><br></pre></td></tr></table></figure>
+<p>注意，有时候会遇到问题，当执行打包好的文件时，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">no module named <span class="string">&#x27;pkg_resources.py2_warn&#x27;</span></span><br><span class="line">//这个可以通过下面的方法来解决</span><br><span class="line">pip uninstall setuptools</span><br><span class="line">pip install setuptools==44.0.0</span><br><span class="line">//这是将setuptools进行降级处理，可能会出现有些功能无法使用的问题</span><br></pre></td></tr></table></figure>
+<p>还有一个解决方法记录一下：<br>1.先用pyinstaller -D(F) xxx.py生成一下(不一定能正常运行)<br>2.(关键)经过第一步之后，目录下有个.spec文件，用记事本打开，里面有个hiddenimports，在这条里面加上pkg_resources.py2_warn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hiddenimports=[<span class="string">&#x27;pkg_resources.py2_warm&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>3.再次用pyinstaller,注意这时候输入的命令是pyinstaller -D(F) xxx.spec<br>4.经过步骤2就可以解决这个问题，若仍然提示no module named XXXXX ,则再次写入到hiddenimports<br>5.需要经过几次调试，建议先用-D处理没问题之后再-F。</p>
+<h1 id="Python中关键词"><a href="#Python中关键词" class="headerlink" title="Python中关键词"></a>Python中关键词</h1><h2 id="name"><a href="#name" class="headerlink" title="name"></a><strong>name</strong></h2><p><strong>name__是python的一个内置类属性，它存储模块的名称。<br>python的模块既可以被调用，也可以独立运行。而被调用时__name__存储的是py文件名(模块名称)，独立运行时存储的是”__main</strong>“。<br>那么它的作用主要就是用来区分，当前模块是独立运行还是被调用。</p>
+<p>具体应用<br>当我们建立一个模块的时候，我们会在该模块最后输出调试信息，进行调试，调试之后，会在其他地方导入这个模块，但是，我们在调用这个模块的时候不希望产生调试信息，所以我们就需要区分这个模块是独立运行还是被调用，被调用的情况下就不输出调试信息。</p>
+<p>例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/02/15/Ubuntu%E4%B8%8APython%E6%95%99%E7%A8%8B/" data-id="ckhnlm631001snng73h2g3mqb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Ubuntu上opencv教程3之核心操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/02/15/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B3%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C/" class="article-date">
@@ -634,54 +710,6 @@
 
 
   
-    <article id="post-Ubuntu上STM32开发之printf函数重映射" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/" class="article-date">
-  <time datetime="2019-12-28T11:22:40.000Z" itemprop="datePublished">2019-12-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/">Ubuntu上STM32开发之printf函数重映射</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在之前的博客中，我在尝试使用标准输出函数printf的时候，发现没有显示。</p>
-<p>以为自己什么时候出问题了，甚至以为自己没有成功编译下载程序。</p>
-<p>但是，我在Windows系统下面，编译了包含printf函数的hex文件，然后，在Ubuntu环境下下载，查看串口。发现没有问题。</p>
-<p>我才发现，是因为自己没有重定义printf的底层函数的问题。</p>
-<p>首先发代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &quot;stm32f10x_conf.h&quot;</span></span><br><span class="line"> </span><br><span class="line">void uart_init(u32 bound)&#123;</span><br><span class="line">  GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">  USART_InitTypeDef USART_InitStructure;</span><br><span class="line">  NVIC_InitTypeDef NVIC_InitStructure;</span><br><span class="line"></span><br><span class="line">  RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1|RCC_APB2Periph_GPIOA, ENABLE); </span><br><span class="line"></span><br><span class="line">  //USART1_TX   GPIOA.9</span><br><span class="line"></span><br><span class="line">  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9; //PA.9</span><br><span class="line">  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP; </span><br><span class="line">  GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">  //USART1_RX   GPIOA.10</span><br><span class="line">  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;//PA10</span><br><span class="line">  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;</span><br><span class="line">  GPIO_Init(GPIOA, &amp;GPIO_InitStructure);</span><br><span class="line">  //Usart1 NVIC </span><br><span class="line">   NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;</span><br><span class="line">  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;</span><br><span class="line">  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;    </span><br><span class="line">  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;     </span><br><span class="line">  NVIC_Init(&amp;NVIC_InitStructure); </span><br><span class="line"></span><br><span class="line">  USART_InitStructure.USART_BaudRate = bound;</span><br><span class="line">  USART_InitStructure.USART_WordLength = USART_WordLength_8b;</span><br><span class="line">  USART_InitStructure.USART_StopBits = USART_StopBits_1;</span><br><span class="line">  USART_InitStructure.USART_Parity = USART_Parity_No;</span><br><span class="line">  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;</span><br><span class="line">  USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx; </span><br><span class="line">  USART_Init(USART1, &amp;USART_InitStructure); </span><br><span class="line">  USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);</span><br><span class="line">  USART_Cmd(USART1, ENABLE);                    </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int _write (int fd, char *pBuffer, int size)</span><br><span class="line">    &#123;</span><br><span class="line">        int i=0;</span><br><span class="line">        <span class="keyword">for</span> (i = 0; i &lt; size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!(USART1-&gt;SR &amp; USART_SR_TXE))</span><br><span class="line">            &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            USART_SendData(USART1, pBuffer[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	uart_init(9600);</span><br><span class="line">    int i=0;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">while</span>(1)</span><br><span class="line">  &#123;</span><br><span class="line">       <span class="keyword">for</span>(i=0;i&lt;1000000;i++);</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;hello!\r\n&quot;</span>);</span><br><span class="line"> </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这里，我写了一个_write函数，因为在gcc_arm_none_eabi编译器中，printf函数是通过_write函数来实现的，我们需要将printf的输出流重映射到串口上，就需要修改这些底层的实现。</p>
-<p>还有，在Windows环境下Keil软件中的arm编译器则采取不同的底层实现方式，所以，在不同编译器的情况下，需要重新修改函数。补充一下，在Keil的C库中，printf和scanf是通过fputc和fgetc来操作的。</p>
-<p>还有，听说在用GNU的printf需要在最后添加\n或者使用fflush(stdout)函数。来刷新输出流。否则printf不会输出任何数据，而且会被后来的正确发送的printf数据覆盖。这是由于printf的数据流在扫描到 \n以前会被保存在缓存中，直到 \n出现或是fflush(stdout)强制刷新才会输出数据，如果我们在printf数据的末尾不加入\n或fflush(stdout)，这个printf数据就不会被发送出去，而且在新的printf语句也会重写printf的缓存内容，使得新的printf语句不会附带之前的内容一起输出，从而造成上一条错误的printf内容不显示且丢失。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/28/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8Bprintf%E5%87%BD%E6%95%B0%E9%87%8D%E6%98%A0%E5%B0%84/" data-id="ckhnlm635001ynng7ajj2b7d7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -732,6 +760,10 @@
       <ul>
         
           <li>
+            <a href="/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/">Python模块打包及发布</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/23/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88/">知识图谱融合</a>
           </li>
         
@@ -745,10 +777,6 @@
         
           <li>
             <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/18/RNN%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">RNN神经网络</a>
           </li>
         
       </ul>
