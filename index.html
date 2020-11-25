@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>概述：<br>如何将自己开发的库分享给别人使用，使用pip install安装。<br>本文章包含制作python安装包和发布。</p>
+        <p>概述：<br>如何将自己开发的库分享给别人使用，使用pip install安装。<br>本文章包含制作python安装包和发布。<br>并且，通过这个步骤，我可深入了解各个模块中的内容，方便自己使用别人的库</p>
 <p>参考资料:<br><a target="_blank" rel="noopener" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a></p>
 <h1 id="1-创建setup-py文件"><a href="#1-创建setup-py文件" class="headerlink" title="1.创建setup.py文件"></a>1.创建setup.py文件</h1><p>建立如下所示的文档结构</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── example_pkg <span class="comment"># packet 文件</span></span><br><span class="line">│   ├── __init__.py <span class="comment"># 全局变量定义等，可以直接是空文件，定位</span></span><br><span class="line">│   └── test_pkg.py </span><br><span class="line">├── LICENSE <span class="comment"># 许可证</span></span><br><span class="line">├── README.md <span class="comment"># 描述文件</span></span><br><span class="line">├── setup.py <span class="comment"># 配置文件</span></span><br><span class="line">└── tests <span class="comment"># 测试文件夹</span></span><br></pre></td></tr></table></figure>
