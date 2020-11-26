@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-25T03:16:10.105Z</updated>
+  <updated>2020-11-26T15:37:44.914Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LaTeX使用说明</title>
+    <link href="http://example.com/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
+    <id>http://example.com/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
+    <published>2020-11-26T15:36:25.000Z</published>
+    <updated>2020-11-26T15:37:44.914Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-环境配置"><a href="#0-环境配置" class="headerlink" title="0.环境配置"></a>0.环境配置</h1><p>下载</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-环境配置&quot;&gt;&lt;a href=&quot;#0-环境配置&quot; class=&quot;headerlink&quot; title=&quot;0.环境配置&quot;&gt;&lt;/a&gt;0.环境配置&lt;/h1&gt;&lt;p&gt;下载&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="latex" scheme="http://example.com/tags/latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>知识图谱融合方法</title>
+    <link href="http://example.com/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/"/>
+    <id>http://example.com/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/</id>
+    <published>2020-11-26T07:40:33.000Z</published>
+    <updated>2020-11-26T09:04:26.397Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考资料：<br>南京大学 CCF学科前沿讲习班 108期</p><p>结构：<br>1.概述<br>2.预备知识<br>3.本体匹配<br>4.实体对齐<br>5.知识融合<br>6.总结与展望</p><h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>RDF数据模型：</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;参考资料：&lt;br&gt;南京大学 CCF学科前沿讲习班 108期&lt;/p&gt;
+&lt;p&gt;结构：&lt;br&gt;1.概述&lt;br&gt;2.预备知识&lt;br&gt;3.本体匹配&lt;br&gt;4.实体对齐&lt;br&gt;5.知识融合&lt;br&gt;6.总结与展望&lt;/p&gt;
+&lt;h1 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; cla</summary>
+      
+    
+    
+    
+    
+    <category term="知识图谱" scheme="http://example.com/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+    
+  </entry>
   
   <entry>
     <title>Python模块打包及发布</title>
@@ -400,48 +447,6 @@
     
     
     <category term="transformer" scheme="http://example.com/tags/transformer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GPT-3教程</title>
-    <link href="http://example.com/2020/09/04/GPT-3%E6%95%99%E7%A8%8B/"/>
-    <id>http://example.com/2020/09/04/GPT-3%E6%95%99%E7%A8%8B/</id>
-    <published>2020-09-04T01:08:03.000Z</published>
-    <updated>2020-11-18T13:25:41.988Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>GPT-3(Generative Pre-trained Transformer 3)是一种自动回归语言模型(这是什么东西？)。<br>使用基于Transformer的深度学习神经网络生成类似于人写的文本。其完整版本包含了1750亿个机器学习的参数。<br>GPT-3在2020年5月推出，在7月进行Beta测试。</p><a id="more"></a><p>相关资料:<br>论文:<br>GPT-3<br>Language Models are Few-Shot Learners<br><a href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a></p><p>GPT-2<br>Language Models are Unsupervised Multitask Learners<br><a href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf</a></p><p>GPT模型<br>Improving Language Understanding by Generative Pre-Training<br><a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf">https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf</a></p><p>GPT-3使用了和GPT-2相同的模型和架构，也是基于Transformer模型，所以，研究GPT-3模型，就直接看GPT模型。GPT和bert模型都是基于Transformer模型，但是不同的是:<br>GPT模型是通过多层解码器构建，而BERT是通过多层编码器模块构建的。</p><p>BERT模型与GPT系列的对比:<br>BERT与GPT-1:<br>都使用了预训练和微调两个阶段，然后使用了Transformer来抽取特征<br>但是，BERT使用了双向语言模型来预训练，而GPT-1使用了单向语言模型<br>导致了Bert的效果更好</p><p>GPT-2与GPT-1:<br>GPT-2在GPT-1的框架下，将第二阶段中的微调部分中有监督的NLP任务转换为无监督的下游任务，从而不需要修改任何参数和结构。<br>提高了Transformer模型的层数和参数规模，从而增加了模型的通用性。<br>用足够大的语言模型来实现学习，虽然学习效率比有监督的方法慢很多，但是是很大的进步</p><p>GPT-3与GPT-2:<br>在语言模型的方向上越走越远。</p><p>GPT模型的训练有两个步骤：<br>第一个步骤是，无监督预训练，在大型的文本集上学习的高能力语言模型，<br>第二个步骤是，有监督微调，将模型调整为带有标记数据的区分任务。</p><p>无监督预训练:<br>获取无监督的语料库u={u_1,…,u_n},然后，我们使用标准的语言建模使得下面的概率最大:<br><img src="GPT3%E9%A2%84%E8%AE%AD%E7%BB%83%E5%85%AC%E5%BC%8F1.png"><br>其中，k是文档窗口的大小，条件概率P是包含变量&Theta;的神经网络模型，而这些变量都是通过随机梯度下降训练出的。</p><p>我们使用了一个多层的Transformer解码器模型，其中多头注意力机制和位置前馈网络产生了一个目标位置的输出分布。</p><p><img src="GPT3%E9%A2%84%E8%AE%AD%E7%BB%83%E5%85%AC%E5%BC%8F2.png"></p><p>其中，U=(u_-k,…,u_-1)是词语token的内容向量，n是层的数目，W_e是词语token的嵌入矩阵，W_p是位置嵌入矩阵。</p><p>其中h_0是GPT的输入，然后计算出每一层的输出，得到最后一层的输出h_t,然后送到softmax函数中计算下个单词出现的概率。</p><p>其中，矩阵的维度为:<br>V:词汇表的大小<br>L:最长句子的长度<br>dim:词嵌入的唯独<br>W_p:L×dim矩阵<br>W_e:V×dim矩阵</p><p>有监督微调:<br>在无监督预训练之后，我们根据有监督的目标任务修改变量。假设有一个有标签的数据集C，每个实例都是包含输入x1,…,xm和标签y。由预训练模型作为输入，来获取最终的transformer block中的h_m,l,然后将其和变量W_y输入到线性输出层,来预测y:<br><img src="GPT3%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83%E5%85%AC%E5%BC%8F1.png"></p><p>将所有的概率通过公式叠加，使其最大:<br><img src="GPT3%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83%E5%85%AC%E5%BC%8F2.png"></p><p>将语言建模作为微调的辅助目标，可以:<br>1.提高模型的范化能力<br>2.加快收敛<br>我们可以优化其目标函数:<br><img src="GPT3%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83%E5%85%AC%E5%BC%8F3.png"></p><p>GPT的模型和应用:<br><img src="GPT%E6%A8%A1%E5%9E%8B%E5%8F%8A%E5%BA%94%E7%94%A8.png"><br>其中的应用分别是:<br>分类问题:<br>应用方法，增加起始和终止符。</p><p>Textual entailment(文本蕴含任务):<br>自然语言推理的一部分(其中还有机器阅读，问答系统和对话)，内容是给定一个前提文本(premise)，根据这个前提文本去推断假说文本(hypothesis)与前提的关系，一般为蕴含(entailment)和矛盾(contradiction)。<br>蕴含关系为从前提中可以推理出假说，矛盾关系为前提和假设矛盾。<br>应用方法，两个句子之间增加分割符</p><p>Similarity(相似性):<br>对于相似性问题，两个比较的句子之间相似性。<br>应用方法，将两个句子顺序颠倒作为两个输入</p><p>问题解答和常识推理:<br>对于一个文档，一个问题和一系列可能的回答</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;GPT-3(Generative Pre-trained Transformer 3)是一种自动回归语言模型(这是什么东西？)。&lt;br&gt;使用基于Transformer的深度学习神经网络生成类似于人写的文本。其完整版本包含了1750亿个机器学习的参数。&lt;br&gt;GPT-3在2020年5月推出，在7月进行Beta测试。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="nlp" scheme="http://example.com/tags/nlp/"/>
-    
-    <category term="gpt" scheme="http://example.com/tags/gpt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu上LibreOffice公式输入</title>
-    <link href="http://example.com/2020/08/19/Ubuntu%E4%B8%8ALibreOffice%E5%85%AC%E5%BC%8F%E8%BE%93%E5%85%A5/"/>
-    <id>http://example.com/2020/08/19/Ubuntu%E4%B8%8ALibreOffice%E5%85%AC%E5%BC%8F%E8%BE%93%E5%85%A5/</id>
-    <published>2020-08-19T12:39:38.000Z</published>
-    <updated>2020-11-18T13:25:41.992Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近写博客，发现很多地方需要用到公式，有很多方法，但是都太麻烦了，所以，直接想用LibreOffice里面的插入公式，然后再截图放到博客上面。<br>下面是在LibreOffice中插入公式需要的一些知识。</p><a id="more"></a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">基础操作</span><br><span class="line">newline 换行</span><br><span class="line">alignl  左对齐</span><br><span class="line">alignc  中间对齐</span><br><span class="line">alignr  右对齐</span><br><span class="line"></span><br><span class="line">数学位置操作</span><br><span class="line">binom&#123;&lt;?&gt;&#125;&#123;&lt;?&gt;&#125;     上下标</span><br><span class="line">&#123;&lt;?&gt;&#125; over &#123;&lt;?&gt;&#125;    上下分数形式</span><br><span class="line">&lt;?&gt;^&#123;&lt;?&gt;&#125;           上标</span><br><span class="line">&lt;?&gt;_&#123;&lt;?&gt;&#125;           下标</span><br><span class="line">sum from&#123;&lt;?&gt;&#125; &lt;?&gt;   叠加</span><br><span class="line"></span><br><span class="line">数学符号</span><br><span class="line">partial 偏导符号</span><br><span class="line">odot    圆圈里有一个点</span><br><span class="line"></span><br><span class="line">希腊符号</span><br><span class="line">%alpha</span><br><span class="line">%beta</span><br><span class="line">%gamma</span><br><span class="line">%delta</span><br><span class="line">%varepsilon</span><br><span class="line">%zeta</span><br><span class="line">%eta</span><br><span class="line">%theta</span><br><span class="line">%iota</span><br><span class="line">%kappa</span><br><span class="line">%lambda</span><br><span class="line">%mu</span><br><span class="line">%nu </span><br><span class="line">%xi </span><br><span class="line">%omicron </span><br><span class="line">%pi </span><br><span class="line">%rho </span><br><span class="line">%varsigma</span><br><span class="line">%sigma </span><br><span class="line">%tau </span><br><span class="line">%upsilon </span><br><span class="line">%varphi </span><br><span class="line">%chi </span><br><span class="line">%psi </span><br><span class="line">%omega </span><br><span class="line">%vartheta</span><br><span class="line">%phi </span><br><span class="line">%varpi </span><br><span class="line">%varrho </span><br><span class="line">%epsilon</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;最近写博客，发现很多地方需要用到公式，有很多方法，但是都太麻烦了，所以，直接想用LibreOffice里面的插入公式，然后再截图放到博客上面。&lt;br&gt;下面是在LibreOffice中插入公式需要的一些知识。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="ubuntu" scheme="http://example.com/tags/ubuntu/"/>
-    
-    <category term="libreoffice" scheme="http://example.com/tags/libreoffice/"/>
     
   </entry>
   

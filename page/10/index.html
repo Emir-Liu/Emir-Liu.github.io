@@ -64,6 +64,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ubuntu上SSH的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/23/Ubuntu%E4%B8%8ASSH%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2019-09-23T04:16:47.000Z" itemprop="datePublished">2019-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/Ubuntu%E4%B8%8ASSH%E7%9A%84%E4%BD%BF%E7%94%A8/">Ubuntu中SSH的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-SSH是什么"><a href="#1-SSH是什么" class="headerlink" title="1.SSH是什么"></a>1.SSH是什么</h1><p>SSH是一种网络协议，用于计算机之间的加密登录。如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准 配置。<br>SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的实现是OpenSSH，它是自由软件，应用非常广泛。这里只讨论SSH在Linux Shell中的用法。</p>
+<h1 id="2-SSH为什么能够保证安全"><a href="#2-SSH为什么能够保证安全" class="headerlink" title="2.SSH为什么能够保证安全"></a>2.SSH为什么能够保证安全</h1><p>  原因在于它采用了公钥加密。<br>    整个过程是这样的：<br>    （1）远程主机收到用户的登录请求，把自己的公钥发给用户。<br>    （2）用户使用这个公钥，将登录密码加密后，发送回来。<br>    （3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。<br>    这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像http协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。<br>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然 无存了。这种风险就是著名的”中间人攻击”（Man-in-the-middle attack）。</p>
+<p>好吧，上面的那些我都不清楚，下面的我知道一点</p>
+<h1 id="3-如何使用SSH"><a href="#3-如何使用SSH" class="headerlink" title="3.如何使用SSH"></a>3.如何使用SSH</h1><h2 id="3-1SSH远程登陆"><a href="#3-1SSH远程登陆" class="headerlink" title="3.1SSH远程登陆"></a>3.1SSH远程登陆</h2><h2 id="3-2SSH传输文件"><a href="#3-2SSH传输文件" class="headerlink" title="3.2SSH传输文件"></a>3.2SSH传输文件</h2><h3 id="3-2-1SCP"><a href="#3-2-1SCP" class="headerlink" title="3.2.1SCP"></a>3.2.1SCP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp [-P 端口号] file-name user-name@ip/host-name:target</span><br><span class="line">//将本机文件发送到目标机的目标位置</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-如何将外网连接到内网"><a href="#3-3-如何将外网连接到内网" class="headerlink" title="3.3 如何将外网连接到内网"></a>3.3 如何将外网连接到内网</h2><p>在外网服务器上配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sshd_config</span><br><span class="line"></span><br><span class="line">//在文件中修改</span><br><span class="line">GatewayPorts yes</span><br></pre></td></tr></table></figure>
+
+<p>在内网主机上配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -gR 11122:localhost:22 Ruser@Rserver</span><br><span class="line">//将外网服务器的11122端口转发到本地22端口</span><br></pre></td></tr></table></figure>
+
+<p>自动连接到外网，检查端口状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -tln</span><br><span class="line">//可以看到11122端口在监听</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 11122 user@Rserver</span><br><span class="line">//其中user为内网的账户</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/23/Ubuntu%E4%B8%8ASSH%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckhnlm633001vnng76m9gdhcu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Expect操作指南" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/Expect%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" class="article-date">
+  <time datetime="2019-09-19T05:16:39.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/19/Expect%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/">Expect操作指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Expect是一个用来处理交互的命令。借助Expect，我们可以将交互过程写在一个脚本上，使之自动化完成。可以应用于ssh登陆，ftp登陆。</p>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令:"></a>命令:</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">send		//用于向进程发送字符串</span><br><span class="line">expect		//从进程接受字符串</span><br><span class="line">spawn		//启动新的进程</span><br><span class="line">interact	//用户交互</span><br><span class="line"><span class="variable">$expect_out</span>(buffer)	//存储了所有对expect的输入</span><br><span class="line"><span class="meta">#! /usr/bin/expect -f</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h1><p>expect最常用的语法是来自tcl语言的模式-动作。这种语法极其灵活，下面我们就各种语法分别说明。</p>
+<h2 id="单一分支模式语法"><a href="#单一分支模式语法" class="headerlink" title="单一分支模式语法:"></a>单一分支模式语法:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect <span class="string">&quot;hi&quot;</span> &#123;send <span class="string">&quot;You said hi&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>匹配到hi后，会输出”you said hi”</p>
+<h2 id="多分支模式语法："><a href="#多分支模式语法：" class="headerlink" title="多分支模式语法："></a>多分支模式语法：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">expect 	<span class="string">&quot;hi&quot;</span> 	&#123; send <span class="string">&quot;You said hi\n&quot;</span> &#125; 	\</span><br><span class="line">	<span class="string">&quot;hello&quot;</span>	&#123; send <span class="string">&quot;Hello yourself\n&quot;</span> &#125; 	\</span><br><span class="line">	<span class="string">&quot;bye&quot;</span> 	&#123; send <span class="string">&quot;That was unexpected\n&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>匹配到hi,hello,bye任意一个字符串时，执行相应的输出。等同于如下写法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">expect &#123;</span><br><span class="line">	<span class="string">&quot;hi&quot;</span> &#123; send <span class="string">&quot;You said hi\n&quot;</span>&#125;</span><br><span class="line">	<span class="string">&quot;hello&quot;</span> &#123; send <span class="string">&quot;Hello yourself\n&quot;</span>&#125;</span><br><span class="line">	<span class="string">&quot;bye&quot;</span> &#123; send <span class="string">&quot;That was unexpected\n&quot;</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/19/Expect%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" data-id="ckhnlm62d000bnng72xbqb2y3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-批处理shadowsocks" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/18/%E6%89%B9%E5%A4%84%E7%90%86shadowsocks/" class="article-date">
@@ -488,178 +590,6 @@
 
 
   
-    <article id="post-Git使用指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/19/Git%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-08-19T05:08:25.000Z" itemprop="datePublished">2019-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/Git%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">Git使用指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><h1 id="Git创建本地项目，并推送到远程Git仓库"><a href="#Git创建本地项目，并推送到远程Git仓库" class="headerlink" title="Git创建本地项目，并推送到远程Git仓库"></a>Git创建本地项目，并推送到远程Git仓库</h1><h1 id="1-建立本地项目"><a href="#1-建立本地项目" class="headerlink" title="1.建立本地项目"></a>1.建立本地项目</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>它可以创建一个全新的空仓库，或者将已经存在的项目纳入版本管理。同时，系统自动创建唯一的分支master，自动创建.git目录（默认是隐藏状态），这个默认隐藏的目录.git就是版本库（Repository），而当前目录下，除.git以外都是工作区，也就是我们修改文件的地方。版本库中内容很多，并且都很重要，有两个是我们实际操作中经常要遇到的，那就是暂存区（也可以称之为stage或者index）和分支，HEAD是一个指针，指向当前所在的分支（master）。<br>将文件最终提交到版本库基本流程如下：<br>（1）.git add命令将工作区未跟踪和修改文件提交到暂存区。<br>（2）.git commit命令将暂存区内容提交到当前版本。暂存区就如同一个临时性仓库，可以将来自工作区的新文件或者修改文件暂时存放起来，然后统一提交到分支。</p>
-<p>1.在远端建立库<br>进入GitHub,登陆后，创建新的库，保存库的.ssh地址<br>2.在本地建立库<br>    1.在工程文件夹，或新的目标文件夹下,输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git statues	//查看本地库的状态</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git add file-name	//将文件添加到暂存区</span><br><span class="line">git add .		//将所有已改或新建的文件添加到暂存区</span><br><span class="line">git rm --cached file-name//将文件从暂存区移除</span><br><span class="line">git rm -r file-name		//将文件从本地的版本库中删除</span><br><span class="line">git commit -m <span class="string">&quot;xxx&quot;</span>//将暂存区的文件添加到本地仓库 -m代表提交信息</span><br><span class="line">git commit -am <span class="string">&quot;xxx&quot;</span>//将add和commit合二为一</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span>	//查看提交日志</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin ....git//加入远端仓库</span><br><span class="line">git push -u origin branck-name//将本地仓库发送到远端仓库的master分支</span><br></pre></td></tr></table></figure>
-
-<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git branch branch-name	//建立一个新的分支</span><br><span class="line">git branch							</span><br><span class="line">//查看当前的本地分支，可以通过颜色确认当前所在的分支</span><br><span class="line">git branch -a</span><br><span class="line">//看到本地和远程分支</span><br><span class="line">git checkout branch-name//切换到分支</span><br><span class="line">git checkout -b branch-name	</span><br><span class="line">//git branch branch-name和git checkout branch-name的合并</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-Submodule"><a href="#2-Submodule" class="headerlink" title="2.Submodule"></a>2.Submodule</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git submodule add submodule_url </span><br><span class="line">//添加子项目</span><br><span class="line">//出现.gitmodules文件，配置文件</span><br><span class="line"></span><br><span class="line">git submodule init</span><br><span class="line">//初始化本地.gitmodules文件</span><br><span class="line">git submodule update</span><br><span class="line">//同步远端submodule源码</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/08/19/Git%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-id="ckhnlm62k000onng755yq4dg0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Ubuntu操作指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/19/Ubuntu%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-08-19T03:44:30.000Z" itemprop="datePublished">2019-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/Ubuntu%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/">Ubuntu操作指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="输入法配置谷歌拼音"><a href="#输入法配置谷歌拼音" class="headerlink" title="输入法配置谷歌拼音"></a>输入法配置谷歌拼音</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.安装中文字体（已经有了，这一步略过）</span><br><span class="line">2.安装fcitx框架</span><br><span class="line">3.安装google拼音</span><br><span class="line">4.配置输入法</span><br></pre></td></tr></table></figure>
-<p>安裝中文鍵盤字體：<br>settings-&gt;Regin&amp;Language中‘+’添加chinese</p>
-<p>下載fcitx和google拼音</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fcitx</span><br><span class="line">sudo apt install fcitx-googlepinyin</span><br></pre></td></tr></table></figure>
-
-<p>配置输入法：<br>1.点击input method configuration<br>2.选择updata<br>3.選擇fcitx</p>
-<p>3.进入fcitx configuration(input method configuration)<br>4.选择加号添加输入法<br>5.取消勾选仅显示当前语言，在下面搜索google-pinyin<br>6.重启fcitx或者Ubuntu<br>7.默认切换输入法ctrl+space或者shift</p>
-<p>Ctrl Shift F 繁体字和简体字的切换</p>
-<h2 id="文档处理指令："><a href="#文档处理指令：" class="headerlink" title="文档处理指令："></a>文档处理指令：</h2><p>cd:进入下级目录<br>cd ..    返回上级文件<br>cd /    返回根目录<br>cd ~    返回用户目录</p>
-<p>ls:显示当前路径下的文件<br>ls -a    显示包括隐藏文件之内的所有文件<br>/*<br>ls命令下文件颜色的含义:<br>白色：普通文件<br>绿色：可执行文件<br>红色：压缩文件<br>蓝色：目录<br>青色：链接文件，类似于快捷方式<br>黄色：设备文件，把硬件设备抽象为文件。<br>    例如：block块可以表示硬盘，char表示键盘<br>灰色：其他文件<br>*/<br>ubuntu下查看权限的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l filename</span><br><span class="line">ls -ld folder</span><br></pre></td></tr></table></figure>
-<p>u    user 所有者<br>g    group 群组<br>o    other 其他人<br>a    all 全部的人包括u,g,o</p>
-<p>r(4):文件可以被读<br>w(2):文件可以被写<br>x(1):文件可以被执行<br>-(0):相应的权限还没有被授予<br>同时，上面的权限可以通过数字来表示.</p>
-<ul>
-<li>添加权限</li>
-</ul>
-<ul>
-<li>删除权限<br>= 使之成为唯一的权限</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chmod o+w xxx</span><br><span class="line">//授予其他人写的权限</span><br><span class="line">chmod go-rw xxx</span><br><span class="line">//删除群组和其他人的读写权限</span><br><span class="line">chmod 777 xxx</span><br><span class="line">//所有人获得所有权限</span><br></pre></td></tr></table></figure>
-<p>控制权限的所有指令都必须使用高级权限。</p>
-<p>mkdir:新建目录</p>
-<p>rm:删除<br>rm 文件名<br>rm -r 文件夹名</p>
-<p>cp:复制<br>-i    (interactive)要求确认在复制过程中是否覆盖现有文件<br>-r    复制给定目录中的所有子目录和文件并保留树结构<br>-v    (verbose)显示逐个复制的文件</p>
-<p>mv:移动和重命名文件<br>-i    (interactive)要求确认是否覆盖现有文件<br>-f    (force)覆盖交互，不返回任何提示<br>-v    (verbose)显示逐个移动文件</p>
-<p>cat:打开文档</p>
-<h1 id="解压，压缩文件："><a href="#解压，压缩文件：" class="headerlink" title="解压，压缩文件："></a>解压，压缩文件：</h1><h2 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h2><p>tar.gz压缩格式用于unix的操作系统,<br>zip用于windows的操作系统<br>在windows系统中用WinRar工具同样可以解压缩tar.gz格式的。</p>
-<p>详细：</p>
-<p>zip流行于windows系统上的压缩文件（其他系统也可以打开）。zip格式开放而且免费 。zip支持分卷压缩，128/256-bit AES加密算法等功能。zip的含义是速度，其目标就 是为顶替ARC而诞生的“职业”压缩软件。</p>
-<p>tar是“tape archive”(磁带存档)的简称，它出现在还没有软盘驱动器、硬盘和光盘驱 动器的计算机早期阶段，随着时间的推移， tar命令逐渐变为一个将很多文件进行存档的工具，目前许多用于Linux操作系统的程序就是打包为tar档案文件的形式。 在Linux里面，tar一般和其他没有文件管理的压缩算法文件结合使用，用tar打包整个文件目录结构成一个文件，再用gz，bzip等压缩算法压缩成一次。也是Linux常见的压缩归档的 处理方法。</p>
-<h2 id="指令："><a href="#指令：" class="headerlink" title="指令："></a>指令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .tar	仅打包，并非压缩</span></span><br><span class="line">tar -xvf FileName.tar         <span class="comment"># 解包</span></span><br><span class="line">tar -cvf FileName.tar DirName <span class="comment"># 将DirName和其下所有文件（夹）打包</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># .gz</span></span><br><span class="line">gunzip FileName.gz  <span class="comment"># 解压1</span></span><br><span class="line">gzip -d FileName.gz <span class="comment"># 解压2</span></span><br><span class="line">gzip FileName       <span class="comment"># 压缩，只能压缩文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># .tar.gz 和 .tgz</span></span><br><span class="line">tar -zxvf FileName.tar.gz               <span class="comment"># 解压</span></span><br><span class="line">tar -zcvf FileName.tar.gz DirName       <span class="comment"># 将DirName和其下所有文件（夹）压缩</span></span><br><span class="line">tar -C DesDirName -zxvf FileName.tar.gz <span class="comment"># 解压到目标路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># .zip	占用空间比.tar.gz大</span></span><br><span class="line">unzip FileName.zip          <span class="comment"># 解压</span></span><br><span class="line">zip FileName.zip DirName    <span class="comment"># 将DirName本身压缩</span></span><br><span class="line">zip -r FileName.zip DirName <span class="comment"># 压缩，递归处理，将指定目录下的所有文件和子目录一并压缩</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># .rar	mac和linux并没有自带rar，需要去下载</span></span><br><span class="line">rar x FileName.rar      <span class="comment"># 解压</span></span><br><span class="line">rar a FileName.rar DirName <span class="comment"># 压缩</span></span><br></pre></td></tr></table></figure>
-<p>tree:显示当前目录下的文件结构（需要安装tree）</p>
-<h2 id="下载安装文件："><a href="#下载安装文件：" class="headerlink" title="下载安装文件："></a>下载安装文件：</h2><p>sudo apt [–yes –force-yes] install  文件名    从文件源下载安装文件<br>sudo apt update        apt源文件目录更新<br>sudo apt upgrade    文件升级</p>
-<p>软件安装后的存放位置<br>‘’’<br>/var/cache/apt/archives</p>
-<h1 id="下载文件存放位置"><a href="#下载文件存放位置" class="headerlink" title="下载文件存放位置"></a>下载文件存放位置</h1><p>/usr/share</p>
-<h1 id="安装文件默认位置"><a href="#安装文件默认位置" class="headerlink" title="安装文件默认位置"></a>安装文件默认位置</h1><p>/usr/bin</p>
-<h1 id="可执行文件位置"><a href="#可执行文件位置" class="headerlink" title="可执行文件位置"></a>可执行文件位置</h1><p>/etc</p>
-<h1 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h1><p>/usr/lib</p>
-<h1 id="lib文件位置"><a href="#lib文件位置" class="headerlink" title="lib文件位置"></a>lib文件位置</h1><p>‘’’</p>
-<h2 id="权限：（注意！尽可能不要使用以下权限，除非安装程序之类的操作）"><a href="#权限：（注意！尽可能不要使用以下权限，除非安装程序之类的操作）" class="headerlink" title="权限：（注意！尽可能不要使用以下权限，除非安装程序之类的操作）"></a>权限：（注意！尽可能不要使用以下权限，除非安装程序之类的操作）</h2><p>sudo    暂时获取管理员权限，之后要求输入密码，不显示密码<br>sudo -s 获取root权限<br>exit    退出root权限</p>
-<h2 id="建立快捷方式"><a href="#建立快捷方式" class="headerlink" title="建立快捷方式"></a>建立快捷方式</h2><p>在/usr/share/applications目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim pycharm.desktop</span><br><span class="line"></span><br><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=Pycharm</span><br><span class="line">Comment=The Python IDE</span><br><span class="line">Exec=sh /home/eglym/pycharm-community-2019.2.3/bin/pycharm.sh</span><br><span class="line">Icon=/home/eglym/pycharm-community-2019.2.3/bin/pycharm.png</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="如何直接通过命令行控制"><a href="#如何直接通过命令行控制" class="headerlink" title="如何直接通过命令行控制"></a>如何直接通过命令行控制</h2><p>/usr/bin是用于存放第三方软件的快捷方式，只要程序放在这里，在终端就可以直接通过命令行来启动，以谷歌浏览器为例，将其安装后，可以看见该目录下有google-chrome文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google-chrome</span><br></pre></td></tr></table></figure>
-<p>就可以直接用命令行来运行程序了。</p>
-<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ:"></a>FAQ:</h1><h2 id="用apt下载文件时遇到-var-lib-dpkg-lock-open-13-权限不够-问题："><a href="#用apt下载文件时遇到-var-lib-dpkg-lock-open-13-权限不够-问题：" class="headerlink" title="用apt下载文件时遇到 /var/lib/dpkg/lock - open (13: 权限不够)问题："></a>用apt下载文件时遇到 /var/lib/dpkg/lock - open (13: 权限不够)问题：</h2><p>解决方式：<br>    1.提升权限：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo -s //进入root模式</span><br><span class="line">...</span><br><span class="line"><span class="built_in">exit</span>	//下载文件后退出root模式</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>2.强制解锁</code></pre>
-<p>首先杀死apt进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -a | grep apt</span><br><span class="line"><span class="built_in">kill</span> -9 xxx</span><br></pre></td></tr></table></figure>
-<p>删除锁定文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock</span><br></pre></td></tr></table></figure>
-<p>强制重新配置软件包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
-<p>更新软件包源文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<h2 id="退出root模式时，显示There-are-stopped-jobs"><a href="#退出root模式时，显示There-are-stopped-jobs" class="headerlink" title="退出root模式时，显示There are stopped jobs"></a>退出root模式时，显示There are stopped jobs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">jobs</span>	//显示被暂停的工作</span><br></pre></td></tr></table></figure>
-
-<p>sudo vim /etc/systemd/resolved.conf<br>取消DNS注释：</p>
-<p>问题：<br>如何在Ubuntu中使用AppImage文件：<br>右键，属性，Allow executing file as program</p>
-<p>如何截图：</p>
-<p>Prt Sc<br>进行整张屏幕的截取<br>alt + Prt Sc<br>进行当前窗口的截取<br>shift + Prt Sc<br>进行自由截图</p>
-<p>查看历史命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">history</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="如何在命令行中打开图片"><a href="#如何在命令行中打开图片" class="headerlink" title="如何在命令行中打开图片"></a>如何在命令行中打开图片</h2><p>使用系统默认的软件打开相关的视频、图片等</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdg-open xxx</span><br></pre></td></tr></table></figure>
-<p>其中，xdg为 X Desktop Group X桌面文件管理工具的缩写大概，就这么记了。</p>
-<h2 id="当下载中文文档，例如-xxx-txt的时候，打开乱码怎么办"><a href="#当下载中文文档，例如-xxx-txt的时候，打开乱码怎么办" class="headerlink" title="当下载中文文档，例如:xxx.txt的时候，打开乱码怎么办"></a>当下载中文文档，例如:xxx.txt的时候，打开乱码怎么办</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iconv -f GBK -t UTF-8 文件名 //例如:iconv -f GBK -t UTF-8 in.txt</span><br><span class="line">就可以在终端看到正常的文件了</span><br><span class="line">iconv -f GBK -t UTF-8 in.txt &gt;in2.txt</span><br><span class="line">就可以把转换后的内容存入in2.txt供以后查看</span><br></pre></td></tr></table></figure>
-
-<h2 id="如何查看已连接过的wifi的密码"><a href="#如何查看已连接过的wifi的密码" class="headerlink" title="如何查看已连接过的wifi的密码?"></a>如何查看已连接过的wifi的密码?</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/NetworkManager/system-connections</span><br><span class="line">ls </span><br><span class="line"><span class="comment"># 查看所有连接过的wifi</span></span><br><span class="line">sudo cat wifi-name </span><br><span class="line"><span class="comment"># 在[wifi-security]中的psk就是密码</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="解压文件之后乱码"><a href="#解压文件之后乱码" class="headerlink" title="解压文件之后乱码"></a>解压文件之后乱码</h2><p>在Ubuntu下使用unzip解压Widnows环境下生成的zip文件，会发生文件名或者目录名乱码现象，解决办法是使用 7-zip和convmv。<br>安装7-zip和convmv：<br>sudo apt-get install convmv p7zip-full<br>解压zip文件：<br>LANG=C 7z e zip_file<br>convmv -f gbk -t utf8 -r –notest *</p>
-<h2 id="如何在命令行中掛載U盤："><a href="#如何在命令行中掛載U盤：" class="headerlink" title="如何在命令行中掛載U盤："></a>如何在命令行中掛載U盤：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br><span class="line"></span><br><span class="line">sudo mount /dev/... /mnt</span><br></pre></td></tr></table></figure>
-<p>/dev/… 爲U盤的位置<br>/mnt 爲掛載的位置</p>
-<h2 id="下载文件及安装"><a href="#下载文件及安装" class="headerlink" title="下载文件及安装:"></a>下载文件及安装:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget xxx <span class="comment"># 从官网下载安装包</span></span><br><span class="line">bash xxx.sh <span class="comment"># 下载的为.sh文件</span></span><br><span class="line">dpkg -i xxx.deb <span class="comment"># 下载的为.deb文件</span></span><br></pre></td></tr></table></figure>
-
-<p>关于dpkg。<br>据百科描述，Ubuntu是基于Debian的Linux系统，而Debian系统的软件是使用APT和dpkg进行管理。dpkg是”Debian Packager”的简写，是一个底层的软件包管理工具。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/08/19/Ubuntu%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" data-id="ckhnlm63w0037nng777h48d1p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -678,7 +608,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/schedule/" rel="tag">schedule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/FAQ/" rel="tag">FAQ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bert/" rel="tag">bert</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k%E7%BA%BF%E5%9B%BE/" rel="tag">k线图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/schedule/" rel="tag">schedule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/" rel="tag">transformer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%97%E6%95%99/" rel="tag">宗教</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
     </div>
   </div>
 
@@ -688,7 +618,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/schedule/" style="font-size: 10px;">schedule</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 10px;">知识图谱</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/FAQ/" style="font-size: 10px;">FAQ</a> <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bert/" style="font-size: 10px;">bert</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12.86px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/k%E7%BA%BF%E5%9B%BE/" style="font-size: 10px;">k线图</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 14.29px;">mysql</a> <a href="/tags/nlp/" style="font-size: 12.86px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 12.86px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/schedule/" style="font-size: 10px;">schedule</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%AE%97%E6%95%99/" style="font-size: 10px;">宗教</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 11.43px;">知识图谱</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -710,6 +640,14 @@
       <ul>
         
           <li>
+            <a href="/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">LaTeX使用说明</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/">知识图谱融合方法</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/">Python模块打包及发布</a>
           </li>
         
@@ -719,14 +657,6 @@
         
           <li>
             <a href="/2020/11/23/Schedule/">Schedule</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/18/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
           </li>
         
       </ul>
