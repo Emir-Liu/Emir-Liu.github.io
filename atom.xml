@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-10T05:38:27.776Z</updated>
+  <updated>2020-12-15T08:30:47.868Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LSTM分析</title>
+    <link href="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/"/>
+    <id>http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/</id>
+    <published>2020-12-15T07:46:44.000Z</published>
+    <updated>2020-12-15T08:30:47.868Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于LSTM模型:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png"><br>参考:<a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p><p>细胞状态是LSTM的核心，如下图所示。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/%E7%BB%86%E8%83%9E%E7%8A%B6%E6%80%81.png"><br>细胞状态就像是传送带，在整个链条中一直延伸，只有一些小的线性作用，有利于信息不加改变地流动。</p><p>LSTM模型通过门结构调节，具有向细胞状态删除或者增加信息的能力。</p><p>有三个门结构，来保护控制细胞状态。</p><p>forget gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/forget_layer.png"><br>我们首先需要确定之前的信息需要忘记多少<br>取决于h_t-1和x_t,输出0到1之间的数字。<br>1表示完全保留之前的信息C_t-1,0表示完全忘记之前的信息</p><p>input gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/input_layer.png"><br>然后，我们需要决定当前细胞状态需要加入多少新的信息。<br>这里有两个部分，第一个是sigmoid函数，叫做输入门层，决定了我们更新的系数i。然后一个tanh函数建立了一个候选的数值Ct，在下一步中，我们将会将这两个合并去更新状态。</p><p>更新旧的状态Ct-1<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/update.png"><br>这样，看上面的公式就很简单，首先是对之前的状态乘以一个系数，忘记一些信息，然后增加当前的状态乘以一个系数，记住一些当前的信息。</p><p>最后，我们应该决定一个节点的输出结果了。这个就诶过取决于我们的细胞状态，但是是过滤后的版本。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/output.png"></p><p>我们先使用sigmoid层得到的我们应该输出的东西，然后哦将细胞状态通过tanh得到系数，将两个相乘，得到当前的状态h_t</p><p>LSTM有多个变种，这里就跳过。</p><p>其中比较重要的是BiLSTM,就是两个方向的LSTM的输出状态拼接到一起:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;关于LSTM模型:&lt;br&gt;&lt;img src=&quot;/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png&quot;&gt;&lt;br&gt;参考:&lt;a href=&quot;https://colah.github.io/posts/2015-</summary>
+      
+    
+    
+    
+    
+    <category term="lstm" scheme="http://example.com/tags/lstm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spo抽取知识图谱</title>
+    <link href="http://example.com/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+    <id>http://example.com/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</id>
+    <published>2020-12-11T11:07:43.000Z</published>
+    <updated>2020-12-11T11:33:04.815Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考:<br><a href="https://github.com/percent4/spo_extract_platform">https://github.com/percent4/spo_extract_platform</a></p><p>知识图谱的构建由两个部分构成:<br>1.SPO三元组抽取:序列标注算法(ALBERT+BiLSTM+CRF)<br>SPO:Subject(主语) Predicate(谓语) Object(宾语)<br>sequence_labeling F1:81%</p><p>2.关系抽取:文本二分类(ALBERT+BiGRU+ATT)<br>text_classification F1:96%</p><p>提取无结构文本的应用在extract_example<br>下面会对这两个部分分别做完整的介绍:</p><h1 id="1-SPO三元组"><a href="#1-SPO三元组" class="headerlink" title="1.SPO三元组"></a>1.SPO三元组</h1><p><img src="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/ALBERT_BiLSTM_CRF.png"><br>上面是模型的框架</p><h2 id="1-ALBERT层"><a href="#1-ALBERT层" class="headerlink" title="1.ALBERT层"></a>1.ALBERT层</h2><p>albert是以单个汉字作为输入的(本次配置最大为128个，短句做padding)，两边分别加上开始标识CLS和结束标识SEP，输出的是每个输入word的embedding。在该框架中其实主要就是利用了预训练模型albert的词嵌入功能，在此基础上fine-tuning其后面的连接参数，也就是albert内部的训练参数不参与训练。</p><h2 id="2-BiLSTM层"><a href="#2-BiLSTM层" class="headerlink" title="2.BiLSTM层"></a>2.BiLSTM层</h2><p>该层的输入是albert的embedding输出，一般中间会加个project_layer，保证其输出是[batch_szie,num_steps, num_tags]。batch_size为模型当中batch的大小，num_steps为输入句子的长度，本次配置为最大128，num_tags为序列标注的个数，如图中的序列标注一共是5个，也就是会输出每个词在5个tag上的分数，由于没有做softmax归一化，所以不能称之为概率值。</p><h2 id="3-CRF层"><a href="#3-CRF层" class="headerlink" title="3.CRF层"></a>3.CRF层</h2><p>如果没有CRF层，直接按BiLSTM每个词在5个tag的最大分数作为输出的话，可能会出现【B-Person，O，I-Person，O，I-Location】这种序列，显然不符合实际情况。CRF层可以加入一些约束条件，从而保证最终预测结果是有效的。</p><p>例如：<br>句子的开头应该是“B-”或“O”，而不是“I-”。</p><h1 id="2-关系抽取"><a href="#2-关系抽取" class="headerlink" title="2.关系抽取"></a>2.关系抽取</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;参考:&lt;br&gt;&lt;a href=&quot;https://github.com/percent4/spo_extract_platform&quot;&gt;https://github.com/percent4/spo_extract_platform&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;知识图谱的构建由两个部</summary>
+      
+    
+    
+    
+    
+    <category term="知识图谱" scheme="http://example.com/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+    
+  </entry>
   
   <entry>
     <title>test</title>
@@ -114,16 +159,14 @@
     <link href="http://example.com/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/"/>
     <id>http://example.com/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/</id>
     <published>2020-11-26T07:40:33.000Z</published>
-    <updated>2020-11-26T09:04:26.397Z</updated>
+    <updated>2020-12-11T11:02:02.227Z</updated>
     
-    <content type="html"><![CDATA[<p>参考资料：<br>南京大学 CCF学科前沿讲习班 108期</p><p>结构：<br>1.概述<br>2.预备知识<br>3.本体匹配<br>4.实体对齐<br>5.知识融合<br>6.总结与展望</p><h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>RDF数据模型：</p>]]></content>
+    <content type="html"><![CDATA[<p>参考资料：<br>南京大学 CCF学科前沿讲习班 108期<br><a href="https://github.com/nju-websoft/KnowledgeGraphFusion">https://github.com/nju-websoft/KnowledgeGraphFusion</a></p><p>结构：<br>1.概述<br>2.预备知识<br>3.本体匹配<br>4.实体对齐<br>5.知识融合<br>6.总结与展望</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;参考资料：&lt;br&gt;南京大学 CCF学科前沿讲习班 108期&lt;/p&gt;
-&lt;p&gt;结构：&lt;br&gt;1.概述&lt;br&gt;2.预备知识&lt;br&gt;3.本体匹配&lt;br&gt;4.实体对齐&lt;br&gt;5.知识融合&lt;br&gt;6.总结与展望&lt;/p&gt;
-&lt;h1 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; cla</summary>
+    <summary type="html">&lt;p&gt;参考资料：&lt;br&gt;南京大学 CCF学科前沿讲习班 108期&lt;br&gt;&lt;a href=&quot;https://github.com/nju-websoft/KnowledgeGraphFusion&quot;&gt;https://github.com/nju-websoft/KnowledgeGr</summary>
       
     
     
@@ -271,9 +314,9 @@
     <link href="http://example.com/2020/10/12/idea/"/>
     <id>http://example.com/2020/10/12/idea/</id>
     <published>2020-10-12T01:04:14.000Z</published>
-    <updated>2020-11-18T13:25:41.988Z</updated>
+    <updated>2020-12-13T04:42:42.717Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>学习过程中的小想法:</p><h1 id="1-内容"><a href="#1-内容" class="headerlink" title="1.内容"></a>1.内容</h1><p>adaboost: 样本权重通过聚合程度过滤之后再修改权重，避免误差</p><p>BERT+判断模型 NER ELECTRA</p><p>字图片+上下文 分析NER</p><p>BERT中究竟学了什么内容</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>学习过程中的小想法:</p><h1 id="1-内容"><a href="#1-内容" class="headerlink" title="1.内容"></a>1.内容</h1><p>adaboost: 样本权重通过聚合程度过滤之后再修改权重，避免误差</p><p>BERT+判断模型 NER ELECTRA</p><p>字图片+上下文 分析NER</p><p>BERT中究竟学了什么内容</p><p>spo 平台实现</p><p>NER博客流程</p><p>知识图谱</p>]]></content>
     
     
       
@@ -416,40 +459,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Torch模块解析</title>
-    <link href="http://example.com/2020/09/13/Torch%E6%A8%A1%E5%9D%97%E8%A7%A3%E6%9E%90/"/>
-    <id>http://example.com/2020/09/13/Torch%E6%A8%A1%E5%9D%97%E8%A7%A3%E6%9E%90/</id>
-    <published>2020-09-13T08:17:09.000Z</published>
-    <updated>2020-11-18T13:25:41.992Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>原始GNN和GCN网络详解</title>
-    <link href="http://example.com/2020/09/10/GNN%E5%92%8CGCN%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://example.com/2020/09/10/GNN%E5%92%8CGCN%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3/</id>
-    <published>2020-09-09T16:12:07.000Z</published>
-    <updated>2020-11-18T13:25:41.984Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>之前的博客中学习了神经网络，但是，神经网络只能处理简单的类似于表格的数据，其中没有各个数据之间的联系，例如图片数据等。<br>但是在实际中，我们需要表示各个数据之间的联系，所以我们引入了图结构，图中的节点表示数据，节点之间的线表示各个数据之间的关系，图结构能够表达出比表数据更多的内容。</p><a id="more"></a><p>下面是图结构数据的图像表示:<br><img src="%E5%9B%BE%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E5%9B%BE%E5%83%8F.png"></p><p>这部分内容为:原始GNN网络和GCN网络</p><h1 id="1-原始GNN网络"><a href="#1-原始GNN网络" class="headerlink" title="1.原始GNN网络"></a>1.原始GNN网络</h1><p>为了方便理解，我们需要建立如下的变量:<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E5%8F%98%E9%87%8F.png"><br>其中，获取的数据中有每个节点的特征向量</p><p>简单解释一下原始GNN网络的结构。<br>1.对每个节点建立一个状态变量，每个节点的状态变量都取决于该节点的特征、和该节点相连接的边的特征、和该节点相连节点的特征、和该节点相邻节点的状态，对此建立一个状态转换方程<br>2.对每一个节点建立一个输出变量，每个节点的输出变量取决于该节点的状态、该节点的特征，对此建立一个输出方程<br>3.建立一个二次损失函数，使得其最小</p><p>上面两个方程中:<br>输出方程为线性方程，其中的系数都是需要训练的参数，初始时使用符合正态分布的随机数，<br>状态转换方程比较复杂，因为状态变量需要有解，也就是能够全局收敛，需要满足Banach不动点理论，为此，状态转换方程需要满足一定的条件，具体的条件下面继续说明。<br>在之后的训练中会对这些参数进行训练，使得二次损失函数越来越小，输出越来越接近我们期望的输出。</p><p>训练的过程为随机梯度下降，关于随机梯度下降算法等可以参考神经网络和深度学习的博客。</p><p>上面就是其结构，说得非常简单，但是上面有几个需要提的问题:<br>1.知道了所有节点和边的特征，如何计算得到节点的状态:<br>在状态转换方程中，输入中有变量与该节点相邻的节点的状态，输出为该节点的状态，这个方程的求解需要使用一个理论，就是上面提到的Banach不动点理论。<br>2.训练的过程中有两个方程，每个方程都需要训练不同的参数，如何同时训练两个方程:<br>由于原始GNN网络结构的特殊性，有特殊的计算方法。</p><p>下面是程序流程图:<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%9B%BE1.png"><br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%9B%BE2.png"></p><p>直接看流程图可以发现流程依然简单:<br>1.初始化所有方程中的权重，也就是所有的参数<br>2.通过初始化的参数计算出每个节点的状态，其中使用了FORWARD(w)算法。<br>3.然后，使用随机梯度下降算法不断迭代，计算出最终学习之后的参数数值。其中使用了BACKWARD()算法。</p><p>其中，FORWARD算法就是利用不动点理论，对方程进行迭代处理，就会不断接近节点的状态。<br>BACKWARD算法依然是利用了状态全局收敛，利用不动点理论，然后进行迭代，求解二次代价函数对参数的偏导。</p><p>上面就是对其理论的简单介绍。</p><p>下面，就是代码实现:<br>1.原始GNN网络的模型验证:<br>自己编写的原始GNN网络，其中的数据为自己随机建立的数据，用来了解原始GNN网络的结构与原理，其内容为随机将18个点分为3类，每一类有6个点，用不同的颜色表示，通过部分节点进行标注训练对其他节点的类别进行分类预测。<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B.png"></p><p>其输出结果为:<br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA1.png"><br><img src="%E5%8E%9F%E5%A7%8BGNN%E7%BD%91%E7%BB%9C%E9%AA%8C%E8%AF%81%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA2.png"></p><p>2.原始GNN网络Core数据集分类:<br>这个实现更加接近实际应用情况，采用Core数据集，对其中的内容进行分类。<br>Core数据集中为机器学习领域的论文，其中被分为了七个类别，其中，一共有2708篇论文，有1433个关键词作为特征，论文之间的引用关系作为边有5429条边。</p><h1 id="2-GCN网络"><a href="#2-GCN网络" class="headerlink" title="2.GCN网络"></a>2.GCN网络</h1><p>首先，GCN网络需要一些前提知识:<br><img src="GCN%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5.png"><br>上面的度矩阵表示每个节点相邻节点的数目，邻接矩阵表示各个节点之间的连接关系，下面简单介绍一下GCN公式的原理。<br><img src="GCN%E5%85%AC%E5%BC%8F%E7%AE%80%E5%8D%95%E6%8E%A8%E5%AF%BC1.png"><br><img src="GCN%E5%85%AC%E5%BC%8F%E7%AE%80%E5%8D%95%E6%8E%A8%E5%AF%BC2.png"><br>第一个公式类似于之前博客中的神经网络，只是输入中增加了邻接矩阵。<br>第二个公式就是优化后的GCN网络:<br>1.将邻接矩阵A增加一个单位矩阵得到矩阵A波浪，这样避免在计算当前节点时候，忽略当前节点的特征，经过实验表明，这样可以增加网络的精度。<br>2.增加归一化步骤，上面的D波浪是A波浪的度矩阵，进行归一化可以避免很多意外的问题。<br>下面是输出结果:<br><img src="GCN%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C.png"></p><p>代码实现:<br>1.GCN根据MR数据进行情感分类:<br>直接输入了电影的评论文本数据，分别有两个标签:积极和消极<br>节点为评论和词语<br>边为：评论和词语、词语和词语<br>对于边的权重如下图所示:<br><img src="GCN%E7%BD%91%E7%BB%9CMR%E6%95%B0%E6%8D%AE%E8%BE%B9%E6%9D%83%E9%87%8D%E5%85%AC%E5%BC%8F.png"></p><p>首先是词语和评论之间的权重:TF-IDF<br>TF:Term Frequency<br>表示某个词语在段落中出现的次数，公式如下。<br><img src="TF%E5%85%AC%E5%BC%8F.png"><br>n(i,j) 词i在文档j中出现的次数<br>分母为文档j中所有词出现的次数之和</p><p>IDF:Inverse Document Frequency<br>反文档频率:包含词语的段落数量的反比。<br>它的含义为:包含词语的段落越少，则IDF越大，说明这个词语有很强的区别能力，表现词语的重要性大小，公式如下。<br><img src="IDF%E5%85%AC%E5%BC%8F.png"><br>|D| 语料库中doc总数<br>分母为包含词条ti的doc的数目，避免为0，要加1</p><p>那么TF-IDF为TF×IDF。</p><p>然后是词语与词语之间的权重PMI:<br>用来表示两个词语之间的语义相关性，&lt;0表示相关性弱或没有相关性，&gt;0表示相关性强，公式如下图。<br><img src="PMI%E5%85%AC%E5%BC%8F.png"><br>上面的公式中:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#W(i)包含词i的滑窗数目</span></span><br><span class="line"><span class="comment">#W(i,j)包含词i和词j的滑窗数目</span></span><br><span class="line"><span class="comment">#W表示滑窗总数</span></span><br></pre></td></tr></table></figure><h1 id="3-原始GNN网络和GCN网络对比"><a href="#3-原始GNN网络和GCN网络对比" class="headerlink" title="3.原始GNN网络和GCN网络对比"></a>3.原始GNN网络和GCN网络对比</h1><h2 id="3-1-数据"><a href="#3-1-数据" class="headerlink" title="3.1 数据:"></a>3.1 数据:</h2><p>这两个算法都是在一个固定的图上面进行训练，如果增加新的节点需要重新进行训练</p><h2 id="3-2-算法"><a href="#3-2-算法" class="headerlink" title="3.2 算法:"></a>3.2 算法:</h2><p>(1)GNN中节点的状态，需要与它相连的节点的状态，从而保存了边的信息，而这两个都是未知的，所以，利用了不动点原理，通过迭代的方法，我们可以计算出节点的状态。<br>(2)GCN中每一层的状态由上一层的状态所决定，和当前层的状态没有关系。通过邻接矩阵来保存边的信息。<br>从而:<br>(1)GCN省去了不动点迭代的过程，可以产生多层的结构。<br>(2)为了保证公式能够有解，GNN需要引入额外的参数进行学习，而GCN的参数就仅仅是上面公式里面的权重。参数数量的减少使得GCN的训练效果更加快速。</p><h2 id="3-3-总结"><a href="#3-3-总结" class="headerlink" title="3.3 总结"></a>3.3 总结</h2><p>和原始GNN网络相比GCN网络训练的速度更快。有的时候不需要经过多次训练就能提取很好的特征</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;之前的博客中学习了神经网络，但是，神经网络只能处理简单的类似于表格的数据，其中没有各个数据之间的联系，例如图片数据等。&lt;br&gt;但是在实际中，我们需要表示各个数据之间的联系，所以我们引入了图结构，图中的节点表示数据，节点之间的线表示各个数据之间的关系，图结构能够表达出比表数据更多的内容。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="原始GNN" scheme="http://example.com/tags/%E5%8E%9F%E5%A7%8BGNN/"/>
-    
-    <category term="GCN" scheme="http://example.com/tags/GCN/"/>
     
   </entry>
   
