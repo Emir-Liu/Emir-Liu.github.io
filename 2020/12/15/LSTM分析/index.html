@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png">
 <meta property="og:image" content="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/torch_nn.png">
 <meta property="article:published_time" content="2020-12-15T07:46:44.000Z">
-<meta property="article:modified_time" content="2020-12-15T09:18:02.771Z">
+<meta property="article:modified_time" content="2020-12-16T08:51:31.093Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="lstm">
 <meta name="twitter:card" content="summary">
@@ -110,6 +110,8 @@
 <p>LSTM有多个变种，这里就跳过。</p>
 <p>其中比较重要的是BiLSTM,就是两个方向的LSTM的输出状态拼接到一起:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png"></p>
 <p>最后补充一下，在写代码的时候，使用的torch.nn.LSTM的官方资料说明:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/torch_nn.png"></p>
+<p>下面是参数的说明:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input_size – The number of expected features <span class="keyword">in</span> the input x</span><br><span class="line"></span><br><span class="line">hidden_size – The number of features <span class="keyword">in</span> the hidden state h</span><br><span class="line"></span><br><span class="line">num_layers – Number of recurrent layers. E.g., setting num_layers=2 would mean stacking two LSTMs together to form a stacked LSTM, with the second LSTM taking <span class="keyword">in</span> outputs of the first LSTM and computing the final results. Default: 1</span><br><span class="line"></span><br><span class="line">bias – If False, <span class="keyword">then</span> the layer does not use bias weights b_ih and b_hh. Default: True</span><br><span class="line"></span><br><span class="line">batch_first – If True, <span class="keyword">then</span> the input and output tensors are provided as (batch, seq, feature). Default: False</span><br><span class="line"></span><br><span class="line">dropout – If non-zero, introduces a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout. Default: 0</span><br><span class="line"></span><br><span class="line">bidirectional – If True, becomes a bidirectional LSTM. Default: False</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -124,6 +126,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python之版本相争
+        
+      </div>
+    </a>
   
   
     <a href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" id="article-nav-older" class="article-nav-link-wrap">
@@ -179,6 +190,10 @@
       <ul>
         
           <li>
+            <a href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/">Python之版本相争</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
           </li>
         
@@ -192,10 +207,6 @@
         
           <li>
             <a href="/2020/12/01/Ubuntu%E4%B9%8BGPU%E8%BF%90%E7%AE%97%E4%B8%8D%E5%BD%92%E8%B7%AF/">Ubuntu之GPU运算不归路</a>
-          </li>
-        
-          <li>
-            <a href="/2020/11/27/PyTorch%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">PyTorch使用说明</a>
           </li>
         
       </ul>
