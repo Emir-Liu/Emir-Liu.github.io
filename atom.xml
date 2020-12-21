@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-17T07:57:25.883Z</updated>
+  <updated>2020-12-21T08:54:21.617Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python中利用seqeval模块进行序列标注算法的模型评估</title>
+    <link href="http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/"/>
+    <id>http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/</id>
+    <published>2020-12-21T07:40:01.000Z</published>
+    <updated>2020-12-21T08:54:21.617Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。</p><p>一般而言，序列标注算法的格式有BIO、IOBES、BMES等。</p><p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p><p>``bash<br>真实值\预测值   |Positive       |Negative       |<br>Positive        |True Positive  |False Negative |<br>Negative        |False Positive |True Negative  |</p><pre><code></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0. 概述&quot;&gt;&lt;/a&gt;0. 概述&lt;/h1&gt;&lt;p&gt;在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模</summary>
+      
+    
+    
+    
+    
+    <category term="python" scheme="http://example.com/tags/python/"/>
+    
+    <category term="seqeval" scheme="http://example.com/tags/seqeval/"/>
+    
+  </entry>
   
   <entry>
     <title>Python之版本相争</title>
@@ -439,29 +463,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>GPT模型的使用</title>
-    <link href="http://example.com/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://example.com/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-09-24T07:59:03.000Z</published>
-    <updated>2020-11-18T13:25:41.988Z</updated>
-    
-    <content type="html"><![CDATA[<p>GPT使用有下面的几个方式:<br>1.直接使用<br><a href="https://ner.algomo.com/">https://ner.algomo.com/</a><br>这是直接调用GPT-3模型的API，里面的原理待定。</p><p>2.对自己所需要的小数据进行预训练<br><a href="https://github.com/Emir-Liu/GPT2-Chinese">https://github.com/Emir-Liu/GPT2-Chinese</a><br>GPT2中文训练，使用了BERT的Tokenizer???。主要使用</p><p>3.对模型进行微调之后使用<br>通过微调预训练的GPT-2模型，来生成特定主题的文本。<br><a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">http://nlp.seas.harvard.edu/2018/04/03/attention.html</a><br>其中，直接使用了transformers模块中的函数，直接加载预训练模块，然后训练？？，就结束了，其中训练的过程就是一个黑箱。</p><p>上面就是GPT模型的一些使用的方法。<br>但是，对于初学者来说，更重要的事情是了解黑箱之中是什么原理，以及如何实现。<br>之前已经了解了GPT模型的原理，下面是学习其实现。</p><p>首先BERT和GPT模型都是基于Transformer模型，所以，我简单实现Transformer模型。</p><p>在之前已经了解了Transformer模型的原理，那么，其中，有下面多个优化。</p><p>例如:<br>1.参数初始化方式<br>nn.init.xavier_uniform:参数初始化方式<br><a href="https://blog.csdn.net/luoxuexiong/article/details/95772045">https://blog.csdn.net/luoxuexiong/article/details/95772045</a></p><p><a href="https://prateekvjoshi.com/2016/03/29/understanding-xavier-initialization-in-deep-neural-networks/">https://prateekvjoshi.com/2016/03/29/understanding-xavier-initialization-in-deep-neural-networks/</a></p><p>2.Batch Normalization批量归一化<br><a href="https://zhuanlan.zhihu.com/p/47812375">https://zhuanlan.zhihu.com/p/47812375</a></p><p>Normalization 有很多种，但是它们都有一个共同的目的，那就是把输入转化成均值为 0 方差为 1 的数据。我们在把数据送入激活函数之前进行 normalization（归一化），因为我们不希望输入数据落在激活函数的饱和区。</p><p>BN:<br>在每一层的每一批数据上进行归一化。我们可能会对输入数据进行归一化，但是经过该网络层的作用后，我们的数据已经不再是归一化的了。随着这种情况的发展，数据的偏差越来越大，我的反向传播需要考虑到这些大的偏差，这就迫使我们只能使用较小的学习率来防止梯度消失或者梯度爆炸。</p><p>BN 的具体做法就是对每一小批数据，在批这个方向上做归一化。</p><p>2.学习速率优化<br><a href="https://blog.csdn.net/luoxuexiong/article/details/90412213">https://blog.csdn.net/luoxuexiong/article/details/90412213</a></p><p>论文：<br>ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION</p><p>Adam是Momentum 和 RMSProp算法的结合</p><p>3.过拟合的检验方式</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;GPT使用有下面的几个方式:&lt;br&gt;1.直接使用&lt;br&gt;&lt;a href=&quot;https://ner.algomo.com/&quot;&gt;https://ner.algomo.com/&lt;/a&gt;&lt;br&gt;这是直接调用GPT-3模型的API，里面的原理待定。&lt;/p&gt;
-&lt;p&gt;2.对自己所需要的小</summary>
-      
-    
-    
-    
-    
-    <category term="gpt" scheme="http://example.com/tags/gpt/"/>
     
   </entry>
   
