@@ -15,7 +15,7 @@
 <meta property="og:description" content="0. 概述在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。 一般而言，序列标注算法的格式有BIO、IOBES、BMES等。 模型的评价指标有，一般只会注意英文，中文容易弄混: 123真实值\预测值   |Positive       |Negative       |Positive        |True Positi">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-21T07:40:01.000Z">
-<meta property="article:modified_time" content="2020-12-21T08:57:27.797Z">
+<meta property="article:modified_time" content="2020-12-21T09:05:34.446Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="seqeval">
@@ -95,7 +95,10 @@
 <p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure>
 
-<p>Precious = TP/(TP+FP)<br>Recall = TP/(TP+FN)<br>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
+<p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p>
+<p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p>
+<p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
+<p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p>
 
       
     </div>

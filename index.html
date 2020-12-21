@@ -91,7 +91,10 @@
 <p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure>
 
-<p>Precious = TP/(TP+FP)<br>Recall = TP/(TP+FN)<br>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
+<p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p>
+<p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p>
+<p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
+<p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p>
 
       
     </div>
