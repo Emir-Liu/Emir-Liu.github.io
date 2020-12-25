@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-21T09:05:34.446Z</updated>
+  <updated>2020-12-24T04:18:21.834Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,13 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GRU说明</title>
+    <link href="http://example.com/2020/12/24/GRU%E8%AF%B4%E6%98%8E/"/>
+    <id>http://example.com/2020/12/24/GRU%E8%AF%B4%E6%98%8E/</id>
+    <published>2020-12-24T04:18:21.000Z</published>
+    <updated>2020-12-24T04:18:21.834Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>配置文件参考说明</title>
+    <link href="http://example.com/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/"/>
+    <id>http://example.com/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/</id>
+    <published>2020-12-22T06:56:32.000Z</published>
+    <updated>2020-12-22T07:29:41.360Z</updated>
+    
+    <content type="html"><![CDATA[<p>在很多情况下，我们需要将一些参数保存在程序的外面，也就是作为配置文件进行保存，或者，提前写好配置文件，从中读取必须的参数，方便实现。</p><p>但是有很多的可以作为配置文件:<br>YAML<br>JSON<br>好像没有注释<br>ini<br>XML</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在很多情况下，我们需要将一些参数保存在程序的外面，也就是作为配置文件进行保存，或者，提前写好配置文件，从中读取必须的参数，方便实现。&lt;/p&gt;
+&lt;p&gt;但是有很多的可以作为配置文件:&lt;br&gt;YAML&lt;br&gt;JSON&lt;br&gt;好像没有注释&lt;br&gt;ini&lt;br&gt;XML&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Python中利用seqeval模块进行序列标注算法的模型评估</title>
     <link href="http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/"/>
     <id>http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/</id>
     <published>2020-12-21T07:40:01.000Z</published>
-    <updated>2020-12-21T09:05:34.446Z</updated>
+    <updated>2020-12-21T10:43:18.389Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。</p><p>一般而言，序列标注算法的格式有BIO、IOBES、BMES等。</p><p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure><p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p><p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p><p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p><p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。</p><p>一般而言，序列标注算法的格式有BIO、IOBES、BMES等。</p><p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure><p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p><p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p><p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p><p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p><h1 id="1-样例"><a href="#1-样例" class="headerlink" title="1.样例"></a>1.样例</h1><p>参考官网资料</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from seqeval.metrics import accuracy_score,classification_report,f1_score</span><br><span class="line"></span><br><span class="line">y_true = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>], [<span class="string">&#x27;B- PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">y_pred = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>],[<span class="string">&#x27;B-PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f1_score(y_true, y_pred))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(classification_report(y_true, y_pred))</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
@@ -418,51 +453,6 @@
     <category term="python" scheme="http://example.com/tags/python/"/>
     
     <category term="re" scheme="http://example.com/tags/re/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BeautifulSoup4笔记</title>
-    <link href="http://example.com/2020/10/02/BeautifulSoup4%E7%AC%94%E8%AE%B0/"/>
-    <id>http://example.com/2020/10/02/BeautifulSoup4%E7%AC%94%E8%AE%B0/</id>
-    <published>2020-10-02T08:25:52.000Z</published>
-    <updated>2020-11-18T13:25:41.940Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>参考文档:<br><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/</a></p><p>Beautiful Soup 是一个可以从HTML或XML文件中提取数据的Python库。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br><span class="line">//安装</span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">//加载模块</span><br></pre></td></tr></table></figure><p>Beautiful Soup将复杂HTML文档转换成一个复杂的树形结构,每个节点都是Python对象,所有对象可以归纳为4种:Tag,NavigableString,BeautifulSoup,Comment.</p><p>其中的正则表达式re模块需要参考下面的文档:<br><a href="https://docs.python.org/zh-cn/3/howto/regex.html#regex-howto">https://docs.python.org/zh-cn/3/howto/regex.html#regex-howto</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;参考文档:&lt;br&gt;&lt;a href=&quot;https://www.crummy.com/software/BeautifulSou</summary>
-      
-    
-    
-    
-    
-    <category term="python" scheme="http://example.com/tags/python/"/>
-    
-    <category term="beautifulsoup" scheme="http://example.com/tags/beautifulsoup/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pre-train模型</title>
-    <link href="http://example.com/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://example.com/2020/09/30/Pre-train%E6%A8%A1%E5%9E%8B/</id>
-    <published>2020-09-30T11:30:56.000Z</published>
-    <updated>2020-11-18T13:25:41.988Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>资料来源:李宏毅教授教程Deep Learning of Human Language Process</p><h1 id="1-Pre-Train-Model"><a href="#1-Pre-Train-Model" class="headerlink" title="1.Pre-Train Model"></a>1.Pre-Train Model</h1><p>为什么需要Pre-Train Model<br><img src="why_pre_train.png"></p><p>Pre-Train Model的具体流程如下图所示。<br><img src="pre_train_model.png"></p><p>由许多层组成，有如下的几种架构方法:<br>1.LSTM<br>2.Self-attention layers<br>流行的model<br>3.Tree-based model<br>在公式表示中有很好的表现</p><p>Pre-Train发展:<br>ELMO<br>Predict Next Token(Bidirectional):<br><img src="ELMO.png"></p><p>BERT(类似与CBOW)<br>Masking Input:<br><img src="BERT_MASKING.png"></p><p>补充:<br><img src="CBOW.png"></p><p>bert看所有的sequence,而CBOW有固定的窗口</p><p>Mask Input:<br>首先，Original BERT Input<br>probability<br>pro [MASK] ##lity</p><p>然后，Whole Word Masking(WWM)<br>probability<br>[MASK]</p><p>最后，Phrase-level和Entity-level(Enhanced Representation through Knowledge Integration,ERNIE)</p><p>小的BERT模型有:<br>ALBERT 每一层的参数都相同，小一些，但是效果没怎么变</p><p>Network Compression <a href="https://youtu.be/dPp8rCAnU_A">https://youtu.be/dPp8rCAnU_A</a><br>其中:<br>Network Pruning<br>Knowledge Distillation<br>Parameter Quantization<br>Architecture Design</p><p>BERT模型压缩:<br><a href="http://mitchgordon.me/machine/learning/2019/11/18/all-the-ways-to-compress-BERT.html">http://mitchgordon.me/machine/learning/2019/11/18/all-the-ways-to-compress-BERT.html</a><br>all the ways to compress BERT</p><p>减少self-attention的运算量(n^2,其中n为sequence的长度):<br>Reformer<br>Longformer</p><p>有了Pre-Train Model之后，如何Fine-Tune？如图所示。<br><img src="fine-tune1.png"></p><h1 id="2-优化"><a href="#2-优化" class="headerlink" title="2.优化"></a>2.优化</h1><h2 id="2-1-Adaptor"><a href="#2-1-Adaptor" class="headerlink" title="2.1 Adaptor"></a>2.1 Adaptor</h2><p>当我们进行Fine-Tune任务的时候，通常是如下图所示。<br><img src="adaptor1.png"></p><p>增加adaptor模块<br><img src="adaptor2.png"></p><p><img src="adaptor3.png"></p><p>将效果进行对比<br><img src="adaptor%E6%AF%94%E8%BE%83.png"></p><h1 id="3-GPT-3"><a href="#3-GPT-3" class="headerlink" title="3.GPT-3"></a>3.GPT-3</h1><p>参考论文:language model are few-shot learners<br>其中，few-shot是什么意思呢？</p><p>首先，GPT-3的few-shot和其他模型的few-shot不同,如上图所示。<br>在其他模型中，few-shot learning是指用少量的训练资料去Fine Tune它。<br>在GPT-3中没有Fine Tune的内容，直接将问题的简介、样例(有的没有)和问题作为模型的输入，然后输出问题的答案。</p><p>如下图所示:<br><img src="GPT-3_3_learning.png"></p><p>这种学习被称为In-context learning,图中有三种类型。</p><p>精度随着变量变化的趋势。<br><img src="GPT-3_ACCURACY.png"></p><p>精度随着样本的变化趋势<br><img src="number_samples_accu.png"></p><p>在数学计算上的精度:<br><img src="cal_gpt3.png"></p><h1 id="4-GPT和BERT对比"><a href="#4-GPT和BERT对比" class="headerlink" title="4.GPT和BERT对比"></a>4.GPT和BERT对比</h1><p>首先，BERT是使用了MASK Input模型来获取上下文的资料，而GPT是根据前面的token来进行预训练。</p><p>所以GPT在autoregressive生成句子中有劣势，但是，在non-regressive中可能会有好的效果。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;资料来源:李宏毅教授教程Deep Learning of Human Language Process&lt;/p&gt;
-&lt;h1 id</summary>
-      
-    
-    
-    
     
   </entry>
   

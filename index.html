@@ -64,6 +64,80 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-GRU说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2020-12-24T04:18:21.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/GRU%E8%AF%B4%E6%98%8E/" data-id="ckj3lce8o0000a7g7e3qzdukm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-配置文件参考说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2020-12-22T06:56:32.000Z" itemprop="datePublished">2020-12-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/">配置文件参考说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在很多情况下，我们需要将一些参数保存在程序的外面，也就是作为配置文件进行保存，或者，提前写好配置文件，从中读取必须的参数，方便实现。</p>
+<p>但是有很多的可以作为配置文件:<br>YAML<br>JSON<br>好像没有注释<br>ini<br>XML</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/" data-id="ckj3lce8v0001a7g79lmm0rbt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python中利用seqeval模块进行序列标注算法的模型评估" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" class="article-date">
@@ -95,6 +169,8 @@
 <p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p>
 <p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
 <p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p>
+<h1 id="1-样例"><a href="#1-样例" class="headerlink" title="1.样例"></a>1.样例</h1><p>参考官网资料</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from seqeval.metrics import accuracy_score,classification_report,f1_score</span><br><span class="line"></span><br><span class="line">y_true = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>], [<span class="string">&#x27;B- PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">y_pred = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>],[<span class="string">&#x27;B-PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f1_score(y_true, y_pred))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(classification_report(y_true, y_pred))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -448,100 +524,6 @@
 
 
   
-    <article id="post-知识图谱融合方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/" class="article-date">
-  <time datetime="2020-11-26T07:40:33.000Z" itemprop="datePublished">2020-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/">知识图谱融合方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考资料：<br>南京大学 CCF学科前沿讲习班 108期<br><a target="_blank" rel="noopener" href="https://github.com/nju-websoft/KnowledgeGraphFusion">https://github.com/nju-websoft/KnowledgeGraphFusion</a></p>
-<p>结构：<br>1.概述<br>2.预备知识<br>3.本体匹配<br>4.实体对齐<br>5.知识融合<br>6.总结与展望</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/26/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88%E6%96%B9%E6%B3%95/" data-id="ckhz03qhq0003t5g787249ylz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python模块打包及发布" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/" class="article-date">
-  <time datetime="2020-11-24T11:19:57.000Z" itemprop="datePublished">2020-11-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/">Python模块打包及发布</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>概述：<br>如何将自己开发的库分享给别人使用，使用pip install安装。<br>本文章包含制作python安装包和发布。<br>并且，通过这个步骤，我可深入了解各个模块中的内容，方便自己使用别人的库</p>
-<p>参考资料:<br><a target="_blank" rel="noopener" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a></p>
-<h1 id="1-创建setup-py文件"><a href="#1-创建setup-py文件" class="headerlink" title="1.创建setup.py文件"></a>1.创建setup.py文件</h1><p>建立如下所示的文档结构</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── example_pkg <span class="comment"># packet 文件</span></span><br><span class="line">│   ├── __init__.py <span class="comment"># 全局变量定义等，可以直接是空文件，定位</span></span><br><span class="line">│   └── test_pkg.py </span><br><span class="line">├── LICENSE <span class="comment"># 许可证</span></span><br><span class="line">├── README.md <span class="comment"># 描述文件</span></span><br><span class="line">├── setup.py <span class="comment"># 配置文件</span></span><br><span class="line">└── tests <span class="comment"># 测试文件夹</span></span><br></pre></td></tr></table></figure>
-
-<p>其中setup.py文件里面需要设置packet的配置,里面有注释：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import setuptools</span><br><span class="line"></span><br><span class="line">with open(<span class="string">&quot;README.md&quot;</span>,<span class="string">&quot;r&quot;</span>) as fh:</span><br><span class="line">    long_description = fh.read()</span><br><span class="line"></span><br><span class="line">setuptools.setup(</span><br><span class="line">    name = <span class="string">&quot;Emir-Liu-packet&quot;</span>, <span class="comment">#distribution name of package</span></span><br><span class="line">    version = <span class="string">&quot;0.0.1&quot;</span>,</span><br><span class="line">    author = <span class="string">&quot;Emir-Liu&quot;</span>,</span><br><span class="line">    author_email = <span class="string">&quot;egliuym@gmail.com&quot;</span>,</span><br><span class="line">    description = <span class="string">&quot;my first test packet&quot;</span>, <span class="comment"># a short,one-sentence summary</span></span><br><span class="line">    long_description = long_description, <span class="comment"># the long description is loaded from README.md</span></span><br><span class="line">    long_description_content_type = <span class="string">&quot;text/markdown&quot;</span>,</span><br><span class="line">    url = <span class="string">&quot;https://emir-liu.github.io/&quot;</span>, <span class="comment"># URL of the homepage of the project</span></span><br><span class="line">    packages = setuptools.find_packages(), <span class="comment"># a list of all python import packages that should be included in the destribution package</span></span><br><span class="line">    classifiers = [</span><br><span class="line">        <span class="string">&quot;Programming Language :: Python :: 3&quot;</span>,</span><br><span class="line">        <span class="string">&quot;License :: OSI Approved :: MIT License&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Operating System :: OS Independent&quot;</span>,</span><br><span class="line">    ], <span class="comment"># some additional metadata about package ,at least license ,operating system and verson of python</span></span><br><span class="line">    python_requires = <span class="string">&#x27;&gt;=3.0&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-打包文件"><a href="#2-打包文件" class="headerlink" title="2.打包文件"></a>2.打包文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install --user --upgrade setuptools wheel</span><br><span class="line">python3 setup.py sdist bdist_wheel</span><br></pre></td></tr></table></figure>
-<p>注意打包文件里面不写程序是没有输出的，打包之后应该会有文件夹（dist中包含.whl和.tar.gz文件），之后上传这个文件夹</p>
-<h1 id="3-注册Pypi-然后上传"><a href="#3-注册Pypi-然后上传" class="headerlink" title="3.注册Pypi,然后上传"></a>3.注册Pypi,然后上传</h1><p>先注册pypi,邮箱激活</p>
-<p>然后，在~/.pypirc中写入:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[distutils]</span><br><span class="line">index-servers = </span><br><span class="line">    pypi</span><br><span class="line">    testpypi</span><br><span class="line"></span><br><span class="line">[testpypi]</span><br><span class="line">repository = https://test.pypi.org/legacy/</span><br><span class="line"></span><br><span class="line">[pypi]</span><br><span class="line">repository = https://upload.pypi.org/legacy/</span><br><span class="line">username = xxx</span><br><span class="line">password = xxx</span><br></pre></td></tr></table></figure>
-<p>这一步只要一开始弄好就不用输入密码什么的了。</p>
-<p>上传：<br>twine upload dist/*</p>
-<p>之后你可以在网站上看到你的包了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/24/Python%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8F%8A%E5%8F%91%E5%B8%83/" data-id="ckhwu0vx50000vlg7eqq073dt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -592,6 +574,14 @@
       <ul>
         
           <li>
+            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/">配置文件参考说明</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/">Python中利用seqeval模块进行序列标注算法的模型评估</a>
           </li>
         
@@ -601,14 +591,6 @@
         
           <li>
             <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">spo抽取知识图谱</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/10/test/">test</a>
           </li>
         
       </ul>

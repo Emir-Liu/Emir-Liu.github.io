@@ -64,6 +64,144 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ubuntu上apt抽风出现的问题及修补" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/" class="article-date">
+  <time datetime="2020-05-21T05:53:33.000Z" itemprop="datePublished">2020-05-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/">Ubuntu上apt抽风出现的问题及修补</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>apt抽风了怎么办？<br>先哭。。<br>然后资料来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shimadear/article/details/90598646">https://blog.csdn.net/shimadear/article/details/90598646</a></p>
+<p>下面是详细：<br>apt下载出现下面的错误:<br>Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)</p>
+<p>解决办法：<br>第一种情况：<br>进程中存在与apt相关的正在运行的进程：<br>首先检查是否在运行apt,apt-get相关的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep -i apt</span><br></pre></td></tr></table></figure>
+<p>如果存在与apt相关的正在运行的进程，kill掉进程；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">kill</span> -9 &lt;process id&gt;</span><br></pre></td></tr></table></figure>
+<p>或者直接简单粗暴的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall apt apt-get</span><br></pre></td></tr></table></figure>
+<p>如果进行完上面的步骤还是无法顺利执行apt-get 操作，则属于第二种情况：</p>
+<p>第二种情况：<br>进程列表中已经没有与apt相关的进程在运行，但依然报错，在这种情况下，产生错误的根本原因是lock_file. lock_file用于防止两个或多个进程使用相同的数据。 当运行apt或apt-commands时，它会在几个地方创建lock files。 当前一个apt命令未正确终止时，lock file未被删除，因此它们会阻止任何新的apt / apt-get命令实例，比如正在执行apt-get upgrade，在执行过程中直接ctrl+c取消了该操作，很有可能就会造成这种情况。<br>要解决此问题，首先要删除lock file。<br>使用lsof命令获取持有lock file的进程的进程ID,依次运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lsof /var/lib/dpkg/lock</span><br><span class="line">lsof /var/lib/apt/lists/lock</span><br><span class="line">lsof /var/cache/apt/archives/lock</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，以上命令执行结果如果无返回，说明没有正在运行的进程；如果返回了相应的进程，需要kill掉。</p>
+<p>删除所有的lock file</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/lib/apt/lists/lock</span><br><span class="line">sudo rm /var/cache/apt/archives/lock</span><br><span class="line">sudo rm /var/lib/dpkg/lock</span><br></pre></td></tr></table></figure>
+<p>最后重新配置一下dpkg：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
+<p>如果上述命令不出任何错误，就万事大吉了。（我是到这里问题就解决了）</p>
+<p>但是有时候，生活总是嫌你不够惨，执行配置命令时可能会出现以下错误：</p>
+<p>dpkg: error: dpkg frontend is locked by another process<br>这需要我们额外进行一些操作：</p>
+<p>找出正在锁定lock file的进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lsof &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend</span><br><span class="line">kill掉输出的进程（如果输出为空则忽略）</span><br><span class="line">sudo kill -9 PID</span><br><span class="line">删除lock file并重新配置dpkg:</span><br><span class="line">sudo rm &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock-frontend</span><br><span class="line">sudo dpkg --configure -a</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/21/Ubuntu%E4%B8%8Aapt%E6%8A%BD%E9%A3%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E4%BF%AE%E8%A1%A5/" data-id="ckhnlm63a002bnng7fjyy2sw9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上opencv教程5之特征检测及描述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/" class="article-date">
+  <time datetime="2020-05-16T09:17:03.000Z" itemprop="datePublished">2020-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/">Ubuntu上opencv教程5之特征检测及描述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>特征检测及描述内容：</p>
+<ol>
+<li>了解功能<br>图像的主要特征是什么。这些特征对我们有什么用处。</li>
+<li>(Harris)哈里斯角检测<br>拐角是一个很好的特征，我们如何找到它们。</li>
+<li>Shi-Tomasi拐角检测和良好的跟踪功能</li>
+<li>SIFT(Scale-Invariant Feature Transform)尺度不变特征变换<br>当图像比例改变时，Harris角检测不够好。为此出现了SIFT方法。</li>
+<li>SURF(Speeded-Up Robust Features)加速鲁棒特征<br>为了提高SIFT运算速度</li>
+<li>用于角点检测的快速算法<br>上面的特征检测分别有优势。但是它们在实时应用例如SLAM中的处理速度不够快。所以引入了运算速度更快的快速算法。</li>
+<li>BRIEF(Binary Robust Independent Elementary Features)二进制健壮的独立基本特征<br>SIFT使用了一个包含128个浮点数的特征描述。考虑到大量的特征。它将会花费大量内存和时间来匹配。我们可以表达它来使他更快。但是我们首先依然需要计算。BRIEF会使用更少的内存和更快的匹配来查找二进制特征。</li>
+<li>ORB(Oriented FAST and Rotated BRIEF)定向快速和旋转BRIEF<br>首先吐槽一下，这个名字的缩写里面又包含了一个缩写，还好里面的缩写上面刚好有，完整的名字实在是太长了。<br>SIFT和SURF各有利弊，但是如果你的应用中，每年都为使用他们花钱呢？他们都有专利。为了解决这个问题，opencv提供了一个全新的免费的SIFT和SURF代替品，那就是ORB。</li>
+<li>特征匹配<br>我们了解了大量关于特征检测和描述。现在开始匹配不同的描述，opencv提供了两种技术:Brute-Force和基于FLANN的匹配。</li>
+<li>特征匹配和单应性查找对象<br>现在我们了解了特征匹配，我们通过calib3d模块来在复杂的图片中查找物品。</li>
+</ol>
+<h1 id="1-了解特征"><a href="#1-了解特征" class="headerlink" title="1.了解特征"></a>1.了解特征</h1><p>这部分很简单，和标题一样，了解特征。</p>
+<p>就像拼图游戏一样，得到图片中的很多小的图片块，然后将他们正确的结合到一起，组成一个大的完整的实际图片。那该怎么做？</p>
+<p>将这个理论投影到计算机程序中，使计算机来玩拼图游戏。将这个话题进行延伸，我们是否可向计算机提供大量的自然图片，然后让计算机将图片组合为一个大的单个图片？继续延伸，将多个图片拼接到一起，那么是否可以提供大量相关结构的图片，然后让计算机创建3D模型？</p>
+<p>那么回归到最开始的问题。如何玩拼图游戏？</p>
+<p>答案是:寻找独特的特定模式或者特定特征，这些特征可以轻松跟踪和比较。如果我们对其进行定义，很难通过语言来表达，但是我们可以知道它们是什么。即使小孩子也可以指出图片中的某些特征。在游戏中，我们在图像中搜索这些特征，然后找到他们，然后在其他图像中找到相同的特征，将他们对齐。</p>
+<p>那么，这个问题更加具体，这些特征是什么。</p>
+<p>人类发现这些特征，这一个过程已经在大脑中进行了编程。但是，如果我们深入研究某些图片并且搜索不同的样式，我们会有一些有趣的特点。</p>
+<p>首先，如果你所搜寻的特征是一个平坦区域，那么这些特征你很难在图片中找到。可以知道大概的位置，但是很难找到准确的位置。</p>
+<p>当特征是物品的边缘，就可以找到一个大概的位置，但是准确的位置依然有些困难。因为沿着边缘，到处是不同的。虽然和平坦区域相比，边缘有更好的功能，但是依然不够准确。</p>
+<p>当你搜寻的图片是某些物体的角落，那么就很容易找到他们。因为在拐角处，将这部分图片移动到任意位置，图片都会有所不同。所以，他们有很好的功能。</p>
+<p>所以，总结一下，拐点被认为是图片中的良好的特征，在某些情况下，斑点也是一种很好的特征。</p>
+<p>那么，我们可以回答上面的问题。<br>寻找特征就是寻找图像中在其周围的所有区域中(少量移动)时变化最大的区域。</p>
+<p>寻找特征被称为特征检测。</p>
+<p>那么，假如我们在图像中找到了特征，那么，我们需要在其他图像中找到相同的内容。我们该怎么做？</p>
+<p>我们围绕该特征选取一个区域，用自己的话语来解释这个特征，例如，颜色大小等特征，然后在其他图像中搜索相同的区域，来在其他图像中找到他。这些表述称之为功能描述。获得功能描述后，可以在所有的图像中找到相同的功能并且将他们对齐或者缝合等操作。</p>
+<p>在这个模式里，我们用opencv中的不同算法来查找功能，进行描述，进行匹配。</p>
+<h1 id="2-Harris-哈里斯角检测"><a href="#2-Harris-哈里斯角检测" class="headerlink" title="2. (Harris)哈里斯角检测"></a>2. (Harris)哈里斯角检测</h1><h2 id="2-1-理论"><a href="#2-1-理论" class="headerlink" title="2.1 理论"></a>2.1 理论</h2><p>首先，我们可以知道角就是图像中各个方向上强度变化很大的区域。<br>1988年Chris Harris和Mike Stephens在论文组合式拐角和边缘检测器中尝试找到这些拐角。也就是哈里斯拐角检测器。然后形成了一个数学形式。<br><a target="_blank" rel="noopener" href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_features_harris/py_features_harris.html">https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_feature2d/py_features_harris/py_features_harris.html</a><br>上面是部分证明过程。</p>
+<h2 id="2-2-opencv中哈里斯角检测"><a href="#2-2-opencv中哈里斯角检测" class="headerlink" title="2.2 opencv中哈里斯角检测"></a>2.2 opencv中哈里斯角检测</h2><p>Opencv中有cv2.cornerHarris()函数，里面有变量:<br>img<br>输入图片，灰度图而且为float32类型。<br>blockSize<br>角检测附近区域的大小<br>ksize<br>使用的Sobel导数的孔径参数<br>k<br>方程中的哈里斯检测器自由参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import cv2 </span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;chessboard.png&#x27;</span></span><br><span class="line">img = cv2.imread(filename)</span><br><span class="line">gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">gray= np.float32(gray)</span><br><span class="line">dst = cv2.cornerHarris(gray,2,3,0.04)</span><br><span class="line"></span><br><span class="line">dst = cv2.dilate(dst,None)</span><br><span class="line"></span><br><span class="line">img[dst&gt;0.01*dst.max()] = [0,0,255]</span><br><span class="line"></span><br><span class="line">cv2.imshow(<span class="string">&#x27;dst&#x27;</span>,img)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> cv2.waitKey(0) &amp; 0xff == 27: </span><br><span class="line">    cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-亚像素精度的拐角"><a href="#2-3-亚像素精度的拐角" class="headerlink" title="2.3 亚像素精度的拐角"></a>2.3 亚像素精度的拐角</h2><p>什么是亚像素，就是将两个像素之间进行细分，将每个像素划分为更小的单元。<br>有时候，你需要获取最大精度的角。opencv提供了一个函数cv2.cornerSubPix()函数来重新获取亚精度的拐角。首先，我们需要获取Harris拐角，然后，我们将这些拐角的中心传递到函数中，来重新获取它们。在这个函数中，我们需要定义精度来确定什么时候停止。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;chessboard2.jpg&#x27;</span></span><br><span class="line">img = cv2.imread(filename)</span><br><span class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find Harris corners</span></span><br><span class="line">gray = np.float32(gray)</span><br><span class="line">dst = cv2.cornerHarris(gray,2,3,0.04)</span><br><span class="line">dst = cv2.dilate(dst,None)</span><br><span class="line">ret, dst = cv2.threshold(dst,0.01*dst.max(),255,0)</span><br><span class="line">dst = np.uint8(dst)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find centroids</span></span><br><span class="line">ret, labels, stats, centroids = cv2.connectedComponentsWithStats(dst)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the criteria to stop and refine the corners</span></span><br><span class="line">criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.001)</span><br><span class="line">corners = cv2.cornerSubPix(gray,np.float32(centroids),(5,5),(-1,-1),criteria)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now draw them</span></span><br><span class="line">res = np.hstack((centroids,corners))</span><br><span class="line">res = np.int0(res)</span><br><span class="line">img[res[:,1],res[:,0]]=[0,0,255]</span><br><span class="line">img[res[:,3],res[:,2]] = [0,255,0]</span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&#x27;subpixel5.png&#x27;</span>,img)</span><br></pre></td></tr></table></figure>
+<p>这一部分有些不太了解，待定。</p>
+<h1 id="3-Shi-Tomasi拐角检测和良好的跟踪功能"><a href="#3-Shi-Tomasi拐角检测和良好的跟踪功能" class="headerlink" title="3. Shi-Tomasi拐角检测和良好的跟踪功能"></a>3. Shi-Tomasi拐角检测和良好的跟踪功能</h1><p>这一部分我们需要重新学习一种拐角检测方式:Shi-Tomasi拐角检测</p>
+<h2 id="3-1-理论"><a href="#3-1-理论" class="headerlink" title="3.1 理论"></a>3.1 理论</h2><p>这部分待定，主要是将Harris拐角检测的公式进行了简化，看看就行。</p>
+<h2 id="3-2-代码"><a href="#3-2-代码" class="headerlink" title="3.2 代码"></a>3.2 代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"><span class="comment">#读取图片，然后转换为灰度图</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;simple.jpg&#x27;</span>)</span><br><span class="line">gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过goodFeaturesToTrack函数通过Shi-Tomasi获取25个最有效的拐角</span></span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray,25,0.01,10)</span><br><span class="line">corners = np.int0(corners)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> corners:</span><br><span class="line">    x,y = i.ravel()</span><br><span class="line">    cv2.circle(img,(x,y),3,255,-1)</span><br><span class="line"></span><br><span class="line">plt.imshow(img),plt.show()</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-SIFT-Scale-Invariant-Feature-Transform-尺度不变特征变换"><a href="#4-SIFT-Scale-Invariant-Feature-Transform-尺度不变特征变换" class="headerlink" title="4. SIFT(Scale-Invariant Feature Transform)尺度不变特征变换"></a>4. SIFT(Scale-Invariant Feature Transform)尺度不变特征变换</h1><h1 id="5-SURF-Speeded-Up-Robust-Features-加速鲁棒特征"><a href="#5-SURF-Speeded-Up-Robust-Features-加速鲁棒特征" class="headerlink" title="5. SURF(Speeded-Up Robust Features)加速鲁棒特征"></a>5. SURF(Speeded-Up Robust Features)加速鲁棒特征</h1><h1 id="6-用于角点检测的快速算法"><a href="#6-用于角点检测的快速算法" class="headerlink" title="6. 用于角点检测的快速算法"></a>6. 用于角点检测的快速算法</h1><h1 id="7-BRIEF-Binary-Robust-Independent-Elementary-Features-二进制健壮的独立基本特征"><a href="#7-BRIEF-Binary-Robust-Independent-Elementary-Features-二进制健壮的独立基本特征" class="headerlink" title="7. BRIEF(Binary Robust Independent Elementary Features)二进制健壮的独立基本特征"></a>7. BRIEF(Binary Robust Independent Elementary Features)二进制健壮的独立基本特征</h1><h1 id="8-ORB-Oriented-FAST-and-Rotated-BRIEF-定向快速和旋转BRIEF"><a href="#8-ORB-Oriented-FAST-and-Rotated-BRIEF-定向快速和旋转BRIEF" class="headerlink" title="8. ORB(Oriented FAST and Rotated BRIEF)定向快速和旋转BRIEF"></a>8. ORB(Oriented FAST and Rotated BRIEF)定向快速和旋转BRIEF</h1><h1 id="9-特征匹配"><a href="#9-特征匹配" class="headerlink" title="9. 特征匹配"></a>9. 特征匹配</h1><h1 id="10-特征匹配和单应性查找对象"><a href="#10-特征匹配和单应性查找对象" class="headerlink" title="10. 特征匹配和单应性查找对象"></a>10. 特征匹配和单应性查找对象</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/16/Ubuntu%E4%B8%8Aopencv%E6%95%99%E7%A8%8B5%E4%B9%8B%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%8F%8A%E6%8F%8F%E8%BF%B0/" data-id="ckhnlm63j002knng7efqgg4h9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-在Python中调用C代码" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/07/%E5%9C%A8Python%E4%B8%AD%E8%B0%83%E7%94%A8C%E4%BB%A3%E7%A0%81/" class="article-date">
@@ -414,6 +552,10 @@
 <p>例如:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 
+<h2 id="file"><a href="#file" class="headerlink" title="file"></a><strong>file</strong></h2><p>查看模块的源文件路径，当指定模块或者包没有说明文档的时候，仅仅通过help()函数或者__doc__属性无法帮助理解该模块的具体功能，我们通过__file__查找模块的具体位置，直接查看源代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import string</span><br><span class="line"><span class="built_in">print</span>(string.__file__)</span><br></pre></td></tr></table></figure>
+
+<p>注意，不是所有的模块都提供__file__属性，因为并不是所有的模块的实现都是采用的python语言，有的模块是使用的其他编程语言，例如c语言</p>
 <h1 id="子模块导入子模块中import"><a href="#子模块导入子模块中import" class="headerlink" title="子模块导入子模块中import"></a>子模块导入子模块中import</h1><p>当我们使用一个子模块的时候，子模块会调用其他子模块，这时候，使用下面的方法:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from .xxx import xxx</span><br></pre></td></tr></table></figure>
 
@@ -738,113 +880,6 @@
 
 
   
-    <article id="post-比特币分析1之比特币的由来" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/" class="article-date">
-  <time datetime="2020-02-09T11:43:14.000Z" itemprop="datePublished">2020-02-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/">比特币分析1之比特币的由来及原理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-简介："><a href="#0-简介：" class="headerlink" title="0.简介："></a>0.简介：</h1><p>这篇文章主要讲解其大概的原理，但是对其数据结构，算法和协议没有分析。</p>
-<h1 id="1-比特币的诞生"><a href="#1-比特币的诞生" class="headerlink" title="1.比特币的诞生"></a>1.比特币的诞生</h1><p>这一部分很少，主要将了比特币的诞生的原因，里面包含了货币的发展过程。</p>
-<h2 id="1-1-以物易物"><a href="#1-1-以物易物" class="headerlink" title="1.1 以物易物"></a>1.1 以物易物</h2><p>一开始，生产力较低，生活靠自给自足，没有大规模的贸易，相互之间的交易通过以物易物来实现。</p>
-<h2 id="1-2-实体货币"><a href="#1-2-实体货币" class="headerlink" title="1.2 实体货币"></a>1.2 实体货币</h2><p>将黄金等贵重金属作为一般等价物，将所需要的物品通过一般等价物为基础，进行交换，从而避免了以物易物。使用货币来得到需要的货物。</p>
-<h2 id="1-3-符号货币"><a href="#1-3-符号货币" class="headerlink" title="1.3 符号货币"></a>1.3 符号货币</h2><p>重金属货币容易磨损，不易携带，开采困难等问题，导致了钞票的出现，国家发行钞票，将重金属货币回收，以钞票作为抵押，承诺钞票和金属货币相同。</p>
-<h2 id="1-4-中央系统虚拟货币"><a href="#1-4-中央系统虚拟货币" class="headerlink" title="1.4 中央系统虚拟货币"></a>1.4 中央系统虚拟货币</h2><p>为了减少货币发行的数量，将纸币回收，在帐目上记下回收的纸币的数量，当交易时，直接修改帐目，支付的过程变为了账本上数字的变更。</p>
-<h2 id="1-5-分布式虚拟货币"><a href="#1-5-分布式虚拟货币" class="headerlink" title="1.5 分布式虚拟货币"></a>1.5 分布式虚拟货币</h2><p>中央系统完全依赖于账本持有人的信用，如果账本的数据随意篡改，货币系统就会崩溃。<br>为了不以来任何中央处理，设置了分布式虚拟货币。</p>
-<h1 id="2-比特币系统框架"><a href="#2-比特币系统框架" class="headerlink" title="2. 比特币系统框架"></a>2. 比特币系统框架</h1><h2 id="2-1-账本公开"><a href="#2-1-账本公开" class="headerlink" title="2.1 账本公开"></a>2.1 账本公开</h2><p>账本上不再记载人的余额，而是记载每一笔交易，付款人，收款人和付款金额。只要账本的初始状态确定，每一笔交易记录可靠并且有时序，当前每个人有多少钱是可以推算出来的。</p>
-<p>账本公开，只要任何人需要都可以获取当前完整的账本，账本上记录了从账本创建开始到当前所有的交易记录。</p>
-<h2 id="2-2-身份和签名机制（公钥加密系统）"><a href="#2-2-身份和签名机制（公钥加密系统）" class="headerlink" title="2.2 身份和签名机制（公钥加密系统）"></a>2.2 身份和签名机制（公钥加密系统）</h2><p>每个人的身份是保密的，有一个保密印章和印章扫描器。</p>
-<p>保密印章隐含整个比特币网络中唯一的一串字符串，但字符串被隐藏了。无法被伪造。</p>
-<p>印章扫描器可以扫描已经盖好的章，读出隐含信息，显示字符。</p>
-<h2 id="2-3-成立挖矿群体"><a href="#2-3-成立挖矿群体" class="headerlink" title="2.3 成立挖矿群体"></a>2.3 成立挖矿群体</h2><p>矿工为组为单位，一组可以是单独的一个人，也可以是几个人。<br>矿工从事挖矿活动。<br>挖矿可以随时退出。<br>矿工有一定可能性获得报酬。</p>
-<h2 id="2-4-创建初始账本（创世块）"><a href="#2-4-创建初始账本（创世块）" class="headerlink" title="2.4 创建初始账本（创世块）"></a>2.4 创建初始账本（创世块）</h2><p>账本的开始记录了交易记录，付款人是系统，一开始比特币很少，随着比特币的流通和矿工的活动，比特币会增加。</p>
-<h1 id="3-比特币工作流程"><a href="#3-比特币工作流程" class="headerlink" title="3. 比特币工作流程"></a>3. 比特币工作流程</h1><p>下面是在比特币的系统中是如何实现挖矿和交易的。</p>
-<h2 id="3-1-交易"><a href="#3-1-交易" class="headerlink" title="3.1 交易"></a>3.1 交易</h2><p>A给B10个比特币，那么A，B分别有一个标识字符串a,b。那么交易单上有：a给b10个比特币，来源是系统送的。后面是a的保密章。</p>
-<p>B拿到交易单之后，用印章扫描器来确定是a签署的，但是还需要矿工来确定付款人是否有足够的余额，记账和确认交易的有效性。</p>
-<h2 id="3-2-挖矿"><a href="#3-2-挖矿" class="headerlink" title="3.2 挖矿"></a>3.2 挖矿</h2><p>挖矿是最为复杂的部分，但是很贴切。</p>
-<p>每个组都复制一份初始账本，</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/02/09/%E6%AF%94%E7%89%B9%E5%B8%81%E5%88%86%E6%9E%901%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81%E7%9A%84%E7%94%B1%E6%9D%A5/" data-id="ckhnlm64o0051nng7aiu10yy2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Ubuntu上STM32开发之链接文件分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2020-01-03T10:58:26.000Z" itemprop="datePublished">2020-01-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/">Ubuntu上STM32开发之链接文件分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>接着上面的启动文件的分析之后，这一篇就是关于链接文件的介绍，链接文件也就是：stm32_flash.ld。连接器需要通过链接文件来形成最后的目标文件。<br>链接程序脚本是提供给链接程序的脚本，用于指定内存布局并在执行固件时初始化固件所使用的各个内存段。这些脚本至关重要，因为它们指定了闪存和RAM的起始地址以及它们的大小。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">/* Entry Point */</span><br><span class="line"> ENTRY(Reset_Handler)</span><br><span class="line">/*</span><br><span class="line">指定程序的入口点，即程序中要执行的第一条指令。</span><br><span class="line">*/</span><br><span class="line"> /* Highest address of the user mode stack */</span><br><span class="line"> _estack = 0x20005000;    /* end of 20K RAM */</span><br><span class="line">/*</span><br><span class="line">声明一个变量_estack，该值表示堆栈的开始。</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">HEAP 和 STACK 在前面的启动文件中有解释</span><br><span class="line">*/</span><br><span class="line"> _Min_Heap_Size = 0;      /* required amount of heap  */</span><br><span class="line"> _Min_Stack_Size = 0x100; /* required amount of stack */</span><br><span class="line"> </span><br><span class="line">/*</span><br><span class="line">这一部分需要根据你选择的芯片来确定。</span><br><span class="line">在我之前的关于STM32下载的博客中，通过stm32flash可以看到</span><br><span class="line">Interface serial_posix: 57600 8E1</span><br><span class="line">Version      : 0x22</span><br><span class="line">Option 1     : 0x00</span><br><span class="line">Option 2     : 0x00</span><br><span class="line">Device ID    : 0x0410 (STM32F10xxx Medium-density)</span><br><span class="line">- RAM        : 20KiB  (512b reserved by bootloader)</span><br><span class="line">- Flash      : 128KiB (size first sector: 4x1024)</span><br><span class="line">- Option RAM : 16b</span><br><span class="line">- System RAM : 2KiB</span><br><span class="line">在下载程序的时候可以看到是下载到flash里面，下载地址从0x08000000开始。</span><br><span class="line">ORIGIN 起始地址</span><br><span class="line">LENGTH 大小</span><br><span class="line">*/</span><br><span class="line"> /* Specify the memory areas */</span><br><span class="line"> MEMORY</span><br><span class="line"> &#123;</span><br><span class="line">   FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 128K</span><br><span class="line">   RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 20K</span><br><span class="line">   MEMORY_B1 (rx)  : ORIGIN = 0x60000000, LENGTH = 0K</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">/* Define output sections */</span><br><span class="line"> SECTIONS</span><br><span class="line"> &#123;</span><br><span class="line">   /* The startup code goes first into FLASH */</span><br><span class="line">   .isr_vector :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     KEEP(*(.isr_vector)) /* Startup code */</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"> </span><br><span class="line">   /* The program code and other data goes into FLASH */</span><br><span class="line">   .text :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     *(.text)           /* .text sections (code) */</span><br><span class="line">     *(.text*)          /* .text* sections (code) */</span><br><span class="line">     *(.rodata)         /* .rodata sections (constants, strings, etc.  ) */</span><br><span class="line">     *(.rodata*)        /* .rodata* sections (constants, strings, etc. ) */</span><br><span class="line">     *(.glue_7)         /* glue arm to thumb code */</span><br><span class="line">     *(.glue_7t)        /* glue thumb to arm code */</span><br><span class="line"> </span><br><span class="line">     KEEP (*(.init))</span><br><span class="line">     KEEP (*(.fini))</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _etext = .;        /* define a global symbols at end of code */</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"></span><br><span class="line">    .ARM.extab   : &#123; *(.ARM.extab* .gnu.linkonce.armextab.*) &#125; &gt;FLASH</span><br><span class="line">     .ARM : &#123;</span><br><span class="line">     __exidx_start = .;</span><br><span class="line">       *(.ARM.exidx*)</span><br><span class="line">       __exidx_end = .;</span><br><span class="line">     &#125; &gt;FLASH</span><br><span class="line"> </span><br><span class="line">   .ARM.attributes : &#123; *(.ARM.attributes) &#125; &gt; FLASH</span><br><span class="line"> </span><br><span class="line">   .preinit_array     :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__preinit_array_start = .);</span><br><span class="line">     KEEP (*(.preinit_array*))</span><br><span class="line">     PROVIDE_HIDDEN (__preinit_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line">   .init_array :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__init_array_start = .);</span><br><span class="line">     KEEP (*(SORT(.init_array.*)))</span><br><span class="line">     KEEP (*(.init_array*))</span><br><span class="line">     PROVIDE_HIDDEN (__init_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line">   .fini_array :</span><br><span class="line">   &#123;</span><br><span class="line">     PROVIDE_HIDDEN (__fini_array_start = .);</span><br><span class="line">     KEEP (*(.fini_array*))</span><br><span class="line">     KEEP (*(SORT(.fini_array.*)))</span><br><span class="line">     PROVIDE_HIDDEN (__fini_array_end = .);</span><br><span class="line">   &#125; &gt;FLASH</span><br><span class="line"></span><br><span class="line">   /* used by the startup to initialize data */</span><br><span class="line">   _sidata = .;</span><br><span class="line"> </span><br><span class="line">   /* Initialized data sections goes into RAM, load LMA copy after     code */</span><br><span class="line">   .data : AT ( _sidata )</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _sdata = .;        /* create a global symbol at data start */</span><br><span class="line">     *(.data)           /* .data sections */</span><br><span class="line">     *(.data*)          /* .data* sections */</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _edata = .;        /* define a global symbol at data end */</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"> </span><br><span class="line">   /* Uninitialized data section */</span><br><span class="line">   . = ALIGN(4);</span><br><span class="line">   .bss :</span><br><span class="line">   &#123;</span><br><span class="line">     /* This is used by the startup <span class="keyword">in</span> order to initialize the .bss    secion */</span><br><span class="line">     _sbss = .;         /* define a global symbol at bss start */</span><br><span class="line">     __bss_start__ = _sbss;</span><br><span class="line">     *(.bss)</span><br><span class="line">     *(.bss*)</span><br><span class="line">     *(COMMON)</span><br><span class="line"> </span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     _ebss = .;         /* define a global symbol at bss end */</span><br><span class="line">     __bss_end__ = _ebss;</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"></span><br><span class="line">   PROVIDE ( end = _ebss );</span><br><span class="line">   PROVIDE ( _end = _ebss );</span><br><span class="line"> </span><br><span class="line">   /* User_heap_stack section, used to check that there is enough RAM  left */</span><br><span class="line">   ._user_heap_stack :</span><br><span class="line">   &#123;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">     . = . + _Min_Heap_Size;</span><br><span class="line">     . = . + _Min_Stack_Size;</span><br><span class="line">     . = ALIGN(4);</span><br><span class="line">   &#125; &gt;RAM</span><br><span class="line"> </span><br><span class="line">   /* MEMORY_bank1 section, code must be located here                  explicitly            */</span><br><span class="line">   /* Example: extern int foo(void) __attribute__ ((section (<span class="string">&quot;.        mb1text&quot;</span>))); */</span><br><span class="line">   .memory_b1_text :</span><br><span class="line">   &#123;</span><br><span class="line">     *(.mb1text)        /* .mb1text sections (code) */</span><br><span class="line">     *(.mb1text*)       /* .mb1text* sections (code)  */</span><br><span class="line">     *(.mb1rodata)      /* read-only data (constants) */</span><br><span class="line">     *(.mb1rodata*)</span><br><span class="line">   &#125; &gt;MEMORY_B1</span><br><span class="line"> </span><br><span class="line">   /* Remove information from the standard libraries */</span><br><span class="line">   /DISCARD/ :</span><br><span class="line">   &#123;</span><br><span class="line">     libc.a ( * )</span><br><span class="line">     libm.a ( * )</span><br><span class="line">     libgcc.a ( * )</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在看完上面的链接文件，以及之前博客关于启动文件的分析，可以了解到。</p>
-<p>在文件的一开始，便将程序的入口地址设定为了Reset中断。</p>
-<p>进入Reset中断之后，首先将从0x80000（这里有几个0我数不清了，随便打的）开始的flash地址中的data数据复制到RAM中，其中flash中的数据就是我们下载的工程的程序，然后将bss段清零初始化。</p>
-<p>重新回顾一下text.data数据段和bss数据段：<br>TEXT:<br>通常是指用来存放程序执行带没的一块内存，这部分区域的内容在程序运行之前就已经确定了，通常属于只读，但是某些架构也会允许读写，也就是修改程序。里面可能包含一些常数变量。有的地方写为CODE。</p>
-<p>DATA(data segment):<br>通常是指用来存放程序中已经初始化的全局变量的一块内存，属于静态分配。</p>
-<p>BSS(bss segment):Block Started by Symbol  通常指用来存放程序中没有初始化的全局变量的一块内存，属于静态内存分配。</p>
-<p>但是，为什么需要进行复制呢？考虑一下flash和RAM的关系。<br>都是随机存储器，断电数据消失，但Flash有点不一样，它在消失数据之前，添加了一个“性质”，这个性质能上电后再识别，且把这个信号返回到ram中，这样近似的把flash当成了eeprom来使用，就是这样，RAM芯片断电后数据会丢失，Flash芯片断电后数据不会丢失，但是RAM的读取数据速度远远快于Flash芯片。</p>
-<p>所以，将flash中的data数据复制到ram中大概可以提高运行速度之类的。我猜的。有必要看一下哪些数据被分配到了data数据段。</p>
-<p>接着进行跳转，先是系统初始化，也就是调用系统时钟初始化函数。<br>然后调用静态构造函数，对静态数据进行初始化的函数，从名字上来看。<br>接着调用自己编写的工程，从main函数开始。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/01/03/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E9%93%BE%E6%8E%A5%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/" data-id="ckhnlm6390028nng7gk6vce0d" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -895,6 +930,14 @@
       <ul>
         
           <li>
+            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/">配置文件参考说明</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/">Python中利用seqeval模块进行序列标注算法的模型评估</a>
           </li>
         
@@ -904,14 +947,6 @@
         
           <li>
             <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">spo抽取知识图谱</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/10/test/">test</a>
           </li>
         
       </ul>

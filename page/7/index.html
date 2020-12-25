@@ -64,6 +64,110 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-我的回忆" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/12/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86/" class="article-date">
+  <time datetime="2019-12-11T17:44:16.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/12/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86/">我的回忆</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>–2019.12.12 周四 01：49</p>
+<p>在很久很久以前，</p>
+<p>有一个小男孩，</p>
+<p>他翻开了他的第一张语文试卷。</p>
+<p>上面问道：太阳公公为什么哭了？</p>
+<p>他好奇地写下来了：因为太阳公公很伤心。</p>
+<p>写完之后，他很开心，</p>
+<p>但是，这不是这个世界的正确答案。</p>
+<p>他的世界和这个世界的摩擦在预料中那样发生了。</p>
+<p>。<br>。<br>。</p>
+<p>在很久很久之后，</p>
+<p>小男孩对自己的世界有些彷徨。</p>
+<p>因为，这个世界不是他的世界。</p>
+<p>他的世界被掩埋，只有灰烬。</p>
+<p>他的世界一直如此。</p>
+<p>他只能寻找自己存在的过程，以及被磨灭的痕迹。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/12/%E6%88%91%E7%9A%84%E5%9B%9E%E5%BF%86/" data-id="ckhnlm64k004unng7385r90b7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-随机数生成" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/06/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/" class="article-date">
+  <time datetime="2019-12-06T04:20:30.000Z" itemprop="datePublished">2019-12-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/06/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/">随机数生成</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;time.h&gt;</span></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    srand(1);</span><br><span class="line">    int i;</span><br><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; 10; i++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d, &quot;</span>, rand()%11); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>结果一直不变，为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8, 9, 9, 1, 7, 5, 5, 10, 1, 0,</span><br></pre></td></tr></table></figure>
+
+<p>那么比较：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;time.h&gt;</span></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    srand(time(NULL));</span><br><span class="line">    int i;</span><br><span class="line">    <span class="keyword">for</span> (i = 0; i &lt; 10; i++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d, &quot;</span>, rand()%11); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>结果改变，每次都不一样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">6, 3, 4, 5, 5, 9, 8, 10, 10, 4,</span><br><span class="line">6, 4, 2, 4, 3, 2, 5, 1, 2, 9,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>分析：</p>
+<p>rand()函数是按指定的顺序来产生整数，因此每次执行上面的语句都打印相同的两个值，所以说C语言的随机并不是真正意义上的随机，有时候也叫伪随机数，使用 rand() 生成随机数之前需要用随机发生器的初始化函数 srand(unsigned seed)（也位于 stdlib.h 中） 进行伪随机数序列初始化，seed 又叫随机种子，通俗讲就是，如果每次提供的 seed 是一样的话，最后每一轮生成的几个随机值也都是一样的，因此叫伪随机数，所以需要每次提供不同的 seed 达到完全的随机，我们通常用时间函数 time(NULL) 作为 seed ，因为时间值每秒都不同。</p>
+<p>注意 a%100的范围是0-99.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/06/%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/" data-id="ckhnlm64v005dnng75bhn845f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-桌游之谁是牛头王" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/06/%E6%A1%8C%E6%B8%B8%E4%B9%8B%E8%B0%81%E6%98%AF%E7%89%9B%E5%A4%B4%E7%8E%8B/" class="article-date">
@@ -559,105 +663,6 @@
 
 
   
-    <article id="post-Ubuntu上的C语言socket服务器教程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/20/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B/" class="article-date">
-  <time datetime="2019-10-20T12:26:26.000Z" itemprop="datePublished">2019-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/20/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B/">Ubuntu上的C语言socket服务器教程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h1><p>socket服务器的运行方式：<br>1.打开socket<br>2.绑定到一个地址和端口<br>3.监听传入的连接<br>4.接受连接<br>5.读/发送数据</p>
-<h1 id="1-将socket绑定到端口"><a href="#1-将socket绑定到端口" class="headerlink" title="1.将socket绑定到端口"></a>1.将socket绑定到端口</h1><p>根据前面socket客户端可以知道建立socket，绑定将socket与地址和端口组合，需要一个类似于connect的sockaddr_in结构。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int socket_desc;</span><br><span class="line">struct sockaddr_in server;</span><br><span class="line">	</span><br><span class="line">//Create socket</span><br><span class="line">socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line"><span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">//Prepare the sockaddr_in structure</span><br><span class="line">server.sin_family = AF_INET;</span><br><span class="line">server.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">server.sin_port = htons( 8888 );</span><br><span class="line">	</span><br><span class="line">//Bind</span><br><span class="line"><span class="keyword">if</span>( <span class="built_in">bind</span>(socket_desc,(struct sockaddr *)&amp;amp;server , sizeof(server)) &amp;lt; 0)</span><br><span class="line">&#123;</span><br><span class="line">	puts(<span class="string">&quot;bind failed\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">puts(<span class="string">&quot;bind done\n&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>绑定完成后，应该用socket连接了，将socket绑定到特定的ip和端口号，确认接受到，传入数据。<br>不能将两个socket绑定到同一个端口。</p>
-<h1 id="2-监听连接"><a href="#2-监听连接" class="headerlink" title="2 监听连接"></a>2 监听连接</h1><p>将socket切换到listen模式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen(socket_desc,3);</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-接受连接"><a href="#3-接受连接" class="headerlink" title="3 接受连接"></a>3 接受连接</h1><h2 id="3-1-接受连接不回复"><a href="#3-1-接受连接不回复" class="headerlink" title="3.1 接受连接不回复"></a>3.1 接受连接不回复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc , new_socket , c;</span><br><span class="line">	struct sockaddr_in server , client;</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//Prepare the sockaddr_in structure</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">	server.sin_port = htons( 8888 );</span><br><span class="line">	</span><br><span class="line">	//Bind</span><br><span class="line">	<span class="keyword">if</span>( <span class="built_in">bind</span>(socket_desc,(struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;bind failed\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;bind done\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Listen</span><br><span class="line">	listen(socket_desc , 3);</span><br><span class="line">	</span><br><span class="line">	//Accept and incoming connection</span><br><span class="line">	puts(<span class="string">&quot;Waiting for incoming connections...&quot;</span>);</span><br><span class="line">	c = sizeof(struct sockaddr_in);</span><br><span class="line">	new_socket = accept(socket_desc, (struct sockaddr *)&amp;client, (socklen_t*)&amp;c);</span><br><span class="line">	<span class="keyword">if</span> (new_socket&lt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;accept failed\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connection accepted&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行该程序，然后通过telnet程序连接本地的8888端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet localhost 8888</span><br></pre></td></tr></table></figure>
-
-<p>获取连接的客户端的IP地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char *client_ip = inet_ntoa(client.sin_addr);</span><br><span class="line">int client_port = ntohs(client.sin_port);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-2-回复客户端："><a href="#3-2-回复客户端：" class="headerlink" title="3.2 回复客户端："></a>3.2 回复客户端：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int socket_desc , new_socket , c;</span><br><span class="line">  struct sockaddr_in server , client;</span><br><span class="line">	char *message;</span><br><span class="line"></span><br><span class="line">  //Create socket</span><br><span class="line">  socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">  <span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  //Prepare the sockaddr_in structure</span><br><span class="line">  server.sin_family = AF_INET;</span><br><span class="line">  server.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">  server.sin_port = htons( 8888 );</span><br><span class="line"></span><br><span class="line">	//Bind</span><br><span class="line">	<span class="keyword">if</span>( <span class="built_in">bind</span>(socket_desc,(struct sockaddr *)&amp;amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;bind failed&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;bind done&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Listen</span><br><span class="line">	listen(socket_desc , 3);</span><br><span class="line">	</span><br><span class="line">	//Accept and incoming connection</span><br><span class="line">	puts(<span class="string">&quot;Waiting for incoming connections...&quot;</span>);</span><br><span class="line">	c = sizeof(struct sockaddr_in);</span><br><span class="line">	new_socket = accept(socket_desc, (struct sockaddr *)&amp;client, (socklen_t*)&amp;c);</span><br><span class="line">	<span class="keyword">if</span> (new_socket&lt;0)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(<span class="string">&quot;accept failed&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connection accepted&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Reply to the client</span><br><span class="line">	message = <span class="string">&quot;Hello Client , I have received your connection. But I have to go now, bye\n&quot;</span>;</span><br><span class="line">	write(new_socket , message , strlen(message));</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="3-3-保持服务器"><a href="#3-3-保持服务器" class="headerlink" title="3.3 保持服务器"></a>3.3 保持服务器</h2><p>在客户端连接到服务器之后立即关闭，为了保持服务器不间断运行，将accept置于循环之中，可以一直接受传入的连接。将服务器的程序修改为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int socket_desc , new_socket , c;</span><br><span class="line">  struct sockaddr_in server , client;</span><br><span class="line">  char *message;</span><br><span class="line"></span><br><span class="line">  //Create socket</span><br><span class="line">  socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">  <span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  //Prepare the sockaddr_in structure</span><br><span class="line">  server.sin_family = AF_INET;</span><br><span class="line">  server.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">  server.sin_port = htons( 8888 );</span><br><span class="line"></span><br><span class="line">  //Bind</span><br><span class="line">  <span class="keyword">if</span>( <span class="built_in">bind</span>(socket_desc,(struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;bind failed&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 1;</span><br><span class="line">  &#125;</span><br><span class="line">  puts(<span class="string">&quot;bind done&quot;</span>);</span><br><span class="line"></span><br><span class="line">  //Listen</span><br><span class="line">  listen(socket_desc , 3);</span><br><span class="line">  //Accept and incoming connection</span><br><span class="line">  puts(<span class="string">&quot;Waiting for incoming connections...&quot;</span>);</span><br><span class="line">  c = sizeof(struct sockaddr_in);</span><br><span class="line">  <span class="keyword">while</span>( new_socket = accept(socket_desc, (struct sockaddr *)&amp;client, (socklen_t*)&amp;c) )</span><br><span class="line">	&#123;</span><br><span class="line">  	puts(<span class="string">&quot;Connection accepted&quot;</span>);</span><br><span class="line"></span><br><span class="line">  	//Reply to the client</span><br><span class="line">  	message = <span class="string">&quot;Hello Client , I have received your connection. But I have to go now, bye\n&quot;</span>;</span><br><span class="line">  	write(new_socket , message , strlen(message));</span><br><span class="line">		<span class="keyword">if</span>(new_socket &lt; 0)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;accept failed&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="3-4-通过线程来处理多客户端连接"><a href="#3-4-通过线程来处理多客户端连接" class="headerlink" title="3.4 通过线程来处理多客户端连接"></a>3.4 通过线程来处理多客户端连接</h2><p>为了处理每个连接，需要单独的处理代码与服务器一起运行。通过线程来实现。<br>主服务器接受一个连接并且创建一个新的线程来处理该连接的通信，然后服务器返回接受更多的连接。</p>
-<p>在Linux,可以使用pthread(posix线程)库完成线程,关于线程的教程在补充中。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;pthread.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"></span><br><span class="line">void *connect_server(void *);</span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int socket_desc , new_socket , c,*new_sock;</span><br><span class="line">  struct sockaddr_in server , client;</span><br><span class="line">  char *message;</span><br><span class="line"></span><br><span class="line">  //Create socket</span><br><span class="line">  socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">  <span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //Prepare the sockaddr_in structure</span><br><span class="line">  server.sin_family = AF_INET;</span><br><span class="line">  server.sin_addr.s_addr = INADDR_ANY;</span><br><span class="line">  server.sin_port = htons( 5555 );</span><br><span class="line"></span><br><span class="line">  //Bind</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">bind</span>(socket_desc,(struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;bind failed&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 1;</span><br><span class="line">  &#125;</span><br><span class="line">  puts(<span class="string">&quot;bind done&quot;</span>);</span><br><span class="line"></span><br><span class="line">  //Listen</span><br><span class="line">  listen(socket_desc , 3);</span><br><span class="line"></span><br><span class="line">  //Accept and incoming connection</span><br><span class="line">  puts(<span class="string">&quot;Waiting for incoming connections...&quot;</span>);</span><br><span class="line">  c = sizeof(struct sockaddr_in);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(new_socket=accept(socket_desc,(struct sockaddr *)&amp;client, (socklen_t*)&amp;c))</span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Connection accepted&quot;</span>);</span><br><span class="line"></span><br><span class="line">    //Reply to the client</span><br><span class="line">    message = <span class="string">&quot;Hello Client , I have received your connection.\n&quot;</span>;</span><br><span class="line">    write(new_socket , message , strlen(message));</span><br><span class="line"></span><br><span class="line">    pthread_t sniffer_thread;</span><br><span class="line">    new_sock = malloc(1);</span><br><span class="line">    *new_sock = new_socket;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(pthread_create(&amp;sniffer_thread,NULL,connect_server,(void*)new_sock) &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;could not create thread&quot;</span>);</span><br><span class="line">      <span class="built_in">return</span> 1;</span><br><span class="line">    &#125;</span><br><span class="line">    puts(<span class="string">&quot;handler assignment&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(new_socket &lt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;accept failed&quot;</span>);</span><br><span class="line">      <span class="built_in">return</span> 1;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;	</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void *connect_server(void *socket_desc)</span><br><span class="line">&#123;</span><br><span class="line">	int sock = *(int *)socket_desc;</span><br><span class="line">	int read_size;</span><br><span class="line">	char *message,client_message[2000];</span><br><span class="line">	message = <span class="string">&quot;Greetings!I am your connection handler\n&quot;</span>;</span><br><span class="line">	write(sock,message,strlen(message));</span><br><span class="line"></span><br><span class="line">	message = <span class="string">&quot;It is my duty to communicate with you\n&quot;</span>;</span><br><span class="line">	write(sock,message,strlen(message));</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>( (read_size = recv(sock,client_message,2000,0) ) &gt; 0 )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>( strcmp(client_message,<span class="string">&quot;exit&quot;</span>) == 0)</span><br><span class="line">		&#123;</span><br><span class="line">			fflush(stdout);</span><br><span class="line">			<span class="built_in">break</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		write(sock,client_message,strlen(client_message));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(read_size == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;client disconnect&quot;</span>);</span><br><span class="line">		fflush(stdout);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(read_size == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;recv failed&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/10/20/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B/" data-id="ckhnlm63p002tnng7hu1w3rr4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-codeblocks操作指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/18/codeblocks%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-10-18T13:58:01.000Z" itemprop="datePublished">2019-10-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/codeblocks%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/">codeblocks操作指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-快捷键"><a href="#1-快捷键" class="headerlink" title="1.快捷键"></a>1.快捷键</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+Shift+c //注释代码块</span><br><span class="line">Ctrl+Shift+x //取消注释</span><br><span class="line">Alt+方向键上下//将这一行进行上下移动</span><br><span class="line">Tab //缩进当前或选中的块</span><br><span class="line">Shift+Tab//减小缩进</span><br><span class="line">Ctrl+Z//撤销</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/10/18/codeblocks%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" data-id="ckhnlm640003knng70fgr19eb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -708,6 +713,14 @@
       <ul>
         
           <li>
+            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/22/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8F%82%E8%80%83%E8%AF%B4%E6%98%8E/">配置文件参考说明</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/">Python中利用seqeval模块进行序列标注算法的模型评估</a>
           </li>
         
@@ -717,14 +730,6 @@
         
           <li>
             <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">spo抽取知识图谱</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/10/test/">test</a>
           </li>
         
       </ul>
