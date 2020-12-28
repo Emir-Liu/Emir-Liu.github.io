@@ -44,14 +44,15 @@
     <link href="http://example.com/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
     <id>http://example.com/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
     <published>2020-12-25T03:07:30.000Z</published>
-    <updated>2020-12-25T05:16:22.102Z</updated>
+    <updated>2020-12-28T05:55:26.946Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="端口冲突-Address-already-in-use-解决方法"><a href="#端口冲突-Address-already-in-use-解决方法" class="headerlink" title="端口冲突(Address already in use)解决方法"></a>端口冲突(Address already in use)解决方法</h2><ol><li><p>我们在后端开发的过程中往往会在没有正常关闭某个正在执行的脚本或者程序而是直接关闭了Terminal(终端)或是通过其他方式的异常关闭导致了之前的端口实际上仍未被释放，这时候倘若我门想要再使用这个端口，就会抛出 “error:[Errno 98] Address already in use” 这样的异常。</p></li><li><p>这时候我们只需要找到正在利用这个端口的进程，并得到这个进程的PID，杀死这个PID对应的这个进程，就能够有效释放被占用的端口，后续再使用的时候就不会再抛出端口已经被占用的异常信息。</p></li><li><p>找到被占用的指定端口号所对应的进程信息并呈现，xxx处填写对应要查找的端口号：<br>sudo lsof -i:xxx</p></li></ol><p>4.关闭这个进程,xxx为PID：<br>sudo kill xxx</p>]]></content>
+    <content type="html"><![CDATA[<p>tornado是一个网络具有异步功能的网络库。样例:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import tornado.ioloop</span><br><span class="line">import tornado.web</span><br><span class="line"></span><br><span class="line">class MainHandler(tornado.web.RequestHandler):</span><br><span class="line">    def get(self):</span><br><span class="line">        self.write(<span class="string">&quot;Hello, world&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    application = tornado.web.Application([</span><br><span class="line">        (r<span class="string">&quot;/&quot;</span>, MainHandler),</span><br><span class="line">    ])</span><br><span class="line">    application.listen(8888)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br></pre></td></tr></table></figure><p>运行上面的程序之后，然后打开浏览器输入:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8888</span><br></pre></td></tr></table></figure><h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="端口冲突-Address-already-in-use-解决方法"><a href="#端口冲突-Address-already-in-use-解决方法" class="headerlink" title="端口冲突(Address already in use)解决方法"></a>端口冲突(Address already in use)解决方法</h2><ol><li><p>我们在后端开发的过程中往往会在没有正常关闭某个正在执行的脚本或者程序而是直接关闭了Terminal(终端)或是通过其他方式的异常关闭导致了之前的端口实际上仍未被释放，这时候倘若我门想要再使用这个端口，就会抛出 “error:[Errno 98] Address already in use” 这样的异常。</p></li><li><p>这时候我们只需要找到正在利用这个端口的进程，并得到这个进程的PID，杀死这个PID对应的这个进程，就能够有效释放被占用的端口，后续再使用的时候就不会再抛出端口已经被占用的异常信息。</p></li><li><p>找到被占用的指定端口号所对应的进程信息并呈现，xxx处填写对应要查找的端口号：<br>sudo lsof -i:xxx</p></li></ol><p>4.关闭这个进程,xxx为PID：<br>sudo kill xxx</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;FAQ&quot;&gt;&lt;a href=&quot;#FAQ&quot; class=&quot;headerlink&quot; title=&quot;FAQ&quot;&gt;&lt;/a&gt;FAQ&lt;/h1&gt;&lt;h2 id=&quot;端口冲突-Address-already-in-use-解决方法&quot;&gt;&lt;a href=&quot;#端口冲突-Address-alre</summary>
+    <summary type="html">&lt;p&gt;tornado是一个网络具有异步功能的网络库。样例:&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span cla</summary>
       
     
     
@@ -320,9 +321,9 @@
     <link href="http://example.com/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
     <id>http://example.com/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
     <published>2020-11-26T15:36:25.000Z</published>
-    <updated>2020-12-26T07:20:17.257Z</updated>
+    <updated>2020-12-26T15:17:07.376Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="0-环境配置"><a href="#0-环境配置" class="headerlink" title="0.环境配置"></a>0.环境配置</h1><p>下载</p><h1 id="1-使用说明"><a href="#1-使用说明" class="headerlink" title="1.使用说明"></a>1.使用说明</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\\ 换行</span><br><span class="line">\<span class="keyword">in</span> 属于</span><br><span class="line">\notin  不属于</span><br></pre></td></tr></table></figure><p><img src="/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/alpha.png"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="0-环境配置"><a href="#0-环境配置" class="headerlink" title="0.环境配置"></a>0.环境配置</h1><p>下载</p><h1 id="1-使用说明"><a href="#1-使用说明" class="headerlink" title="1.使用说明"></a>1.使用说明</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">% 注释</span><br><span class="line">\\ 换行</span><br><span class="line">\<span class="keyword">in</span> 属于</span><br><span class="line">\notin  不属于</span><br></pre></td></tr></table></figure><p><img src="/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/alpha.png"></p>]]></content>
     
     
       
