@@ -64,6 +64,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-GPT模型的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-09-24T07:59:03.000Z" itemprop="datePublished">2020-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/">GPT模型的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>GPT使用有下面的几个方式:<br>1.直接使用<br><a target="_blank" rel="noopener" href="https://ner.algomo.com/">https://ner.algomo.com/</a><br>这是直接调用GPT-3模型的API，里面的原理待定。</p>
+<p>2.对自己所需要的小数据进行预训练<br><a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/GPT2-Chinese">https://github.com/Emir-Liu/GPT2-Chinese</a><br>GPT2中文训练，使用了BERT的Tokenizer???。主要使用</p>
+<p>3.对模型进行微调之后使用<br>通过微调预训练的GPT-2模型，来生成特定主题的文本。<br><a target="_blank" rel="noopener" href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">http://nlp.seas.harvard.edu/2018/04/03/attention.html</a><br>其中，直接使用了transformers模块中的函数，直接加载预训练模块，然后训练？？，就结束了，其中训练的过程就是一个黑箱。</p>
+<p>上面就是GPT模型的一些使用的方法。<br>但是，对于初学者来说，更重要的事情是了解黑箱之中是什么原理，以及如何实现。<br>之前已经了解了GPT模型的原理，下面是学习其实现。</p>
+<p>首先BERT和GPT模型都是基于Transformer模型，所以，我简单实现Transformer模型。</p>
+<p>在之前已经了解了Transformer模型的原理，那么，其中，有下面多个优化。</p>
+<p>例如:<br>1.参数初始化方式<br>nn.init.xavier_uniform:参数初始化方式<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/luoxuexiong/article/details/95772045">https://blog.csdn.net/luoxuexiong/article/details/95772045</a></p>
+<p><a target="_blank" rel="noopener" href="https://prateekvjoshi.com/2016/03/29/understanding-xavier-initialization-in-deep-neural-networks/">https://prateekvjoshi.com/2016/03/29/understanding-xavier-initialization-in-deep-neural-networks/</a></p>
+<p>2.Batch Normalization批量归一化<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47812375">https://zhuanlan.zhihu.com/p/47812375</a></p>
+<p>Normalization 有很多种，但是它们都有一个共同的目的，那就是把输入转化成均值为 0 方差为 1 的数据。我们在把数据送入激活函数之前进行 normalization（归一化），因为我们不希望输入数据落在激活函数的饱和区。</p>
+<p>BN:<br>在每一层的每一批数据上进行归一化。我们可能会对输入数据进行归一化，但是经过该网络层的作用后，我们的数据已经不再是归一化的了。随着这种情况的发展，数据的偏差越来越大，我的反向传播需要考虑到这些大的偏差，这就迫使我们只能使用较小的学习率来防止梯度消失或者梯度爆炸。</p>
+<p>BN 的具体做法就是对每一小批数据，在批这个方向上做归一化。</p>
+<p>2.学习速率优化<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/luoxuexiong/article/details/90412213">https://blog.csdn.net/luoxuexiong/article/details/90412213</a></p>
+<p>论文：<br>ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION</p>
+<p>Adam是Momentum 和 RMSProp算法的结合</p>
+<p>3.过拟合的检验方式</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/24/GPT%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckhnlm62i000knng7a1osc52j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Ubuntu上Jupyter编辑-ipynb文件教程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/13/Ubuntu%E4%B8%8AJupyter%E7%BC%96%E8%BE%91-ipynb%E6%96%87%E4%BB%B6%E6%95%99%E7%A8%8B/" class="article-date">
@@ -489,50 +543,6 @@
 
 
   
-    <article id="post-神经网络与深度学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/28/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2020-07-28T02:26:22.000Z" itemprop="datePublished">2020-07-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">神经网络与深度学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>(1)神经网络，一种美丽的，受生物启发的编程范例，使计算机能够从观测数据中学习<br>(2)深度学习，用于在神经网络中学习的强大功能集</p>
-<p>神经网络和深度学习在为图片，语音识别和自然语言处理中的许多问题提供了解决方法，本文主要内容为神经网络和深度学习的入门书籍，以手写数字识别作为例子。<br>本文的代码会在Github上展示:???<br>首先，这是面向新手的入门课程，主要是讲解神经网络和深度学习的原理，所以，代码中并没有使用框架，而是要自己编写，为了易读性，代码并没有进行优化。<br>其环境为:???</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/07/28/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/28/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" data-id="ckhnlm65s009pnng7hody7dji" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -570,7 +580,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -581,6 +591,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/03/test-1/">test</a>
+          </li>
         
           <li>
             <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
@@ -596,10 +610,6 @@
         
           <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
           </li>
         
       </ul>

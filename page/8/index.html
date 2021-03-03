@@ -64,6 +64,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP-MySql登录系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/10/PHP-MySql%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2019-11-10T05:57:13.000Z" itemprop="datePublished">2019-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/10/PHP-MySql%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F/">PHP,MySql登录系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-前置相关主题"><a href="#0-前置相关主题" class="headerlink" title="0.前置相关主题"></a>0.前置相关主题</h1><ul>
+<li>php</li>
+<li>mysql</li>
+</ul>
+<h1 id="1-首先建立配置数据库"><a href="#1-首先建立配置数据库" class="headerlink" title="1.首先建立配置数据库"></a>1.首先建立配置数据库</h1><p>首先建立一个webdata数据库，在该数据库中添加users表单，在表单中加入一些栏目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+------------+--------------+------+-----+-------------------+----------------+</span><br><span class="line">| Field      | Type         | Null | Key | Default           | Extra          |</span><br><span class="line">+------------+--------------+------+-----+-------------------+----------------+</span><br><span class="line">| id         | int(11)      | NO   | PRI | NULL              | auto_increment |</span><br><span class="line">| username   | varchar(50)  | NO   | UNI | NULL              |                |</span><br><span class="line">| password   | varchar(255) | NO   |     | NULL              |                |</span><br><span class="line">| created_at | datetime     | YES  |     | CURRENT_TIMESTAMP |                |</span><br><span class="line">+------------+--------------+------+-----+-------------------+----------------+</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>那么数据库已经配置完成。</p>
+<h1 id="2-配置网页"><a href="#2-配置网页" class="headerlink" title="2.配置网页"></a>2.配置网页</h1><p>看git仓库。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/10/PHP-MySql%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F/" data-id="ckhnlm62n000tnng71d4ges9b" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-对于卷积的理解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/08/%E5%AF%B9%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
@@ -576,58 +622,6 @@
 
 
   
-    <article id="post-Ubuntu上设计Hexo主题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/15/Ubuntu%E4%B8%8A%E8%AE%BE%E8%AE%A1Hexo%E4%B8%BB%E9%A2%98/" class="article-date">
-  <time datetime="2019-10-15T07:19:56.000Z" itemprop="datePublished">2019-10-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/15/Ubuntu%E4%B8%8A%E8%AE%BE%E8%AE%A1Hexo%E4%B8%BB%E9%A2%98/">Ubuntu上设计Hexo主题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-Hexo-Theme"><a href="#0-Hexo-Theme" class="headerlink" title="0 Hexo Theme"></a>0 Hexo Theme</h1><p>用多了hexo的默认主题，打算自己写一个Hexo主题，感觉很方便。<br>主要在theme文件夹中。<br>hexo文档格式:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml       // 总体的配置文件</span><br><span class="line">├── node_modules      // NodeJs 所依赖的包，后期也可以自己添加插件</span><br><span class="line">├── package-lock.json // 支持 hexo 运行的 NodeJs 包</span><br><span class="line">├── package.json      // 自定义的 NodeJs 包</span><br><span class="line">├── scaffolds         // Hexo Markdown 加载时的关键字，如data,title等,它会在启动的时候默认加载</span><br><span class="line">├── <span class="built_in">source</span>            // md 源文件目录</span><br><span class="line">└── themes            // 主题文件夹</span><br><span class="line">    └── landscape     // 默认主题       </span><br></pre></td></tr></table></figure>
-<p>我们编写 md 文档放在 『source』文件夹中，在运行『hexo generate』的时候，会根据『source』目录中的 md 文件自动生成一组 『html』格式的静态文件组，会在wiki目录下新建一个 『public』目录，存放在其中。</p>
-<p>在『_config.yml』中，可以看到配置的默认主题『theme: landscape』,所对应的是 themes 目录下的 landscape 目录。</p>
-<p>将theme:后面的内容修改为自己写的主题：lym.</p>
-<p>在『themes』目录下，新建一个自己的主题『lym』，并且新建一些可以支持运行的文件与目录，按照如下目录格式创建，里面可以不写东西，下面写有注释的，就是我新建的文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml                 </span><br><span class="line">├── node_modules                </span><br><span class="line">├── package-lock.json        </span><br><span class="line">├── package.json                </span><br><span class="line">├── scaffolds                        </span><br><span class="line">├── <span class="built_in">source</span>                            </span><br><span class="line">└── themes                            </span><br><span class="line">    ├── landscape</span><br><span class="line">    └── lym                // 自建的主题目录</span><br><span class="line">        ├── _config.yml     // 主题配置文件</span><br><span class="line">        ├── layout          // 主要构造 html 的模板</span><br><span class="line">        │   ├── index.ejs   // 主页模板</span><br><span class="line">        │   ├── layout.ejs  // 布局模板</span><br><span class="line">        │   └── post.ejs    // md 编译成 html 后的文件模板</span><br><span class="line">        └── <span class="built_in">source</span>          // 静态资源文件目录</span><br><span class="line">            ├── css         // css 样式目录</span><br><span class="line">            └── js          // JavaScript 脚本目录</span><br></pre></td></tr></table></figure>
-
-<h1 id="1-EJS标签"><a href="#1-EJS标签" class="headerlink" title="1.EJS标签"></a>1.EJS标签</h1><p>EJS(Effective JavaScript)是一套简单的模板语言，帮你利用普通的 JavaScript 代码生成 HTML 页面。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="string">&#x27;脚本&#x27;</span> 标签，用于流程控制，无输出。</span><br><span class="line">&lt;%_ 删除其前面的空格符</span><br><span class="line">&lt;%= 输出数据到模板（输出是转义 HTML 标签）</span><br><span class="line">&lt;%- 输出非转义的数据到模板</span><br><span class="line">&lt;%<span class="comment"># 注释标签，不执行、不输出内容</span></span><br><span class="line">&lt;%% 输出字符串 <span class="string">&#x27;&lt;%&#x27;</span></span><br><span class="line">%&gt; 一般结束标签</span><br><span class="line">-%&gt; 删除紧随其后的换行符</span><br><span class="line">_%&gt; 将结束标签后面的空格符删除</span><br><span class="line">&lt;%- include(<span class="string">&quot;index.ejs&quot;</span>) %&gt;	引入其他模板</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% </span><br><span class="line">    var <span class="built_in">test</span> = <span class="string">&quot;基本上，就用这两组标签，其他的也用不上。&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%- <span class="built_in">test</span> %&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-Hexo变量"><a href="#2-Hexo变量" class="headerlink" title="2.Hexo变量"></a>2.Hexo变量</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">site								总体变量，几乎都是从这里开始的</span><br><span class="line">site.posts					所有文章</span><br><span class="line">site.posts[0].path	文章路径，带日期的</span><br><span class="line">site.posts[0].slug	文章路径，根据项目文件夹的路径来的</span><br><span class="line">site.posts[0]._id		文章的唯一 id，后面会用于 active 对比</span><br><span class="line">site.posts[0].title	文章的标题</span><br><span class="line">site.posts[0].date	文章的时间</span><br><span class="line">page.date						在直接访问文章路径下，文章的时间</span><br><span class="line">page.title					在直接访问文章路径下，文章的标题</span><br><span class="line">page._id						在直接访问文章路径下，文章的的唯一 id，后面会用于 active 对比</span><br><span class="line">page.content				引入对应文章的正文</span><br><span class="line">config.xxx					总体配置文件的引用 _config.yml</span><br><span class="line">theme.xxx						主题配置文件 theme._config.yml</span><br><span class="line">&lt;%- body %&gt;					同时引入 post.ejs 和 index.ejs</span><br><span class="line">&lt;%- css(path,...)%&gt;	引入 css 文件</span><br><span class="line">&lt;%- js(path,...) %&gt;	引入 js 文件</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/10/15/Ubuntu%E4%B8%8A%E8%AE%BE%E8%AE%A1Hexo%E4%B8%BB%E9%A2%98/" data-id="ckhnlm63r002ynng74u493sjw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -665,7 +659,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -676,6 +670,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/03/test-1/">test</a>
+          </li>
         
           <li>
             <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
@@ -691,10 +689,6 @@
         
           <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
           </li>
         
       </ul>

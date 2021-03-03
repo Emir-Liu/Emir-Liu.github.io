@@ -64,6 +64,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python中利用seqeval模块进行序列标注算法的模型评估" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" class="article-date">
+  <time datetime="2020-12-21T07:40:01.000Z" itemprop="datePublished">2020-12-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/">Python中利用seqeval模块进行序列标注算法的模型评估</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。</p>
+<p>一般而言，序列标注算法的格式有BIO、IOBES、BMES等。</p>
+<p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure>
+
+<p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p>
+<p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p>
+<p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
+<p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p>
+<h1 id="1-样例"><a href="#1-样例" class="headerlink" title="1.样例"></a>1.样例</h1><p>参考官网资料</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from seqeval.metrics import accuracy_score,classification_report,f1_score</span><br><span class="line"></span><br><span class="line">y_true = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>], [<span class="string">&#x27;B- PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">y_pred = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>],[<span class="string">&#x27;B-PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f1_score(y_true, y_pred))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(classification_report(y_true, y_pred))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" data-id="ckiybphge0000h6g71s3mc0m3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seqeval/" rel="tag">seqeval</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Python之版本相争" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" class="article-date">
@@ -500,57 +549,6 @@
 
 
   
-    <article id="post-知识图谱融合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/23/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88/" class="article-date">
-  <time datetime="2020-11-23T01:42:20.000Z" itemprop="datePublished">2020-11-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/23/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88/">知识图谱融合</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>将知识图谱进行总结：<br>概念图谱、实体概念混合图谱、素材文档图谱+工作文档图谱</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">构造		|概念&lt;-混合	|混合&lt;-素材+工作文档</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">节点		|人工补全(略)	|自动去重（2）</span><br><span class="line">		|冲突检测	|自动合并（2）</span><br><span class="line">		|		|冲突检测</span><br><span class="line">		|		|自动挂接（2）				</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">条目		|生成编辑	|自动合并（2）</span><br><span class="line">		|		|编辑合并</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">概念(概念图谱)	|归纳聚类（1）	|X</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">领域(混合图谱)	|X		|领域相似性检测</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">子图(混合图谱)	|X		|子图分类（1）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>冲突检测：<br>获取知识图谱的领域树；获取知识图谱中的当前实体；获得当前实体在领域树中所属的第一领域及第二领域；分别确定第一领域及第二领域在领域树中的位置；根据第一领域及第二领域在领域树中的位置，确定当前实体的第一领域及第二领域的关系；确定第一领域及第二领域在领域树中不存在公共子领域，或者，确定第一领域及第二领域在领域树中存在公共父领域且公共父领域为通用领域，将第一领域及第二领域确定为可疑冲突领域对；根据可疑冲突领域对，获得知识图谱的冲突领域对。该方法可以得到知识图谱中存在的冲突领域对，覆盖率很高。</p>
-<p>冲突检测和冲突消解：<br>将节点之间的冲突分为:<br>术语冲突：实体冲突<br>谓词冲突：表达相同知识采用不同形式的谓词<br>语义冲突：多个知识在逻辑上产生的不一致</p>
-<p>提出了<br>逻辑树融合法:术语冲突<br>频率融合法:术语冲突、谓词冲突<br>句法融合法:术语冲突、谓词冲突和语义冲突</p>
-<p>参考：<br>知识图谱实体领域冲突检测方法,装置及相关设备？？<br>申请(专利权)人：腾讯科技（深圳）有限公司</p>
-<p>1.分类/聚类问题：</p>
-<p>子图分类:<br>介绍：<br>找到同构子图<br>算法：GNN/GCN<br>简介：<br>训练一个GCN网络，将多个KG的实体和关系都映射到同一个空间，相同实体对和关系对有相同的向量表示，然后根据空间中向量的相似性来寻找对齐的实体。</p>
-<p>参考：<br>基于图神经网络的知识图谱研究进展<br>融合多个知识图谱形成一个更完整的知识图谱。由于图神经网络具有识别同构子图的能力，而可对齐的实体对周围通常有相似的邻居，即具有一定的同构特征，因此目前有许多研究者尝试将图神经网络用于实体对齐。<br>Multi-Channel Graph Neural Network for Entity Alignment<br><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.09898v1.pdf">https://arxiv.org/pdf/1908.09898v1.pdf</a><br>该方法的缺点：<br>1.结构异质性：不同KG会有不同的结构，从而根本就无法对齐。<br>2.有限的种子对</p>
-<p>概念归纳聚类:<br>介绍：<br>谱聚类，图中不同点进行聚类，将图进行分割。<br>算法：RatioCut/Ncut切图+k-means聚类<br>简介：<br>选一个cut(a1,a2,..,an).然后k-means.</p>
-<p>参考:<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6221564.html">https://www.cnblogs.com/pinard/p/6221564.html</a></p>
-<p>自动去重/合并：<br>比较实体的语义和结构特征，找同义词<br>算法：<br>对非结构化数据做语义分析，找到同义词对<br>1） 选取一些特定分词结果做同义词挖掘。如果需要考虑语料中可能出现的新词或者不同语言表述，则需要配合Pattern挖掘、NER或名词短语抽取等方式获取候选词。<br>2） 准备好已有的同义词表作为种子数据<br>3） 获取所有种子词和候选词的特征，通常该任务的特征会从两个角度考虑，分别是local context和global context，通俗的讲就是局部特征和全局特征，前者着重于词本身，常见字级别特征、词级别特征等；后者则是考虑目标词在数据集中的分布特征或者词所在句子、段落的语义特征</p>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/jxsdq/article/details/106002991">https://blog.csdn.net/jxsdq/article/details/106002991</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105203565">https://zhuanlan.zhihu.com/p/105203565</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/23/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%9E%8D%E5%90%88/" data-id="ckhu6u7dx0000z4g71req2t5p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -588,7 +586,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -599,6 +597,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/03/test-1/">test</a>
+          </li>
         
           <li>
             <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
@@ -614,10 +616,6 @@
         
           <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
           </li>
         
       </ul>
