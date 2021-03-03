@@ -64,6 +64,172 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ubuntu上STM32开发之工程管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/" class="article-date">
+  <time datetime="2019-12-26T11:38:11.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/">Ubuntu上STM32开发之工程管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过makefile来实现工程的管理。<br>首先工程的结构是：<br>CORE:cm的核心文件<br>HARDWARE:硬件方面的.c和.h文件<br>STM32F10x_FWLib:STM32F10X的固件库<br>SYSTEM:常用的功能的.c和.h文件<br>USER:用户写的main.c等<br>makefile文件<br>ld文件</p>
+<p>CORE和STM32F10x_FWLib都是来自ST官网的固件库里面。<br>说到ST官网，大概说一下固件库在STM32系列-&gt;Tools&amp;Software-&gt;Embedded Software-&gt;MCU&amp;MPU Embedded Software-&gt;Standard Peripheral Libraries</p>
+<p>建立自己的工程文件夹，在里面建立CORE，STM32F10x_FWLib，HARDWARE，SYSTEM，USER文件夹。<br>首先，将固件库的inc和src文件复制到自己工程的STM32F10x_FWLib文件夹中。<br>再选择文件到CORE文件夹中，按照下面我的工程进行挑选，在选择的过程中，有多个启动文件，选择TrueSTUDIO文件夹下的启动文件，然后，不同启动文件对应不同的内存，我就选startup_stm32f10x_md.s作为我的启动文件，我的芯片是STM32F103RBT6。然后记得要挑选链接文件.ld，</p>
+<p>记住不要忘记stm32f10x_conf.h文件。</p>
+<p>然后，如果在编译的时候遇到下面的问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/tmp/ccSTjuNC.s: Assembler messages:</span><br><span class="line">/tmp/ccSTjuNC.s:890: Error: registers may not be the same -- `strexb r3,r2,[r3]<span class="string">&#x27;</span></span><br><span class="line"><span class="string">/tmp/ccSTjuNC.s:943: Error: registers may not be the same -- `strexh r3,r2,[r3]&#x27;</span></span><br><span class="line">makefile:32: recipe <span class="keyword">for</span> target <span class="string">&#x27;CORE/core_cm3.o&#x27;</span> failed</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这是因为GCC更新之后，对于源代码的错误的容忍性降低了，很多旧版本可以忽略的代码错误，在新版本就会被拒绝。<br>这些问题的最常见原因是在文件core_cm3.c的内联汇编过程中（通常未链接）对strexh和strexb的错误使用，该文件是ARM CMSIS库的一部分，包含在ST外设库中。<br>您有两种方法可以解决此问题。两种方法均有效，您可以根据自己的情况选择一种：</p>
+<p>1.更新所有库（CMSIS，外围设备库等）。这是一种更简洁的方法，并且从长远来看是最好的，但是如果您使用的是旧版本的库，则短期内可能需要大量工作才能适应调用库的代码。（万恶的ST更新库了吗？我不知道，因为我写的时候还没有更新这个问题）</p>
+<p>2.编辑core_cm3.c并注释掉函数__STREXH和__STREXB的定义。这些存在问题的函数很少使用，您的应用程序很可能不需要它们。如果确实使用它们，则应更新库（上面的选项1）。</p>
+<p>上面来源：<a target="_blank" rel="noopener" href="http://support.raisonance.com/node/431888">http://support.raisonance.com/node/431888</a></p>
+<p>但是，其实我们可以通过修改core_cm3的汇编部分代码来避免这个错误：</p>
+<p>在core_cm3.h文件中，我们需要修改__STREXB和 __STREXH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//原本是这样的</span><br><span class="line">__ASM volatile (<span class="string">&quot;strexh %0, %2, [%1]&quot;</span> : <span class="string">&quot;=r&quot;</span> (result) : <span class="string">&quot;r&quot;</span> (addr), <span class="string">&quot;r&quot;</span>(value) );</span><br><span class="line">//现在是这样的</span><br><span class="line">__ASM volatile (<span class="string">&quot;strexh %0, %2, [%1]&quot;</span> : <span class="string">&quot;=&amp;r&quot;</span> (result) : <span class="string">&quot;r&quot;</span> (addr), <span class="string">&quot;r&quot;</span>(value) );</span><br><span class="line">//就是将=r 修改为了 =&amp;r</span><br></pre></td></tr></table></figure>
+<p>这样问题就解决了<br>下面是我的工程模板</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── CORE</span><br><span class="line">│   ├── core_cm3.c</span><br><span class="line">│   ├── core_cm3.h</span><br><span class="line">│   ├── startup_stm32f10x_md.s</span><br><span class="line">│   ├── stm32f10x.h</span><br><span class="line">│   ├── system_stm32f10x.c</span><br><span class="line">│   └── system_stm32f10x.h</span><br><span class="line">├── HARDWARE</span><br><span class="line">│   ├── led.c</span><br><span class="line">│   └── led.h</span><br><span class="line">├── makefile</span><br><span class="line">├── STM32F10x_FWLib</span><br><span class="line">│   ├── inc</span><br><span class="line">│   │   ├── misc.h</span><br><span class="line">│   │   ├── stm32f10x_adc.h</span><br><span class="line">│   │   ├── stm32f10x_bkp.h</span><br><span class="line">│   │   ├── stm32f10x_can.h</span><br><span class="line">│   │   ├── stm32f10x_cec.h</span><br><span class="line">│   │   ├── stm32f10x_crc.h</span><br><span class="line">│   │   ├── stm32f10x_dac.h</span><br><span class="line">│   │   ├── stm32f10x_dbgmcu.h</span><br><span class="line">│   │   ├── stm32f10x_dma.h</span><br><span class="line">│   │   ├── stm32f10x_exti.h</span><br><span class="line">│   │   ├── stm32f10x_flash.h</span><br><span class="line">│   │   ├── stm32f10x_fsmc.h</span><br><span class="line">│   │   ├── stm32f10x_gpio.h</span><br><span class="line">│   │   ├── stm32f10x_i2c.h</span><br><span class="line">│   │   ├── stm32f10x_iwdg.h</span><br><span class="line">│   │   ├── stm32f10x_pwr.h</span><br><span class="line">│   │   ├── stm32f10x_rcc.h</span><br><span class="line">│   │   ├── stm32f10x_rtc.h</span><br><span class="line">│   │   ├── stm32f10x_sdio.h</span><br><span class="line">│   │   ├── stm32f10x_spi.h</span><br><span class="line">│   │   ├── stm32f10x_tim.h</span><br><span class="line">│   │   ├── stm32f10x_usart.h</span><br><span class="line">│   │   └── stm32f10x_wwdg.h</span><br><span class="line">│   └── src</span><br><span class="line">│       ├── misc.c</span><br><span class="line">│       ├── stm32f10x_adc.c</span><br><span class="line">│       ├── stm32f10x_bkp.c</span><br><span class="line">│       ├── stm32f10x_can.c</span><br><span class="line">│       ├── stm32f10x_cec.c</span><br><span class="line">│       ├── stm32f10x_crc.c</span><br><span class="line">│       ├── stm32f10x_dac.c</span><br><span class="line">│       ├── stm32f10x_dbgmcu.c</span><br><span class="line">│       ├── stm32f10x_dma.c</span><br><span class="line">│       ├── stm32f10x_exti.c</span><br><span class="line">│       ├── stm32f10x_flash.c</span><br><span class="line">│       ├── stm32f10x_fsmc.c</span><br><span class="line">│       ├── stm32f10x_gpio.c</span><br><span class="line">│       ├── stm32f10x_i2c.c</span><br><span class="line">│       ├── stm32f10x_iwdg.c</span><br><span class="line">│       ├── stm32f10x_pwr.c</span><br><span class="line">│       ├── stm32f10x_rcc.c</span><br><span class="line">│       ├── stm32f10x_rtc.c</span><br><span class="line">│       ├── stm32f10x_sdio.c</span><br><span class="line">│       ├── stm32f10x_spi.c</span><br><span class="line">│       ├── stm32f10x_tim.c</span><br><span class="line">│       ├── stm32f10x_usart.c</span><br><span class="line">│       └── stm32f10x_wwdg.c</span><br><span class="line">├── stm32_flash.ld</span><br><span class="line">├── SYSTEM</span><br><span class="line">│   ├── delay.c</span><br><span class="line">│   ├── delay.h</span><br><span class="line">│   ├── sys.c</span><br><span class="line">│   └── sys.h</span><br><span class="line">└── USER</span><br><span class="line">    ├── main.c</span><br><span class="line">    └── stm32f10x_conf.h</span><br><span class="line"></span><br><span class="line">7 directories, 62 files</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实际工程中的makefile文件是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">TARGET = test_project</span><br><span class="line"></span><br><span class="line">PREFIX  = arm-none-eabi-</span><br><span class="line">CC      = $(PREFIX)gcc</span><br><span class="line">AS      = $(PREFIX)as</span><br><span class="line">LD      = $(PREFIX)ld</span><br><span class="line">OBJCOPY = $(PREFIX)objcopy</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取当前工作目录</span></span><br><span class="line">TOP=$(shell <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#include头文件</span></span><br><span class="line">INC_FLAGS= -I $(TOP)/CORE                   \</span><br><span class="line">           -I $(TOP)/HARDWARE               \</span><br><span class="line">           -I $(TOP)/STM32F10x_FWLib/inc    \   </span><br><span class="line">           -I $(TOP)/SYSTEM                 \</span><br><span class="line">           -I $(TOP)/USER</span><br><span class="line"></span><br><span class="line"><span class="comment">#GCC选项</span></span><br><span class="line"><span class="comment"># -W -Wall        :开启警报</span></span><br><span class="line"><span class="comment"># -g              :产生调试信息，用于产生.elf调试文件</span></span><br><span class="line"><span class="comment"># mcpu=cortex-m3  :用于设定芯片内核参数</span></span><br><span class="line"><span class="comment"># -mthumb         :表明使用的指令集</span></span><br><span class="line"><span class="comment"># -D STM32F10X_MD -D USE_STDPERIPH_DRIVER :宏定义</span></span><br><span class="line"><span class="comment"># -O0             :优化等级有O0,O1,O2等</span></span><br><span class="line"><span class="comment"># -std=gnu11      :设定语言标准GNU11,当然可以换为C98等</span></span><br><span class="line">CFLAGS =  -W -Wall -g -mcpu=cortex-m3 -mthumb -D STM32F10X_MD -D USE_STDPERIPH_DRIVER $(INC_FLAGS) -O0 -std=gnu11</span><br><span class="line">ASFLAGS = -W -Wall -g -mcpu=cortex-m3 -mthumb</span><br><span class="line"></span><br><span class="line"><span class="comment">#搜索并返回当前路径下的所有.c文件的集合</span></span><br><span class="line"><span class="comment">#将C_SRC包含的文件的.c后缀代替为.o文件</span></span><br><span class="line">C_SRC=$(shell find ./ -name <span class="string">&#x27;*.c&#x27;</span>)</span><br><span class="line">C_OBJ=$(C_SRC:%.c=%.o)</span><br><span class="line"></span><br><span class="line">ASM_SRC=$(shell find ./ -name <span class="string">&#x27;*.s&#x27;</span>)</span><br><span class="line">ASM_OBJ=$(ASM_SRC:%.s=%.o)</span><br><span class="line"></span><br><span class="line"><span class="comment">#.PHONY关键字，代表后面的执行对象，不是文件</span></span><br><span class="line">.PHONY: all clean update</span><br><span class="line"></span><br><span class="line"><span class="comment">#all的依赖对象是$(C_OBJ)和$(ASM_OBJ),一个变量是以.c或.s为后缀文件替换为.o为后缀&gt;的文件的集合，如果.o文件修改则更新all。</span></span><br><span class="line">all:$(C_OBJ) $(ASM_OBJ)</span><br><span class="line">  $(CC) $(C_OBJ) $(ASM_OBJ) -T stm32_flash.ld -o $(TARGET).elf   -mthumb -mcpu=cortex-m3 -Wl,--start-group -lc -lm -Wl,--end-group -specs=nano.specs -specs=nosys.specs -static -Wl,-cref,-u,Reset_Handler -Wl,-Map=Project.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x80 </span><br><span class="line"><span class="comment">#通过.elf文件，生成.bin和.hex文件</span></span><br><span class="line">  $(OBJCOPY) $(TARGET).elf  $(TARGET).bin -Obinary </span><br><span class="line">  $(OBJCOPY) $(TARGET).elf  $(TARGET).hex -Oihex</span><br><span class="line"></span><br><span class="line"><span class="comment">#.o文件依赖于.o文件</span></span><br><span class="line"><span class="comment">#其中 $@:目标文件 $^:所有依赖文件 $&lt;:第一个依赖文件</span></span><br><span class="line">$(C_OBJ):%.o:%.c</span><br><span class="line">  $(CC) -c $(CFLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#$(ASM_OBJ):%.o:%.c</span></span><br><span class="line"><span class="comment"># $(AS) -c $(ASFLAGS) -o $@ $&lt;</span></span><br><span class="line">$(ASM_OBJ): $(ASM_SRC)</span><br><span class="line">  $(AS) -c $(ASFLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.o&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.d&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.map&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.elf&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.bin&#x27;</span>)</span><br><span class="line">  rm -f $(shell find ./ -name <span class="string">&#x27;*.hex&#x27;</span>)</span><br><span class="line"></span><br><span class="line">update:</span><br><span class="line">  openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg  -f /usr/share/openocd/scripts/target/stm32f1x_stlink.cfg -c init -c halt -c <span class="string">&quot;flash write_image erase <span class="subst">$(TOP)</span>/LED_project.hex&quot;</span> -c reset -c shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/26/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86/" data-id="ckhnlm6380024nng75mbcfugk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之单片机下载程序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/" class="article-date">
+  <time datetime="2019-12-25T13:55:38.000Z" itemprop="datePublished">2019-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/">Ubuntu上STM32开发之单片机下载程序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我选用的是STM32F103芯片设计的最小系统板，由于自己在画板子的时候忘记了STlink接口，所以，就很尴尬，只能通过USART串口下载了。<br>然后，我选用stm32flash软件，进行烧录，然后，通过minicom来检测串口。</p>
+<h1 id="1-软件准备"><a href="#1-软件准备" class="headerlink" title="1.软件准备"></a>1.软件准备</h1><p>stm32flash:用于串口下载源程序。<br>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install stm32flash</span><br></pre></td></tr></table></figure>
+<p>常用指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo stm32flash /dev/ttyUSB0 //获取设备信息</span><br><span class="line"></span><br><span class="line">sudo stm32flash -w filename -v -g 0 /dev/ttyUSB0 //验证写入，然后写入源程序</span><br><span class="line"></span><br><span class="line">sudo stm32flash -r filename /dev/ttyUSB0 //读闪存到文件，没用过。</span><br><span class="line"></span><br><span class="line">sudo stm32flash -g 0 /dev/ttyUSB0 //开始执行，说实话，这一句我从来没用过。</span><br><span class="line"></span><br><span class="line">输入时，BOOT0置高，BOOT1置低</span><br></pre></td></tr></table></figure>
+<p>备注，首先将BOOT0置高，BOOT1置低，复位后，输入指令获取设备信息,接着写入源程序。<br>接着BOOT0置低，BOOT1置低，复位后，就自动执行程序了。</p>
+<p>minicom串口工具。<br>安装方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install minicom</span><br></pre></td></tr></table></figure>
+<p>配置方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo minicom -s //注意在进行串口的操作时候，需要有sudo权限，或者修改串口的权限，修改的方式看下面</span><br></pre></td></tr></table></figure>
+<p>选择Serial port setup,然后回车，进行配置。<br>输入a,选择串口设备，也就是输入串口号/dev/ttyUSB0，如何查询串口号，也看下面。修改之后回车。<br>然后，输入e，修改波特率及配置为 115200 8N1,修改完成后回车。<br>然后，输入f，配置硬件控制流，选择No。同上，软件控制流也为No。</p>
+<p>配置完成后，回车返回上一个界面，选择save setup as dfl将配置保存在默认位置。<br>然后exit，关闭minicom。</p>
+<p>再次输入sudo minicom，就使得配置生效。</p>
+<p>问题1：查询串口号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dmesg //可以查看安装的驱动信息，里面有串口设备的串口号但是里面的驱动实在是太多了。</span><br><span class="line"></span><br><span class="line">ls -l /dev/ttyUSB* //可以查询到串口号，</span><br></pre></td></tr></table></figure>
+
+<p>这样，就成功将单片机通过串口连接到电脑上了，这样就能够接受到串口的数据了。</p>
+<p>但是，通过串口传输数据，发送到电脑上我没有做到，后来发现，是源程序的编译链接成hex程序的过程中存在问题，使用printf函数，好像有一些额外条件。之后另外补充。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%8B%E8%BD%BD%E7%A8%8B%E5%BA%8F/" data-id="ckhnlm6360020nng70wvh4n4r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上STM32开发之编译链接生成目标文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E7%BC%96%E8%AF%91%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6/" class="article-date">
+  <time datetime="2019-12-25T12:42:36.000Z" itemprop="datePublished">2019-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E7%BC%96%E8%AF%91%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6/">Ubuntu上STM32开发之编译链接，生成目标文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-软件准备"><a href="#1-软件准备" class="headerlink" title="1.软件准备"></a>1.软件准备</h1><p>gcc-arm-none-eabi是Ubuntu上针对ARM Cortex-M和Cortex-R处理器的GNU Arm嵌入式工具链。适用于C，C++和汇编的开源套件。</p>
+<p>下载方式apt:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gcc-arm-none-eabi</span><br></pre></td></tr></table></figure>
+
+<p>makefile用于工程的管理的脚本语言，但是结构很特别。<br>下载方式同上。</p>
+<p>工程模板：<br>我选用的是STM32F103芯片，STM32不同系列的芯片的存储区域与大小不同，会影响到下载的地址不同，不过可以套用这一套模板进行修改，大概吧。<br>工程模板是包含了硬件库和一些常用的头文件，以及链接时候的参数文件，以及makefile文件。<br>关于工程模板的详细分析看后面的博客。</p>
+<h1 id="2-进行对程序进行编译连接，生成目标文件（bin-hex文件）"><a href="#2-进行对程序进行编译连接，生成目标文件（bin-hex文件）" class="headerlink" title="2.进行对程序进行编译连接，生成目标文件（bin/hex文件）"></a>2.进行对程序进行编译连接，生成目标文件（bin/hex文件）</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make //在有makefile目录中</span><br></pre></td></tr></table></figure>
+<p>完成后会在工程文件下出现对应的文件。</p>
+<p>补充：<br>上面仅仅是依靠现有的工程来进行编译，链接，最后形成目标文件的过程，其中，makefile中有编译链接的具体的过程，为了了解其中的过程，需要详细分析工具链的操作方式。<br>gcc-arm-none-eabi工具链的使用方法：<br>arm-none-eabi-gcc:<br>c语言编译器，可以将.c文件转化为.o文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arm-none-eabi-gcc -c hello.c</span><br></pre></td></tr></table></figure>
+
+<p>arm-none-eabi-g++:<br>c++语言编译器，可以将.cpp文件转化为.o执行文件。</p>
+<p>arm-none-eabi-ld:<br>将所有.o文件进行链接，生成可执行文件，但是听说对c,cpp文件混合生成的.o文件的支持性不好。所以推荐使用arm-none-eabi-gcc代替。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arm-none-eabi-gcc -o hello hello.o</span><br></pre></td></tr></table></figure>
+
+<p>arm-none-eabi-gdb:<br>调试器，还没有用过。</p>
+<p>知道了这些，就可以编写makefile文件了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/25/Ubuntu%E4%B8%8ASTM32%E5%BC%80%E5%8F%91%E4%B9%8B%E7%BC%96%E8%AF%91%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6/" data-id="ckhnlm6390026nng713u06bn4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-游戏设计" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/15/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" class="article-date">
@@ -455,190 +621,6 @@
 
 
   
-    <article id="post-对于卷积的理解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/08/%E5%AF%B9%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
-  <time datetime="2019-11-08T06:22:11.000Z" itemprop="datePublished">2019-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/08/%E5%AF%B9%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/">对于卷积的理解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对于卷积的理解：</p>
-<p>首先，某一个时刻，一个信号进入系统之后，系统会输出一个信号，这个输出信号存在，但是，当输入信号消失后，输出信号依旧存在，但是其数值可能会改变，其输出信号可以通过系统的函数g(x)得到，那么，当输入的信号为连续的信号f(x)，如何计算出这种情况下的输出信号呢？</p>
-<p>那么就需要积分，更确切的说，就是卷积：</p>
-<p>卷积也是积分的一种特殊形式，继续上面的问题，从0时刻输入一个连续的信号，那么第T时刻，该系统的输出为什么？</p>
-<p>我们需要将第T时刻的输出信号进行积分，输出信号只有一个，但是从0到T，我们有连续的输入信号，在第t时刻输入的信号在第T时刻有输出信号为：f(t)×g(T-t)，将这些输入信号积分得到：f(t)*g(t) =  &int;<sup>T</sup><sub>0</sub>f(t)×g(T-t)。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/08/%E5%AF%B9%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/" data-id="ckhnlm64g004pnng7fxxw7i14" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-markdown使用指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/07/markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-11-07T10:55:26.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">markdown使用指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>听说markdown支持HTML语法。</p>
-<p>上标，下标以及更多的符号：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;sup&gt;xxx&lt;/sup&gt;//上标superscript</span><br><span class="line">&lt;sub&gt;xxx&lt;/sub&gt;//下标subscript</span><br></pre></td></tr></table></figure>
-<p>更多的符号查看：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/html5_/article/details/21639475">https://blog.csdn.net/html5_/article/details/21639475</a></p>
-<p>每段前面的两个空格可以使用<br>&nbsp;</p>
-<p>在markdown中直接打空格是不行的，空格三个以内都没有效果，从第四个开始变为代码片段，</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/07/markdown%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-id="ckhnlm644003xnng7cdbw1a8t" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-计算机网络入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2019-10-26T04:27:44.000Z" itemprop="datePublished">2019-10-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/">计算机网络入门（第一章）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>来源：计算机网络自上向下方法</p>
-<p>第一章 计算机网络与因特网<br>    因特网：世界范围的计算机网络，接入这个网络的设备为主机host。<br>    主机通过通信链路communication link和交换机packet switch连接到一起。<br>    链路有不同的物理媒介，同轴电缆等。传输速度单位为bps。<br>    当一台主机和另一台主机发送数据，发送端将数据分段，在段接上首部字节，术语为，形成的数据包为packet（又被称为分组），通过网络发送到目的主机，重新装配为初始数据。<br>    分组交换机从一条通信链路接收到达的数据包，并从一条通信链路朝着最终的目的地转发该数据包，在当今的因特网中，分为两类：路由器router和链路层交换机link-layer switch。第四章研究路由器，第五章研究链路层交换机。<br>    从发送端到接收端，一个数据包经历的一系列通信链路和分组交换及称为通过该网络的路径route/path。第一个交换机产生于20世纪70年代。对因特网通信量的分析，2005年，进入流量为250吉10^9比特每秒。<br>    主机通过因特网服务提供商Internet Server Provider ISP接入因特网。<br>    每个ISP是一个或者多个分组交换机和多段通信链路组成的网络，不同ISP为主机提供了不同的网络接入，包括拨号接入，局域网接入等。ISP也为内容提供者提供了因特网接入服务。将Web站点直接接入因特网。为了允许因特网用户之间的相互通信，低层的ISP通过高层ISP互相连接，例如低层ISP通过国家国际的高层ISP互联。无论高层或者低层ISP网络都是独立管理的，运行IP协议，遵从命名和地址习惯。<br>    因特网的部件都要运行接受和发送的一系列协议protocol。<br>    TCP Transmission Control Protocol 传输控制协议<br>    IP Internet Protocol 网络协议<br>    这两个是因特网中最重要的协议。IP协议定义了在路由器和主机的发送和接收的分组的格式。因特网的主要协议就是TCP/IP。<br>    为了每个人能够就各个协议的作用达成共识，因特网标准Internet Standard由因特网工程任务组Internet Engineering Task Force IETF研发，IETF的标准文档被称为请求评论Request For Comment RFC。RFC最初为普通的请求评论，以解决因特网先驱的体系结构问题。定义了TCP，IP，HTTP用于Web，SMTP用于电子邮件的开放标准这样的协议。<br>    公共因特网是一个特定的网络，具有全球性质。还有内部网络，类似于公司政府网络，这些主机不能与专用网络之外的主机交换信息，除非通过防火墙，否则会限制报文进入或者流出网络，这些网络被称为内联网intranet。它们与公共因特网由相同类型的主机，路由器，链路和协议。<br>    除了以上的方法可以描述互联网，从另外一个角度而言，即为应用程序提供服务的基础设施角度。这些应用程序由电子邮件，Web冲浪，即时讯息，IP上的语音VoIP,广播，流式视频，分布式游戏，对等文件共享peer to peer等，这些程序称为分布式应用程序。因为他们涉及多台相互交换数据的主机。重要的是，因特网应用程序运行在主机上，尽管交换机促进了主机之间的数据交换，但是并不关心数据的源或宿主的应用程序。<br>    当你开发了一个分布式因特网应用程序，运行在不同主机的软件需要相互发送数据。那么运行在一个主机的应用程序如何才能够指示因特网向另一个主机的软件发送数据。<br>    与因特网相连的主机提供了一个应用程序编程接口Application Programming Interface API,规定了运行在一个主机上的软件请求因特网基础设施，向运行在另一个主机的特定目的地软件交付数据的方式。第二章会详细讨论因特网API。当然API与邮政服务类似，有不同种类的服务，因特网也为应用程序提供了多种服务。第三章描述因特网是如何提供那些服务的。<br>    记住，因特网是一种基础设施，新的应用程序在这个基础上不断的发明与设置。</p>
-<p>网络协议：<br>    网络协议是一种交互过程，一方首先发起，开始与另一方进行通信，另一方会进行回应，根据回应来采取不同的动作。这要求两方都采用相同的协议。<br>    以最常用的协议为例，当你向Web服务器发送请求，<br>    1。主机向服务器发送连接请求的报文。<br>    2。等待回答<br>    3。Web服务器接收到连接请求的报文，返回连接响应的报文。<br>    4。主机接收到连接响应的报文得知Web服务器状态正常后，<br>    5。主机在一条GET报文中发送Web服务器上网页的名字，<br>    6。Web服务器向计算机返回Web网页/文件</p>
-<p>一个协议定义了在两个或者多个通话实体之间交换的报文格式和次序，以及在报文传输或接受其他事件所采取的动作。</p>
-<p>一般而言，计算机网络广泛的使用了协议，不同的协议实现了不同的通信任务。一些协议简单直接，而一些协议复杂难懂，</p>
-<p>与因特网相连接的设备是主机end system，主机又被进一步分为两类：<br>    客户机client等同于桌面或者移动PC等<br>    服务器server等同于存储或者发布Web页面，流视频以及转发电子邮件。<br>    客户机程序是运行在一个主机的程序，它发出请求，从运行在另一个主机系统的服务器程序中接受服务。客户机-服务器模式是因特网上最流行的结构。同时P2P应用程序越来越广泛。</p>
-<p>主机接入：<br>    1。局域网LAN通常用于连接主机和路由器，以太网的运行速率是100Mbps以上。<br>  2。无线接入由两种方式，无线局域网wireless LAN和广域无线接入网，用于蜂窝煤电话的相同无线基础设施进行发送，基站由电信提供商管理，为数万米半径的用户提供无线接入服务。</p>
-<p>路由器从与它相连的一条通信链路中得到数据包，将数据包转发到另一条通信链路，那么路由器是如何确定它应当向哪条链路进行转发，不同的计算机网络采用不同的方法，因特网采用了以下的方法。<br>    每个通过该网络传输的分组在首部包含了目的的地址，就像邮政地址一样，地址是一个层次结构，当分组到达网络中的一台路由器的时候，由每台路由器检查分组目的地址的一部分，并向相邻路由器转发该分组，特别的是，每个路由器都有一个转发表，用于将目的地址或目的地址的一部分映射到输出链路，当分组到达一台路由器时候，该路由器检查目的地址，并用这个目的地址来搜索转发表，找到合适的输出链路，然后路由器将该分组导向输出链路。</p>
-<p>但是转发表是如何设置的在第四章讨论。因特网由特殊的选路协议，用于自动的设置转发表，例如选录协议可以决定每台路由器到每个目的地的最短路径，并使用这些最短路径来配置路由其中的转发表。</p>
-<p>该过程和问路相似。</p>
-<p>分组网络中的时延，丢包和吞吐量：</p>
-<p>根据之前，因特网是为运行在主机上的分布式应用，提供服务的基础设施。理想情况下，希望因特网服务可以在任意两个主机上瞬间移动大量数据，而没有任何数据的丢失，然而，显示中很难做到。计算机网络必须限制主机之间的吞吐量，也就是，每秒能够传输的数据量。在主机中引入时延，丢包。</p>
-<p>时延的描述：<br>    数据包从一台主机出发，通过路由器传输，在另一台主机结束这个过程。当数据包从一个节点沿着路径到达后继节点，该分组经历了不同类型的时延。<br>nodal processing delay节点处理时延<br>    检查分组首部和决定该数据包导向何处所需要的时间以及检查比特级差错所需要的时间等。<br>queuing delya    排队时延<br>    当分组在链路上等待传输，如果队列为空，当前没有其他分组在传输，则分组时延为0。如果流量很大，有许多数据包在等待传输，排队时延就很大。<br>transmission delay传输时延<br>    当所有已经到达的数据包被传输后，才会传输我们的数据包，L表示数据包的长度，R bps表示从A节点到B节点的链路传输速率。<br>    例如，10M bps的以太网链路，R = 10 Mbps ，传输时延为L/R，这是将所有数据的比特传输向链路所需要的时间。<br>propagation delay 传播时延<br>    一个比特被推向链路，该比特向B节点传播，从该链路的起点到B节点所需要的时间。与两个节点之间的距离有关。<br>这些时延总体累加为节点总时延d<sub>nodal</sub>。<br>d<sub>nodal</sub> = d<sub>proc</sub> + d<sub>queue</sub> + d<sub>trans</sub> + d<sub>prop</sub></p>
-<p>排队延时和丢包：<br>    这是最重要的一部分，也是复杂有趣的是排队时延d<sub>queue</sub>,这种延时与其他延时不同，对于不同的数据包是不同的。如果有10个数据包同时到达空队列，传输的第一个数据包没有延时，最后一个将会有相对较大的排队延时，在表征排队延时，通常使用统计量来测量，例如，平均排队时延，排队时延的方差和排队时延超过某些特定值的概率。<br>    那么什么时候排队时延较大？取决于流量到达该队列的速率，链路的传输速率和到达流量的性质，即流量是周期性到达或者突发式到达。<br>    数据包到达队列的平均速度：a 单位：pkt/s 数据包每秒。<br>    传输速率：R 单位： bps/s 比特从队列中推出的速率。<br>    假设所有的数据包由L比特组成，则比特到达队列的平均速率是La bps。<br>    最后假定队列的容量为无限大。<br>    流量强度traffic intensity La/R,用于估计排队时延的影响程度。<br>    如果La/R &gt; 1,则比特到达队列的平均速率超过从该队列传输出去的速率，因此，队列将会一直增加，从而排队时延将会趋向于无穷大。所以设计系统时，流量强度不能够大于1。<br>    如果数据包以突发性出现，而不是周期性出现，就可能会有很大的平均排队时延。<br>    到达队列的过程通常是随机的，并不遵循任何模式。在这种真实的情况下，流量强度通常无法全面的表征时延的统计量。不过可以直观的理解排队时延的影响程度。特别，如果流量强度接近0,则几乎没有数据包到达，并且间隔时间很大，平均排队时延将接近0。<br>    平均排队时延随着流量强度迅速增加。</p>
-<p>丢包：<br>现实中，排队容量极大地依赖于路由器的设计与成本，但是一条链路前的队列只有有限的容量。所以，当流量强度接近1时，排队时延也不会趋向于无穷大，而是到达的数据包会发现一个满的队列。由于没有地方存储数据包，那么路由器将会丢弃这个数据包，该数据包将会丢失。</p>
-<p>从主机的角度而言，上述现象看起来是一个数据包已经传输到网络核心，但是并不会出现在目的地，丢失数据的数量随着流量强度的增加而增加。引起，节点的性能不仅根据时延来度量，而且通过数据包丢失的概率来度量。</p>
-<p>端到端的时延：<br>每个节点存在各个节点有不同的时延和平均排队时延的情况，需要对公式进行一般处理。</p>
-<p>traceroute<br>运行在因特网上中的主机上，当用户指定一个目的主机名称，该程序会向该目的地发送多个特殊的分组。当这些分组向目的地传送时候，通过一系列的路由器，当路由器接受到这些分组之一时候，它会向源发送一个短报文，包括路由器的名字和地址。</p>
-<p>具体而言，假定源与目的之间有N-1台路由器，则将向网络发送N个特殊的分组，每个分组地址指向最终的目的。这N个特殊分组标识为1到N，第n个分组的标识为n，第n台路由器接受到第n个特殊数据包，路由器会向其源发送一个报文，源会记录从发送第一个到接受对应返回报文所经受的时间，以及返回报文的路由器或目的主机的名字和地址。这种方式能够重建从源到目的地所采用的路由，以及所有中间路由器的往返时延。</p>
-<p>实际上，对刚才的过程重复了3次，因此实际上，源发送了3 × N 个数据包。</p>
-<p>当使用traceroute xxx时，发现星号，则是由于防火墙封掉了ICMP信息。或者在linux上使用traceroute，默认使用udp协议，除了第一跳，剩下的都是* * *。强制使用icmp就可以了，例如<br>traceroute -I xxx</p>
-<p>计算机网络中的吞吐量<br>除了时延和丢包之外，计算机网络中另一个性能测度是端到端的吞吐量，从主机A到主机B通过计算机网络传输文件。</p>
-<p>任何瞬间的瞬时吞吐量 instantaneous throughput 是主机B接受到该文件的速率 单位 bps。</p>
-<p>如果，该文件有F比特，主机接收所有比特用了T秒，则文件传输的平均吞吐量 average throughput是 F/Tbps。</p>
-<p>为了深入了解吞吐量，举例：吞吐量类似于最小割最大流算法，当然具体的算法早就忘记了。<br>但是具体情况下，我们需要了解分组层次和协议的问题。</p>
-<p>协议层次和服务模型：<br>分层的体系系统：<br>通过分层可以以不同的方式来实现同一个功能，而其他部分不变，经常应用于大而且复杂并且不断更新的系统。<br>协议分层：<br>一个协议层以软件或者硬件来实现。HTTP和SMTP等应用层协议通常都是在主机中通过软件实现，运输层协议同样是这样。因为物理层和数据链路层负责处理跨特定链路的通信，它们通常在与给定链路相关的网络接口卡中实现。网络层通常是软件和硬件的混合体。注意，协议位于构成网络的主机或者其他组件中。</p>
-<p>但是分层有一个潜在的缺点，某一层可能重复其较低层的功能。例如，许多协议栈都是基于链路和主机到主机这两种情况提供了差错恢复。<br>第二个潜在的缺点是，某层的功能可能需要仅在其他层才出现的信息，违反了层次分离的目标。</p>
-<p>各层的所有协议被称为协议栈 protocol stack。因特网的协议栈由5个层次组成：<br>1.应用层：<br>网络应用程序及其应用层协议保存的地方，包含了许多的协议，例如：<br>HTTP：为Web文档提供了请求和传送<br>SMTP：提供了电子邮件报文的传输<br>FTP：提供了两个主机之间的文件传输<br>可以了解，将<a target="_blank" rel="noopener" href="http://www.google.com这样的名字转换为32位比特网络地址,也是借助于域名系统dns完成的,第二章中,创建和部署自己的新的应用层协议是非常容易的./">www.google.com这样的名字转换为32位比特网络地址，也是借助于域名系统DNS完成的，第二章中，创建和部署自己的新的应用层协议是非常容易的。</a></p>
-<p>2.运输层：<br>提供了在应用程序主机之间传送应用层报文的服务，在因特网中，有两个运输层协议，即TCP和UDP，利用其中一个都可以传输应用层报文。<br>TCP向程序提供了面向连接的服务，这种服务包括了应用层报文向目的地的确保传递和流量控制。TCP将长报文划分为短报文，并且提供了拥塞控制机制，当网络拥塞时，源抑制其传输速率。<br>UDP协议向它的程序提供了无连接服务，这是一种不提供不必要服务的服务，不提供可靠性，没有流量控制，也没有拥塞控制，在书中，运输层数据包为报文段segment。</p>
-<p>3.网络层：<br>网络层将数据报datagram的网络层数据包从一台主机移动到另一台主机。源主机中的因特网运输层协议TCP或者UDP向网络层递交运输层报文段和目的地地址。<br>网络层中包含著名的IP协议，定义了数据报中的各个字段以及主机或者路由器如何作用于这些字段。</p>
-<p>4.链路层：<br>网络层通过一系列路由器在源和目的地之间发送分组，为了将数据包从一个节点移动到下一个节点，网络层必须依靠链路层的服务。在每个节点，网络层将数据下传给链路层，链路层沿着路径将数据传递给下一个节点。在下一个节点，链路层将数据上传到网络层。<br>链路层提供的服务取决于应用于该链路的特定链路层协议。链路层的数据包是帧frame。<br>将整个帧从一个网络元素移动到临近的网络元素。</p>
-<p>5.物理层：<br>将某个帧的每个比特从一个节点移动到下一个节点。</p>
-<p>同样存在一个7层的ISO OSI参考模型<br>1.应用层<br>2.表示层：<br>使通信程序能够解释交换数据的含义。提供了包含数据压缩，数据加密，数据描述。</p>
-<p>3.会话层：<br>提供了数据交换的定界和同步功能，包括建立检查点和恢复方案。</p>
-<p>4.运输层<br>5.网络层<br>6.链路层<br>7.物理层</p>
-<p>报文，报文段，数据报和帧</p>
-<p>应用层 报文<br>运输层 报文段<br>网络层 数据报<br>链路层 帧</p>
-<p>攻击威胁下的网络</p>
-<p>从因特网中发送接收数据中，会有恶意软件，能够影响我们的设备，一旦恶意软件感染了设备，就能够将信息发送到网络中，大多数的恶意软件是自我复制，一旦感染一台主机就会进入更多的主机。恶意软件就能够快速扩散。</p>
-<p>病毒是一种需要某种形式的用户交互来感染用户设备的恶意软件。例如带有恶意执行代码的电子邮件。如果接受并打开这样的附件，就在不经意间运行了恶意软件。</p>
-<p>蠕虫是一种无需任何明显用户交互就能够进入设备的恶意软件。</p>
-<p>拒绝服务Denial of service DoS使合法的用户不能够使用网络，主机等。大多数Dos攻击属于下面的三种类型。</p>
-<p>1.弱点攻击：<br>向目标主机上易受攻击的应用程序发送报文，可能使服务停止运行，甚至导致主机崩溃。</p>
-<p>2.带宽洪泛：<br>向目的主机发送大量数据包，导致目标的接入链路变得拥堵，使合法的数据包无法到达服务器。</p>
-<p>3.连接洪泛：<br>在目标主机中创建大量的半开或者全开TCP连接，目标主机因此停止合法的连接。</p>
-<p>关于带宽洪泛攻击，单一攻击源可能无法产生足够大的流量来危害服务器，如果，从单一源发出所有流量，上游路由器可以检测出攻击并且在流量靠近服务器前就将其阻挡下来。</p>
-<p>分布式DoS DDOS控制多个源让每个源对目标发送流量。难以检测和防御。<br>网络设计者需要通过不同方式应对DOS攻击，下面是三种DOS攻击的应对方法。</p>
-<p>1.嗅探分组：</p>
-<p>用户通过无线设备接入因特网，在无线传输设备附近放置被动接收机，该接收机就能够得到传输的每个分组的拷贝，这些分组中有各种敏感信息，记录每个流经的分组拷贝的被动接收机称为分组嗅探器，packet sniffer，就能够得到每个数据包的拷贝，包含各种敏感信息。</p>
-<p>嗅探器也可以应用于有线环境中，因为分组嗅探器是被动的，它们不向信道中注入分组，从而难以检测它们的存在，所以当我们向无线信道发送分组时，某些坏家伙可能记录了我们分组的拷贝。那么防御嗅探的方法基本上都与密码学有关。</p>
-<p>2.伪装成受信任的人：</p>
-<p>生成具有任何源地址，分组内容和目的地址的分组，然后将这个人工制作的分组传输到因特网中，是非常容易的，因特网将该分组转发到目的地。</p>
-<p>一个不可信的接受方接收了分组，用虚假的源地址伪装成真实的源地址，进而执行某些嵌入在该分组中的命令，例如修改转发表，将具有虚假源地址的分组注入到因特网中的能力被称为IP哄骗IP spoofing。这是用户能够冒充另一个用户的多种方式之一。</p>
-<p>为了解决这个问题，需要使用端点鉴别 end-point authentication机制，来确保报文源于正确的地址。</p>
-<p>3.修改或者删除报文</p>
-<p>通过中间人攻击（man-in-middle attack），在这类攻击中，插入到两个通信实体之间的通信路径中。</p>
-<p>A与B通信，在中间人通信中，坏家伙能够嗅探A和B之间的分组，并且能够危及A和B之间的数据的完整性。</p>
-<p>结合上面三种情况，我们需要保证网络传输中的机密性，端点鉴别和完整性问题。</p>
-<p>到这里第一章的内容就结束了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/10/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/" data-id="ckhnlm65q009inng700vsbh9c" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -676,7 +658,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -689,23 +671,23 @@
       <ul>
         
           <li>
+            <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/">Ubuntu之文件编码类型</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
           </li>
         
           <li>
             <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/RickandMorty/">RickandMorty</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/transformers%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">transformers使用教程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
           </li>
         
       </ul>
@@ -720,7 +702,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

@@ -64,6 +64,140 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-关于残差网络的讨论" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/" class="article-date">
+  <time datetime="2021-02-08T07:53:05.000Z" itemprop="datePublished">2021-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80226180">https://zhuanlan.zhihu.com/p/80226180</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/" data-id="ckltavt010002fpg71hgg4igp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基于图的文档级关系抽取" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/" class="article-date">
+  <time datetime="2021-02-07T11:02:59.000Z" itemprop="datePublished">2021-02-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>文档级关系抽取中的实体对通常贯穿于文档的多个句子中，和句子级的关系抽取相比需要更多的信息。</p>
+<p>文档级关系抽取任务描述：<br>输入：实体1、实体2和文档<br>输出：两个实体之间的关系</p>
+<p>为此，需要设计新的模型来获取更多的信息。为此，有了下面的方法。<br>(1) GCNN (Inter-sentence Relation Extraction with Document-level Graph Convolutional Neural Network)<br>(2) EoG (Connecting the Dots: Document-level Neural Relation Extraction with Edge-oriented Graphs)<br>(3) GAIN (Double Graph Based Reasoning for Document-level Relation Extraction)(Graph Aggregation-and-Inference Network)</p>
+<h1 id="2-模型"><a href="#2-模型" class="headerlink" title="2.模型"></a>2.模型</h1><h2 id="2-1-GCNN"><a href="#2-1-GCNN" class="headerlink" title="2.1 GCNN"></a>2.1 GCNN</h2><p>使用了GCNN网络，和普通的GCN类似，但是结构有所不同。</p>
+<h3 id="2-1-1-结构"><a href="#2-1-1-结构" class="headerlink" title="2.1.1 结构"></a>2.1.1 结构</h3><p>节点： 文档中的word包含<br>(1) word的词向量<br>(2) word与目标实体的相对位置<br>![GCNN_example.png]</p>
+<p>连线：关系<br>(1) Syntactic dependency edge:句法依赖<br>(2) Coreference edge:指代<br>(3) Adjacent sentence edge:相邻的上下句<br>(4) Adjacent word edge:相邻的上下word<br>(5) self node edge:自身</p>
+<h3 id="2-1-2-算法"><a href="#2-1-2-算法" class="headerlink" title="2.1.2 算法"></a>2.1.2 算法</h3><p>对每一种关系图进行GCN的运算，然后将不同类型的关系图进行加权相加之后得到最后的结果。</p>
+<p>最后使用了两个不同的全连接层，分别对应前一个和后一个实体。</p>
+<p>![GCNN.png]</p>
+<h2 id="2-2-EoG"><a href="#2-2-EoG" class="headerlink" title="2.2 EoG"></a>2.2 EoG</h2><p>使用了边的图，而不是基于节点。与之前的模型不同。这个模型有如下的特点。<br>(1) 包含实体的mentions对实体之间的关系很重要<br>(2) 实体对中实体的关系可以通过节点间的路径来表示，而不是基于节点</p>
+<h3 id="2-2-1-结构"><a href="#2-2-1-结构" class="headerlink" title="2.2.1 结构"></a>2.2.1 结构</h3><p>节点：<br>(1)Mention node<br>与实体相关的mention的word embedding的平均<br>(2)Entity node<br>该实体的所有mention node的平均<br>(3)Sentence node<br>句子中的word embedding平均</p>
+<p>连线： M,E,S:Mention,Entity,Sentence<br>(1)MM 同一个Sentence中的两个mention<br>(2)ME<br>(3)MS<br>(4)ES<br>(5)SS</p>
+<p>![EoG.png]</p>
+<h3 id="2-2-2-算法"><a href="#2-2-2-算法" class="headerlink" title="2.2.2 算法"></a>2.2.2 算法</h3><p>进行EoG算法，然后得到实体到实体的边的表示：<br>(1) 两个实体节点，选择其中的一个节点作为中间节点，然后，该路径的两条边通过神经网络，然后得到了这条路径的表示。<br>(2) 如果在实体之间已经存在了路径的表示，那么，将所有的路径与通过路径的两条边进行混合<br>(3) 将上面的步骤进行多次，就得到了混合后的实体到实体的边表示</p>
+<p>最后，通过它进行分类。</p>
+<h2 id="2-3-GAIN"><a href="#2-3-GAIN" class="headerlink" title="2.3 GAIN"></a>2.3 GAIN</h2><p>GAIN图聚合推理网络继承了EoG模型，三个问题:<br>(1) 同一个关系的主和宾可能位于不同的句子里面，无法通过一个句子来得到关系<br>(2) 同一个实体可能出现在不同的句子里面就，所以需要句子间的信息来表示实体<br>(3) 有的关系需要逻辑推理<br>得到了新的GAIN模型</p>
+<p>这个模型包含两个图结构：<br>(1) hMG (heterogeneous mention-level graph)异构mention级别图<br>针对文档中不同mentions之间的互相关系</p>
+<p>node：mention node 和 document node<br>(1) mention node 表示每一个mention<br>(2) document node 虚拟节点，对document信息，中继节点，有利于交互<br>edge:intra-entity edge,inter-entity edge,document edge<br>(1) intra-entity edge 同一个entity的mention<br>(2) inter-entity edge 一个句子内的不同entity的mention<br>(3) document edge 所有mention和document node连接<br>然后使用GCN得到mention的文档级表示，将每个节点的所有层的表示都concat，作为节点的最终表示</p>
+<p>(2) EG (entity-level graph)实体级别图<br>用所有的mention的表示平均作为entity的表示<br>根据路径推理机制来推理实体对之间的关系，能够允许模型实现多跳关系推理<br>将相同entity的hMG中mention融合</p>
+<p>模型分为4个部分:<br>(1) encoding module:<br>输入 word embedding,entity type,coreference type<br>通过encoding得到这一层的输出。<br>(2) mention-level graph aggregation module</p>
+<p>(3) entity-level graph inference module<br>(4) classification module</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/" data-id="ckltavt040003fpg78k8xakz5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu之文件编码类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time datetime="2021-01-28T05:05:00.000Z" itemprop="datePublished">2021-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/">Ubuntu之文件编码类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0 概述"></a>0 概述</h1><p>在Ubuntu系统中，常常会发现中文的文档出现乱码的问题，这是由于文件编码问题所导致的。为此，本篇文档是关于文档的编码类型而编写。</p>
+<h1 id="1-操作"><a href="#1-操作" class="headerlink" title="1 操作"></a>1 操作</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file -i filename</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/" data-id="ckltavszy0000fpg7586da167" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CRF详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/" class="article-date">
@@ -131,7 +265,16 @@
 <p>运行上面的程序之后，然后打开浏览器输入:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8888</span><br></pre></td></tr></table></figure>
 
+<h1 id="URL相关"><a href="#URL相关" class="headerlink" title="URL相关"></a>URL相关</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protocol :// hostname[:port] / path / [;parameters] [?query] <span class="comment"># fragment</span></span><br></pre></td></tr></table></figure>
 
+<p>protocol 协议<br>hostname 主机名<br>port     端口号<br>path     路径<br>parameters 参数<br>query    查询<br>fragment 信息片段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.get_argument(&quot;text&quot;)</span><br><span class="line">localhost:12308&#x2F;spo_extract?text&#x3D;你好</span><br></pre></td></tr></table></figure>
+
+<h1 id="Get和post"><a href="#Get和post" class="headerlink" title="Get和post"></a>Get和post</h1><p>都是向服务器提交数据，而且从服务器获取数据</p>
+<p>1.区别:<br>get通过地址栏传输<br>post通过报文传输</p>
+<p>2.传送长度:<br>get的参数有长度限制，受限于url长度<br>post没有限制</p>
+<p>3.TCP数据包<br>GET产生一个<br>POST产生2个<br>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p>
+<p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p>
 <h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="端口冲突-Address-already-in-use-解决方法"><a href="#端口冲突-Address-already-in-use-解决方法" class="headerlink" title="端口冲突(Address already in use)解决方法"></a>端口冲突(Address already in use)解决方法</h2><ol>
 <li><p>我们在后端开发的过程中往往会在没有正常关闭某个正在执行的脚本或者程序而是直接关闭了Terminal(终端)或是通过其他方式的异常关闭导致了之前的端口实际上仍未被释放，这时候倘若我门想要再使用这个端口，就会抛出 “error:[Errno 98] Address already in use” 这样的异常。</p>
 </li>
@@ -371,156 +514,6 @@
 
 
   
-    <article id="post-Python之版本相争" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" class="article-date">
-  <time datetime="2020-12-17T07:53:29.000Z" itemprop="datePublished">2020-12-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/">Python之版本相争</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Ubuntu 20 版本的时候，不支持直接下载python2的pip ,所以，有下面的解决方法</p>
-<ol>
-<li><p>Start by enabling the universe repository:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure></li>
-<li><p>Update the packages index and install Python 2:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install python2</span><br></pre></td></tr></table></figure></li>
-<li><p>Use curl to download the get-pip.py script:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py</span><br></pre></td></tr></table></figure></li>
-<li><p>Once the repository is enabled, run the script as sudo user with python2 to install pip :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python2 get-pip.py</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Verify the installation</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip2 --version</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" data-id="ckisjwpna0000vrg7f1itgtqs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-LSTM分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2020-12-15T07:46:44.000Z" itemprop="datePublished">2020-12-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于LSTM模型:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png"><br>参考:<a target="_blank" rel="noopener" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>
-<p>细胞状态是LSTM的核心，如下图所示。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/%E7%BB%86%E8%83%9E%E7%8A%B6%E6%80%81.png"><br>细胞状态就像是传送带，在整个链条中一直延伸，只有一些小的线性作用，有利于信息不加改变地流动。</p>
-<p>LSTM模型通过门结构调节，具有向细胞状态删除或者增加信息的能力。</p>
-<p>有三个门结构，来保护控制细胞状态。</p>
-<p>forget gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/forget_layer.png"><br>我们首先需要确定之前的信息需要忘记多少<br>取决于h_t-1和x_t,输出0到1之间的数字。<br>1表示完全保留之前的信息C_t-1,0表示完全忘记之前的信息</p>
-<p>input gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/input_layer.png"><br>然后，我们需要决定当前细胞状态需要加入多少新的信息。<br>这里有两个部分，第一个是sigmoid函数，叫做输入门层，决定了我们更新的系数i。然后一个tanh函数建立了一个候选的数值Ct，在下一步中，我们将会将这两个合并去更新状态。</p>
-<p>更新旧的状态Ct-1<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/update.png"><br>这样，看上面的公式就很简单，首先是对之前的状态乘以一个系数，忘记一些信息，然后增加当前的状态乘以一个系数，记住一些当前的信息。</p>
-<p>最后，我们应该决定一个节点的输出结果了。这个就诶过取决于我们的细胞状态，但是是过滤后的版本。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/output.png"></p>
-<p>我们先使用sigmoid层得到的我们应该输出的东西，然后哦将细胞状态通过tanh得到系数，将两个相乘，得到当前的状态h_t</p>
-<p>LSTM有多个变种，这里就跳过。</p>
-<p>其中比较重要的是BiLSTM,就是两个方向的LSTM的输出状态拼接到一起:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png"></p>
-<p>最后补充一下，在写代码的时候，使用的torch.nn.LSTM的官方资料说明:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/torch_nn.png"></p>
-<p>下面是参数的说明:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input_size – The number of expected features <span class="keyword">in</span> the input x</span><br><span class="line"></span><br><span class="line">hidden_size – The number of features <span class="keyword">in</span> the hidden state h</span><br><span class="line"></span><br><span class="line">num_layers – Number of recurrent layers. E.g., setting num_layers=2 would mean stacking two LSTMs together to form a stacked LSTM, with the second LSTM taking <span class="keyword">in</span> outputs of the first LSTM and computing the final results. Default: 1</span><br><span class="line"></span><br><span class="line">bias – If False, <span class="keyword">then</span> the layer does not use bias weights b_ih and b_hh. Default: True</span><br><span class="line"></span><br><span class="line">batch_first – If True, <span class="keyword">then</span> the input and output tensors are provided as (batch, seq, feature). Default: False</span><br><span class="line"></span><br><span class="line">dropout – If non-zero, introduces a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout. Default: 0</span><br><span class="line"></span><br><span class="line">bidirectional – If True, becomes a bidirectional LSTM. Default: False</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/" data-id="ckipq7tgb0000pkg72ud5dxqd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lstm/" rel="tag">lstm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-spo抽取知识图谱" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="article-date">
-  <time datetime="2020-12-11T11:07:43.000Z" itemprop="datePublished">2020-12-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">spo抽取知识图谱</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考:<br><a target="_blank" rel="noopener" href="https://github.com/percent4/spo_extract_platform">https://github.com/percent4/spo_extract_platform</a></p>
-<p>知识图谱的构建由两个部分构成:<br>1.SPO三元组抽取:序列标注算法(ALBERT+BiLSTM+CRF)<br>SPO:Subject(主语) Predicate(谓语) Object(宾语)<br>sequence_labeling F1:81%</p>
-<p>2.关系抽取:文本二分类(ALBERT+BiGRU+ATT)<br>text_classification F1:96%</p>
-<p>提取无结构文本的应用在extract_example<br>下面会对这两个部分分别做完整的介绍:</p>
-<h1 id="1-SPO三元组"><a href="#1-SPO三元组" class="headerlink" title="1.SPO三元组"></a>1.SPO三元组</h1><p><img src="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/ALBERT_BiLSTM_CRF.png"><br>上面是模型的框架</p>
-<h2 id="1-ALBERT层"><a href="#1-ALBERT层" class="headerlink" title="1.ALBERT层"></a>1.ALBERT层</h2><p>albert是以单个汉字作为输入的(本次配置最大为128个，短句做padding)，两边分别加上开始标识CLS和结束标识SEP，输出的是每个输入word的embedding。在该框架中其实主要就是利用了预训练模型albert的词嵌入功能，在此基础上fine-tuning其后面的连接参数，也就是albert内部的训练参数不参与训练。</p>
-<h2 id="2-BiLSTM层"><a href="#2-BiLSTM层" class="headerlink" title="2.BiLSTM层"></a>2.BiLSTM层</h2><p>该层的输入是albert的embedding输出，一般中间会加个project_layer，保证其输出是[batch_szie,num_steps, num_tags]。batch_size为模型当中batch的大小，num_steps为输入句子的长度，本次配置为最大128，num_tags为序列标注的个数，如图中的序列标注一共是5个，也就是会输出每个词在5个tag上的分数，由于没有做softmax归一化，所以不能称之为概率值。</p>
-<h2 id="3-CRF层"><a href="#3-CRF层" class="headerlink" title="3.CRF层"></a>3.CRF层</h2><p>如果没有CRF层，直接按BiLSTM每个词在5个tag的最大分数作为输出的话，可能会出现【B-Person，O，I-Person，O，I-Location】这种序列，显然不符合实际情况。CRF层可以加入一些约束条件，从而保证最终预测结果是有效的。</p>
-<p>例如：<br>句子的开头应该是“B-”或“O”，而不是“I-”。</p>
-<h1 id="2-关系抽取"><a href="#2-关系抽取" class="headerlink" title="2.关系抽取"></a>2.关系抽取</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" data-id="ckipq7tgx0002pkg7ezag586q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -558,7 +551,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -571,23 +564,23 @@
       <ul>
         
           <li>
+            <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/">Ubuntu之文件编码类型</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
           </li>
         
           <li>
             <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/RickandMorty/">RickandMorty</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/transformers%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">transformers使用教程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
           </li>
         
       </ul>
@@ -602,7 +595,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

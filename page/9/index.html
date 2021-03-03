@@ -64,6 +64,252 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ubuntu上Git使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/14/Ubuntu%E4%B8%8AGit%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2019-10-14T03:47:03.000Z" itemprop="datePublished">2019-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/14/Ubuntu%E4%B8%8AGit%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">Ubuntu上Git使用教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-获取Git仓库"><a href="#1-获取Git仓库" class="headerlink" title="1 获取Git仓库"></a>1 获取Git仓库</h1><h2 id="1-1-从工作目录中初始化新仓库"><a href="#1-1-从工作目录中初始化新仓库" class="headerlink" title="1.1 从工作目录中初始化新仓库"></a>1.1 从工作目录中初始化新仓库</h2><h3 id="1-1-1-初始化"><a href="#1-1-1-初始化" class="headerlink" title="1.1.1 初始化"></a>1.1.1 初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>初始化后会出现一个.git目录，所有git所需要的数据和资源都在这个目录中。</p>
+<h3 id="1-1-2-进行版本控制"><a href="#1-1-2-进行版本控制" class="headerlink" title="1.1.2 进行版本控制"></a>1.1.2 进行版本控制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *.c</span><br><span class="line">git add README</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>add命令开始跟踪，<br>commit命令开始提交</p>
+<h2 id="1-2-从现有的仓库中克隆"><a href="#1-2-从现有的仓库中克隆" class="headerlink" title="1.2 从现有的仓库中克隆"></a>1.2 从现有的仓库中克隆</h2><p>将项目的git仓库复制出来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://xxx [file-name]</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-文件管理"><a href="#2-文件管理" class="headerlink" title="2 文件管理"></a>2 文件管理</h1><h2 id="2-1-文件状态："><a href="#2-1-文件状态：" class="headerlink" title="2.1 文件状态："></a>2.1 文件状态：</h2><p>未跟踪：<br>没有上次更新时的快照，也不早当前的暂存区域。<br>当文件未被跟踪，git不会自动将其纳入跟踪范围，所以不用担心将临时文件归入版本管理。</p>
+<p>已跟踪：<br>代表文件本来就被纳入了版本控制管理的文件，在上次快照中有记录。<br>已跟踪文件的状态有：未修改，已修改和已放入暂存区。</p>
+<p>状态转化：<br>刚克隆某个仓库，所有文件都是已跟踪文件，状态为未修改。<br>编辑文件后，文件状态变为已修改。<br>将已修改的文件放到暂存区。<br>最后一次性提交暂存区的文件。</p>
+<p>状态转化图：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">untracked(未跟踪) |						tracked(已跟踪)</span><br><span class="line">untracked		  | unmodified(未修改) | modified(已修改)	| staged(暂存区)</span><br><span class="line">		       	--------------------add file--------------------&gt;     	    	</span><br><span class="line">                                                    --add file-&gt;</span><br><span class="line">                                 --edit file-&gt;	    --stage file-&gt;</span><br><span class="line">		       	&lt;-remove file--				&lt;-----------commit------------</span><br></pre></td></tr></table></figure>
+<p>检查当前文件状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-1跟踪新的文件："><a href="#2-1-1跟踪新的文件：" class="headerlink" title="2.1.1跟踪新的文件："></a>2.1.1跟踪新的文件：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add README</span><br></pre></td></tr></table></figure>
+<p>当add未跟踪的文件，文件会变为已经被跟踪，而且进入了暂存状态。</p>
+<h3 id="2-1-2暂存已修改的文件"><a href="#2-1-2暂存已修改的文件" class="headerlink" title="2.1.2暂存已修改的文件"></a>2.1.2暂存已修改的文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx</span><br></pre></td></tr></table></figure>
+<p>当文件已经跟踪，但是没有暂存，会将文件进入暂存状态。</p>
+<h3 id="2-1-3-忽略某些文件"><a href="#2-1-3-忽略某些文件" class="headerlink" title="2.1.3 忽略某些文件"></a>2.1.3 忽略某些文件</h3><p>一些文件不需要纳入文件管理，也不希望总是出现在未跟踪文件列表中。可以创建一个.gitignore文件，列出需要忽略的文件模式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># commitments</span></span><br><span class="line">*.a</span><br><span class="line">!lib.a<span class="comment">#除了xxx</span></span><br><span class="line">/TODO <span class="comment">#忽略TODO文件</span></span><br><span class="line">build/ <span class="comment">#忽略build目录下的所有文件</span></span><br></pre></td></tr></table></figure>
+
+<p>格式规范：<br>1。空行或者#都会被忽略<br>2。glob模式匹配<br>3。匹配模式最后/说明忽略目录<br>4。忽略指定模式以外的文件或者目录，可以加！</p>
+<p>glob模式：shell使用的简化的正则表达式</p>
+<ol>
+<li><ul>
+<li>匹配零个或多个任意字符</li>
+</ul>
+</li>
+<li>[abc] 匹配任何一个列在方括号中的字符<br>如果方括号中使用短划线分隔两个字符，例如[0-9]</li>
+<li>(?) 只匹配一个任意字符 </li>
+</ol>
+<h3 id="2-1-4-查看已暂存和未暂存的更新"><a href="#2-1-4-查看已暂存和未暂存的更新" class="headerlink" title="2.1.4 查看已暂存和未暂存的更新"></a>2.1.4 查看已暂存和未暂存的更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git diff</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-5-提交更新"><a href="#2-1-5-提交更新" class="headerlink" title="2.1.5 提交更新"></a>2.1.5 提交更新</h3><p>在提交之前，查看文件的状态，是否已经暂存，然后提交。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-6-跳过暂存区域提交"><a href="#2-1-6-跳过暂存区域提交" class="headerlink" title="2.1.6 跳过暂存区域提交"></a>2.1.6 跳过暂存区域提交</h3><p>通过暂存区域可以准备提交的细节，可以跳过暂存区域。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
+<p>git自动把所有已经跟踪过的文件暂存起来一起提交，跳过了add步骤。</p>
+<h3 id="2-1-7-移除文件"><a href="#2-1-7-移除文件" class="headerlink" title="2.1.7 移除文件"></a>2.1.7 移除文件</h3><p>从git中移除某个文件，需要将其从已跟踪清单中移除，也就是从暂存区移除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm</span><br></pre></td></tr></table></figure>
+<p>从跟踪区域中移除，顺便会在工作目录中删除指定的文件。<br>如果删除之前已经修改过而且已经放到暂存区，必须使用-f。</p>
+<p>如果，希望从git仓库即暂存区中移除，但是仍然希望保留在当前的工作目录中，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached xxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-8-移动文件"><a href="#2-1-8-移动文件" class="headerlink" title="2.1.8 移动文件"></a>2.1.8 移动文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv file_from file_to</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-查看提交历史"><a href="#2-2-查看提交历史" class="headerlink" title="2.2 查看提交历史"></a>2.2 查看提交历史</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line">-p -2</span><br><span class="line">//展开显示每次提交的内容差异。-2表示仅显示最近的两次更新</span><br><span class="line"></span><br><span class="line">-<span class="built_in">stat</span></span><br><span class="line">//显示简要的更改行数统计</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-撤销操作"><a href="#2-3-撤销操作" class="headerlink" title="2.3 撤销操作"></a>2.3 撤销操作</h2><h3 id="2-3-1-修改最后一次提交"><a href="#2-3-1-修改最后一次提交" class="headerlink" title="2.3.1 修改最后一次提交"></a>2.3.1 修改最后一次提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend </span><br><span class="line">//撤销刚才的提交操作</span><br><span class="line">//使用当前的暂存区提交快照</span><br><span class="line">//如果刚才的提交完没有任何改动，直接运行此命令，可以重新编辑提交说明。</span><br><span class="line">//如果忘记暂存修改，补上暂存操作，然后再修改提交</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-2-取消已经暂存的文件"><a href="#2-3-2-取消已经暂存的文件" class="headerlink" title="2.3.2 取消已经暂存的文件"></a>2.3.2 取消已经暂存的文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>将修改过后提交到暂存区的文件，撤销暂存，返回已修改但未暂存的状态</p>
+<h3 id="2-3-3-取消对文件的修改"><a href="#2-3-3-取消对文件的修改" class="headerlink" title="2.3.3 取消对文件的修改"></a>2.3.3 取消对文件的修改</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file-name&gt;</span><br></pre></td></tr></table></figure>
+<p>取消修改，回到修改之前的版本</p>
+<p>任何已经提交到git的都可以被恢复，</p>
+<h1 id="3-远程仓库"><a href="#3-远程仓库" class="headerlink" title="3 远程仓库"></a>3 远程仓库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote [-v]</span><br><span class="line">//-v verbose显示对应的克隆地址</span><br></pre></td></tr></table></figure>
+<p>列出每个远程库的简短名字。克隆完某个项目后，至少可以看到一个名为origin的远程库，git默认使用这个明治来标识你所克隆的原始仓库。</p>
+<h2 id="3-1-添加远程仓库"><a href="#3-1-添加远程仓库" class="headerlink" title="3.1 添加远程仓库"></a>3.1 添加远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add [short-name] [url]</span><br><span class="line">//添加一个新的远程仓库，可以指定一个简单的名字，以便将来引用</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-从远程库抓取数据"><a href="#3-2-从远程库抓取数据" class="headerlink" title="3.2 从远程库抓取数据"></a>3.2 从远程库抓取数据</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch [short-name]</span><br></pre></td></tr></table></figure>
+<p>fetch只是将远端的数据拉取到本地仓库。并不会自动合并到当前的工作分支。</p>
+<p>还可以用git pull自动抓取数据，<br>然后将远端分支自动合并到本地仓库的当前分支。</p>
+<h2 id="3-3-推送数据到远程仓库"><a href="#3-3-推送数据到远程仓库" class="headerlink" title="3.3 推送数据到远程仓库"></a>3.3 推送数据到远程仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [remote-name] [branch-name]</span><br></pre></td></tr></table></figure>
+<p>只有在所克隆的服务器上有写权限，或者同一时刻没有其他人推数据，这条命令才可以完成。<br>如果在推送数据之前，别人推送了，必须先将更新抓取到本地，合并到自己的项目中，才能够再次推送。</p>
+<h2 id="3-4-查看远程仓库的信息"><a href="#3-4-查看远程仓库的信息" class="headerlink" title="3.4 查看远程仓库的信息"></a>3.4 查看远程仓库的信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show [remote-name]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-打标签"><a href="#4-打标签" class="headerlink" title="4 打标签"></a>4 打标签</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br><span class="line">//列出已有标签</span><br><span class="line">git tag -l <span class="string">&#x27;v1.4.2.*&#x27;</span></span><br><span class="line">//特定搜索模式搜索标签</span><br><span class="line">git tag -a v1.4 -m <span class="string">&quot;my sersion 1.4&quot;</span></span><br><span class="line">//添加标签annotated</span><br></pre></td></tr></table></figure>
+
+<p>如果拥有私钥可以通过GPG来签署标签<br>这个有什么用处呢？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -s v1.5 -m <span class="string">&quot;my signed 1.5 tag&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过git show可以显示GPG签名</p>
+<p>后期加标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=online</span><br><span class="line">//显示之前的操作</span><br><span class="line"></span><br><span class="line">git tag -a v1.2 9fceb02</span><br><span class="line">//在打标签的时候跟上校验</span><br></pre></td></tr></table></figure>
+
+<p>分享标签，默认不会将标签传送到远端服务器，必须通过显式命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push origin [tagname]</span><br><span class="line"></span><br><span class="line">git push origin --tags</span><br><span class="line">//将所有本地标签添加上去</span><br></pre></td></tr></table></figure>
+
+<p>git 快捷操作命名别名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.ci commit</span><br><span class="line">//输入git commit只需要git ci，用于提高效率</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-分支"><a href="#5-分支" class="headerlink" title="5 分支"></a>5 分支</h1><p>任何版本控制系统都支持分支。<br>意味着从开发的主线上分离开，在不影响主线的同时继续工作。<br>在其他版本控制中，需要创建一个源代码目录的完整副本。</p>
+<p>git可以快速切换分支与合并。</p>
+<p>修补仓库中的程序的步骤：<br>1.返回到原先的分支<br>2.新建一个新的分支，修复问题<br>3.回到原先的分支进行合并，然后推送</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git checkout -b new-branch</span><br><span class="line">//新建并切换到new-branch分支</span><br><span class="line">//以上的命令等效于</span><br><span class="line">git branch new-branch</span><br><span class="line">git checkout new-branch</span><br><span class="line"></span><br><span class="line">//修改文件之后,提交文件到暂存区</span><br><span class="line">giit commit -a -m<span class="string">&#x27;commit new-brach&#x27;</span></span><br><span class="line"></span><br><span class="line">//需要修补主分支的问题</span><br><span class="line">//切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">//创建新的修补分支</span><br><span class="line">git checkout -b fix-branch</span><br><span class="line"></span><br><span class="line">//修改文件,之后提交</span><br><span class="line">git commit -a -m <span class="string">&#x27;fix branch&#x27;</span></span><br><span class="line"></span><br><span class="line">//修补完成后，回到主分支并且合并，然后发布</span><br><span class="line">git checkout master</span><br><span class="line">git merge fix-branch</span><br><span class="line"></span><br><span class="line">//fix-branch合并后可以删掉</span><br><span class="line">git branch -d fix-branch</span><br><span class="line"></span><br><span class="line">//返回到new-branch分支，继续进行原有工作，然后提交</span><br><span class="line">git checkout new-branch</span><br><span class="line">//修改文件</span><br><span class="line">git commit -a -m <span class="string">&#x27;finish the new-branch&#x27;</span></span><br><span class="line"></span><br><span class="line">//将新分支和修改分支合并</span><br><span class="line">git checkout master</span><br><span class="line">git merge new-branch</span><br><span class="line"></span><br><span class="line">//删除new-branch分支</span><br><span class="line">git branch -d new-branch</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在实际情况下，会遇到冲突的分支合并<br>如果在不同的分支中都修改了同一个文件的同一个部分，git就无法将两者合并到一起。这时候就会产生冲突。<br>通过git status显示。可以选择不同分支的一个或者亲自整合到一起。<br>整合完成之后，运行git add可以标记为解决状态。<br>运行git mergetool可以调用一个可视化的合并工具解决冲突。<br>git commit提交文件。</p>
+<p>分支的管理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">//显示所有分支</span><br><span class="line">git branch --merged</span><br><span class="line">//显示未合并分支</span><br><span class="line">git branch -d [branch-name]</span><br><span class="line">//删除已合并分支</span><br><span class="line">git branch -D [branch-name]</span><br><span class="line">//删除未合并分支</span><br></pre></td></tr></table></figure>
+
+<p>远程分支：<br>远程分支是对远程仓库的分支的索引。是无法移动的本地分支，只有在git进行网络交互的时候才会更新。<br>远程分支的表示方式：<br>远程仓库名/分支名<br>例如：origin/master<br>origin仓库的master分支</p>
+<p>//同步远程服务器上的数据到本地<br>git fetch origin</p>
+<p>submodule:<br>在某个仓库中有引用submodule时，clone不会下载submodule，我们需要进入工程然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git submodule init</span><br><span class="line">git submodule update</span><br><span class="line">//这样就可以下载submodule了</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/14/Ubuntu%E4%B8%8AGit%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" data-id="ckhnlm62y001mnng78h9da7ad" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言解决数独" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/13/C%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E6%95%B0%E7%8B%AC/" class="article-date">
+  <time datetime="2019-10-13T15:34:07.000Z" itemprop="datePublished">2019-10-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/13/C%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E6%95%B0%E7%8B%AC/">C语言解决数独</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">input:</span><br><span class="line">0 2 0 0 9 0 8 0 6 </span><br><span class="line">0 0 1 0 0 0 2 0 0 </span><br><span class="line">5 0 0 0 1 0 0 3 0 </span><br><span class="line">0 0 3 0 0 1 0 2 0 </span><br><span class="line">2 5 0 0 6 0 9 0 0 </span><br><span class="line">0 0 7 0 0 8 0 5 0 </span><br><span class="line">6 0 0 0 5 0 0 9 0 </span><br><span class="line">0 0 5 0 0 0 3 0 0 </span><br><span class="line">0 3 0 0 7 0 5 0 4 </span><br><span class="line"></span><br><span class="line">ans:</span><br><span class="line">3 2 4 7 9 5 8 1 6 </span><br><span class="line">8 9 1 6 3 4 2 7 5 </span><br><span class="line">5 7 6 8 1 2 4 3 9 </span><br><span class="line">9 6 3 5 4 1 7 2 8 </span><br><span class="line">2 5 8 3 6 7 9 4 1 </span><br><span class="line">4 1 7 9 2 8 6 5 3 </span><br><span class="line">6 8 2 4 5 3 1 9 7 </span><br><span class="line">7 4 5 1 8 9 3 6 2 </span><br><span class="line">1 3 9 2 7 6 5 8 4 </span><br><span class="line">repeat <span class="built_in">times</span>: 6</span><br><span class="line">Hello world!</span><br></pre></td></tr></table></figure>
+<p>源程序：<a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/MyProjectSudoku">https://github.com/Emir-Liu/MyProjectSudoku</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/13/C%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%86%B3%E6%95%B0%E7%8B%AC/" data-id="ckhnlm62c0009nng725reeeiv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu上的C语言socket客户端教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/12/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2019-10-12T13:35:29.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/12/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/">Ubuntu上的C语言socket客户端教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>socket时网络中2个主机之间进行任何类型的网络通信的虚拟口，任何网络通信都是通过套接字来进行。<br>按照功能分为：<br>socket客户端：连接到远程系统来获取数据的应用程序<br>socket服务器：使用socket接受传入连接，并提供数据的应用程序。</p>
+<h1 id="1-建立socket客户端"><a href="#1-建立socket客户端" class="headerlink" title="1 建立socket客户端"></a>1 建立socket客户端</h1><p>其中包含以下的内容：<br>1.创建一个socket<br>2.连接到远程服务器<br>3.发送数据<br>4.接受数据<br>5.关闭socket<br>在本部分中，我们编写socket客户端，<a target="_blank" rel="noopener" href="http://www.baidu.com作为socket服务器./">www.baidu.com作为socket服务器。</a><br>更具体的说：<br><a target="_blank" rel="noopener" href="http://www.baidu.com是http服务器,网络浏览器是http客户端./">www.baidu.com是http服务器,网络浏览器是http客户端。</a></p>
+<h1 id="1-1-创建一个socket"><a href="#1-1-创建一个socket" class="headerlink" title="1.1 创建一个socket"></a>1.1 创建一个socket</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	socket_desc = socket(AF_INET,SOCK_STREAM,0);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>socket函数创建了一个socket，并且返回了一个socket描述符，可以在其他的函数中别使用，socket函数具体有以下的属性：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int socket(int domain,int <span class="built_in">type</span>,int protocol)</span><br><span class="line">int domain: AF_UNIX（本机通信），AF_INET（TCP/IP-IPv4）,AF_INET6（TCP/IP-IPv6）</span><br><span class="line">int <span class="built_in">type</span>: SOCK_STREAM(TCP),SOCK_DGRAM(UDP),SOCK_RAW</span><br><span class="line">int protocol =0确定套接字需要的协议簇和类型</span><br><span class="line">返回值：成功返回套接字，失败返回-1，错误代码写入“errno”</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-2将socket连接到服务器"><a href="#1-2将socket连接到服务器" class="headerlink" title="1.2将socket连接到服务器"></a>1.2将socket连接到服务器</h1><p>通过socket连接到远程服务器,需要ip地址和端口号进行连接</p>
+<h2 id="1-2-1-创建sockaddr-in结构"><a href="#1-2-1-创建sockaddr-in结构" class="headerlink" title="1.2.1 创建sockaddr_in结构"></a>1.2.1 创建sockaddr_in结构</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr_in server;</span><br></pre></td></tr></table></figure>
+<p>sockaddr_in 结构如下面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// IPv4 AF_INET sockets:</span><br><span class="line">struct sockaddr_in &#123;</span><br><span class="line">    short            sin_family;   // e.g. AF_INET, AF_INET6</span><br><span class="line">    unsigned short   sin_port;     // e.g. htons(3490)</span><br><span class="line">    struct in_addr   sin_addr;     // see struct in_addr, below</span><br><span class="line">    char             sin_zero[8];  // zero this <span class="keyword">if</span> you want to</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct in_addr &#123;</span><br><span class="line">    unsigned long s_addr;          // load with inet_pton()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sockaddr &#123; </span><br><span class="line">    unsigned short sa_family; //地址族，AF_xxx </span><br><span class="line">    char sa_data [14]; // 14个字节的协议地址</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>函数inet_addr是将ip地址转换为长格式的函数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>这里时baidu的ip地址。下面有如何找出给定域名的ip地址。</p>
+<h2 id="1-2-2-连接"><a href="#1-2-2-连接" class="headerlink" title="1.2.2 连接"></a>1.2.2 连接</h2><p>“连接”的概念适用于SOCK_STREAM / TCP类型的套接字。连接是指可靠的数据“流”，以便可以有多个这样的流，每个流具有自己的通信。可以将其视为不受其他数据干扰的管道。</p>
+<p>其他套接字，例如UDP，ICMP，ARP都没有“连接”的概念。这些是基于非连接的通信。这意味着您一直在发送或接收来自任何人和每个人的数据包。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;arpa/inet.h&gt;	//inet_addr</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	struct sockaddr_in server;</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_port = htons( 80 );</span><br><span class="line"></span><br><span class="line">	//Connect to remote server</span><br><span class="line">	<span class="keyword">if</span> (connect(socket_desc , (struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connected&quot;</span>);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-3-通过socket发送数据"><a href="#1-3-通过socket发送数据" class="headerlink" title="1.3 通过socket发送数据"></a>1.3 通过socket发送数据</h1><p>通过send函数发送数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;	//strlen</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;arpa/inet.h&gt;	//inet_addr</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	struct sockaddr_in server;</span><br><span class="line">	char *message;</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_port = htons( 80 );</span><br><span class="line"></span><br><span class="line">	//Connect to remote server</span><br><span class="line">	<span class="keyword">if</span> (connect(socket_desc , (struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connected\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Send some data</span><br><span class="line">	message = <span class="string">&quot;GET / HTTP/1.1\r\n\r\n&quot;</span>;</span><br><span class="line">	<span class="keyword">if</span>( send(socket_desc , message , strlen(message) , 0) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;Send failed&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;Data Send\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>备注：也可以通过write来将数据发送到socket</p>
+<h1 id="1-4-通过socket接受数据"><a href="#1-4-通过socket接受数据" class="headerlink" title="1.4 通过socket接受数据"></a>1.4 通过socket接受数据</h1><p>函数recv用于在socket上接受数据,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;	//strlen</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;arpa/inet.h&gt;	//inet_addr</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int socket_desc;</span><br><span class="line">	struct sockaddr_in server;</span><br><span class="line">	char *message , server_reply[2000];</span><br><span class="line">	</span><br><span class="line">	//Create socket</span><br><span class="line">	socket_desc = socket(AF_INET , SOCK_STREAM , 0);</span><br><span class="line">	<span class="keyword">if</span> (socket_desc == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Could not create socket&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	server.sin_addr.s_addr = inet_addr(<span class="string">&quot;183.232.231.172&quot;</span>);</span><br><span class="line">	server.sin_family = AF_INET;</span><br><span class="line">	server.sin_port = htons( 80 );</span><br><span class="line"></span><br><span class="line">	//Connect to remote server</span><br><span class="line">	<span class="keyword">if</span> (connect(socket_desc , (struct sockaddr *)&amp;server , sizeof(server)) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	puts(<span class="string">&quot;Connected\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Send some data</span><br><span class="line">	message = <span class="string">&quot;GET / HTTP/1.1\r\n\r\n&quot;</span>;</span><br><span class="line">	<span class="keyword">if</span>( send(socket_desc , message , strlen(message) , 0) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;Send failed&quot;</span>);</span><br><span class="line">		<span class="built_in">return</span> 1;</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;Data Send\n&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	//Receive a reply from the server</span><br><span class="line">	<span class="keyword">if</span>( recv(socket_desc, server_reply , 2000 , 0) &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		puts(<span class="string">&quot;recv failed&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	puts(<span class="string">&quot;Reply received\n&quot;</span>);</span><br><span class="line">	puts(server_reply);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>baidu返回了html。</p>
+<p>备注：我们也可以通过read读取socket的数据。</p>
+<h1 id="1-5-关闭socket"><a href="#1-5-关闭socket" class="headerlink" title="1.5 关闭socket"></a>1.5 关闭socket</h1><p>用close函数,需要unistd.h头文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close(socket_desc);</span><br></pre></td></tr></table></figure>
+
+<p>以上，socket客户端已经基本完成。</p>
+<h1 id="1-6-补充：获取主机的IP地址"><a href="#1-6-补充：获取主机的IP地址" class="headerlink" title="1.6 补充：获取主机的IP地址"></a>1.6 补充：获取主机的IP地址</h1><p>连接到到远程主机，需要IP地址。用gethostbyname函数，域名作为参数，返回hostent类型的结构。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* 单个主机的数据库描述*/</span><br><span class="line">struct hostent</span><br><span class="line">&#123;</span><br><span class="line">  char *h_name;			/* 主机的正式名称*/</span><br><span class="line">  char **h_aliases;		/* 别名列表*/</span><br><span class="line">  int h_addrtype;		/* 主机地址类型*/</span><br><span class="line">  int h_length;			/* 地址的长度*/</span><br><span class="line">  char **h_addr_list;		/* 服务器的地址列表*/</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在 h_addr_list中有IP地址。通过以下的代码来使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt; //printf</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt; //strcpy</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;netdb.h&gt; //hostent</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc , char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  char *hostname = <span class="string">&quot;www.baidu.com&quot;</span>;</span><br><span class="line">  char ip[100];</span><br><span class="line">  struct hostent *he;</span><br><span class="line">  struct in_addr **addr_list;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( (he = gethostbyname( hostname ) ) == NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    //gethostbyname failed</span><br><span class="line">    herror(<span class="string">&quot;gethostbyname&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 1;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  //Cast the h_addr_list to in_addr , since h_addr_list also has the ip address <span class="keyword">in</span> long format only</span><br><span class="line">  addr_list = (struct in_addr **) he-&gt;h_addr_list;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(i = 0; addr_list[i] != NULL; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    //Return the first one;</span><br><span class="line">    strcpy(ip , inet_ntoa(*addr_list[i]) );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s resolved to : %s\n&quot;</span>, hostname , ip);</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/10/12/Ubuntu%E4%B8%8A%E7%9A%84C%E8%AF%AD%E8%A8%80socket%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%99%E7%A8%8B/" data-id="ckhnlm63o002rnng77e8f1bjf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/" rel="tag">socket</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Ubuntu上gtk-使用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/12/Ubuntu%E4%B8%8Agtk-%E4%BD%BF%E7%94%A8/" class="article-date">
@@ -352,232 +598,6 @@
 
 
   
-    <article id="post-html指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/24/html%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-09-24T07:29:27.000Z" itemprop="datePublished">2019-09-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/24/html%E6%8C%87%E5%8D%97/">html/css指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>来源：W3school(CSS参考手册)<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/index.asp">https://www.w3school.com.cn/cssref/index.asp</a></p>
-<h1 id="1-HTML"><a href="#1-HTML" class="headerlink" title="1.HTML"></a>1.HTML</h1><h2 id="1-1class-类"><a href="#1-1class-类" class="headerlink" title="1.1class(类)"></a>1.1class(类)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.class-name&#123; ...  ;&#125;	//命名一个class</span><br><span class="line">class = <span class="string">&quot;class-name&quot;</span>	//调用一个class</span><br></pre></td></tr></table></figure>
-<h2 id="1-2id"><a href="#1-2id" class="headerlink" title="1.2id"></a>1.2id</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#id-name&#123; ... ;&#125;			//命名一个id</span></span><br><span class="line">id = <span class="string">&quot;id-name&quot;</span>				//调用一个id</span><br></pre></td></tr></table></figure>
-<h2 id="1-3class与id对比"><a href="#1-3class与id对比" class="headerlink" title="1.3class与id对比"></a>1.3class与id对比</h2><pre><code>在一个html网页页面中可以无数次调用相同的class类；
-而同样的id在页面里只能出现一次</code></pre>
-<h2 id="1-2注释"><a href="#1-2注释" class="headerlink" title="1.2注释"></a>1.2注释</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- comment  --&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1-3如何插入小图标"><a href="#1-3如何插入小图标" class="headerlink" title="1.3如何插入小图标"></a>1.3如何插入小图标</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">&quot;shortcut icon&quot;</span> sizes=<span class="string">&quot;16*16 24*24 48*48 64*64&quot;</span> href=<span class="string">&quot;favicon.ico&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-1图片的引用"><a href="#1-3-1图片的引用" class="headerlink" title="1.3.1图片的引用"></a>1.3.1图片的引用</h3><p>1.绝对路径<br>/../xx.png<br>2.相对路径<br>xx.png<br>3.子路径<br>images/xx.png<br>4.父路径<br>../xx.png</p>
-<h2 id="1-4导航条"><a href="#1-4导航条" class="headerlink" title="1.4导航条"></a>1.4导航条</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav&gt;//导航栏</span><br><span class="line">&lt;ul&gt;//无序列表,ol为有序列表</span><br><span class="line">&lt;li&gt;Emir Liu&lt;/li&gt;//列表中的元素</span><br><span class="line">&lt;li&gt;Blog &lt;/li&gt;</span><br><span class="line">&lt;li&gt;Resume&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/nav&gt;</span><br><span class="line">//或者</span><br><span class="line">&lt;nav&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;li&gt; &lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="1-4-1超链接"><a href="#1-4-1超链接" class="headerlink" title="1.4.1超链接"></a>1.4.1超链接</h3><p><a hreb="/blog">Blog</a><br><a hreb="/" >Emir Liu</a></p>
-<h3 id="1-4-2导航排列方式"><a href="#1-4-2导航排列方式" class="headerlink" title="1.4.2导航排列方式"></a>1.4.2导航排列方式</h3><p>display: inline-block<br>排列在一行</p>
-<p>:hover<br>当鼠标悬浮在某个格式上面的时候，则</p>
-<p>cursor: pointer 鼠标变为手指</p>
-<h2 id="2-属性"><a href="#2-属性" class="headerlink" title="2.属性"></a>2.属性</h2><h3 id="2-1-position属性"><a href="#2-1-position属性" class="headerlink" title="2.1 position属性"></a>2.1 position属性</h3><p>1、static：<br>    static是所有元素的默认属性，也就是可以理解为正常的文档流<br>2、relative:<br>    relative是相对于自己文档的位置来定位的，对旁边的元素没有影响<br>3、absolute：<br>    absolute是相对于父标签来进行定位的，如果没有父标签或者父标签是static，那么sorry，刚烈的absolute会相对于文档定位（不同于fixed相对于浏览器定位）<br>4、fixed；<br>    牛逼的fixed，是相对于浏览器窗口来定位的。不会因为滚动条滚动，牛了一笔。（但是平常卵用不多，我自己的吐槽）</p>
-<h1 id="2-CSS"><a href="#2-CSS" class="headerlink" title="2.CSS"></a>2.CSS</h1><h2 id="2-1如何插入一个CSS样式表"><a href="#2-1如何插入一个CSS样式表" class="headerlink" title="2.1如何插入一个CSS样式表"></a>2.1如何插入一个CSS样式表</h2><h3 id="2-1-1外部样式表"><a href="#2-1-1外部样式表" class="headerlink" title="2.1.1外部样式表"></a>2.1.1外部样式表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;link rel=<span class="string">&quot;stylesheet&quot;</span> <span class="built_in">type</span>=<span class="string">&quot;text/css&quot;</span> href=<span class="string">&quot;css-filename.css&quot;</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">//在每个页面上通过link连接到样式表</span><br></pre></td></tr></table></figure>
-<h3 id="2-1-2内部样式表"><a href="#2-1-2内部样式表" class="headerlink" title="2.1.2内部样式表"></a>2.1.2内部样式表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;style <span class="built_in">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><br><span class="line">	body&#123; ... ;&#125;</span><br><span class="line">	.class-name&#123; ... ;&#125;</span><br><span class="line">	<span class="comment">#id-name&#123; ... ;&#125;</span></span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="2-1-3内联样式-不建议使用"><a href="#2-1-3内联样式-不建议使用" class="headerlink" title="2.1.3内联样式(不建议使用)"></a>2.1.3内联样式(不建议使用)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p style=<span class="string">&quot;color: sienna; margin-left: 20px&quot;</span>&gt;</span><br><span class="line">	This is a paragraph</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="2-1-4多重样式表"><a href="#2-1-4多重样式表" class="headerlink" title="2.1.4多重样式表"></a>2.1.4多重样式表</h3><pre><code>加入某个属性在不同的样式表中被同样的选择器定义，属性值将从范围小的样式表中被继承下来。例如外部样式表和内部样式表中都定义了一个属性，则继承内部样式表。</code></pre>
-<h2 id="1-基础语法"><a href="#1-基础语法" class="headerlink" title="1.基础语法"></a>1.基础语法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selector&#123;property: value&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-1类型选择器"><a href="#2-1类型选择器" class="headerlink" title="2.1类型选择器"></a>2.1类型选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1&#123;</span><br><span class="line">	color:<span class="comment">#36cfff;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-2通用选择器"><a href="#2-2通用选择器" class="headerlink" title="2.2通用选择器"></a>2.2通用选择器</h3><ul>
-<li>{<br>   color:#36cfff;<br>}<h3 id="2-3后代选择器"><a href="#2-3后代选择器" class="headerlink" title="2.3后代选择器"></a>2.3后代选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ul em &#123;</span><br><span class="line">   color: <span class="comment">#000000; </span></span><br><span class="line">&#125;//仅当样式规则位于特定元素内时，才希望将其应用于特定元素。如以下示例所示，样式规则仅在&lt;em&gt;元素位于&lt;ul&gt;标记内时才适用。</span><br></pre></td></tr></table></figure>
-<h3 id="2-4类选择器"><a href="#2-4类选择器" class="headerlink" title="2.4类选择器"></a>2.4类选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.black &#123;</span><br><span class="line">   color: <span class="comment">#000000; </span></span><br><span class="line">&#125;文档中class属性设置为black的每个元素，此规则均将其内容呈现为黑色。</span><br><span class="line">h1.black &#123;</span><br><span class="line">   color: <span class="comment">#000000; </span></span><br><span class="line">&#125;//将class属性设置为black的 &lt;h1&gt;元素呈现为黑色。</span><br></pre></td></tr></table></figure>
-<h3 id="2-5id选择器"><a href="#2-5id选择器" class="headerlink" title="2.5id选择器"></a>2.5id选择器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#black &#123;</span></span><br><span class="line">   color: <span class="comment">#000000; </span></span><br><span class="line">&#125;文档中id属性设置为black的每个元素，此规则均将其内容呈现为黑色。</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ:"></a>FAQ:</h1><h2 id="页面加载过程中显示加载界面，加载完毕隐藏加载界面：https-blog-csdn-net-SL-World-article-details-89109050"><a href="#页面加载过程中显示加载界面，加载完毕隐藏加载界面：https-blog-csdn-net-SL-World-article-details-89109050" class="headerlink" title="页面加载过程中显示加载界面，加载完毕隐藏加载界面：https://blog.csdn.net/SL_World/article/details/89109050"></a>页面加载过程中显示加载界面，加载完毕隐藏加载界面：<a target="_blank" rel="noopener" href="https://blog.csdn.net/SL_World/article/details/89109050">https://blog.csdn.net/SL_World/article/details/89109050</a></h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/24/html%E6%8C%87%E5%8D%97/" data-id="ckhnlm643003snng786vn8vds" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vim操作指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/23/vim%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-09-23T13:54:38.000Z" itemprop="datePublished">2019-09-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/23/vim%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/">vim操作指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p>什么是最优秀的文本编辑器，当然是vim.<br>vim操作方便，在熟悉中会发现直接通过键盘进行操作比用鼠标更加的快速，可以享受到双手放在键盘上打字的畅快淋漓。<br>在打字过程中，不需要中断操作，然后再拿鼠标，减少了鼠标控制的打扰。<br>而且vim经历了大量大神的调教之后，增加了无数的扩展，更加贴近人的使用习惯。<br>完全可以用vim作为日常的程序文本编辑器，</p>
-<p>当你直接下载之后，vim是非常干净的，里面没有扩展，功能也很单一，在实际使用的情况下，我们需要对vim进行配置，来添加一些有用的插件。<br>我的vim配置?<a target="_blank" rel="noopener" href="https://github.com/Emir-Liu/vimrc">https://github.com/Emir-Liu/vimrc</a><br>配置是fork其他大神的，里面的功能也在探索的过程中，使用它搭配makefile等可以进行项目的实践，贴图:<br><img src="/2019/09/23/vim%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/stm32%E5%B7%A5%E7%A8%8B.png"><br>上面是我之前使用vim和一些工具做的STM32程序模板。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">ack.vim: </span><br><span class="line">Vim plugin <span class="keyword">for</span> the_silver_searcher (ag) or ack -- a wicked fast grep</span><br><span class="line">bufexplorer.zip: Quickly and easily switch between buffers. This plugin can be opened with &lt;leader+o&gt;</span><br><span class="line">ctrlp.vim: </span><br><span class="line">Fuzzy file, buffer, mru and tag finder. It<span class="string">&#x27;s mapped to &lt;Ctrl+F&gt;</span></span><br><span class="line"><span class="string">goyo.vim and vim-zenroom2:</span></span><br><span class="line"><span class="string">lightline.vim: </span></span><br><span class="line"><span class="string">A light and configurable statusline/tabline for Vim</span></span><br><span class="line"><span class="string">NERD Tree: </span></span><br><span class="line"><span class="string">A tree explorer plugin for vim</span></span><br><span class="line"><span class="string">mru.vim: </span></span><br><span class="line"><span class="string">Plugin to manage Most Recently Used (MRU) files. This plugin can be opened with &lt;leader+f&gt;</span></span><br><span class="line"><span class="string">open_file_under_cursor.vim: </span></span><br><span class="line"><span class="string">Open file under cursor when pressing gf</span></span><br><span class="line"><span class="string">pathogen.vim: </span></span><br><span class="line"><span class="string">Manage your vim runtimepath</span></span><br><span class="line"><span class="string">snipmate.vim: </span></span><br><span class="line"><span class="string">snipmate.vim aims to be a concise vim script that implements some of TextMate&#x27;</span>s snippets features <span class="keyword">in</span> Vim</span><br><span class="line">ale: </span><br><span class="line">Syntax and lint checking <span class="keyword">for</span> vim (ALE requires NeoVim &gt;= 0.2.0 or Vim 8 with +timers +job +channel)</span><br><span class="line">vim-commentary: </span><br><span class="line">Comment stuff out. Use gcc to comment out a line (takes a count), gc to comment out the target of a motion. gcu uncomments a <span class="built_in">set</span> of adjacent commented lines.</span><br><span class="line">vim-expand-region: </span><br><span class="line">Allows you to visually select increasingly larger regions of text using the same key combination</span><br><span class="line">vim-fugitive: </span><br><span class="line">A Git wrapper so awesome, it should be illegal</span><br><span class="line">vim-indent-object: </span><br><span class="line">Defines a new text object representing lines of code at the same indent level. Useful <span class="keyword">for</span> python/vim scripts</span><br><span class="line">vim-multiple-cursors: </span><br><span class="line">Sublime Text style multiple selections <span class="keyword">for</span> Vim, CTRL+N is remapped to CTRL+S (due to YankRing)</span><br><span class="line">vim-yankstack: </span><br><span class="line">Maintains a <span class="built_in">history</span> of previous yanks, changes and deletes</span><br><span class="line">vim-zenroom2 </span><br><span class="line">Remove all clutter and focus only on the essential. Similar to iA Writer or Write Room</span><br><span class="line">gist-vim Easily create gists from Vim using the :Gist <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
-
-<p>内容结构:<br>1.vim配置方式<br>2.vim操作指南<br>3.vim中一些有用的插件<br>3.1 NERDTree<br>3.2 ctags<br>4.FAQ</p>
-<h1 id="1-vim配置方式"><a href="#1-vim配置方式" class="headerlink" title="1.vim配置方式"></a>1.vim配置方式</h1><p>首先，为了让vim实现更多的功能，我们需要对其进行配置使得使用过程更加流畅方便，当然，如果没有配置同样可以使用，那就直接跳转到下一章。<br>配置之后，每次使用vim就可以直接为配置的样式。</p>
-<h2 id="1-1-配置文件的位置"><a href="#1-1-配置文件的位置" class="headerlink" title="1.1 配置文件的位置"></a>1.1 配置文件的位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim --version</span><br></pre></td></tr></table></figure>
-<p>输入上面的命令之后，可以看到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">system vimrc file: <span class="string">&quot;<span class="variable">$VIM</span>/vimrc&quot;</span></span><br><span class="line">user vimrc file: <span class="string">&quot;<span class="variable">$HOME</span>/.vimrc&quot;</span></span><br><span class="line">2nd user vimrc file: <span class="string">&quot;~/.vim/vimrc&quot;</span></span><br><span class="line">user exrc file: <span class="string">&quot;<span class="variable">$HOME</span>/.exrc&quot;</span></span><br><span class="line">defaults file: <span class="string">&quot;<span class="variable">$VIMRUNTIME</span>/defaults.vim&quot;</span></span><br><span class="line">fall-back <span class="keyword">for</span> <span class="variable">$VIM</span>: <span class="string">&quot;/usr/share/vim&quot;</span></span><br></pre></td></tr></table></figure>
-<p>我一般是修改user vimrc file，也就是用户vim配置文件，通过编辑这个文件可以修改vim的外观，快捷键，插件等。</p>
-<p>可以直接用我的配置，可以看上面的我的配置。<br>之后有一篇我的博客是对我的配置进行一些讲解。</p>
-<h2 id="1-2-配置样例"><a href="#1-2-配置样例" class="headerlink" title="1.2 配置样例"></a>1.2 配置样例</h2><p>我们以自动设置行号为目标对文件做简单的配置。</p>
-<p>首先进入用户vim配置文件中</p>
-<p>在配置文件.vimrc后面加上:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> number    <span class="string">&quot;显示行号</span></span><br><span class="line"><span class="string">set tabstop=2 &quot;</span>tab长度为2</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-vim操作指南"><a href="#2-vim操作指南" class="headerlink" title="2.vim操作指南"></a>2.vim操作指南</h1><h2 id="2-1-vim的模式"><a href="#2-1-vim的模式" class="headerlink" title="2.1 vim的模式"></a>2.1 vim的模式</h2><p>vim有三种常用模式，分别为:底线命令模式(Last line mode)、输入模式(Insert mode)、命令模式(Command mode)<br>但是，实际上还有：视图模式(Visual mode)</p>
-<h3 id="2-1-1命令模式"><a href="#2-1-1命令模式" class="headerlink" title="2.1.1命令模式:"></a>2.1.1命令模式:</h3><p>用户刚刚启动vim，便进入了命令模式。<br>此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。比如我们此时按下i，并不会输入一个字符，i被当作了一个命令。<br>这种模式主要是输入简单常见的几种命令组合。<br>当前模式下，切换模式的命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i 切换到输入模式，以输入字符。</span><br><span class="line">: 切换到底线命令模式，以在最底一行输入命令。</span><br></pre></td></tr></table></figure>
-<p>该模式下的常用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yy  复制当前行内容</span><br><span class="line">dd  删除当前行内容</span><br><span class="line">pp  粘贴内容到下一行</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-2输入模式"><a href="#2-1-2输入模式" class="headerlink" title="2.1.2输入模式:"></a>2.1.2输入模式:</h3><p>在命令模式下按下i就进入了输入模式，输入文件内容。<br>当前模式下，切换模式的命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ESC，退出输入模式，切换到命令模式</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-3底线命令模式"><a href="#2-1-3底线命令模式" class="headerlink" title="2.1.3底线命令模式:"></a>2.1.3底线命令模式:</h3><p>在命令模式下按下:（英文冒号）就进入了底线命令模式。<br>底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。<br>当前模式下，切换模式的命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ESC，退出输入模式，切换到命令模式</span><br></pre></td></tr></table></figure>
-<p>该模式下的常用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">q 退出程序</span><br><span class="line">w 保存文件</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-4视图模式"><a href="#2-1-4视图模式" class="headerlink" title="2.1.4视图模式:"></a>2.1.4视图模式:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span> v_ </span><br><span class="line">查看帮助</span><br></pre></td></tr></table></figure>
-<p>在命令模式下按下v/V/Ctrl+V就进入了视图模式。<br>视图模式是为了方便选取文本，然后进行复制粘贴等内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ESC,退出视图模式，切换到命令模式</span><br></pre></td></tr></table></figure>
-<p>该模式中有三种小的模式:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v   进入字符可视化模式，文本选择是以字符为单位</span><br><span class="line">V   进入行可视化模式，文本选择是以行为单位</span><br><span class="line">Ctrl+V  进入块可视化模式，可以选择一个矩形内的文本</span><br></pre></td></tr></table></figure>
-<p>该模式下的常用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">光标选择</span><br><span class="line">G 从当前光标位置选择到结尾</span><br><span class="line"></span><br><span class="line">va&#123; 选中&#123;&#125;中间的内容，包括&#123;&#125;</span><br><span class="line">vi&lt; 选中&lt;&gt;中间的内容,&lt;abs&gt;</span><br><span class="line">上面的两个可以扩展:</span><br><span class="line">a表示包含中间的内容，包括边界</span><br><span class="line">i表示只包含中间的内容，不包括边界</span><br><span class="line">后面可以为</span><br><span class="line">&#123; [ ( <span class="string">&quot; &#x27;:分别表示对应的符号之间 </span></span><br><span class="line"><span class="string">t s b w p:选中标签的内容 一个句子 一个块 一个单词 一个段落</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">操作</span></span><br><span class="line"><span class="string">x   剪切</span></span><br><span class="line"><span class="string">y   复制</span></span><br><span class="line"><span class="string">r   替换为新的字符</span></span><br><span class="line"><span class="string">u/U/~ 将所有字母变小写/变大写/反转大小写</span></span><br><span class="line"><span class="string">&gt;/&lt; 将选中的字符右移/左移</span></span><br><span class="line"><span class="string">p/P 粘贴剪贴板的内容，p是粘在光标所在字符后面，P是粘在前面</span></span><br><span class="line"><span class="string">d/D c/C y/Y 小写是针对选中字符，大写针对所在行字符</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-常用快捷键"><a href="#2-2-常用快捷键" class="headerlink" title="2.2 常用快捷键"></a>2.2 常用快捷键</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim filename    打开或者新建文档</span><br></pre></td></tr></table></figure>
-
-<p>输入模式(在命令模式下按下i)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ENTER   回车，换行</span><br><span class="line">BACK SPACE  退格，删除光标前一个字符</span><br><span class="line">DEL   删除光标后一个字符</span><br><span class="line">方向键    移动光标</span><br><span class="line">HOME/END  移动光标到行首/行尾 </span><br><span class="line">Page Up/Page Down   上/下翻页</span><br><span class="line">Insert    切换光标为输入/替换模式，光标变为竖线/下划线</span><br></pre></td></tr></table></figure>
-
-<p>底线命令模式(在命令模式中按下:)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">:q   退出模式</span><br><span class="line">:w   保存文件</span><br><span class="line">:<span class="built_in">set</span> nu    显示行号</span><br><span class="line">:<span class="built_in">set</span> nonumber</span><br><span class="line">:<span class="built_in">set</span> nonu  隐藏行号</span><br><span class="line">:n  跳转到第n行</span><br></pre></td></tr></table></figure>
-
-<p>命令模式(在其他模式下按下ESC)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">移动光标</span><br><span class="line">kjhl    上/下/左/右移动光标(可以加上组合按键，30j)</span><br><span class="line">ctrl b/f/u/d  屏幕上移一页/下移一页/上移半页/下移半页</span><br><span class="line">-/+   光标移动到非空格符的上一行/下一行</span><br><span class="line">n&lt;space&gt;  光标向右移动n个字符</span><br><span class="line">0/Home    光标移动到这一行最前面的字符处</span><br><span class="line">$/End   光标移动到这一行卓后面的字符处</span><br><span class="line">H/M/L   光标移动到这个屏幕最上/中间/下面那一行的第一个字符(不确定)</span><br><span class="line"></span><br><span class="line">n&lt;Enter&gt;  光标向下移动n行</span><br><span class="line">nG    移动到这个文件的第n行</span><br><span class="line">G   调到文件的最后一行</span><br><span class="line">gg    移动到这个文件的第一行</span><br><span class="line"></span><br><span class="line">搜索/替换</span><br><span class="line">/word   向光标下寻找一个名为word的字符串</span><br><span class="line">？word    向光标上寻找一个名为word的字符串</span><br><span class="line">n   重复前一个搜寻的动作</span><br><span class="line">N   反向前一个搜寻的动作</span><br><span class="line"></span><br><span class="line">:n1,n2s/word1/word2/g</span><br><span class="line">    在第n1与第n2行之间寻找word1字符串，并将字符串取代为word2</span><br><span class="line">:1,<span class="variable">$s</span>/word1/word2/g(c)</span><br><span class="line">:%s/word1/word2/g(c)</span><br><span class="line">    从第一行到最后一行寻找word1字符串，并将其取代为word2,(并在取代前给用户确认)</span><br><span class="line"></span><br><span class="line">删除/复制/粘贴</span><br><span class="line">x/X   向后/前删除一个字符</span><br><span class="line">nx    连续删除n个字符</span><br><span class="line">dd    删除光标坐在的一整行</span><br><span class="line">ndd   删除光标所在的向下n行</span><br><span class="line">d1G   删除光标所在到第一行的所有数据</span><br><span class="line">dG    删除光标坐在到最后一行的所有数据</span><br><span class="line">d$    删除光标所在到该行的最后一个字符</span><br><span class="line">d0    删除光标所在处到该行的最前面一个字符</span><br><span class="line">yy    复制光标所在的那一行</span><br><span class="line">nyy   复制光标所在的向下n行</span><br><span class="line">y1G   复制光标所在到第一行的所有数据</span><br><span class="line">yG    复制光标所在到最后一行的所有数据</span><br><span class="line">y$    复制光标所在到该行的最后一个字符</span><br><span class="line"></span><br><span class="line">选择</span><br><span class="line">viw 当光标在哪个单词上的时候，选中该单词</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="3-vim中一些有用的模块"><a href="#3-vim中一些有用的模块" class="headerlink" title="3.vim中一些有用的模块"></a>3.vim中一些有用的模块</h1><h2 id="3-1-NERDTree"><a href="#3-1-NERDTree" class="headerlink" title="3.1 NERDTree"></a>3.1 NERDTree</h2><p>当建立一个工程的时候，我们通常不仅仅只有一个文件，而是一个文件夹下面的多个文件，为了能够方便我们切换编辑工程内的文件，我们使用了这个模块。</p>
-<p>命令模式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:NERDTree</span><br></pre></td></tr></table></figure>
-<p>配置(按下F3可以显示或者隐藏NERDTree)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map &lt;F3&gt; :NERDTreeMirror&lt;CR&gt;</span><br><span class="line">map &lt;F3&gt; :NERDTreeToggle&lt;CR&gt;</span><br></pre></td></tr></table></figure>
-<p>常用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">树形界面中</span><br><span class="line">h/j/k/l 左/下/上/右移光标 </span><br><span class="line">上下建  移动选中的目录或者文件</span><br><span class="line">Enter   展开目录或者打开文件</span><br><span class="line">go      打开文件，但是光标依然在树形界面中</span><br><span class="line">i/s     水平或纵向分割窗口，</span><br><span class="line">m       显示文件系统菜单(添加、删除、移动操作)</span><br><span class="line"></span><br><span class="line">?       弹出NERDTree帮助</span><br><span class="line">t       文件在新的标签页打开</span><br><span class="line">T       文件在后台标签页打开</span><br><span class="line">p       到上层目录</span><br><span class="line">P       到根目录</span><br><span class="line">K       到同目录第一个节点</span><br><span class="line">J       到同目录最后一个节点</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctrl+w  光标在左右侧窗口切换</span><br><span class="line">ctrl+w+h/l 光标在窗口切换，只有左右两个窗口所以只能h/l</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-2-ctags"><a href="#3-2-ctags" class="headerlink" title="3.2 ctags"></a>3.2 ctags</h2><p>当使用上面的NERDTree模块之后，我们可以很方便的管理一个工程，但是，当需要查看函数的定义的时候，我们需要使用ctags模块来快速跳转到函数的定义。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ctags -R</span><br><span class="line">在工程的根目录下建立索引文件</span><br><span class="line"></span><br><span class="line">Ctrl+]</span><br><span class="line">搜索定义函数的位置</span><br><span class="line"></span><br><span class="line">Ctrl+o</span><br><span class="line">返回到之前的位置</span><br></pre></td></tr></table></figure>
-<p>用上面的两个常用的按键来查看代码简直爽快。</p>
-<h1 id="4-FAQ"><a href="#4-FAQ" class="headerlink" title="4.FAQ"></a>4.FAQ</h1><h2 id="4-1-当编辑之后忘记保存文件就直接强制退出了，导致文件无法打开怎么办"><a href="#4-1-当编辑之后忘记保存文件就直接强制退出了，导致文件无法打开怎么办" class="headerlink" title="4.1 当编辑之后忘记保存文件就直接强制退出了，导致文件无法打开怎么办?"></a>4.1 当编辑之后忘记保存文件就直接强制退出了，导致文件无法打开怎么办?</h2><p>Ans:当编辑后忘记退出或意外关闭时，删除隐藏文件swp，可以删除；或者找到编辑后的文件</p>
-<h2 id="4-2-如何将不同文档中的内容进行复制粘贴？"><a href="#4-2-如何将不同文档中的内容进行复制粘贴？" class="headerlink" title="4.2 如何将不同文档中的内容进行复制粘贴？"></a>4.2 如何将不同文档中的内容进行复制粘贴？</h2><p>vim中存在系统粘贴板,可以通过使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:reg</span><br></pre></td></tr></table></figure>
-<p>来显示系统粘贴板中的内容，然后记住所要粘贴内容的需要例如下面</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;3</span></span><br></pre></td></tr></table></figure>
-<p>然后在文档中输入命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;3p</span></span><br></pre></td></tr></table></figure>
-<p>就可以了</p>
-<h2 id="4-3-如何多行首行缩进或者相反"><a href="#4-3-如何多行首行缩进或者相反" class="headerlink" title="4.3 如何多行首行缩进或者相反"></a>4.3 如何多行首行缩进或者相反</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:xx,yy&gt;</span><br><span class="line">:xx,yy&lt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/23/vim%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/" data-id="ckhnlm6470045nng7astu5yj4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Ubuntu上SSH的使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/23/Ubuntu%E4%B8%8ASSH%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2019-09-23T04:16:47.000Z" itemprop="datePublished">2019-09-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/23/Ubuntu%E4%B8%8ASSH%E7%9A%84%E4%BD%BF%E7%94%A8/">Ubuntu中SSH的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-SSH是什么"><a href="#1-SSH是什么" class="headerlink" title="1.SSH是什么"></a>1.SSH是什么</h1><p>SSH是一种网络协议，用于计算机之间的加密登录。如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准 配置。<br>SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的实现是OpenSSH，它是自由软件，应用非常广泛。这里只讨论SSH在Linux Shell中的用法。</p>
-<h1 id="2-SSH为什么能够保证安全"><a href="#2-SSH为什么能够保证安全" class="headerlink" title="2.SSH为什么能够保证安全"></a>2.SSH为什么能够保证安全</h1><p>  原因在于它采用了公钥加密。<br>    整个过程是这样的：<br>    （1）远程主机收到用户的登录请求，把自己的公钥发给用户。<br>    （2）用户使用这个公钥，将登录密码加密后，发送回来。<br>    （3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。<br>    这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像http协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。<br>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然 无存了。这种风险就是著名的”中间人攻击”（Man-in-the-middle attack）。</p>
-<p>好吧，上面的那些我都不清楚，下面的我知道一点</p>
-<h1 id="3-如何使用SSH"><a href="#3-如何使用SSH" class="headerlink" title="3.如何使用SSH"></a>3.如何使用SSH</h1><h2 id="3-1SSH远程登陆"><a href="#3-1SSH远程登陆" class="headerlink" title="3.1SSH远程登陆"></a>3.1SSH远程登陆</h2><h2 id="3-2SSH传输文件"><a href="#3-2SSH传输文件" class="headerlink" title="3.2SSH传输文件"></a>3.2SSH传输文件</h2><h3 id="3-2-1SCP"><a href="#3-2-1SCP" class="headerlink" title="3.2.1SCP"></a>3.2.1SCP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp [-P 端口号] file-name user-name@ip/host-name:target</span><br><span class="line">//将本机文件发送到目标机的目标位置</span><br></pre></td></tr></table></figure>
-<h2 id="3-3-如何将外网连接到内网"><a href="#3-3-如何将外网连接到内网" class="headerlink" title="3.3 如何将外网连接到内网"></a>3.3 如何将外网连接到内网</h2><p>在外网服务器上配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sshd_config</span><br><span class="line"></span><br><span class="line">//在文件中修改</span><br><span class="line">GatewayPorts yes</span><br></pre></td></tr></table></figure>
-
-<p>在内网主机上配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -gR 11122:localhost:22 Ruser@Rserver</span><br><span class="line">//将外网服务器的11122端口转发到本地22端口</span><br></pre></td></tr></table></figure>
-
-<p>自动连接到外网，检查端口状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -tln</span><br><span class="line">//可以看到11122端口在监听</span><br></pre></td></tr></table></figure>
-
-<p>测试：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 11122 user@Rserver</span><br><span class="line">//其中user为内网的账户</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/23/Ubuntu%E4%B8%8ASSH%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckhnlm633001vnng76m9gdhcu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -615,7 +635,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -628,23 +648,23 @@
       <ul>
         
           <li>
+            <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/">Ubuntu之文件编码类型</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
           </li>
         
           <li>
             <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/RickandMorty/">RickandMorty</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/transformers%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">transformers使用教程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
           </li>
         
       </ul>
@@ -659,7 +679,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

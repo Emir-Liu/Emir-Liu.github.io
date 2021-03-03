@@ -64,6 +64,156 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Python之版本相争" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" class="article-date">
+  <time datetime="2020-12-17T07:53:29.000Z" itemprop="datePublished">2020-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/">Python之版本相争</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Ubuntu 20 版本的时候，不支持直接下载python2的pip ,所以，有下面的解决方法</p>
+<ol>
+<li><p>Start by enabling the universe repository:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure></li>
+<li><p>Update the packages index and install Python 2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install python2</span><br></pre></td></tr></table></figure></li>
+<li><p>Use curl to download the get-pip.py script:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py</span><br></pre></td></tr></table></figure></li>
+<li><p>Once the repository is enabled, run the script as sudo user with python2 to install pip :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python2 get-pip.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Verify the installation</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip2 --version</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" data-id="ckisjwpna0000vrg7f1itgtqs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LSTM分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2020-12-15T07:46:44.000Z" itemprop="datePublished">2020-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于LSTM模型:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png"><br>参考:<a target="_blank" rel="noopener" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>
+<p>细胞状态是LSTM的核心，如下图所示。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/%E7%BB%86%E8%83%9E%E7%8A%B6%E6%80%81.png"><br>细胞状态就像是传送带，在整个链条中一直延伸，只有一些小的线性作用，有利于信息不加改变地流动。</p>
+<p>LSTM模型通过门结构调节，具有向细胞状态删除或者增加信息的能力。</p>
+<p>有三个门结构，来保护控制细胞状态。</p>
+<p>forget gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/forget_layer.png"><br>我们首先需要确定之前的信息需要忘记多少<br>取决于h_t-1和x_t,输出0到1之间的数字。<br>1表示完全保留之前的信息C_t-1,0表示完全忘记之前的信息</p>
+<p>input gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/input_layer.png"><br>然后，我们需要决定当前细胞状态需要加入多少新的信息。<br>这里有两个部分，第一个是sigmoid函数，叫做输入门层，决定了我们更新的系数i。然后一个tanh函数建立了一个候选的数值Ct，在下一步中，我们将会将这两个合并去更新状态。</p>
+<p>更新旧的状态Ct-1<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/update.png"><br>这样，看上面的公式就很简单，首先是对之前的状态乘以一个系数，忘记一些信息，然后增加当前的状态乘以一个系数，记住一些当前的信息。</p>
+<p>最后，我们应该决定一个节点的输出结果了。这个就诶过取决于我们的细胞状态，但是是过滤后的版本。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/output.png"></p>
+<p>我们先使用sigmoid层得到的我们应该输出的东西，然后哦将细胞状态通过tanh得到系数，将两个相乘，得到当前的状态h_t</p>
+<p>LSTM有多个变种，这里就跳过。</p>
+<p>其中比较重要的是BiLSTM,就是两个方向的LSTM的输出状态拼接到一起:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png"></p>
+<p>最后补充一下，在写代码的时候，使用的torch.nn.LSTM的官方资料说明:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/torch_nn.png"></p>
+<p>下面是参数的说明:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input_size – The number of expected features <span class="keyword">in</span> the input x</span><br><span class="line"></span><br><span class="line">hidden_size – The number of features <span class="keyword">in</span> the hidden state h</span><br><span class="line"></span><br><span class="line">num_layers – Number of recurrent layers. E.g., setting num_layers=2 would mean stacking two LSTMs together to form a stacked LSTM, with the second LSTM taking <span class="keyword">in</span> outputs of the first LSTM and computing the final results. Default: 1</span><br><span class="line"></span><br><span class="line">bias – If False, <span class="keyword">then</span> the layer does not use bias weights b_ih and b_hh. Default: True</span><br><span class="line"></span><br><span class="line">batch_first – If True, <span class="keyword">then</span> the input and output tensors are provided as (batch, seq, feature). Default: False</span><br><span class="line"></span><br><span class="line">dropout – If non-zero, introduces a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout. Default: 0</span><br><span class="line"></span><br><span class="line">bidirectional – If True, becomes a bidirectional LSTM. Default: False</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/" data-id="ckipq7tgb0000pkg72ud5dxqd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lstm/" rel="tag">lstm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-spo抽取知识图谱" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="article-date">
+  <time datetime="2020-12-11T11:07:43.000Z" itemprop="datePublished">2020-12-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">spo抽取知识图谱</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考:<br><a target="_blank" rel="noopener" href="https://github.com/percent4/spo_extract_platform">https://github.com/percent4/spo_extract_platform</a></p>
+<p>知识图谱的构建由两个部分构成:<br>1.SPO三元组抽取:序列标注算法(ALBERT+BiLSTM+CRF)<br>SPO:Subject(主语) Predicate(谓语) Object(宾语)<br>sequence_labeling F1:81%</p>
+<p>2.关系抽取:文本二分类(ALBERT+BiGRU+ATT)<br>text_classification F1:96%</p>
+<p>提取无结构文本的应用在extract_example<br>下面会对这两个部分分别做完整的介绍:</p>
+<h1 id="1-SPO三元组"><a href="#1-SPO三元组" class="headerlink" title="1.SPO三元组"></a>1.SPO三元组</h1><p><img src="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/ALBERT_BiLSTM_CRF.png"><br>上面是模型的框架</p>
+<h2 id="1-ALBERT层"><a href="#1-ALBERT层" class="headerlink" title="1.ALBERT层"></a>1.ALBERT层</h2><p>albert是以单个汉字作为输入的(本次配置最大为128个，短句做padding)，两边分别加上开始标识CLS和结束标识SEP，输出的是每个输入word的embedding。在该框架中其实主要就是利用了预训练模型albert的词嵌入功能，在此基础上fine-tuning其后面的连接参数，也就是albert内部的训练参数不参与训练。</p>
+<h2 id="2-BiLSTM层"><a href="#2-BiLSTM层" class="headerlink" title="2.BiLSTM层"></a>2.BiLSTM层</h2><p>该层的输入是albert的embedding输出，一般中间会加个project_layer，保证其输出是[batch_szie,num_steps, num_tags]。batch_size为模型当中batch的大小，num_steps为输入句子的长度，本次配置为最大128，num_tags为序列标注的个数，如图中的序列标注一共是5个，也就是会输出每个词在5个tag上的分数，由于没有做softmax归一化，所以不能称之为概率值。</p>
+<h2 id="3-CRF层"><a href="#3-CRF层" class="headerlink" title="3.CRF层"></a>3.CRF层</h2><p>如果没有CRF层，直接按BiLSTM每个词在5个tag的最大分数作为输出的话，可能会出现【B-Person，O，I-Person，O，I-Location】这种序列，显然不符合实际情况。CRF层可以加入一些约束条件，从而保证最终预测结果是有效的。</p>
+<p>例如：<br>句子的开头应该是“B-”或“O”，而不是“I-”。</p>
+<h1 id="2-关系抽取"><a href="#2-关系抽取" class="headerlink" title="2.关系抽取"></a>2.关系抽取</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" data-id="ckipq7tgx0002pkg7ezag586q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/10/test/" class="article-date">
@@ -196,6 +346,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 1</span></span><br><span class="line">x = torch.randn(2,2,requires_grad=True)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 2</span></span><br><span class="line">x = torch.autograd.Variable(torch.Tensor([2,3]),requires_grad=True)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 3</span></span><br><span class="line">x = torch.tensor([2,3],requires_grad=True,dtype=torch.float64)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 4</span></span><br><span class="line">x = np.array([1,2,3],dtype=np.float64)</span><br><span class="line">x = torch.from_numpy(x)</span><br><span class="line">x.requires_grad = True</span><br><span class="line"><span class="comment"># or x.requires_grad(Ture)</span></span><br></pre></td></tr></table></figure>
 
 <p>attention:<br>1.只有浮点型数据才有梯度，</p>
+<p>tensor是PyTorch中的组建，Variable是对tensor的封装，操作和tensor一样，但是每个variable都有三个属性，包含了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.data 数据</span><br><span class="line">.grad 梯度</span><br><span class="line">.grad_fn 变量的得到方式</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -399,174 +551,6 @@
 
 
   
-    <article id="post-Schedule" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/23/Schedule/" class="article-date">
-  <time datetime="2020-11-22T17:50:27.000Z" itemprop="datePublished">2020-11-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/23/Schedule/">Schedule</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ing:<br>1.bert </p>
-<p>frame:</p>
-<p>neural network<br>convolution neural network</p>
-<p>rnn<br>lstm<br>transformers<br>bert<br>gpt-2</p>
-<p>lecture:</p>
-<p>Deep learning for human language processing</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/23/Schedule/" data-id="ckhu3vd440000elg7fpe0ab1g" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/schedule/" rel="tag">schedule</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/18/hello-world/" class="article-date">
-  <time datetime="2020-11-18T13:05:09.561Z" itemprop="datePublished">2020-11-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/18/hello-world/" data-id="ckhnfaec60000nag71b8sdici" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-AdaBoost模型" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/" class="article-date">
-  <time datetime="2020-10-23T11:56:51.000Z" itemprop="datePublished">2020-10-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/">AdaBoost模型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>资料来源:<br><a target="_blank" rel="noopener" href="https://blog.paperspace.com/adaboost-optimizer/#:~:text=AdaBoost%20is%20an%20ensemble%20learning,turn%20them%20into%20strong%20ones">https://blog.paperspace.com/adaboost-optimizer/#:~:text=AdaBoost%20is%20an%20ensemble%20learning,turn%20them%20into%20strong%20ones</a>.</p>
-<p>Ensemble Learning:<br>集成学习(或者是组合学习)，将多个基础的算法相结合，构造成一个优化的预测模型。</p>
-<p>为什么需要集成学习:<br>1.减少变量<br>2.减少偏置<br>3.提高预测性能</p>
-<p>集成学习被分为了两个类型:</p>
-<ol>
-<li>顺序学习，通过依次生成不同的模型，之前模型的错误被后来的模型学习，利用模型之间的依赖性，使得错误标记有更大的权重。</li>
-</ol>
-<p>例如:AdaBoost</p>
-<p>2.并行学习，并行产生基本的模型，这通过平均错误来利用了模型的独立性。</p>
-<p>例如:Random Forest 随机森林</p>
-<p>集成方法中的Boosting<br>例如人类从错误中学习，并且尝试将来不再犯同样的错误，Boost算法尝试从多个弱分类器的错误中建立一个更强的学习预测模型。<br>你一开始从训练数据中建立一个模型，<br>然后你从上一个模型中建立第二个模型通过尝试从减少上一个模型的误差。<br>模型被顺序增加，每一个都修改它的前面一个模型，知道训练数据被完美的预测或者增加了最大数量的模型。</p>
-<p>Boosting基本上是试图减少模型无法识别数据中的相关趋势的时候所引起的偏差。这是通过评估预测数据和实际数据的差值所实现的。</p>
-<p>Boost算法的类别:<br>1.AdaBoost(Adaptive Boosting)<br>2.Gradient Tree Boosting<br>3.XGBoost</p>
-<p>我们主要注意AdaBoost中的细节，这个是Boost算法中最流行的算法。</p>
-<p>单个分类器也许无法正确预测每个对象的类别，但是当我们将多个弱分类器组合到一起，每个分类器从其他分类器中分类错误的对象中进行学习，我们可以构建一个强模型，弱分类器可以是任何基本分类器，从决策树到Logistic回归等。</p>
-<p>那么什么是弱分类器？<br>弱分类器的性能优于随机猜测，但是在指定对象的类中表现不佳，例如，较弱的分类器可以预测40岁以上的每个人都无法参加马拉松比赛，但是低于40岁的人可以参加马拉松比赛，也许就会有60%以上的准确度，但是仍然会有许多数据点误分。</p>
-<p>AdaBoost不仅仅可以作为模型本身使用，还可以应用在任何分类器之上，从其缺点中学习并且提出更加准确的模型。因此可以称为最佳现成分类器。</p>
-<p>那么开始了解AdaBoost是如何和决策树桩一起使用，决策树桩就像随机森林中的数目，但不是完全生长的，它有一个节点和两个叶子，AdaBoost使用了这样的树桩森林，而不是树。</p>
-<p>单靠树桩并不是做出决定的好方法。一棵成熟的树结合了所有变量的决策以预测目标值。另一方面，树桩只能使用一个变量来做出决定。让我们通过查看几个变量来确定一个人是否“健康”（身体健康），来逐步了解AdaBoost算法的幕后知识。</p>
-<p>例子:<br>STEP1:<br>一个弱分类，基于加权的样本，样本的权重表示正确分类的重要性，对于第一个弱分类，我们给所有样本同样的权重。</p>
-<p>STEP2:<br>我们为每一个变量创造一个决策树桩，并查看每一个树桩分类的结果，例如，我们检查了年龄、吃垃圾食物和锻炼。我们将看每个树桩将多少样本正确分类。</p>
-<p>STEP3:<br>我们将更多的权重分配给分类错误的样本，以便在下一个决策树桩中对样本进行正确的分类，权重还会根据每个分类器的准确性分配给每个分类器，高精度的分类器就有更好的权重。</p>
-<p>STEP4:<br>第二步重复进行，直到所有数据点都正确分类。</p>
-<p><img src="fully_grown_tree_vs_stumps.png"></p>
-<p><img src="more_import_stumps.jpeg"></p>
-<p>下面是数学方面的表示:<br>首先是数据集:<br><img src="input.png"><br>其中:<br>n:数字的维度，或者说是数据集的特征数</p>
-<p>x:数据点的集合</p>
-<p>y:目标变量为-1和1,当为二分类问题的时候</p>
-<p>那么，每个样本的权重，如何计算?</p>
-<p>一开始的时候，每个样本的权重都相同，为1/N<br>其中:N为数据点的总数</p>
-<p>这使得加权的样本和为1</p>
-<p>之后，计算分类器的影响力，通过下面的公式:<br><img src="classifier_inf.png"></p>
-<p>Total Error就是错误分类的数目，那么关系如下图所示:<br><img src="Alpha_vs_Error_Rate.png"></p>
-<p>记住，当分类器表现好的时候，影响力大，当0.5的时候为0,当非常不好的时候，为负数。</p>
-<p>之后，样本的权重呢?<br><img src="sample_weights.png"></p>
-<p>总结:<br>AdaBoost的好坏:<br>优点：<br>比SVM简单好用，不需要调整参数<br>AdaBoost不会倾向于过拟合<br>提高了弱分类器的准确性，使其更加灵活</p>
-<p>缺点：<br>需要有高质量的数据，对噪声敏感</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/23/AdaBoost%E6%A8%A1%E5%9E%8B/" data-id="ckhnlm6210000nng766fch0iz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -604,7 +588,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -617,23 +601,23 @@
       <ul>
         
           <li>
+            <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/">Ubuntu之文件编码类型</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
           </li>
         
           <li>
             <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/RickandMorty/">RickandMorty</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/transformers%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">transformers使用教程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
           </li>
         
       </ul>
@@ -648,7 +632,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

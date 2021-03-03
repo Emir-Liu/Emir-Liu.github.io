@@ -15,7 +15,7 @@
 <meta property="og:description" content="参考资料:https:&#x2F;&#x2F;pytorch.org&#x2F;tutorials&#x2F;beginner&#x2F;deep_learning_60min_blitz.html 第一部分 tensor + operator 第二部分 autogradtorch.Tnesor是包中的核心类，.requires_grad &#x3D; True，那么会自动跟踪所有运算，.backward() 当你结束运算调用这个函数，就会自动计算梯度。.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-27T11:25:15.000Z">
-<meta property="article:modified_time" content="2020-12-10T05:55:07.589Z">
+<meta property="article:modified_time" content="2020-12-29T00:43:45.724Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="torch">
@@ -121,6 +121,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 1</span></span><br><span class="line">x = torch.randn(2,2,requires_grad=True)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 2</span></span><br><span class="line">x = torch.autograd.Variable(torch.Tensor([2,3]),requires_grad=True)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 3</span></span><br><span class="line">x = torch.tensor([2,3],requires_grad=True,dtype=torch.float64)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 4</span></span><br><span class="line">x = np.array([1,2,3],dtype=np.float64)</span><br><span class="line">x = torch.from_numpy(x)</span><br><span class="line">x.requires_grad = True</span><br><span class="line"><span class="comment"># or x.requires_grad(Ture)</span></span><br></pre></td></tr></table></figure>
 
 <p>attention:<br>1.只有浮点型数据才有梯度，</p>
+<p>tensor是PyTorch中的组建，Variable是对tensor的封装，操作和tensor一样，但是每个variable都有三个属性，包含了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.data 数据</span><br><span class="line">.grad 梯度</span><br><span class="line">.grad_fn 变量的得到方式</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -186,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
     </div>
   </div>
 
@@ -199,23 +201,23 @@
       <ul>
         
           <li>
+            <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/">Ubuntu之文件编码类型</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/26/CRF%E8%AF%A6%E8%A7%A3/">CRF详解</a>
           </li>
         
           <li>
             <a href="/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Python中tornado使用说明</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/RickandMorty/">RickandMorty</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/25/transformers%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">transformers使用教程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/24/GRU%E8%AF%B4%E6%98%8E/">GRU说明</a>
           </li>
         
       </ul>
@@ -230,7 +232,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2021 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
