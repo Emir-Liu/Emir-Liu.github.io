@@ -5,14 +5,20 @@
   
 
   
-  <title>Tag: 书单 | Hexo</title>
+  <title>整理-Git使用教程 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/%E4%B9%A6%E5%8D%95/index.html">
+  <meta name="description" content="0.概述环境:Ubuntu 这里是关于Git使用的整理，将之前使用的相关的资料整理。包含下面的内容：  SSH连接到Git(你不会想每次连接到Git的时候都输入账户名和密码的)官方资料参考:https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;github&#x2F;authenticating-to-github&#x2F;connecting-to-github-with-ssh  建立本地仓库之后并上传到Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整理-Git使用教程">
+<meta property="og:url" content="http://example.com/2021/03/03/%E6%95%B4%E7%90%86-Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="0.概述环境:Ubuntu 这里是关于Git使用的整理，将之前使用的相关的资料整理。包含下面的内容：  SSH连接到Git(你不会想每次连接到Git的时候都输入账户名和密码的)官方资料参考:https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;github&#x2F;authenticating-to-github&#x2F;connecting-to-github-with-ssh  建立本地仓库之后并上传到Git">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-03T10:51:56.000Z">
+<meta property="article:modified_time" content="2021-03-11T07:43:38.721Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -62,40 +68,109 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/01/%E4%B9%A6%E5%8D%95/" class="archive-article-date">
-  <time datetime="2019-10-01T00:22:11.000Z" itemprop="datePublished">Oct 1</time>
+        <section id="main"><article id="post-整理-Git使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/03/%E6%95%B4%E7%90%86-Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2021-03-03T10:51:56.000Z" itemprop="datePublished">2021-03-03</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/01/%E4%B9%A6%E5%8D%95/">书单</a>
+    <h1 class="article-title" itemprop="name">
+      整理-Git使用教程
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>环境:Ubuntu</p>
+<p>这里是关于Git使用的整理，将之前使用的相关的资料整理。包含下面的内容：</p>
+<ol>
+<li><p>SSH连接到Git(你不会想每次连接到Git的时候都输入账户名和密码的)<br>官方资料参考:<a target="_blank" rel="noopener" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh</a></p>
+</li>
+<li><p>建立本地仓库之后并上传到Github</p>
+</li>
+</ol>
+<h1 id="1-内容"><a href="#1-内容" class="headerlink" title="1.内容"></a>1.内容</h1><h2 id="1-1-SSH连接到Git"><a href="#1-1-SSH连接到Git" class="headerlink" title="1.1 SSH连接到Git"></a>1.1 SSH连接到Git</h2><p>当你使用Git的时候，你会需要建立自己的仓库，时不时地对仓库进行操作更新等。每次都输入用户名和密码是非人类的，所以需要通过使用SSH连接到Git,这样就能够直接进行操作了。</p>
+<p>参考资料在概述中有，下面我会详细讲述一下。</p>
+<h3 id="1-1-1-关于SSH"><a href="#1-1-1-关于SSH" class="headerlink" title="1.1.1 关于SSH"></a>1.1.1 关于SSH</h3><p>使用SSH协议，您可以连接到远程服务器和服务并进行身份验证。使用SSH密钥，您可以连接到GitHub，而无需在每次访问时都提供用户名和个人访问令牌。</p>
+<p>设置SSH时，您将生成一个SSH密钥并将其添加到ssh-agent中，然后将该密钥添加到您的GitHub帐户中。将SSH密钥添加到ssh-agent可以确保您的SSH密钥通过使用密码短语具有额外的安全性。</p>
+<p>可以在用户中设置SSH Key，作为全局的SSH，或者对单个仓库设置SSH Key,来单独使用。</p>
+<p>官方文档建议您定期查看SSH密钥列表，并撤消所有无效或已被破坏的密钥。</p>
+<p>如果一年未使用SSH密钥，那么GitHub将自动删除非活动SSH密钥，以确保安全。</p>
+<h3 id="1-1-2-检查现有的SSH密钥"><a href="#1-1-2-检查现有的SSH密钥" class="headerlink" title="1.1.2 检查现有的SSH密钥"></a>1.1.2 检查现有的SSH密钥</h3><p>在生成SSH密钥之前，您可以检查是否有任何现有的SSH密钥。</p>
+<p>默认ssh key保存路径为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.ssh</span><br></pre></td></tr></table></figure>
+<p>如果已经有一个公共的SSH Key,那么文件中包含类似于下面的文件:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id_rsa</span><br><span class="line">id_rsa.pub</span><br><span class="line">known_hosts</span><br></pre></td></tr></table></figure>
+<p>如果没有的话，可以到下面一步生成新的SSH Key，如果已经有了公钥和私钥对，那么就将跳跃到SSH Key添加到ssh-agent中去。</p>
+<h3 id="1-1-3-生成新的SSH密钥并且添加到ssh-agent中"><a href="#1-1-3-生成新的SSH密钥并且添加到ssh-agent中" class="headerlink" title="1.1.3 生成新的SSH密钥并且添加到ssh-agent中"></a>1.1.3 生成新的SSH密钥并且添加到ssh-agent中</h3><p>这里其实是两步，针对上面是否有公钥和私钥对。</p>
+<h4 id="1-1-3-1-生成新的SSH密钥"><a href="#1-1-3-1-生成新的SSH密钥" class="headerlink" title="1.1.3.1 生成新的SSH密钥"></a>1.1.3.1 生成新的SSH密钥</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
 
+<p>如果，你的系统不支持Ed25519，那么使用下面的内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-3-2-将SSH密钥添加到ssh-agent"><a href="#1-1-3-2-将SSH密钥添加到ssh-agent" class="headerlink" title="1.1.3.2 将SSH密钥添加到ssh-agent"></a>1.1.3.2 将SSH密钥添加到ssh-agent</h4><p>后台启动ssh-agent</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>将SSH私钥添加到ssh-agent,如果密钥是其他名称就使用其他名称，顺便说一下，私钥的路径上面说过了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.ssh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_ed25519</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-4-向Github账户中添加SSH密钥"><a href="#1-1-4-向Github账户中添加SSH密钥" class="headerlink" title="1.1.4 向Github账户中添加SSH密钥"></a>1.1.4 向Github账户中添加SSH密钥</h3><p>要将GitHub帐户配置为使用新的（或现有的）SSH密钥，您还需要将其添加到GitHub帐户中。</p>
+<p>打开xxx.pub，也就是公钥，然后将它复制。</p>
+<p>到github页面右上角的个人资料，点击settings，在左边的栏目中点击SSH and GPG keys,点击New SSH key。</p>
+<p>在title中，添加一个描述性的文字，例如”mytitle”<br>将公钥粘贴到Key中，是以ssh-xxx开始的内容</p>
+<h3 id="1-1-5-测试SSH连接"><a href="#1-1-5-测试SSH连接" class="headerlink" title="1.1.5 测试SSH连接"></a>1.1.5 测试SSH连接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>当第一次输入的时候会有如下的输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; The authenticity of host <span class="string">&#x27;github.com (IP ADDRESS)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">&gt; RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</span></span><br><span class="line"><span class="string">&gt; Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
+<p>确定之后，会有如下的输出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Hi username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not</span></span><br><span class="line"><span class="string">&gt; provide shell access.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-5-备注"><a href="#1-1-5-备注" class="headerlink" title="1.1.5 备注"></a>1.1.5 备注</h3><p>记住我们使用的是SSH，所以当你使用HTTP连接的时候依然需要输入用户名和密码。只要选择SSH连接。。</p>
+<h2 id="1-2-建立本地仓库后上传到Github"><a href="#1-2-建立本地仓库后上传到Github" class="headerlink" title="1.2 建立本地仓库后上传到Github"></a>1.2 建立本地仓库后上传到Github</h2><p>现在可以开始正式一些的项目了。</p>
+<h3 id="1-2-1-创建一个本地仓库"><a href="#1-2-1-创建一个本地仓库" class="headerlink" title="1.2.1 创建一个本地仓库"></a>1.2.1 创建一个本地仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init MyProject</span><br></pre></td></tr></table></figure>
+<p>会建立MyProject文件夹，然后文件夹中会有.git隐藏文件夹，其中包含的内容是一些索引、忽略的文件等配置。</p>
+<h4 id="1-2-1-1-创建描述性文件"><a href="#1-2-1-1-创建描述性文件" class="headerlink" title="1.2.1.1 创建描述性文件"></a>1.2.1.1 创建描述性文件</h4><p>进入项目文件夹，然后建立描述文件README.md。这很重要！！！虽然没有这个文件也可以继续，但是强烈建议</p>
+<h4 id="1-2-1-2-将文件添加到索引中"><a href="#1-2-1-2-将文件添加到索引中" class="headerlink" title="1.2.1.2 将文件添加到索引中"></a>1.2.1.2 将文件添加到索引中</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add filename</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">git add --all</span><br></pre></td></tr></table></figure>
+<p>上面的是添加单个文件进入索引，下面是添加所有文件进入索引。</p>
+<h4 id="1-2-1-3-提交对索引的更改"><a href="#1-2-1-3-提交对索引的更改" class="headerlink" title="1.2.1.3 提交对索引的更改"></a>1.2.1.3 提交对索引的更改</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -c <span class="string">&quot;comment&quot;</span></span><br></pre></td></tr></table></figure>
+<p>后面是对于修改的一些注释，提交对索引的更改</p>
+<h3 id="1-2-2-在Github上创建远端仓库"><a href="#1-2-2-在Github上创建远端仓库" class="headerlink" title="1.2.2 在Github上创建远端仓库"></a>1.2.2 在Github上创建远端仓库</h3><p>打开github.com，然后建立一个Repository,点点点。<br>创建完成之后，我们将本地仓库和Github上的仓库进行连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/user_name/Mytest.git</span><br></pre></td></tr></table></figure>
+<p>后面的可以在网页上找到</p>
+<h3 id="1-2-3-将本地仓库推送到Github远端仓库"><a href="#1-2-3-将本地仓库推送到Github远端仓库" class="headerlink" title="1.2.3 将本地仓库推送到Github远端仓库"></a>1.2.3 将本地仓库推送到Github远端仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/03/%E6%95%B4%E7%90%86-Git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" data-id="cknfd48my000001g7abp507k4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/03/test-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">test</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
