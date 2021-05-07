@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-17T05:43:16.555Z</updated>
+  <updated>2021-05-07T03:11:13.165Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,103 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>建立网站整理</title>
+    <link href="http://example.com/2021/05/07/%E5%BB%BA%E7%AB%8B%E7%BD%91%E7%AB%99%E6%95%B4%E7%90%86/"/>
+    <id>http://example.com/2021/05/07/%E5%BB%BA%E7%AB%8B%E7%BD%91%E7%AB%99%E6%95%B4%E7%90%86/</id>
+    <published>2021-05-07T01:13:59.000Z</published>
+    <updated>2021-05-07T03:11:13.165Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>建立网站包含下面的步骤：</p><p>1.服务器及域名<br>这里是乱七八糟的东西，可以跳过</p><p>2.环境配置<br>使用Web服务器软件，这里使用Apache</p><p>3.前端<br>html、java_script等</p><p>4.后端<br>php</p><p>建立网站整理的原因是自己的爬虫爬漫画的时候，网站使用了js，所以，自己建一个网站，然后，就知道怎么爬了。。哈哈哈。</p><h1 id="1-服务器及域名"><a href="#1-服务器及域名" class="headerlink" title="1.服务器及域名"></a>1.服务器及域名</h1><h1 id="2-环境配置"><a href="#2-环境配置" class="headerlink" title="2.环境配置"></a>2.环境配置</h1><p>服务器环境 Ubuntu20</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ssh user@ip <span class="comment">#连接到服务器</span></span><br><span class="line">who <span class="comment"># ssh下面的命令，可以检查有哪些用户在使用服务器</span></span><br><span class="line">ps aux|grep sshd <span class="comment"># 断开某个ssh用户</span></span><br><span class="line">xxx<span class="comment"># 关闭那个pid</span></span><br><span class="line">scp filename user@ip <span class="comment">#传输文件到服务器</span></span><br><span class="line">apt install apache2 <span class="comment">#安装apache网页服务软件</span></span><br><span class="line">//这里直接访问服务器的ip就可以显示apache服务页面了，说明上面的成功</span><br><span class="line">//注意apache 的文件内容在/var/www/html中</span><br><span class="line">scp local_file user@ip:remote_file <span class="comment"># 将本地的数据上传到服务器中</span></span><br></pre></td></tr></table></figure><p>这样就可以完成静态的网站了。<br>下面是动态网站的内容：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><h1 id="3-前端"><a href="#3-前端" class="headerlink" title="3.前端"></a>3.前端</h1><h1 id="4-后端"><a href="#4-后端" class="headerlink" title="4.后端"></a>4.后端</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;建立网站包含下面的步骤：&lt;/p&gt;
+&lt;p&gt;1.服务器及域名&lt;br&gt;这里是乱七八糟的东西，可以跳过&lt;/p&gt;
+&lt;p&gt;2.环境配置&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="ubuntu" scheme="http://example.com/tags/ubuntu/"/>
+    
+    <category term="apache" scheme="http://example.com/tags/apache/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2021研电赛进行</title>
+    <link href="http://example.com/2021/05/07/2021%E7%A0%94%E7%94%B5%E8%B5%9B%E8%BF%9B%E8%A1%8C/"/>
+    <id>http://example.com/2021/05/07/2021%E7%A0%94%E7%94%B5%E8%B5%9B%E8%BF%9B%E8%A1%8C/</id>
+    <published>2021-05-06T23:30:29.000Z</published>
+    <updated>2021-05-07T03:12:36.317Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-资料"><a href="#1-资料" class="headerlink" title="1.资料"></a>1.资料</h1><p>2021题目<br><a href="https://cpipc.acge.org.cn//pw/detail/2c90800c78715fdd0178ab9399280ef1">https://cpipc.acge.org.cn//pw/detail/2c90800c78715fdd0178ab9399280ef1</a><br>报名<br><a href="https://cpipc.acge.org.cn//pw/list/%E5%A4%A7%E8%B5%9B%E5%8A%A8%E6%80%81/1/1">https://cpipc.acge.org.cn//pw/list/%E5%A4%A7%E8%B5%9B%E5%8A%A8%E6%80%81/1/1</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-资料&quot;&gt;&lt;a href=&quot;#1-资料&quot; class=&quot;headerlink&quot; title=&quot;1.资料&quot;&gt;&lt;/a&gt;1.资料&lt;/h1&gt;&lt;p&gt;2021题目&lt;br&gt;&lt;a href=&quot;https://cpipc.acge.org.cn//pw/detail/2c9080</summary>
+      
+    
+    
+    
+    
+    <category term="记录" scheme="http://example.com/tags/%E8%AE%B0%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTML资料整理</title>
+    <link href="http://example.com/2021/05/06/HTML%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/"/>
+    <id>http://example.com/2021/05/06/HTML%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/</id>
+    <published>2021-05-06T06:27:20.000Z</published>
+    <updated>2021-05-06T06:29:00.092Z</updated>
+    
+    
+    
+    
+    
+    <category term="html" scheme="http://example.com/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊天机器人实现</title>
+    <link href="http://example.com/2021/04/30/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://example.com/2021/04/30/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%9E%E7%8E%B0/</id>
+    <published>2021-04-30T08:03:17.000Z</published>
+    <updated>2021-04-30T08:03:17.569Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>neo4j使用指南</title>
+    <link href="http://example.com/2021/04/28/neo4j%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <id>http://example.com/2021/04/28/neo4j%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</id>
+    <published>2021-04-28T09:21:36.000Z</published>
+    <updated>2021-04-29T05:03:10.942Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>试一试</p><h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h1><p>使用neo4j community版本，记得不要使用desktop版本，主要看官网，然后使用Java.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot; title=&quot;1.概述&quot;&gt;&lt;/a&gt;1.概述&lt;/h1&gt;&lt;p&gt;试一试&lt;/p&gt;
+&lt;h1 id=&quot;2-安装&quot;&gt;&lt;a href=&quot;#2-安装&quot; class=&quot;headerlink&quot; title</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>水论文的必要步骤1之期刊选择</title>
@@ -178,9 +275,9 @@
     <link href="http://example.com/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
     <id>http://example.com/2020/12/25/Python%E4%B8%ADtornado%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
     <published>2020-12-25T03:07:30.000Z</published>
-    <updated>2021-01-11T07:23:36.742Z</updated>
+    <updated>2021-04-30T11:58:03.908Z</updated>
     
-    <content type="html"><![CDATA[<p>tornado是一个网络具有异步功能的网络库。样例:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import tornado.ioloop</span><br><span class="line">import tornado.web</span><br><span class="line"></span><br><span class="line">class MainHandler(tornado.web.RequestHandler):</span><br><span class="line">    def get(self):</span><br><span class="line">        self.write(<span class="string">&quot;Hello, world&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    application = tornado.web.Application([</span><br><span class="line">        (r<span class="string">&quot;/&quot;</span>, MainHandler),</span><br><span class="line">    ])</span><br><span class="line">    application.listen(8888)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br></pre></td></tr></table></figure><p>运行上面的程序之后，然后打开浏览器输入:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8888</span><br></pre></td></tr></table></figure><h1 id="URL相关"><a href="#URL相关" class="headerlink" title="URL相关"></a>URL相关</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protocol :// hostname[:port] / path / [;parameters] [?query] <span class="comment"># fragment</span></span><br></pre></td></tr></table></figure><p>protocol 协议<br>hostname 主机名<br>port     端口号<br>path     路径<br>parameters 参数<br>query    查询<br>fragment 信息片段</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.get_argument(&quot;text&quot;)</span><br><span class="line">localhost:12308&#x2F;spo_extract?text&#x3D;你好</span><br></pre></td></tr></table></figure><h1 id="Get和post"><a href="#Get和post" class="headerlink" title="Get和post"></a>Get和post</h1><p>都是向服务器提交数据，而且从服务器获取数据</p><p>1.区别:<br>get通过地址栏传输<br>post通过报文传输</p><p>2.传送长度:<br>get的参数有长度限制，受限于url长度<br>post没有限制</p><p>3.TCP数据包<br>GET产生一个<br>POST产生2个<br>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p><p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p><h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="端口冲突-Address-already-in-use-解决方法"><a href="#端口冲突-Address-already-in-use-解决方法" class="headerlink" title="端口冲突(Address already in use)解决方法"></a>端口冲突(Address already in use)解决方法</h2><ol><li><p>我们在后端开发的过程中往往会在没有正常关闭某个正在执行的脚本或者程序而是直接关闭了Terminal(终端)或是通过其他方式的异常关闭导致了之前的端口实际上仍未被释放，这时候倘若我门想要再使用这个端口，就会抛出 “error:[Errno 98] Address already in use” 这样的异常。</p></li><li><p>这时候我们只需要找到正在利用这个端口的进程，并得到这个进程的PID，杀死这个PID对应的这个进程，就能够有效释放被占用的端口，后续再使用的时候就不会再抛出端口已经被占用的异常信息。</p></li><li><p>找到被占用的指定端口号所对应的进程信息并呈现，xxx处填写对应要查找的端口号：<br>sudo lsof -i:xxx</p></li></ol><p>4.关闭这个进程,xxx为PID：<br>sudo kill xxx</p>]]></content>
+    <content type="html"><![CDATA[<p>tornado是一个网络具有异步功能的网络库。样例:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import tornado.ioloop</span><br><span class="line">import tornado.web</span><br><span class="line"></span><br><span class="line">class MainHandler(tornado.web.RequestHandler):</span><br><span class="line">    def get(self):</span><br><span class="line">        self.write(<span class="string">&quot;Hello, world&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    application = tornado.web.Application([</span><br><span class="line">        (r<span class="string">&quot;/&quot;</span>, MainHandler),</span><br><span class="line">    ])</span><br><span class="line">    application.listen(8888)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br></pre></td></tr></table></figure><p>运行上面的程序之后，然后打开浏览器输入:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8888</span><br></pre></td></tr></table></figure><h1 id="URL相关"><a href="#URL相关" class="headerlink" title="URL相关"></a>URL相关</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protocol :// hostname[:port] / path / [;parameters] [?query] <span class="comment"># fragment</span></span><br></pre></td></tr></table></figure><p>protocol 协议<br>hostname 主机名<br>port     端口号<br>path     路径<br>parameters 参数<br>query    查询<br>fragment 信息片段</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.get_argument(&quot;text&quot;)</span><br><span class="line">localhost:12308&#x2F;spo_extract?text&#x3D;你好</span><br></pre></td></tr></table></figure><h1 id="Get和post"><a href="#Get和post" class="headerlink" title="Get和post"></a>Get和post</h1><p>都是向服务器提交数据，而且从服务器获取数据</p><p>1.区别:<br>get通过地址栏传输<br>post通过报文传输</p><p>2.传送长度:<br>get的参数有长度限制，受限于url长度<br>post没有限制</p><p>3.TCP数据包<br>GET产生一个<br>POST产生2个<br>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p><p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p><h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="端口冲突-Address-already-in-use-解决方法"><a href="#端口冲突-Address-already-in-use-解决方法" class="headerlink" title="端口冲突(Address already in use)解决方法"></a>端口冲突(Address already in use)解决方法</h2><ol><li><p>我们在后端开发的过程中往往会在没有正常关闭某个正在执行的脚本或者程序而是直接关闭了Terminal(终端)或是通过其他方式的异常关闭导致了之前的端口实际上仍未被释放，这时候倘若我门想要再使用这个端口，就会抛出 “error:[Errno 98] Address already in use” 这样的异常。</p></li><li><p>这时候我们只需要找到正在利用这个端口的进程，并得到这个进程的PID，杀死这个PID对应的这个进程，就能够有效释放被占用的端口，后续再使用的时候就不会再抛出端口已经被占用的异常信息。</p></li><li><p>找到被占用的指定端口号所对应的进程信息并呈现，xxx处填写对应要查找的端口号：<br>sudo lsof -i:xxx</p></li></ol><p>4.关闭这个进程,xxx为PID：<br>sudo kill -9 xxx</p>]]></content>
     
     
       
@@ -354,122 +451,6 @@
     
     
     <category term="lstm" scheme="http://example.com/tags/lstm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spo抽取知识图谱</title>
-    <link href="http://example.com/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
-    <id>http://example.com/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</id>
-    <published>2020-12-11T11:07:43.000Z</published>
-    <updated>2020-12-11T11:33:04.815Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考:<br><a href="https://github.com/percent4/spo_extract_platform">https://github.com/percent4/spo_extract_platform</a></p><p>知识图谱的构建由两个部分构成:<br>1.SPO三元组抽取:序列标注算法(ALBERT+BiLSTM+CRF)<br>SPO:Subject(主语) Predicate(谓语) Object(宾语)<br>sequence_labeling F1:81%</p><p>2.关系抽取:文本二分类(ALBERT+BiGRU+ATT)<br>text_classification F1:96%</p><p>提取无结构文本的应用在extract_example<br>下面会对这两个部分分别做完整的介绍:</p><h1 id="1-SPO三元组"><a href="#1-SPO三元组" class="headerlink" title="1.SPO三元组"></a>1.SPO三元组</h1><p><img src="/2020/12/11/spo%E6%8A%BD%E5%8F%96%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/ALBERT_BiLSTM_CRF.png"><br>上面是模型的框架</p><h2 id="1-ALBERT层"><a href="#1-ALBERT层" class="headerlink" title="1.ALBERT层"></a>1.ALBERT层</h2><p>albert是以单个汉字作为输入的(本次配置最大为128个，短句做padding)，两边分别加上开始标识CLS和结束标识SEP，输出的是每个输入word的embedding。在该框架中其实主要就是利用了预训练模型albert的词嵌入功能，在此基础上fine-tuning其后面的连接参数，也就是albert内部的训练参数不参与训练。</p><h2 id="2-BiLSTM层"><a href="#2-BiLSTM层" class="headerlink" title="2.BiLSTM层"></a>2.BiLSTM层</h2><p>该层的输入是albert的embedding输出，一般中间会加个project_layer，保证其输出是[batch_szie,num_steps, num_tags]。batch_size为模型当中batch的大小，num_steps为输入句子的长度，本次配置为最大128，num_tags为序列标注的个数，如图中的序列标注一共是5个，也就是会输出每个词在5个tag上的分数，由于没有做softmax归一化，所以不能称之为概率值。</p><h2 id="3-CRF层"><a href="#3-CRF层" class="headerlink" title="3.CRF层"></a>3.CRF层</h2><p>如果没有CRF层，直接按BiLSTM每个词在5个tag的最大分数作为输出的话，可能会出现【B-Person，O，I-Person，O，I-Location】这种序列，显然不符合实际情况。CRF层可以加入一些约束条件，从而保证最终预测结果是有效的。</p><p>例如：<br>句子的开头应该是“B-”或“O”，而不是“I-”。</p><h1 id="2-关系抽取"><a href="#2-关系抽取" class="headerlink" title="2.关系抽取"></a>2.关系抽取</h1>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;参考:&lt;br&gt;&lt;a href=&quot;https://github.com/percent4/spo_extract_platform&quot;&gt;https://github.com/percent4/spo_extract_platform&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;知识图谱的构建由两个部</summary>
-      
-    
-    
-    
-    
-    <category term="知识图谱" scheme="http://example.com/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://example.com/2020/12/10/test/"/>
-    <id>http://example.com/2020/12/10/test/</id>
-    <published>2020-12-10T05:35:43.000Z</published>
-    <updated>2020-12-10T05:38:27.776Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2020/12/10/test/cat.jpeg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2020/12/10/test/cat.jpeg&quot;&gt;&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu之GPU运算不归路</title>
-    <link href="http://example.com/2020/12/01/Ubuntu%E4%B9%8BGPU%E8%BF%90%E7%AE%97%E4%B8%8D%E5%BD%92%E8%B7%AF/"/>
-    <id>http://example.com/2020/12/01/Ubuntu%E4%B9%8BGPU%E8%BF%90%E7%AE%97%E4%B8%8D%E5%BD%92%E8%B7%AF/</id>
-    <published>2020-12-01T08:12:52.000Z</published>
-    <updated>2020-12-01T08:22:05.332Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前，本人尝试在Ubuntu系统上进行GPU运算，装GPU驱动等等。<br>以失败告终，最后，在命令行模式下转移了自己的部分资料，然后重装了系统。<br>面对这个惨痛的教训，我怎么能够忍气吞声，开始筹备第二次GPU远征。</p><p>这次，我先保存资料，以供后人借鉴。</p><p>首先，检查电脑上的GPU信息:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lspci | grep -i nvidia <span class="comment">#可以查询所有的nvidia显卡</span></span><br><span class="line"></span><br><span class="line">lspci -v -s [显卡编号] <span class="comment">#可以查询显卡的具体属性</span></span><br><span class="line"></span><br><span class="line">nvidia-smi <span class="comment">#可以查看显卡的显存利用率，特别注意，这个需要下载驱动，没有下载驱动的，请小心，上次我就下载驱动之后就出问题了</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;之前，本人尝试在Ubuntu系统上进行GPU运算，装GPU驱动等等。&lt;br&gt;以失败告终，最后，在命令行模式下转移了自己的部分资料，然后重装了系统。&lt;br&gt;面对这个惨痛的教训，我怎么能够忍气吞声，开始筹备第二次GPU远征。&lt;/p&gt;
-&lt;p&gt;这次，我先保存资料，以供后人借鉴。&lt;/</summary>
-      
-    
-    
-    
-    
-    <category term="ubuntu" scheme="http://example.com/tags/ubuntu/"/>
-    
-    <category term="gpu" scheme="http://example.com/tags/gpu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PyTorch使用说明</title>
-    <link href="http://example.com/2020/11/27/PyTorch%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
-    <id>http://example.com/2020/11/27/PyTorch%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
-    <published>2020-11-27T11:25:15.000Z</published>
-    <updated>2020-12-29T00:43:45.724Z</updated>
-    
-    <content type="html"><![CDATA[<p>参考资料:<br><a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html">https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html</a></p><p>第一部分 tensor + operator</p><p>第二部分 autograd<br>torch.Tnesor是包中的核心类，<br>.requires_grad = True，那么会自动跟踪所有运算，<br>.backward() 当你结束运算调用这个函数，就会自动计算梯度。<br>.grad 梯度会计算放到这里</p><p>.detach() 可以停止跟踪<br>with torch.no_grad(): 停止跟踪<br>上面的在评估模型的时候非常有用</p><p>Function类也是一个很重要的类别。<br>.grad_fn 是一个tensor被一个函数建立</p><p>随机数初始化:<br>在神经网络中，参数默认是进行随机初始化的，不同的初始化参数往往会导致不同的结果，当得到比较好的结果的时候，我们希望结果可以复现，在torch中，通过设置随机数种子可以达到这个目的:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def set_seed(seed):</span><br><span class="line">    torch.manual_seed(seed)  </span><br><span class="line">    <span class="comment"># cpu 为CPU设置种子用于生成随机数，以使得结果是确定的</span></span><br><span class="line">    torch.cuda.manual_seed(seed)  </span><br><span class="line">    <span class="comment"># gpu 为当前GPU设置随机种子</span></span><br><span class="line">    torch.backends.cudnn.deterministic = True  </span><br><span class="line">    <span class="comment"># cudnn 每次返回的卷积算法都是确定的，即默认算法</span></span><br><span class="line">    np.random.seed(seed)  </span><br><span class="line">    <span class="comment"># numpy</span></span><br><span class="line">    random.seed(seed)  </span><br><span class="line">    <span class="comment"># random and transforms</span></span><br></pre></td></tr></table></figure><p>在程序的入口处设置随机数种子</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_seed(1)</span><br></pre></td></tr></table></figure><p>1.当我们训练了一个模型之后，需要将训练得到的模型进行保存。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH = <span class="string">&#x27;./cifar_net.pth&#x27;</span></span><br><span class="line">torch.save(net.state_dict(),PATH)</span><br></pre></td></tr></table></figure><p>2.测试网络</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新加载保存的模型</span></span><br><span class="line">net = Net()</span><br><span class="line">net.load_state_dict(torch.load(PATH))</span><br></pre></td></tr></table></figure><p>保存模型的方式不同。会导致模型有可能不同</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">torch.save(net,<span class="string">&#x27;./model.pth&#x27;</span>)</span><br><span class="line">torch.save(net.state_dict(),<span class="string">&#x27;./model-dict.pth&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载模型</span></span><br><span class="line">net=torch.load(<span class="string">&#x27;./model.pth&#x27;</span>)</span><br><span class="line">net.load_state_dict(torch.load(<span class="string">&#x27;./model-dict.pth&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了加载之后相同，需要指定eval模式</span></span><br><span class="line"><span class="comment">#保存</span></span><br><span class="line">net=net.eval()</span><br><span class="line">torch.save(net,<span class="string">&#x27;./model.pth&#x27;</span>)</span><br><span class="line">torch.save(net.state_dict(),<span class="string">&#x27;./model-dict.pth&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#加载</span></span><br><span class="line">net_load1=torch.load(<span class="string">&#x27;./model.pth&#x27;</span>)</span><br><span class="line">net_load1=net_load1.eval()</span><br><span class="line"></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">net_load2.load_state_dict(torch.load(<span class="string">&#x27;./model-dict.pth&#x27;</span>))</span><br><span class="line">net_load2=net_load2.eval()</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>model.state_dict()是浅拷贝，返回的参数依然会随着网络的训练而变化，需要deepcopy或者拷贝到硬盘中。</p><p>在state_dict中有下面四个内容:<br>1._paramters<br>nn.parameter.Paramter，也就是组成Module的参数。例如一个nn.Linear通常由weight和bias参数组成。它的特点是默认requires_grad=True,也就是说训练过程中需要反向传播的<br>2._buffers<br>不需要参与反向传播的参数<br>3._modules<br>torch.nn.Module类，你定义的所有网络结构都必须继承这个类。<br>4._state_dict_hooks<br>最后一种就是在读取state_dict时希望执行的操作，一般为空，所以不做考虑。</p><p>关于NLLLoss的代码说明:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line"></span><br><span class="line">torch.manual_seed(2019)</span><br><span class="line"></span><br><span class="line">output = torch.randn(1, 3)  <span class="comment"># 网络输出</span></span><br><span class="line">target = torch.ones(1, dtype=torch.long).random_(3)  <span class="comment"># 真实标签</span></span><br><span class="line"><span class="built_in">print</span>(output)</span><br><span class="line"><span class="built_in">print</span>(target)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接调用</span></span><br><span class="line">loss = F.nll_loss(output, target)</span><br><span class="line"><span class="built_in">print</span>(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化类</span></span><br><span class="line">criterion = nn.NLLLoss()</span><br><span class="line">loss = criterion(output, target)</span><br><span class="line"><span class="built_in">print</span>(loss)</span><br></pre></td></tr></table></figure><p>计算公式：loss(input, class) = -input[class]<br>公式理解：input = [-0.1187, 0.2110, 0.7463]，target = [1]，那么 loss = -0.2110<br>个人理解：感觉像是把 target 转换成 one-hot 编码，然后与 input 点乘得到的结果</p><p>如果 input 维度为 M x N，那么 loss 默认取 M 个 loss 的平均值，reduction=’none’ 表示显示全部 loss</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line"></span><br><span class="line">torch.manual_seed(2019)</span><br><span class="line"></span><br><span class="line">output = torch.randn(2, 3)  <span class="comment"># 网路输出</span></span><br><span class="line">target = torch.ones(2, dtype=torch.long).random_(3)  <span class="comment"># 真实标签</span></span><br><span class="line"><span class="built_in">print</span>(output)</span><br><span class="line"><span class="built_in">print</span>(target)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接调用</span></span><br><span class="line">loss = F.nll_loss(output, target)</span><br><span class="line"><span class="built_in">print</span>(loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实例化类</span></span><br><span class="line">criterion = nn.NLLLoss(reduction=<span class="string">&#x27;none&#x27;</span>)</span><br><span class="line">loss = criterion(output, target)</span><br><span class="line"><span class="built_in">print</span>(loss)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">tensor([[-0.1187,  0.2110,  0.7463],</span></span><br><span class="line"><span class="string">        [-0.6136, -0.1186,  1.5565]])</span></span><br><span class="line"><span class="string">tensor([2, 0])</span></span><br><span class="line"><span class="string">tensor(-0.0664)</span></span><br><span class="line"><span class="string">tensor([-0.7463,  0.6136])</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure><p>那么CrossEntropyLoss和NLLLoss区别在于<br>CrossEntropyLoss = Softmax+Log+NLLLoss</p><p>还有<br>ignore_index 就是计算的时候忽略的标签的数值</p><h1 id="梯度计算以及backward方法"><a href="#梯度计算以及backward方法" class="headerlink" title="梯度计算以及backward方法"></a>梯度计算以及backward方法</h1><p>tensor在torch中是一个n维数组，我们通过指定参数requires_grad = True来建立一个反向传播图，从而可以计算梯度。被称之为动态计算图Dynamic Computation Graph。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 1</span></span><br><span class="line">x = torch.randn(2,2,requires_grad=True)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 2</span></span><br><span class="line">x = torch.autograd.Variable(torch.Tensor([2,3]),requires_grad=True)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 3</span></span><br><span class="line">x = torch.tensor([2,3],requires_grad=True,dtype=torch.float64)</span><br><span class="line"></span><br><span class="line"><span class="comment"># solution 4</span></span><br><span class="line">x = np.array([1,2,3],dtype=np.float64)</span><br><span class="line">x = torch.from_numpy(x)</span><br><span class="line">x.requires_grad = True</span><br><span class="line"><span class="comment"># or x.requires_grad(Ture)</span></span><br></pre></td></tr></table></figure><p>attention:<br>1.只有浮点型数据才有梯度，</p><p>tensor是PyTorch中的组建，Variable是对tensor的封装，操作和tensor一样，但是每个variable都有三个属性，包含了</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.data 数据</span><br><span class="line">.grad 梯度</span><br><span class="line">.grad_fn 变量的得到方式</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;参考资料:&lt;br&gt;&lt;a href=&quot;https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html&quot;&gt;https://pytorch.org/tutorials/beginner/deep_lear</summary>
-      
-    
-    
-    
-    
-    <category term="python" scheme="http://example.com/tags/python/"/>
-    
-    <category term="torch" scheme="http://example.com/tags/torch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LaTeX使用说明</title>
-    <link href="http://example.com/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
-    <id>http://example.com/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</id>
-    <published>2020-11-26T15:36:25.000Z</published>
-    <updated>2020-12-26T15:17:07.376Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-环境配置"><a href="#0-环境配置" class="headerlink" title="0.环境配置"></a>0.环境配置</h1><p>下载</p><h1 id="1-使用说明"><a href="#1-使用说明" class="headerlink" title="1.使用说明"></a>1.使用说明</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">% 注释</span><br><span class="line">\\ 换行</span><br><span class="line">\<span class="keyword">in</span> 属于</span><br><span class="line">\notin  不属于</span><br></pre></td></tr></table></figure><p><img src="/2020/11/26/LaTeX%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/alpha.png"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-环境配置&quot;&gt;&lt;a href=&quot;#0-环境配置&quot; class=&quot;headerlink&quot; title=&quot;0.环境配置&quot;&gt;&lt;/a&gt;0.环境配置&lt;/h1&gt;&lt;p&gt;下载&lt;/p&gt;
-&lt;h1 id=&quot;1-使用说明&quot;&gt;&lt;a href=&quot;#1-使用说明&quot; class=&quot;header</summary>
-      
-    
-    
-    
-    
-    <category term="latex" scheme="http://example.com/tags/latex/"/>
     
   </entry>
   
