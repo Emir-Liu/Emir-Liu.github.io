@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-05-07T03:11:13.165Z</updated>
+  <updated>2021-05-20T13:08:14.788Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python的P2P聊天软件开发</title>
+    <link href="http://example.com/2021/05/20/Python%E7%9A%84P2P%E8%81%8A%E5%A4%A9%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/"/>
+    <id>http://example.com/2021/05/20/Python%E7%9A%84P2P%E8%81%8A%E5%A4%A9%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/</id>
+    <published>2021-05-20T12:30:53.000Z</published>
+    <updated>2021-05-20T13:08:14.788Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0.概述"></a>0.概述</h1><p>无聊，做点事情。<br>环境 Ubuntu Python<br>模块 threading thread??</p><p>多线程编程：<br>并发情况，手段有多进程和多线程</p><p>线程比进程更加轻量化，系统开销更加低</p><p>Python提供多线程编程。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br></pre></td></tr></table></figure><p>创建Thread对象，然后运行，每个Thread对象代表一个线程，在每个线程中可以让程序处理不同的任务。</p><p>注意，程序运行默认就是在主线程。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0.概述&quot;&gt;&lt;/a&gt;0.概述&lt;/h1&gt;&lt;p&gt;无聊，做点事情。&lt;br&gt;环境 Ubuntu Python&lt;br&gt;模块 threading thread??&lt;/p&gt;
+&lt;p&gt;多</summary>
+      
+    
+    
+    
+    
+    <category term="python" scheme="http://example.com/tags/python/"/>
+    
+    <category term="p2p" scheme="http://example.com/tags/p2p/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python——P2P聊天</title>
+    <link href="http://example.com/2021/05/20/Python%E2%80%94%E2%80%94P2P%E8%81%8A%E5%A4%A9/"/>
+    <id>http://example.com/2021/05/20/Python%E2%80%94%E2%80%94P2P%E8%81%8A%E5%A4%A9/</id>
+    <published>2021-05-20T12:29:34.000Z</published>
+    <updated>2021-05-20T12:29:35.001Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Matlab基础</title>
+    <link href="http://example.com/2021/05/10/Matlab%E5%9F%BA%E7%A1%80/"/>
+    <id>http://example.com/2021/05/10/Matlab%E5%9F%BA%E7%A1%80/</id>
+    <published>2021-05-10T09:54:21.000Z</published>
+    <updated>2021-05-10T09:30:57.729Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="0-水，好水"><a href="#0-水，好水" class="headerlink" title="0. 水，好水"></a>0. 水，好水</h1><h1 id="1-数据读取"><a href="#1-数据读取" class="headerlink" title="1.数据读取"></a>1.数据读取</h1><p>待定<br>从excel或者记事本中读取数据。</p><h1 id="2-拟合"><a href="#2-拟合" class="headerlink" title="2.拟合"></a>2.拟合</h1><p>数据清理、计算、拟合、绘制图形、预测<br>曲线拟合，和插值函数有区别，不要求曲线一定经过数据点，曲线拟合的判别准则偏差的平方和最小，最小二乘法。</p><h2 id="2-1多项式拟合"><a href="#2-1多项式拟合" class="headerlink" title="2.1多项式拟合"></a>2.1多项式拟合</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">polyfit(x,y,n)</span><br><span class="line"><span class="comment">#降幂排列的多项式系数</span></span><br><span class="line">polyval(P,xi)</span><br><span class="line"><span class="comment">#计算多项式的数值</span></span><br></pre></td></tr></table></figure><h2 id="2-2图形窗口的多项式拟合"><a href="#2-2图形窗口的多项式拟合" class="headerlink" title="2.2图形窗口的多项式拟合"></a>2.2图形窗口的多项式拟合</h2><p>Tools -&gt; Basic fitting ??<br>可以比较不同阶数的效果</p><h2 id="2-3-指定函数的拟合"><a href="#2-3-指定函数的拟合" class="headerlink" title="2.3 指定函数的拟合"></a>2.3 指定函数的拟合</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fittype(func,)</span><br><span class="line">fit</span><br></pre></td></tr></table></figure><h2 id="2-4-曲线拟合工具箱"><a href="#2-4-曲线拟合工具箱" class="headerlink" title="2.4 曲线拟合工具箱"></a>2.4 曲线拟合工具箱</h2><p>Toolboxes-&gt; Curve Fitting<br>cftool<br>可以对结果进行分析</p><h2 id="2-5-问题"><a href="#2-5-问题" class="headerlink" title="2.5 问题"></a>2.5 问题</h2><p>对人口使用Logistic曲线模型。。</p><p>下次试试直接拟合</p><p>薄膜渗透率测定 </p><p>lsqcurvefit 非线性拟合</p><h1 id="3-插值"><a href="#3-插值" class="headerlink" title="3 插值"></a>3 插值</h1><h1 id="4-规划问题"><a href="#4-规划问题" class="headerlink" title="4.规划问题"></a>4.规划问题</h1><p>线性规划、非线性规划、整数规划</p><h1 id="5-灰色预测"><a href="#5-灰色预测" class="headerlink" title="5.灰色预测"></a>5.灰色预测</h1><p>数据量少的情况下进行预测</p><h1 id="6-遗传算法"><a href="#6-遗传算法" class="headerlink" title="6.遗传算法"></a>6.遗传算法</h1><p>多约束规划</p><h1 id="7-粒子群算法"><a href="#7-粒子群算法" class="headerlink" title="7.粒子群算法"></a>7.粒子群算法</h1><h1 id="8-模拟退火"><a href="#8-模拟退火" class="headerlink" title="8.模拟退火"></a>8.模拟退火</h1><h1 id="9-人工神经网络"><a href="#9-人工神经网络" class="headerlink" title="9.人工神经网络"></a>9.人工神经网络</h1><h1 id="10-小波分析"><a href="#10-小波分析" class="headerlink" title="10.小波分析"></a>10.小波分析</h1><h1 id="11-计算机虚拟"><a href="#11-计算机虚拟" class="headerlink" title="11.计算机虚拟"></a>11.计算机虚拟</h1><h1 id="12-题目"><a href="#12-题目" class="headerlink" title="12.题目"></a>12.题目</h1><p>彩票、卡车调度、商圈规划、卫星和飞船跟踪、出版社资源配置、供水问题。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;0-水，好水&quot;&gt;&lt;a href=&quot;#0-水，好水&quot; class=&quot;headerlink&quot; title=&quot;0. 水，好水&quot;&gt;&lt;/a&gt;0. 水，好水&lt;/h1&gt;&lt;h1 id=&quot;1-数据读取&quot;&gt;&lt;a href=&quot;#1-数据读取&quot; class=&quot;headerlink&quot; ti</summary>
+      
+    
+    
+    
+    
+    <category term="matlab" scheme="http://example.com/tags/matlab/"/>
+    
+  </entry>
   
   <entry>
     <title>建立网站整理</title>
@@ -47,9 +107,9 @@
     <link href="http://example.com/2021/05/07/2021%E7%A0%94%E7%94%B5%E8%B5%9B%E8%BF%9B%E8%A1%8C/"/>
     <id>http://example.com/2021/05/07/2021%E7%A0%94%E7%94%B5%E8%B5%9B%E8%BF%9B%E8%A1%8C/</id>
     <published>2021-05-06T23:30:29.000Z</published>
-    <updated>2021-05-07T03:21:19.553Z</updated>
+    <updated>2021-05-12T11:43:18.181Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-资料"><a href="#1-资料" class="headerlink" title="1.资料"></a>1.资料</h1><p>2021题目<br><a href="https://cpipc.acge.org.cn//pw/detail/2c90800c78715fdd0178ab9399280ef1">https://cpipc.acge.org.cn//pw/detail/2c90800c78715fdd0178ab9399280ef1</a><br>需要注意的题目<br>手语识别系统 景嘉微</p><p>基于图像处理的缺陷检测系统——工业派 TI 1K+</p><p>基于麦克风阵列的智能硬件应用创新–RSLK专家版 TI 3K+</p><p>自动驾驶 EAIDK-310 Arm 9/100套</p><p>报名<br><a href="https://cpipc.acge.org.cn//pw/list/%E5%A4%A7%E8%B5%9B%E5%8A%A8%E6%80%81/1/1">https://cpipc.acge.org.cn//pw/list/%E5%A4%A7%E8%B5%9B%E5%8A%A8%E6%80%81/1/1</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-资料"><a href="#1-资料" class="headerlink" title="1.资料"></a>1.资料</h1><p>2021题目<br><a href="https://cpipc.acge.org.cn//pw/detail/2c90800c78715fdd0178ab9399280ef1">https://cpipc.acge.org.cn//pw/detail/2c90800c78715fdd0178ab9399280ef1</a><br>需要注意的题目<br>手语识别系统 景嘉微</p><p>基于图像处理的缺陷检测系统——工业派 TI 1K+</p><p>基于麦克风阵列的智能硬件应用创新–RSLK专家版 TI 3K+</p><p>自动驾驶 EAIDK-310 Arm 9/100套</p><p>报名<br><a href="https://cpipc.acge.org.cn//pw/list/%E5%A4%A7%E8%B5%9B%E5%8A%A8%E6%80%81/1/1">https://cpipc.acge.org.cn//pw/list/%E5%A4%A7%E8%B5%9B%E5%8A%A8%E6%80%81/1/1</a></p><p>关于Ubuntu下串口的设置问题：<br>minicom</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查找设备</span><br><span class="line">ls -l /dev/ttyUSB*</span><br><span class="line">注意Hardware flow NO</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
@@ -382,75 +442,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Python中利用seqeval模块进行序列标注算法的模型评估</title>
-    <link href="http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/"/>
-    <id>http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/</id>
-    <published>2020-12-21T07:40:01.000Z</published>
-    <updated>2020-12-21T10:43:18.389Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。</p><p>一般而言，序列标注算法的格式有BIO、IOBES、BMES等。</p><p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure><p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p><p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p><p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p><p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p><h1 id="1-样例"><a href="#1-样例" class="headerlink" title="1.样例"></a>1.样例</h1><p>参考官网资料</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from seqeval.metrics import accuracy_score,classification_report,f1_score</span><br><span class="line"></span><br><span class="line">y_true = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>], [<span class="string">&#x27;B- PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">y_pred = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>],[<span class="string">&#x27;B-PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f1_score(y_true, y_pred))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(classification_report(y_true, y_pred))</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;0-概述&quot;&gt;&lt;a href=&quot;#0-概述&quot; class=&quot;headerlink&quot; title=&quot;0. 概述&quot;&gt;&lt;/a&gt;0. 概述&lt;/h1&gt;&lt;p&gt;在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模</summary>
-      
-    
-    
-    
-    
-    <category term="python" scheme="http://example.com/tags/python/"/>
-    
-    <category term="seqeval" scheme="http://example.com/tags/seqeval/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python之版本相争</title>
-    <link href="http://example.com/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/"/>
-    <id>http://example.com/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/</id>
-    <published>2020-12-17T07:53:29.000Z</published>
-    <updated>2020-12-17T07:57:25.883Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Ubuntu 20 版本的时候，不支持直接下载python2的pip ,所以，有下面的解决方法</p><ol><li><p>Start by enabling the universe repository:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure></li><li><p>Update the packages index and install Python 2:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install python2</span><br></pre></td></tr></table></figure></li><li><p>Use curl to download the get-pip.py script:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py</span><br></pre></td></tr></table></figure></li><li><p>Once the repository is enabled, run the script as sudo user with python2 to install pip :</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python2 get-pip.py</span><br></pre></td></tr></table></figure></li><li><p>Verify the installation</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip2 --version</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在Ubuntu 20 版本的时候，不支持直接下载python2的pip ,所以，有下面的解决方法&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Start by enabling the universe repository:&lt;/p&gt;
-&lt;figure class=&quot;highlight </summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>LSTM分析</title>
-    <link href="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/"/>
-    <id>http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/</id>
-    <published>2020-12-15T07:46:44.000Z</published>
-    <updated>2020-12-16T08:51:31.093Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于LSTM模型:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png"><br>参考:<a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p><p>细胞状态是LSTM的核心，如下图所示。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/%E7%BB%86%E8%83%9E%E7%8A%B6%E6%80%81.png"><br>细胞状态就像是传送带，在整个链条中一直延伸，只有一些小的线性作用，有利于信息不加改变地流动。</p><p>LSTM模型通过门结构调节，具有向细胞状态删除或者增加信息的能力。</p><p>有三个门结构，来保护控制细胞状态。</p><p>forget gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/forget_layer.png"><br>我们首先需要确定之前的信息需要忘记多少<br>取决于h_t-1和x_t,输出0到1之间的数字。<br>1表示完全保留之前的信息C_t-1,0表示完全忘记之前的信息</p><p>input gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/input_layer.png"><br>然后，我们需要决定当前细胞状态需要加入多少新的信息。<br>这里有两个部分，第一个是sigmoid函数，叫做输入门层，决定了我们更新的系数i。然后一个tanh函数建立了一个候选的数值Ct，在下一步中，我们将会将这两个合并去更新状态。</p><p>更新旧的状态Ct-1<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/update.png"><br>这样，看上面的公式就很简单，首先是对之前的状态乘以一个系数，忘记一些信息，然后增加当前的状态乘以一个系数，记住一些当前的信息。</p><p>最后，我们应该决定一个节点的输出结果了。这个就诶过取决于我们的细胞状态，但是是过滤后的版本。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/output.png"></p><p>我们先使用sigmoid层得到的我们应该输出的东西，然后哦将细胞状态通过tanh得到系数，将两个相乘，得到当前的状态h_t</p><p>LSTM有多个变种，这里就跳过。</p><p>其中比较重要的是BiLSTM,就是两个方向的LSTM的输出状态拼接到一起:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png"></p><p>最后补充一下，在写代码的时候，使用的torch.nn.LSTM的官方资料说明:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/torch_nn.png"></p><p>下面是参数的说明:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input_size – The number of expected features <span class="keyword">in</span> the input x</span><br><span class="line"></span><br><span class="line">hidden_size – The number of features <span class="keyword">in</span> the hidden state h</span><br><span class="line"></span><br><span class="line">num_layers – Number of recurrent layers. E.g., setting num_layers=2 would mean stacking two LSTMs together to form a stacked LSTM, with the second LSTM taking <span class="keyword">in</span> outputs of the first LSTM and computing the final results. Default: 1</span><br><span class="line"></span><br><span class="line">bias – If False, <span class="keyword">then</span> the layer does not use bias weights b_ih and b_hh. Default: True</span><br><span class="line"></span><br><span class="line">batch_first – If True, <span class="keyword">then</span> the input and output tensors are provided as (batch, seq, feature). Default: False</span><br><span class="line"></span><br><span class="line">dropout – If non-zero, introduces a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout. Default: 0</span><br><span class="line"></span><br><span class="line">bidirectional – If True, becomes a bidirectional LSTM. Default: False</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;关于LSTM模型:&lt;br&gt;&lt;img src=&quot;/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png&quot;&gt;&lt;br&gt;参考:&lt;a href=&quot;https://colah.github.io/posts/2015-</summary>
-      
-    
-    
-    
-    
-    <category term="lstm" scheme="http://example.com/tags/lstm/"/>
     
   </entry>
   

@@ -64,6 +64,137 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-test-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/03/test-1/" class="article-date">
+  <time datetime="2021-03-03T10:32:25.000Z" itemprop="datePublished">2021-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/03/test-1/">test</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一个新的test文件，因为git出现了新的问题。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/03/test-1/" data-id="ckltaydim0000v2g78evl4w7p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-关于残差网络的讨论" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/" class="article-date">
+  <time datetime="2021-02-08T07:53:05.000Z" itemprop="datePublished">2021-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/">关于残差网络的讨论</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80226180">https://zhuanlan.zhihu.com/p/80226180</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/08/%E5%85%B3%E4%BA%8E%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A8%E8%AE%BA/" data-id="ckltavt010002fpg71hgg4igp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基于图的文档级关系抽取" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/" class="article-date">
+  <time datetime="2021-02-07T11:02:59.000Z" itemprop="datePublished">2021-02-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/">基于图的文档级关系抽取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>文档级关系抽取中的实体对通常贯穿于文档的多个句子中，和句子级的关系抽取相比需要更多的信息。</p>
+<p>文档级关系抽取任务描述：<br>输入：实体1、实体2和文档<br>输出：两个实体之间的关系</p>
+<p>为此，需要设计新的模型来获取更多的信息。为此，有了下面的方法。<br>(1) GCNN (Inter-sentence Relation Extraction with Document-level Graph Convolutional Neural Network)<br>(2) EoG (Connecting the Dots: Document-level Neural Relation Extraction with Edge-oriented Graphs)<br>(3) GAIN (Double Graph Based Reasoning for Document-level Relation Extraction)(Graph Aggregation-and-Inference Network)</p>
+<h1 id="2-模型"><a href="#2-模型" class="headerlink" title="2.模型"></a>2.模型</h1><h2 id="2-1-GCNN"><a href="#2-1-GCNN" class="headerlink" title="2.1 GCNN"></a>2.1 GCNN</h2><p>使用了GCNN网络，和普通的GCN类似，但是结构有所不同。</p>
+<h3 id="2-1-1-结构"><a href="#2-1-1-结构" class="headerlink" title="2.1.1 结构"></a>2.1.1 结构</h3><p>节点： 文档中的word包含<br>(1) word的词向量<br>(2) word与目标实体的相对位置<br>![GCNN_example.png]</p>
+<p>连线：关系<br>(1) Syntactic dependency edge:句法依赖<br>(2) Coreference edge:指代<br>(3) Adjacent sentence edge:相邻的上下句<br>(4) Adjacent word edge:相邻的上下word<br>(5) self node edge:自身</p>
+<h3 id="2-1-2-算法"><a href="#2-1-2-算法" class="headerlink" title="2.1.2 算法"></a>2.1.2 算法</h3><p>对每一种关系图进行GCN的运算，然后将不同类型的关系图进行加权相加之后得到最后的结果。</p>
+<p>最后使用了两个不同的全连接层，分别对应前一个和后一个实体。</p>
+<p>![GCNN.png]</p>
+<h2 id="2-2-EoG"><a href="#2-2-EoG" class="headerlink" title="2.2 EoG"></a>2.2 EoG</h2><p>使用了边的图，而不是基于节点。与之前的模型不同。这个模型有如下的特点。<br>(1) 包含实体的mentions对实体之间的关系很重要<br>(2) 实体对中实体的关系可以通过节点间的路径来表示，而不是基于节点</p>
+<h3 id="2-2-1-结构"><a href="#2-2-1-结构" class="headerlink" title="2.2.1 结构"></a>2.2.1 结构</h3><p>节点：<br>(1)Mention node<br>与实体相关的mention的word embedding的平均<br>(2)Entity node<br>该实体的所有mention node的平均<br>(3)Sentence node<br>句子中的word embedding平均</p>
+<p>连线： M,E,S:Mention,Entity,Sentence<br>(1)MM 同一个Sentence中的两个mention<br>(2)ME<br>(3)MS<br>(4)ES<br>(5)SS</p>
+<p>![EoG.png]</p>
+<h3 id="2-2-2-算法"><a href="#2-2-2-算法" class="headerlink" title="2.2.2 算法"></a>2.2.2 算法</h3><p>进行EoG算法，然后得到实体到实体的边的表示：<br>(1) 两个实体节点，选择其中的一个节点作为中间节点，然后，该路径的两条边通过神经网络，然后得到了这条路径的表示。<br>(2) 如果在实体之间已经存在了路径的表示，那么，将所有的路径与通过路径的两条边进行混合<br>(3) 将上面的步骤进行多次，就得到了混合后的实体到实体的边表示</p>
+<p>最后，通过它进行分类。</p>
+<h2 id="2-3-GAIN"><a href="#2-3-GAIN" class="headerlink" title="2.3 GAIN"></a>2.3 GAIN</h2><p>GAIN图聚合推理网络继承了EoG模型，三个问题:<br>(1) 同一个关系的主和宾可能位于不同的句子里面，无法通过一个句子来得到关系<br>(2) 同一个实体可能出现在不同的句子里面就，所以需要句子间的信息来表示实体<br>(3) 有的关系需要逻辑推理<br>得到了新的GAIN模型</p>
+<p>这个模型包含两个图结构：<br>(1) hMG (heterogeneous mention-level graph)异构mention级别图<br>针对文档中不同mentions之间的互相关系</p>
+<p>node：mention node 和 document node<br>(1) mention node 表示每一个mention<br>(2) document node 虚拟节点，对document信息，中继节点，有利于交互<br>edge:intra-entity edge,inter-entity edge,document edge<br>(1) intra-entity edge 同一个entity的mention<br>(2) inter-entity edge 一个句子内的不同entity的mention<br>(3) document edge 所有mention和document node连接<br>然后使用GCN得到mention的文档级表示，将每个节点的所有层的表示都concat，作为节点的最终表示</p>
+<p>(2) EG (entity-level graph)实体级别图<br>用所有的mention的表示平均作为entity的表示<br>根据路径推理机制来推理实体对之间的关系，能够允许模型实现多跳关系推理<br>将相同entity的hMG中mention融合</p>
+<p>模型分为4个部分:<br>(1) encoding module:<br>输入 word embedding,entity type,coreference type<br>通过encoding得到这一层的输出。<br>(2) mention-level graph aggregation module</p>
+<p>(3) entity-level graph inference module<br>(4) classification module</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/07/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E6%96%87%E6%A1%A3%E7%BA%A7%E5%85%B3%E7%B3%BB%E6%8A%BD%E5%8F%96/" data-id="ckltavt040003fpg78k8xakz5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Ubuntu之文件编码类型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/01/28/Ubuntu%E4%B9%8B%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B/" class="article-date">
@@ -371,158 +502,6 @@
 
 
   
-    <article id="post-Python中利用seqeval模块进行序列标注算法的模型评估" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" class="article-date">
-  <time datetime="2020-12-21T07:40:01.000Z" itemprop="datePublished">2020-12-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/">Python中利用seqeval模块进行序列标注算法的模型评估</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="0-概述"><a href="#0-概述" class="headerlink" title="0. 概述"></a>0. 概述</h1><p>在NLP任务中，我们经常需要使用序列标注算法，为此，我们需要评估该模型在序列标注任务中的效果，这里使用了seqeval模块。</p>
-<p>一般而言，序列标注算法的格式有BIO、IOBES、BMES等。</p>
-<p>模型的评价指标有，一般只会注意英文，中文容易弄混:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">真实值\预测值   |Positive       |Negative       |</span><br><span class="line">Positive        |True Positive  |False Negative |</span><br><span class="line">Negative        |False Positive |True Negative  |</span><br></pre></td></tr></table></figure>
-
-<p>Precision = TP/(TP+FP)<br>预测为正的样本中有多少预测对了</p>
-<p>Recall = TP/(TP+FN)<br>真实为正的样本中有多少预测对了</p>
-<p>Accuracy = (TP+TN)/(TP+TN+FP+FN)</p>
-<p>F1 Score = 1/2(1/recall + 1/precision)<br>= 2Recall*Precision/(Recall+Precision)</p>
-<h1 id="1-样例"><a href="#1-样例" class="headerlink" title="1.样例"></a>1.样例</h1><p>参考官网资料</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from seqeval.metrics import accuracy_score,classification_report,f1_score</span><br><span class="line"></span><br><span class="line">y_true = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>], [<span class="string">&#x27;B- PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">y_pred = [[<span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;B-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;I-MISC&#x27;</span>, <span class="string">&#x27;O&#x27;</span>],[<span class="string">&#x27;B-PER&#x27;</span>, <span class="string">&#x27;I-PER&#x27;</span>, <span class="string">&#x27;O&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f1_score(y_true, y_pred))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(classification_report(y_true, y_pred))</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/21/Python%E4%B8%AD%E5%88%A9%E7%94%A8seqeval%E6%A8%A1%E5%9D%97%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0/" data-id="ckiybphge0000h6g71s3mc0m3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/seqeval/" rel="tag">seqeval</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Python之版本相争" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" class="article-date">
-  <time datetime="2020-12-17T07:53:29.000Z" itemprop="datePublished">2020-12-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/">Python之版本相争</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在Ubuntu 20 版本的时候，不支持直接下载python2的pip ,所以，有下面的解决方法</p>
-<ol>
-<li><p>Start by enabling the universe repository:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository universe</span><br></pre></td></tr></table></figure></li>
-<li><p>Update the packages index and install Python 2:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install python2</span><br></pre></td></tr></table></figure></li>
-<li><p>Use curl to download the get-pip.py script:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py</span><br></pre></td></tr></table></figure></li>
-<li><p>Once the repository is enabled, run the script as sudo user with python2 to install pip :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python2 get-pip.py</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Verify the installation</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip2 --version</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/Python%E4%B9%8B%E7%89%88%E6%9C%AC%E7%9B%B8%E4%BA%89/" data-id="ckisjwpna0000vrg7f1itgtqs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-LSTM分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2020-12-15T07:46:44.000Z" itemprop="datePublished">2020-12-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/15/LSTM%E5%88%86%E6%9E%90/">LSTM分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于LSTM模型:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/LSTM%E6%A8%A1%E5%9E%8B.png"><br>参考:<a target="_blank" rel="noopener" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>
-<p>细胞状态是LSTM的核心，如下图所示。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/%E7%BB%86%E8%83%9E%E7%8A%B6%E6%80%81.png"><br>细胞状态就像是传送带，在整个链条中一直延伸，只有一些小的线性作用，有利于信息不加改变地流动。</p>
-<p>LSTM模型通过门结构调节，具有向细胞状态删除或者增加信息的能力。</p>
-<p>有三个门结构，来保护控制细胞状态。</p>
-<p>forget gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/forget_layer.png"><br>我们首先需要确定之前的信息需要忘记多少<br>取决于h_t-1和x_t,输出0到1之间的数字。<br>1表示完全保留之前的信息C_t-1,0表示完全忘记之前的信息</p>
-<p>input gate layer<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/input_layer.png"><br>然后，我们需要决定当前细胞状态需要加入多少新的信息。<br>这里有两个部分，第一个是sigmoid函数，叫做输入门层，决定了我们更新的系数i。然后一个tanh函数建立了一个候选的数值Ct，在下一步中，我们将会将这两个合并去更新状态。</p>
-<p>更新旧的状态Ct-1<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/update.png"><br>这样，看上面的公式就很简单，首先是对之前的状态乘以一个系数，忘记一些信息，然后增加当前的状态乘以一个系数，记住一些当前的信息。</p>
-<p>最后，我们应该决定一个节点的输出结果了。这个就诶过取决于我们的细胞状态，但是是过滤后的版本。<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/output.png"></p>
-<p>我们先使用sigmoid层得到的我们应该输出的东西，然后哦将细胞状态通过tanh得到系数，将两个相乘，得到当前的状态h_t</p>
-<p>LSTM有多个变种，这里就跳过。</p>
-<p>其中比较重要的是BiLSTM,就是两个方向的LSTM的输出状态拼接到一起:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/BiLSTM.png"></p>
-<p>最后补充一下，在写代码的时候，使用的torch.nn.LSTM的官方资料说明:<br><img src="/2020/12/15/LSTM%E5%88%86%E6%9E%90/torch_nn.png"></p>
-<p>下面是参数的说明:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input_size – The number of expected features <span class="keyword">in</span> the input x</span><br><span class="line"></span><br><span class="line">hidden_size – The number of features <span class="keyword">in</span> the hidden state h</span><br><span class="line"></span><br><span class="line">num_layers – Number of recurrent layers. E.g., setting num_layers=2 would mean stacking two LSTMs together to form a stacked LSTM, with the second LSTM taking <span class="keyword">in</span> outputs of the first LSTM and computing the final results. Default: 1</span><br><span class="line"></span><br><span class="line">bias – If False, <span class="keyword">then</span> the layer does not use bias weights b_ih and b_hh. Default: True</span><br><span class="line"></span><br><span class="line">batch_first – If True, <span class="keyword">then</span> the input and output tensors are provided as (batch, seq, feature). Default: False</span><br><span class="line"></span><br><span class="line">dropout – If non-zero, introduces a Dropout layer on the outputs of each LSTM layer except the last layer, with dropout probability equal to dropout. Default: 0</span><br><span class="line"></span><br><span class="line">bidirectional – If True, becomes a bidirectional LSTM. Default: False</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/15/LSTM%E5%88%86%E6%9E%90/" data-id="ckipq7tgb0000pkg72ud5dxqd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lstm/" rel="tag">lstm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -541,7 +520,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crf/" rel="tag">crf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpu/" rel="tag">gpu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gru/" rel="tag">gru</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lstm/" rel="tag">lstm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/schedule/" rel="tag">schedule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seqeval/" rel="tag">seqeval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/torch/" rel="tag">torch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado/" rel="tag">tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformers/" rel="tag">transformers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87/" rel="tag">论文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/adaboost/" rel="tag">adaboost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aircrack-ng/" rel="tag">aircrack-ng</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/anaconda/" rel="tag">anaconda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apt/" rel="tag">apt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/beautifulsoup/" rel="tag">beautifulsoup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bencode/" rel="tag">bencode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitTorrent/" rel="tag">bitTorrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bitcoin/" rel="tag">bitcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-c/" rel="tag">c/c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeblocks/" rel="tag">codeblocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crf/" rel="tag">crf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expect/" rel="tag">expect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/" rel="tag">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gnn/" rel="tag">gnn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpt/" rel="tag">gpt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gpu/" rel="tag">gpu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/grep/" rel="tag">grep</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gru/" rel="tag">gru</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtk/" rel="tag">gtk+</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html-css/" rel="tag">html/css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/libreoffice/" rel="tag">libreoffice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lstm/" rel="tag">lstm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/" rel="tag">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metasploit/" rel="tag">metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mono/" rel="tag">mono</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp/" rel="tag">nlp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p2p/" rel="tag">p2p</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/re/" rel="tag">re</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/schedule/" rel="tag">schedule</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/seqeval/" rel="tag">seqeval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stm32/" rel="tag">stm32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tkinker/" rel="tag">tkinker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/torch/" rel="tag">torch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tornado/" rel="tag">tornado</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformers/" rel="tag">transformers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/uc-os/" rel="tag">uc/os</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B9%A6%E5%8D%95/" rel="tag">书单</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" rel="tag">交叉熵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" rel="tag">信息论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%B7%E7%A7%AF/" rel="tag">卷积</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8E%9F%E5%A7%8BGNN/" rel="tag">原始GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BD%B1%E8%A7%86/" rel="tag">影视</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" rel="tag">执行脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" rel="tag">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E7%8B%AC/" rel="tag">数独</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%8C%E6%B8%B8/" rel="tag">桌游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag">游戏</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%90%86%E8%AE%BA/" rel="tag">理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" rel="tag">知识图谱</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BA%E6%96%87/" rel="tag">论文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" rel="tag">谷歌访问助手</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
     </div>
   </div>
 
@@ -551,7 +530,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 11.43px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/crf/" style="font-size: 10px;">crf</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/gpu/" style="font-size: 10px;">gpu</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gru/" style="font-size: 10px;">gru</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/lstm/" style="font-size: 10px;">lstm</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 12.86px;">mysql</a> <a href="/tags/nlp/" style="font-size: 11.43px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 10px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 11.43px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/schedule/" style="font-size: 10px;">schedule</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/seqeval/" style="font-size: 10px;">seqeval</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/torch/" style="font-size: 10px;">torch</a> <a href="/tags/tornado/" style="font-size: 10px;">tornado</a> <a href="/tags/transformers/" style="font-size: 10px;">transformers</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 12.86px;">知识图谱</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 10px;">论文</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+      <a href="/tags/GCN/" style="font-size: 10px;">GCN</a> <a href="/tags/adaboost/" style="font-size: 10px;">adaboost</a> <a href="/tags/aircrack-ng/" style="font-size: 10px;">aircrack-ng</a> <a href="/tags/anaconda/" style="font-size: 10px;">anaconda</a> <a href="/tags/apache/" style="font-size: 11.43px;">apache</a> <a href="/tags/apt/" style="font-size: 10px;">apt</a> <a href="/tags/beautifulsoup/" style="font-size: 10px;">beautifulsoup</a> <a href="/tags/bencode/" style="font-size: 10px;">bencode</a> <a href="/tags/bitTorrent/" style="font-size: 11.43px;">bitTorrent</a> <a href="/tags/bitcoin/" style="font-size: 10px;">bitcoin</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/c-c/" style="font-size: 15.71px;">c/c++</a> <a href="/tags/codeblocks/" style="font-size: 10px;">codeblocks</a> <a href="/tags/crf/" style="font-size: 10px;">crf</a> <a href="/tags/expect/" style="font-size: 10px;">expect</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/gnn/" style="font-size: 10px;">gnn</a> <a href="/tags/gpt/" style="font-size: 11.43px;">gpt</a> <a href="/tags/gpu/" style="font-size: 10px;">gpu</a> <a href="/tags/grep/" style="font-size: 10px;">grep</a> <a href="/tags/gru/" style="font-size: 10px;">gru</a> <a href="/tags/gtk/" style="font-size: 10px;">gtk+</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/html-css/" style="font-size: 10px;">html/css</a> <a href="/tags/latex/" style="font-size: 10px;">latex</a> <a href="/tags/libreoffice/" style="font-size: 10px;">libreoffice</a> <a href="/tags/lstm/" style="font-size: 10px;">lstm</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/metasploit/" style="font-size: 10px;">metasploit</a> <a href="/tags/mono/" style="font-size: 10px;">mono</a> <a href="/tags/mysql/" style="font-size: 12.86px;">mysql</a> <a href="/tags/nlp/" style="font-size: 11.43px;">nlp</a> <a href="/tags/opencv/" style="font-size: 17.14px;">opencv</a> <a href="/tags/p2p/" style="font-size: 11.43px;">p2p</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/php/" style="font-size: 11.43px;">php</a> <a href="/tags/python/" style="font-size: 18.57px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/re/" style="font-size: 10px;">re</a> <a href="/tags/schedule/" style="font-size: 10px;">schedule</a> <a href="/tags/scp/" style="font-size: 10px;">scp</a> <a href="/tags/seqeval/" style="font-size: 10px;">seqeval</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/socket/" style="font-size: 11.43px;">socket</a> <a href="/tags/ssh/" style="font-size: 11.43px;">ssh</a> <a href="/tags/stm32/" style="font-size: 17.14px;">stm32</a> <a href="/tags/tkinker/" style="font-size: 10px;">tkinker</a> <a href="/tags/torch/" style="font-size: 10px;">torch</a> <a href="/tags/tornado/" style="font-size: 10px;">tornado</a> <a href="/tags/transformers/" style="font-size: 10px;">transformers</a> <a href="/tags/ubuntu/" style="font-size: 20px;">ubuntu</a> <a href="/tags/uc-os/" style="font-size: 10px;">uc/os</a> <a href="/tags/vim/" style="font-size: 11.43px;">vim</a> <a href="/tags/web/" style="font-size: 11.43px;">web</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 10px;">书单</a> <a href="/tags/%E4%BA%A4%E5%8F%89%E7%86%B5/" style="font-size: 10px;">交叉熵</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 10px;">信息论</a> <a href="/tags/%E5%8D%B7%E7%A7%AF/" style="font-size: 10px;">卷积</a> <a href="/tags/%E5%8E%9F%E5%A7%8BGNN/" style="font-size: 10px;">原始GNN</a> <a href="/tags/%E5%BD%B1%E8%A7%86/" style="font-size: 10px;">影视</a> <a href="/tags/%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC/" style="font-size: 10px;">执行脚本</a> <a href="/tags/%E6%89%B9%E5%A4%84%E7%90%86/" style="font-size: 10px;">批处理</a> <a href="/tags/%E6%95%B0%E7%8B%AC/" style="font-size: 10px;">数独</a> <a href="/tags/%E6%A1%8C%E6%B8%B8/" style="font-size: 10px;">桌游</a> <a href="/tags/%E6%B8%B8%E6%88%8F/" style="font-size: 10px;">游戏</a> <a href="/tags/%E7%90%86%E8%AE%BA/" style="font-size: 10px;">理论</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" style="font-size: 12.86px;">知识图谱</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">神经网络</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 10px;">线程</a> <a href="/tags/%E7%BD%91%E7%AB%99/" style="font-size: 10px;">网站</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 10px;">论文</a> <a href="/tags/%E8%B0%B7%E6%AD%8C%E8%AE%BF%E9%97%AE%E5%8A%A9%E6%89%8B/" style="font-size: 10px;">谷歌访问助手</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
     </div>
   </div>
 
@@ -573,23 +552,23 @@
       <ul>
         
           <li>
+            <a href="/2021/05/20/Python%E7%9A%84P2P%E8%81%8A%E5%A4%A9%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">Python的P2P聊天软件开发</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/20/Python%E2%80%94%E2%80%94P2P%E8%81%8A%E5%A4%A9/">Python——P2P聊天</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/10/Matlab%E5%9F%BA%E7%A1%80/">Matlab基础</a>
+          </li>
+        
+          <li>
             <a href="/2021/05/07/%E5%BB%BA%E7%AB%8B%E7%BD%91%E7%AB%99%E6%95%B4%E7%90%86/">建立网站整理</a>
           </li>
         
           <li>
             <a href="/2021/05/07/2021%E7%A0%94%E7%94%B5%E8%B5%9B%E8%BF%9B%E8%A1%8C/">2021研电赛进行</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/06/HTML%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/">HTML资料整理</a>
-          </li>
-        
-          <li>
-            <a href="/2021/04/30/%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AE%9E%E7%8E%B0/">聊天机器人实现</a>
-          </li>
-        
-          <li>
-            <a href="/2021/04/28/neo4j%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">neo4j使用指南</a>
           </li>
         
       </ul>
